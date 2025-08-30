@@ -40,9 +40,83 @@
     .enter-btn:hover { background: #0278ff; }
     .hidden { display: none; }
 
-    .players-list { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; margin: 20px; }
-    .player-card { padding: 20px; background: white; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); cursor: pointer; transition: 0.2s; }
-    .player-card:hover { transform: scale(1.05); background: #e9f3ff; }
+    .boton-elegante {
+  padding: 15px 30px;
+  border: 2px solid #2c2c2c;
+  background-color: #1a1a1a;
+  color: #ffffff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border-radius: 30px;
+  transition: all 0.4s ease;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+  font-weight: bold;
+}
+
+.boton-elegante::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(13, 177, 206, 0) 70%
+  );
+  transform: scale(0);
+  transition: transform 0.5s ease;
+}
+
+.boton-elegante:hover::after {
+  transform: scale(4);
+}
+
+.boton-elegante:hover {
+  border-color: #666666;
+  background: #292929;
+}
+
+.players-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin: 20px;
+}
+
+.player-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.player-card:hover {
+  transform: scale(1.1);
+}
+
+/* Circle image */
+.player-card img {
+  width: 120px;          /* adjust size */
+  height: 120px;
+  border-radius: 50%;    /* makes it circular */
+  object-fit: cover;     /* ensures image fits nicely */
+  border: 3px solid #222;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* Name below the circle */
+.player-card span {
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
 
     /* Centuries stacked vertically */
     .centuries { display: flex; flex-direction: column; gap: 30px; padding: 20px; max-width: 700px; margin: auto; }
@@ -86,14 +160,13 @@
 
     .video-frame::before { left: -30px; }
     .video-frame::after { right: -30px; }
-
-    .video-frame iframe {
-      width: 100%;
-      height: 315px;
-      border: none;
-      border-radius: 12px;
-      display: block;
-    }
+.video-frame iframe {
+  width: 100%;
+  height: 315px;
+  border: none;
+  border-radius: 12px;
+  display: block;
+}
 
     .back-btn { margin: 15px auto; display: block; padding: 10px 20px; background: #444; color: white; border: none; border-radius: 6px; cursor: pointer; }
     .back-btn:hover { background: #222; }
@@ -186,19 +259,41 @@
   <!-- Welcome Page -->
   <section id="welcome" class="welcome">
     <h2>Welcome to Cricket Highlights</h2>
-    <button class="enter-btn" onclick="enterSite()">Enter</button>
+    <button class="boton-elegante" onclick="enterSite()">Enter</button>
   </section>
 
   <!-- Main Page -->
   <section id="main" class="hidden">
     <h2 style="text-align:center; margin-top:20px;">Every Hundreds</h2>
     <div class="players-list">
-      <div class="player-card" onclick="openPlayer('root')">Joe Root</div>
-      <div class="player-card" onclick="openPlayer('kohli')">Virat Kohli</div>
-      <div class="player-card" onclick="openPlayer('smith')">Steve Smith</div>
-    </div>
+<div class="players-list">
+  <div class="player-card" onclick="openPlayer('root')">
+    <img src="static/root.png" alt="Joe Root">
+    <span>Joe Root</span>
+  </div>
 
-      <!-- YouTube style bottom nav bar -->
+  <div class="player-card" onclick="openPlayer('kohli')">
+    <img src="static/kohli.png" alt="Virat Kohli">
+    <span>Virat Kohli</span>
+  </div>
+
+  <div class="player-card" onclick="openPlayer('smith')">
+    <img src="static/smth.webp" alt="Steve Smith">
+    <span>Steve Smith</span>
+  </div>
+
+  <div class="player-card" onclick="openPlayer('pujara')">
+    <img src="static/pujara.png" alt="Cheteshwar Pujara">
+    <span>Cheteshwar Pujara</span>
+  </div>
+
+  <div class="player-card" onclick="openPlayer('kane')">
+    <img src="static/kane.jpg" alt="Kane Williamson">
+    <span>Kane Williamson</span>
+  </div>
+</div>
+
+      <!-- bottom nav bar -->
   <nav class="yt-bottom-nav">
     <div class="yt-tab">
       <span class="icon">🏠</span>
@@ -219,6 +314,16 @@
   </nav>
   </section>
 
+  <!-- Root Options (newly added here) -->
+<section id="rootOptions" class="hidden">
+  <button class="back-btn" onclick="backToMain()">⬅ Back</button>
+  <h2 style="text-align:center;">Joe Root</h2>
+  <div style="display:flex; justify-content:center; gap:20px; margin-top:20px;">
+    <button class="boton-elegante" onclick="openRootStat('fifties')">Test 50s</button>
+    <button class="boton-elegante" onclick="openRootStat('centuries')">Test 100s</button>
+  </div>
+</section>
+
   <!-- Player Centuries -->
   <section id="playerPage" class="hidden">
     <button class="back-btn" onclick="backToMain()">⬅ Back</button>
@@ -231,6 +336,21 @@
   </footer>
 
   <script>
+ 
+ function getThumbnail(url) {
+  if (url.includes("youtube.com")) {
+    const id = url.split("/embed/")[1];
+    return `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
+  } else if (url.includes("dailymotion.com")) {
+    const id = url.split("/video/")[1];
+    return `https://www.dailymotion.com/thumbnail/video/${id}`;
+  } else if (url.includes("drive.google.com")) {
+    const id = url.split("/d/")[1].split("/")[0];
+    return `https://drive.google.com/thumbnail?id=${id}`;
+  }
+  return "";
+}
+
     function enterSite() {
       document.getElementById("welcome").classList.add("hidden");
       document.getElementById("main").classList.remove("hidden");
@@ -239,10 +359,115 @@
     const players = {
       root: {
         name: "Joe Root",
+         fifties: [
+      { title: "1. 72 vs IND, 2012", video: "https://www.dailymotion.com/embed/video/x9pktja" },
+      { title: "2. 71 v NZ, 2013", video: "https://www.dailymotion.com/embed/video/x9pkv28" },
+      { title: "3. 68 vs AUS, 2013", video: "https://www.dailymotion.com/embed/video/x9pkv22" },
+      { title: "4. 87 vs AUS, 2013", video: "https://www.dailymotion.com/embed/video/x9pku6e" },
+      { title: "5. 54 vs SL, 2014", video: "https://www.dailymotion.com/embed/video/x9pku3t" },
+      { title: "6. 60 vs SL, 2014", video: "https://www.dailymotion.com/embed/video/x9pku1y" },
+      { title: "7. 54* vs WI, 2015", video: "https://www.dailymotion.com/embed/video/x9pjt2h" },
+      { title: "8. 77 vs WI, 2015", video: "https://www.dailymotion.com/embed/video/x9pjsoq" },
+      { title: "9. 59 vs WI,  2015", video: "https://www.dailymotion.com/embed/video/x9pp70c" },
+      { title: "10. 58 vs NZ, 2015", video: "https://www.dailymotion.com/embed/video/x9pjr0u" },
+      { title: "11. 59* vs AUS, 2015", video: "https://www.dailymotion.com/embed/video/x9pjqz3" },
+      { title: "12. 60 vs Aus, 2015", video: "https://www.dailymotion.com/embed/video/x9pp79m" },
+      { title: "13. 74 vs PAK, 2015", video: "https://www.dailymotion.com/embed/video/x9pjqv3" },
+      { title: "14. 85 vs Pak, 2015", video: "https://www.dailymotion.com/embed/video/x9pp7e8" },
+      { title: "15. 55* vs IND, 2016", video: "https://www.dailymotion.com/embed/video/x9pjp8o" },
+      { title: "16. 60 vs IND, 2016", video: "https://www.dailymotion.com/embed/video/x9pjp4u" },
+      { title: "17. 73 vs SA, 2015", video: "https://www.dailymotion.com/embed/video/x9pp7j8" },
+      { title: "18. 50 vs SA, 2016", video: "https://www.dailymotion.com/embed/video/x9pnu9o" },
+      { title: "19. 76 vs SA, 2016", video: "https://www.dailymotion.com/embed/video/x9pp7tg" },
+      { title: "20. 80 vs SL, 2016", video: "https://www.dailymotion.com/embed/video/x9pp89c" },
+      { title: "21. 100 vs SA, 2016", video: "https://www.dailymotion.com/embed/video/x9pjowm" },
+      { title: "22. 100 vs SA, 2016", video: "https://www.dailymotion.com/embed/video/x9pjowm" },
+      { title: "23. 100 vs SA, 2016", video: "https://www.dailymotion.com/embed/video/x9pjowm" },
+      { title: "24. 100 vs SA, 2016", video: "https://www.dailymotion.com/embed/video/x9pjowm" },
+      { title: "25. 100 vs SA, 2016", video: "https://www.dailymotion.com/embed/video/x9pjowm" },
+      { title: "26. 100 vs SA, 2016", video: "https://www.dailymotion.com/embed/video/x9pjowm" },
+      { title: "27. 100 vs SA, 2016", video: "https://www.dailymotion.com/embed/video/x9pjowm" },
+      { title: "28. 100 vs SA, 2016", video: "https://www.dailymotion.com/embed/video/x9pjowm" },
+      { title: "29. 100 vs SA, 2016", video: "https://www.dailymotion.com/embed/video/x9pjowm" },
+      { title: "30. 52 vs SA, 2017", video: "https://www.dailymotion.com/embed/video/x9pkv2a" },
+      { title: "31. 100 vs SA, 2016", video: "https://www.dailymotion.com/embed/video/x9pjowm" },
+      { title: "32. 100 vs SA, 2016", video: "https://www.dailymotion.com/embed/video/x9pjowm" },
+      { title: "33. 100 vs SA, 2016", video: "https://www.dailymotion.com/embed/video/x9pjowm" },
+      { title: "34. 100 vs SA, 2016", video: "https://www.dailymotion.com/embed/video/x9pjowm" },
+      { title: "35. 61 vs AUS, 2017", video: "https://www.dailymotion.com/embed/video/x9pnu9m" },
+      { title: "36. 83 vs AUS, 2018", video: "https://www.youtube.com/embed/8PL-dKF7rGQ" },
+      { title: "37. 100 vs SA, 2016", video: "https://www.dailymotion.com/embed/video/x9pjowm" },
+      { title: "38. 51 vs NZ, 2018", video: "https://www.dailymotion.com/embed/video/x9pnu9q" },
+      { title: "39. 100 vs SA, 2016", video: "https://www.dailymotion.com/embed/video/x9pjowm" },
+      { title: "40. 100 vs SA, 2016", video: "https://www.dailymotion.com/embed/video/x9pjowm" },
+      { title: "41. 100 vs SA, 2016", video: "https://www.dailymotion.com/embed/video/x9pjowm" },
+      { title: "42. 100 vs SA, 2016", video: "https://www.dailymotion.com/embed/video/x9pjowm" },
+      { title: "43. 100 vs SA, 2016", video: "https://www.dailymotion.com/embed/video/x9pjowm" },
+      { title: "44. 100 vs SA, 2016", video: "https://www.dailymotion.com/embed/video/x9pjowm" },
+      { title: "45. 57 vs AUS, 2019", video: "https://www.dailymotion.com/embed/video/x9pnu9g" },
+      { title: "46. 100 vs SA, 2016", video: "https://www.dailymotion.com/embed/video/x9pjowm" },
+      { title: "47. 59 vs SA, 2020", video: "https://www.dailymotion.com/embed/video/x9pnu9i" },
+      { title: "48. 58 vs SA, 2020", video: "https://www.dailymotion.com/embed/video/x9pnu9k" },
+      { title: "49. 100 vs SA, 2016", video: "https://www.dailymotion.com/embed/video/x9pjowm" },
+      { title: "50. 100 vs SA, 2016", video: "https://www.dailymotion.com/embed/video/x9pjowm" },
+      { title: "51. 89 vs AUS, 2021", video: "https://www.youtube.com/embed/i4XuC_klFsM" },
+      { title: "52. 100 vs SA, 2016", video: "https://www.dailymotion.com/embed/video/x9pjowm" },
+      { title: "53. 50 vs AUS, 2021", video: "https://www.dailymotion.com/embed/video/x9pkv2c" },
+      { title: "54. 100 vs SA, 2016", video: "https://www.dailymotion.com/embed/video/x9pjowm" },
+      { title: "55. 73 vs PAK, 2022", video: "https://www.dailymotion.com/embed/video/x9pkv24" },
+      { title: "56. 57 vs NZ, 2023", video: "https://www.dailymotion.com/embed/video/x9pkv26" },
+      { title: "57. 100 vs SA, 2016", video: "https://www.dailymotion.com/embed/video/x9pjowm" },
+      { title: "58. 56 vs IRE, 2023", video: "https://www.dailymotion.com/embed/video/x9pkv1y" },
+      { title: "59. 84 vs AUS, 2023", video: "https://www.dailymotion.com/embed/video/x9pkv1w" },
+      { title: "60. 100 vs SA, 2016", video: "https://www.dailymotion.com/embed/video/x9pjowm" },
+      { title: "61. 84 vs IND, 2024", video: "https://www.dailymotion.com/embed/video/x9pnuxs" },
+      { title: "62. 68 vs WI, 2024", video: "https://www.youtube.com/embed/nGwfA0_JRIs" },
+      { title: "63. 87 vs WI, 2024", video: "https://www.dailymotion.com/embed/video/x9pkv20" },
+      { title: "64. 100 vs SA, 2016", video: "https://www.dailymotion.com/embed/video/x9pjowm" },
+      { title: "65. 100 vs SA, 2016", video: "https://www.dailymotion.com/embed/video/x9pjowm" },
+      { title: "66. 53* vs IND, 2025", video: "https://www.dailymotion.com/embed/video/x9pku1m" }
+    ],
         centuries: [
-          { title: "104 vs NZ, 2013", video: "https://drive.google.com/file/d/FILE_ID/preview" },
-          { title: "218 vs IND, 2021", video: "https://www.youtube.com/embed/ZLow0xSPhgA" }
-        ]
+          { title: "1. 104 vs NZ, 2013", video: "https://drive.google.com/file/d/FILE_ID/preview" },
+          { title: "2. 180 vs AUS, 2013", video: "https://www.youtube.com/embed/ZLow0xSPhgA" },
+          { title: "3. 200 vs SL, 2014", video: "https://www.dailymotion.com/embed/video/VIDEO_ID" },
+          { title: "4. 154 vs SL, 2014", video: "https://www.dailymotion.com/embed/video/VIDEO_ID" },
+          { title: "5. 149* vs AUS, 2014", video: "https://www.dailymotion.com/embed/video/VIDEO_ID" },
+          { title: "6. 182* vs IND, 2015", video: "https://www.dailymotion.com/embed/video/VIDEO_ID" },
+          { title: "7. 134 vs NZ, 2015", video: "https://www.dailymotion.com/embed/video/VIDEO_ID" },
+          { title: "8. 146 vs PAK, 2015", video: "https://www.dailymotion.com/embed/video/VIDEO_ID" },
+          { title: "9. 186 vs PAK, 2016", video: "https://www.dailymotion.com/embed/video/VIDEO_ID" },
+          { title: "10. 115 vs NZ, 2016", video: "https://www.dailymotion.com/embed/video/VIDEO_ID" },
+          { title: "11. 150 vs AUS, 2016", video: "https://www.dailymotion.com/embed/video/VIDEO_ID" },
+          { title: "12. 100 vs SA, 2017", video: "https://www.dailymotion.com/embed/video/VIDEO_ID" },
+          { title: "13. 123 vs IND, 2017", video: "https://www.dailymotion.com/embed/video/VIDEO_ID" },
+          { title: "14. 150 vs AUS, 2018", video: "https://www.dailymotion.com/embed/video/VIDEO_ID" },
+          { title: "15. 100 vs SA, 2018", video: "https://www.dailymotion.com/embed/video/VIDEO_ID" },
+          { title: "16. 100 vs SA, 2019", video: "https://www.dailymotion.com/embed/video/VIDEO_ID" },
+          { title: "17. 104 vs NZ, 2019", video: "https://drive.google.com/file/d/FILE_ID/preview" },
+          { title: "18. 104 vs NZ, 2021", video: "https://drive.google.com/file/d/FILE_ID/preview" },
+          { title: "19. 104 vs NZ, 2021", video: "https://drive.google.com/file/d/FILE_ID/preview" },
+          { title: "20. 104 vs NZ, 2021", video: "https://drive.google.com/file/d/FILE_ID/preview" },
+          { title: "21. 104 vs NZ, 2021", video: "https://drive.google.com/file/d/FILE_ID/preview" },
+          { title: "22. 104 vs NZ, 2021", video: "https://drive.google.com/file/d/FILE_ID/preview" },
+          { title: "23. 104 vs NZ, 2021", video: "https://drive.google.com/file/d/FILE_ID/preview" },
+          { title: "24. 104 vs NZ, 2022", video: "https://drive.google.com/file/d/FILE_ID/preview" },
+          { title: "25. 104 vs NZ, 2022", video: "https://drive.google.com/file/d/FILE_ID/preview" },
+          { title: "26. 104 vs NZ, 2022", video: "https://drive.google.com/file/d/FILE_ID/preview" },
+          { title: "27. 104 vs NZ, 2022", video: "https://drive.google.com/file/d/FILE_ID/preview" },
+          { title: "28. 104 vs NZ, 2022", video: "https://drive.google.com/file/d/FILE_ID/preview" },
+          { title: "29. 104 vs NZ, 2023", video: "https://drive.google.com/file/d/FILE_ID/preview" },
+          { title: "30. 104 vs NZ, 2023", video: "https://drive.google.com/file/d/FILE_ID/preview" },
+          { title: "31. 124 vs IND, 2024", video: "https://drive.google.com/file/d/FILE_ID/preview" },
+          { title: "32. 104 vs NZ, 2024", video: "https://drive.google.com/file/d/FILE_ID/preview" },
+          { title: "33. 104 vs NZ, 2024", video: "https://drive.google.com/file/d/FILE_ID/preview" },
+          { title: "34. 103 vs SL, 2024", video: "https://drive.google.com/file/d/FILE_ID/preview" },
+          { title: "35. 262 vs PAK, 2024", video: "https://drive.google.com/file/d/FILE_ID/preview" },
+          { title: "36. 106 vs NZ, 2024", video: "https://drive.google.com/file/d/FILE_ID/preview" },
+          { title: "37. 104 vs IND, 2025", video: "https://drive.google.com/file/d/FILE_ID/preview" },
+          { title: "38. 150 vs IND, 2025", video: "https://drive.google.com/file/d/FILE_ID/preview" },
+          { title: "39. 105 vs IND, 2025", video: "https://drive.google.com/file/d/FILE_ID/preview" }
+      ]
       },
       kohli: {
         name: "Virat Kohli",
@@ -291,10 +516,65 @@
           { title: "35. 141 v SL, 2025", video: "https://www.dailymotion.com/embed/video/x8" },
           { title: "36. 131 v SL, 2025", video: "https://www.dailymotion.com/embed/video/x8" }
         ]
+      },
+      pujara: {
+        name: "Cheteshwar Pujara",
+        centuries: [
+          { title: "1. 138* vs Eng, 2013", video: "https://www.dailymotion.com/embed/video/x8qpc8r" },
+          { title: "2. 111 v Eng, 2013", video: "https://www.dailymotion.com/embed/video/x8rkmkl" }
+        ]
+      },
+      kane: {
+        name: "Kane Williamson",
+        centuries: [
+          { title: "1. 131 vs IND, 2010", video: "https://drive.google.com/file/d/19VpmsZrirwFj8oL3R4h-M0YA6IyQwKTU/preview" },
+          { title: "2. 102* v SA, 2012", video: "https://drive.google.com/file/d/1UDYNyHHmApd_bsKyj89MzVmlLZsSPopm/preview" },
+          { title: "3. 135 v SL, 2012", video: "https://drive.google.com/file/d/1tAAoQ8SF_ip2_fj0mIqdSa7PFAW900mb/preview" },
+          { title: "4. 114 v BAN, 2013", video: "https://drive.google.com/file/d/1yOhQcQhhXyEY_GJTp8Ze0BaFDmHMmWAK/preview" },
+          { title: "5. 113 v IND, 2014", video: "https://drive.google.com/file/d/1rFCnmUZ0trBJfYUGF97AfCgqJQ6TyuW-/preview" },
+          { title: "6. 113 v WI, 2014", video: "https://drive.google.com/file/d/1Wj9neh8UXlxz_QlAsrxD6xT76T8LGxsk/preview" },
+          { title: "7. 161* v WI, 2014", video: "https://drive.google.com/file/d/1TGM5QLRFnSGQkvqWSxht72Fim9UpuNvm/preview" },
+          { title: "8. 192 v PAK, 2014", video: "https://drive.google.com/file/d/1OGqLoVXyPZNax51UgkPw2YUAt4UN6xD8/preview" },
+          { title: "9. 242* v SL, 2015", video: "https://drive.google.com/file/d/1FuffvwYpREeiRUFklCKY0BLs-XIrJDAA/preview" },
+          { title: "10. 132 v ENG, 2015", video: "https://drive.google.com/file/d/14YNalwMuyMXBAHwY-qSvCVIabVNyH8Zv/preview" },
+          { title: "11. 140 v AUS, 2015", video: "https://drive.google.com/file/d/1PSzV_-veporsGU-IEWa6nSSSlbHW5iLd/preview" },
+          { title: "12. 166 v AUS, 2015", video: "https://drive.google.com/file/d/1Zg_e4QH4Bc827WtnvAthRJt09bQYFq_o/preview" },
+          { title: "13. 108* v SL, 2015", video: "https://drive.google.com/file/d/1fXhUXkvfcprlC-iLT8SGc45LYzVHA2LV/preview" },
+          { title: "14. 113 v ZIM, 2016", video: "https://drive.google.com/file/d/1G628RoSzxQd81svxqQ-wvbNDLeYX4JSa/preview" },
+          { title: "15. 104* v BAN, 2017", video: "https://drive.google.com/file/d/1_oZPn7gaIeJ4281ZgNkRfDdLs3cSCKuf/preview" },
+          { title: "16. 130 v SA, 2017", video: "https://drive.google.com/file/d/1L4ZAkpf3m5_rwMqrw7iGGVVc_haKUg24/preview" },
+          { title: "17. 176 v SA, 2017", video: "https://drive.google.com/file/d/1pSH9N_z9e2RnCBslodWdu_Laqp_weIMv/preview" },
+          { title: "18. 102 v ENG, 2018", video: "https://drive.google.com/file/d/1Q0ZqA14YcsgtoWhdvdx3XzBdnrTlN9C0/preview" },
+          { title: "19. 139 v PAK, 2018", video: "https://drive.google.com/file/d/1Ks2ocImRZDR7im2uRBC8E_zRyCOZi6hS/preview" },
+          { title: "20. 200* v BAN, 2019", video: "https://drive.google.com/file/d/1tM6Ztkv8I164ag-g5Fs-Kd9-7rWu8TCl/preview" },
+          { title: "21. 104* v ENG, 2019", video: "https://drive.google.com/file/d/1zgO7YltB1we3TPoY0-708-ZUCGe-rHPI/preview" },
+          { title: "22. 251 v WI, 2020", video: "https://drive.google.com/file/d/17uHC061F-VIMK14HLbB42ikdGT0y-SdM/preview" },
+          { title: "23. 129 v PAK, 2020", video: "https://drive.google.com/file/d/1BHlgjl1ZIaEMpWX_Qii4RV4N3zqgczgL/preview" },
+          { title: "24. 238 v PAK, 2021", video: "https://drive.google.com/file/d/1boT6RgUF-rA6PJZNp5mb01e3xiFD80nU/preview" },
+          { title: "25. 200* v PAK, 2022", video: "https://drive.google.com/file/d/1MqOlaccPChThYj3p3CqnMvuYm3X5EJD0/preview" },
+          { title: "26. 132 v ENG, 2023", video: "https://drive.google.com/file/d/1sSD5fUjo_R5K2QY78tcuQXFxkbOG7klZ/preview" },
+          { title: "27. 121* v SL, 2023", video: "https://drive.google.com/file/d/1uUPVaiITjXH3lF9TXl2nJIqFZvflsC63/preview" },
+          { title: "28. 215 v SL, 2023", video: "https://drive.google.com/file/d/1Q9FtTQRU6s0NDeaEiuo8IdWcyDuYmRir/preview" },
+          { title: "29. 104 v BAN, 2023", video: "https://drive.google.com/file/d/1i1HgHS-z5dJEUczoK2dvNO6gOXSYNnG4/preview" },
+          { title: "30. 118 v SA, 2024", video: "https://drive.google.com/file/d/1YNn5n3xoBd7LDF2Gr8uXHGSFSNeKWYEJ/preview" },
+          { title: "31. 109 v SA, 2024", video: "https://drive.google.com/file/d/1CA5NEOp6Xk4S6gG8EFIPRTFR6jBZxWw0/preview" },
+          { title: "32. 133* v SA, 2024", video: "https://drive.google.com/file/d/1r3DkpBBDO8Jxj5qJgUBC3fqY0-LH1Gka/preview" },
+          { title: "33. 156 v ENG, 2024", video: "https://drive.google.com/file/d/1XNPd5NAmlPNJvSYPXDPoPIafcYR9dQPD/preview" }
+        ]
       }
     };
 
-  function openPlayer(playerKey) {
+let currentPlayerKey = null;
+
+function openPlayer(playerKey) {
+  currentPlayerKey = playerKey;
+
+  if (playerKey === "root") {
+    // Special case: show Root’s options page
+    document.getElementById("main").classList.add("hidden");
+    document.getElementById("rootOptions").classList.remove("hidden");
+  } else {
+    // Other players go straight to centuries page
     const player = players[playerKey];
     document.getElementById("main").classList.add("hidden");
     document.getElementById("playerPage").classList.remove("hidden");
@@ -303,38 +583,74 @@
     const list = document.getElementById("centuriesList");
     list.innerHTML = "";
     player.centuries.forEach((c, index) => {
+      const thumb = getThumbnail(c.video);
       list.innerHTML += `
-        <div class="century-card">
-          <div class="century-info">
-            <h3>${c.title}</h3>
-            <div class="video-frame" id="video-${index}" data-url="${c.video}">
-              <button onclick="toggleVideo('${c.video}', 'video-${index}')"
-                class="play-btn">▶ Play Video</button>
-            </div>
+       <div class="century-card">
+        <div class="century-info">
+         <h3>${c.title}</h3>
+         <div class="video-frame" id="video-${index}" data-url="${c.video}">
+          <img src="${thumb}" alt="Video Thumbnail" style="width:100%;border-radius:12px;">
+          <button onclick="toggleVideo('${c.video}', 'video-${index}')" 
+            class="play-btn">▶ Play Video</button>
+        </div>
+      </div>
+    </div>
+  `;
+});
+  }
+}
+
+// For Root’s 50s or 100s
+function openRootStat(type) {
+  const player = players["root"];
+
+  document.getElementById("rootOptions").classList.add("hidden");
+  document.getElementById("playerPage").classList.remove("hidden");
+
+  document.getElementById("playerName").innerText =
+    "Joe Root – " + (type === "centuries" ? "Test 100s" : "Test 50s");
+
+  const list = document.getElementById("centuriesList");
+  list.innerHTML = "";
+  player[type].forEach((c, index) => {
+    const thumb = getThumbnail(c.video);
+    list.innerHTML += `
+      <div class="century-card">
+        <div class="century-info">
+          <h3>${c.title}</h3>
+          <div class="video-frame" id="video-${index}" data-url="${c.video}">
+            <img src="${thumb}" alt="Video Thumbnail" style="width:100%;border-radius:12px;">
+            <button onclick="toggleVideo('${c.video}', 'video-${index}')" 
+              class="play-btn">▶ Play Video</button>
           </div>
         </div>
-      `;
-    });
-  }
+      </div>
+    `;
+  });
+}
 
 function toggleVideo(url, containerId) {
-  // Close ALL other video frames first
+  // First close ALL other video frames
   document.querySelectorAll(".video-frame").forEach(frame => {
     const originalUrl = frame.getAttribute("data-url");
-    if (frame.querySelector("iframe")) {
-      frame.innerHTML = `<button onclick="toggleVideo('${originalUrl}', '${frame.id}')"
-        class="play-btn">▶ Play Video</button>`;
+    if (frame.id !== containerId) {
+      const thumb = getThumbnail(originalUrl);
+      frame.innerHTML = `
+        <img src="${thumb}" alt="Video Thumbnail" style="width:100%;border-radius:12px;">
+        <button onclick="toggleVideo('${originalUrl}', '${frame.id}')" class="play-btn">▶ Play Video</button>`;
     }
   });
 
   const container = document.getElementById(containerId);
 
-  // If clicked video already open → collapse it
   if (container.querySelector("iframe")) {
-    container.innerHTML = `<button onclick="toggleVideo('${url}', '${containerId}')"
-      class="play-btn">▶ Play Video</button>`;
+    // If this one is open → collapse back
+    const thumb = getThumbnail(url);
+    container.innerHTML = `
+      <img src="${thumb}" alt="Video Thumbnail" style="width:100%;border-radius:12px;">
+      <button onclick="toggleVideo('${url}', '${containerId}')" class="play-btn">▶ Play Video</button>`;
   } else {
-    // Open this one, while others are already closed
+    // Otherwise → open the video
     container.innerHTML = `<iframe src="${url}" allowfullscreen></iframe>`;
   }
 }
