@@ -197,33 +197,7 @@
 }
 .video-frame { position: relative; height: 315px; }
 
-/* Mobile fixes */
-@media (max-width: 768px) {
-  .video-frame {
-    height: auto;           /* remove fixed height */
-    padding: 0;             /* cleaner spacing */
-    border-width: 6px;      /* thinner border for small screens */
-    max-width: 100%;
-  }
-
-  .video-frame iframe {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 16 / 9;   /* keep proper video proportions */
-    border-radius: 10px;
-  }
-
-  .video-frame::before,
-  .video-frame::after {
-    display: none;          /* hide cassette side bars on mobile */
-  }
-
-  .play-btn {
-    font-size: 16px;
-    padding: 12px 20px;
-  }
-
-  /* YouTube-style bottom navigation */
+/* Bottom nav - show everywhere */
 .yt-bottom-nav {
   position: fixed;
   bottom: 0;
@@ -257,6 +231,32 @@
 .yt-bottom-nav .yt-tab:hover {
   color: #007bff;
 }
+
+/* Mobile fixes */
+@media (max-width: 768px) {
+  .video-frame {
+    height: auto;
+    padding: 0;
+    border-width: 6px;
+    max-width: 100%;
+  }
+
+  .video-frame iframe {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    border-radius: 10px;
+  }
+
+  .video-frame::before,
+  .video-frame::after {
+    display: none;
+  }
+
+  .play-btn {
+    font-size: 16px;
+    padding: 12px 20px;
+  }
 }
 
   </style>
@@ -274,55 +274,31 @@
   </section>
 
   <!-- Main Page -->
-  <section id="main" class="hidden">
-    <h2 style="text-align:center; margin-top:20px;">Every Hundreds</h2>
-    <div class="players-list">
-<div class="players-list">
-  <div class="player-card" onclick="openPlayer('root')">
-    <img src="static/root.png" alt="Joe Root">
-    <span>Joe Root</span>
-  </div>
+<section id="main" class="hidden">
+  <h2 style="text-align:center; margin-top:20px;">🏏 Welcome to streamXcric</h2>
 
-  <div class="player-card" onclick="openPlayer('kohli')">
-    <img src="static/kohli.png" alt="Virat Kohli">
-    <span>Virat Kohli</span>
+  <!-- Search Bar (kept here for now) -->
+  <div style="text-align:center; margin: 20px;">
+    <input type="text" id="playerSearch" placeholder="Search player..." 
+           style="padding:10px; width:250px; border:1px solid #ccc; border-radius:8px;">
   </div>
+</section>
 
-  <div class="player-card" onclick="openPlayer('smith')">
-    <img src="static/smth.webp" alt="Steve Smith">
-    <span>Steve Smith</span>
+<nav class="yt-bottom-nav">
+  <div class="yt-tab" onclick="showPage('main')">
+    <span class="icon">🏠</span><span>Home</span>
   </div>
-
-  <div class="player-card" onclick="openPlayer('pujara')">
-    <img src="static/pujara.png" alt="Cheteshwar Pujara">
-    <span>Cheteshwar Pujara</span>
+  <div class="yt-tab" onclick="showPage('trending')">
+    <span class="icon">🔥</span><span>Trending</span>
   </div>
-
-  <div class="player-card" onclick="openPlayer('kane')">
-    <img src="static/kane.jpg" alt="Kane Williamson">
-    <span>Kane Williamson</span>
+  <div class="yt-tab" onclick="showPage('players')">
+    <span class="icon">👤</span>
+    <span>Players</span>
   </div>
-</div>
-
-      <!-- bottom nav bar -->
-  <nav class="yt-bottom-nav">
-    <div class="yt-tab">
-      <span class="icon">🏠</span>
-      <span>Home</span>
-    </div>
-    <div class="yt-tab">
-      <span class="icon">🔥</span>
-      <span>Trending</span>
-    </div>
-    <div class="yt-tab">
-      <span class="icon">👤</span>
-      <span>Players</span>
-    </div>
-    <div class="yt-tab">
-      <span class="icon">ℹ️</span>
-      <span>About</span>
-    </div>
-  </nav>
+  <div class="yt-tab" onclick="showPage('about')">
+    <span class="icon">ℹ️</span><span>About</span>
+  </div>
+</nav>
   </section>
 
   <!-- Root Options (newly added here) -->
@@ -341,6 +317,61 @@
     <h2 id="playerName" style="text-align:center;"></h2>
     <div class="centuries" id="centuriesList"></div>
   </section>
+
+  <!-- Players Page -->
+<section id="players" class="hidden">
+  <h2 style="text-align:center; margin-top:20px;">All Players</h2>
+
+  <!-- Search Bar -->
+  <div style="text-align:center; margin: 20px;">
+    <input type="text" id="playerSearch" placeholder="Search player..." 
+           style="padding:10px; width:250px; border:1px solid #ccc; border-radius:8px;">
+  </div>
+
+  <div class="players-list">
+    <div class="player-card" onclick="openPlayer('root')">
+      <img src="static/root.png" alt="Joe Root">
+      <span>Joe Root</span>
+    </div>
+
+    <div class="player-card" onclick="openPlayer('kohli')">
+      <img src="static/kohli.png" alt="Virat Kohli">
+      <span>Virat Kohli</span>
+    </div>
+
+    <div class="player-card" onclick="openPlayer('smith')">
+      <img src="static/smth.webp" alt="Steve Smith">
+      <span>Steve Smith</span>
+    </div>
+
+    <div class="player-card" onclick="openPlayer('pujara')">
+      <img src="static/pujara.png" alt="Cheteshwar Pujara">
+      <span>Cheteshwar Pujara</span>
+    </div>
+
+    <div class="player-card" onclick="openPlayer('kane')">
+      <img src="static/kane.jpg" alt="Kane Williamson">
+      <span>Kane Williamson</span>
+    </div>
+  </div>
+</section>
+
+  <!-- Trending Page -->
+<section id="trending" class="hidden">
+  <button class="back-btn" onclick="backToMain()">⬅ Back</button>
+  <h2 style="text-align:center;">🔥 Trending Highlights</h2>
+  <p style="text-align:center;">Coming Soon...</p>
+</section>
+
+<!-- About Page -->
+<section id="about" class="hidden">
+  <button class="back-btn" onclick="backToMain()">⬅ Back</button>
+  <h2 style="text-align:center;">ℹ️ About streamXcric</h2>
+  <p style="max-width:600px; margin:auto; text-align:center;">
+    streamXcric is a cricket highlights hub featuring every player’s iconic centuries. 
+    Relive the greatest moments in cricket history — all in one place!
+  </p>
+</section>
 
   <footer>
   <p>⚡ streamXcric ⚡ <br> © 2025 Mukul. All Rights Reserved</p>
@@ -666,10 +697,28 @@ function toggleVideo(url, containerId) {
   }
 }
 
-  function backToMain() {
-    document.getElementById("playerPage").classList.add("hidden");
-    document.getElementById("main").classList.remove("hidden");
-  }
+function backToMain() {
+  document.getElementById("playerPage").classList.add("hidden");
+  document.getElementById("main").classList.remove("hidden");
+}
+
+// Live search function
+document.getElementById("playerSearch").addEventListener("keyup", function() {
+  const filter = this.value.toLowerCase();
+  document.querySelectorAll(".player-card").forEach(card => {
+    const name = card.innerText.toLowerCase();
+    card.style.display = name.includes(filter) ? "flex" : "none";
+  });
+});
+
+// 🔥 Page switcher for bottom nav
+function showPage(pageId) {
+  ["main","players","trending","about","playerPage","rootOptions"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.add("hidden");
+  });
+  document.getElementById(pageId).classList.remove("hidden");
+}
 </script>
 </body>
 </html>
