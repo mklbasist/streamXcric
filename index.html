@@ -199,30 +199,31 @@
 
 /* Bottom nav - show everywhere */
 .yt-bottom-nav {
+  display: none; /* hidden by default, shown after welcome */
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
   background: #fff;
   border-top: 1px solid #ddd;
-  display: flex;
   justify-content: space-around;
   align-items: center;
   padding: 6px 0;
   z-index: 100;
 }
 
-.yt-bottom-nav .yt-tab {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 12px;
-  color: #555;
-  cursor: pointer;
-  flex: 1;
-  transition: color 0.2s;
-}
-
+.yt-tab {
+    flex-direction: column;
+    align-items: center;
+    font-size: 12px;
+    color: #555;
+    cursor: pointer;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    transition: color 0.2s;
+  }
+  
 .yt-bottom-nav .yt-tab .icon {
   font-size: 20px;
   margin-bottom: 2px;
@@ -252,6 +253,10 @@
   .video-frame::after {
     display: none;
   }
+
+  #mainFooter {
+  display: none; /* hide by default */
+}
 
   .play-btn {
     font-size: 16px;
@@ -284,26 +289,9 @@
   </div>
 </section>
 
-<nav class="yt-bottom-nav">
-  <div class="yt-tab" onclick="showPage('main')">
-    <span class="icon">🏠</span><span>Home</span>
-  </div>
-  <div class="yt-tab" onclick="showPage('trending')">
-    <span class="icon">🔥</span><span>Trending</span>
-  </div>
-  <div class="yt-tab" onclick="showPage('players')">
-    <span class="icon">👤</span>
-    <span>Players</span>
-  </div>
-  <div class="yt-tab" onclick="showPage('about')">
-    <span class="icon">ℹ️</span><span>About</span>
-  </div>
-</nav>
-  </section>
-
   <!-- Root Options (newly added here) -->
 <section id="rootOptions" class="hidden">
-  <button class="back-btn" onclick="backToMain()">⬅ Back</button>
+  <button class="back-btn" onclick="backToPlayers()">⬅ Back</button>
   <h2 style="text-align:center;">Joe Root</h2>
   <div style="display:flex; justify-content:center; gap:20px; margin-top:20px;">
     <button class="boton-elegante" onclick="openRootStat('fifties')">Test 50s</button>
@@ -312,17 +300,17 @@
 </section>
 
   <!-- Player Centuries -->
-  <section id="playerPage" class="hidden">
-    <button class="back-btn" onclick="backToMain()">⬅ Back</button>
-    <h2 id="playerName" style="text-align:center;"></h2>
-    <div class="centuries" id="centuriesList"></div>
+<section id="playerPage" class="hidden">
+  <button class="back-btn" onclick="backToPlayers()">⬅ Back</button>
+  <h2 id="playerName" style="text-align:center;"></h2>
+  <div class="centuries" id="centuriesList"></div>
   </section>
 
-  <!-- Players Page -->
+<!-- Players Page -->
 <section id="players" class="hidden">
   <h2 style="text-align:center; margin-top:20px;">All Players</h2>
 
-  <div class="players-list">
+  <div id="all-players" class="players-list">
     <div class="player-card" onclick="openPlayer('root')">
       <img src="static/root.png" alt="Joe Root">
       <span>Joe Root</span>
@@ -367,9 +355,26 @@
   </p>
 </section>
 
-  <footer>
+<!-- After all sections -->
+<nav class="yt-bottom-nav">
+  <div class="yt-tab" onclick="showPage('main')">
+    <span class="icon">🏠</span><span>Home</span>
+  </div>
+  <div class="yt-tab" onclick="showPage('trending')">
+    <span class="icon">🔥</span><span>Trending</span>
+  </div>
+  <div class="yt-tab" onclick="showPage('players')">
+    <span class="icon">👤</span>
+    <span>Players</span>
+  </div>
+  <div class="yt-tab" onclick="showPage('about')">
+    <span class="icon">ℹ️</span><span>About</span>
+  </div>
+</nav>
+
+  <footer id="mainFooter">
   <p>⚡ streamXcric ⚡ <br> © 2025 Mukul. All Rights Reserved</p>
-  </footer>
+</footer>
 
   <script>
  
@@ -387,10 +392,33 @@
   return "";
 }
 
-    function enterSite() {
-      document.getElementById("welcome").classList.add("hidden");
-      document.getElementById("main").classList.remove("hidden");
-    }
+function enterSite() {
+  // hide welcome screen
+  document.getElementById("welcome").classList.add("hidden");
+
+  // show main content
+  document.getElementById("main").classList.remove("hidden");
+
+  // show bottom nav
+  document.querySelector(".yt-bottom-nav").style.display = "flex";
+}
+
+function backToPlayers() {
+  // Hide any player-specific pages
+  document.getElementById("playerPage").classList.add("hidden");
+  document.getElementById("rootOptions").classList.add("hidden");
+
+  // Show the Players page
+  document.getElementById("players").classList.remove("hidden");
+
+  // Reset player heading and centuries list
+  document.getElementById("playerName").innerText = "";
+  document.getElementById("centuriesList").innerHTML = "";
+
+  // Make sure all player cards are visible
+  const allCards = document.querySelectorAll(".player-card");
+  allCards.forEach(card => card.style.display = "flex");
+}
 
     const players = {
       root: {
@@ -600,10 +628,22 @@
       }
     };
 
+    function hideAllPlayers() {
+  const allPlayers = document.getElementById("all-players");
+  if (allPlayers) allPlayers.style.display = "none";
+}
+
+  function showAllPlayers() {
+    const allPlayers = document.getElementById("all-players");
+    if (allPlayers) allPlayers.style.display = "flex";
+}
+
 let currentPlayerKey = null;
 
 function openPlayer(playerKey) {
   currentPlayerKey = playerKey;
+
+  document.getElementById("players").classList.add("hidden"); // hide all players page
 
   if (playerKey === "root") {
     // Special case: show Root’s options page
@@ -632,7 +672,7 @@ function openPlayer(playerKey) {
       </div>
     </div>
   `;
-});
+    });
   }
 }
 
@@ -691,9 +731,10 @@ function toggleVideo(url, containerId) {
   }
 }
 
-function backToMain() {
-  document.getElementById("playerPage").classList.add("hidden");
-  document.getElementById("main").classList.remove("hidden");
+function backToWelcome() {
+  document.getElementById("welcome").classList.remove("hidden");
+  document.getElementById("main").classList.add("hidden");
+  document.querySelector(".yt-bottom-nav").style.display = "none";
 }
 
 // Live search function
@@ -707,11 +748,20 @@ document.getElementById("playerSearch").addEventListener("keyup", function() {
 
 // 🔥 Page switcher for bottom nav
 function showPage(pageId) {
-  ["main","players","trending","about","playerPage","rootOptions"].forEach(id => {
+  const pages = ["main","players","trending","about","playerPage","rootOptions"];
+  pages.forEach(id => {
     const el = document.getElementById(id);
-    if (el) el.classList.add("hidden");
+    if(el) el.classList.add("hidden");
   });
   document.getElementById(pageId).classList.remove("hidden");
+
+  // Footer logic
+  const footer = document.getElementById("mainFooter");
+  if(pageId === "welcome") {
+    footer.style.display = "block"; // show only on welcome
+  } else {
+    footer.style.display = "none";  // hide everywhere else
+  }
 }
 </script>
 </body>
