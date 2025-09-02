@@ -82,6 +82,50 @@
   transition: transform 0.5s ease;
 }
 
+.highlight-card.big {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.highlight-card.big img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  display: block;
+}
+
+.highlight-card.big .highlight-title {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+/* ✅ Play button overlay */
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 64px;
+  color: white;
+  opacity: 0.8;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.play-button:hover {
+  opacity: 1;
+}
+
 .boton-elegante:hover::after {
   transform: scale(4);
 }
@@ -263,7 +307,6 @@
     padding: 12px 20px;
   }
 }
-
   </style>
 </head>
 <body>
@@ -282,11 +325,25 @@
 <section id="main" class="hidden">
   <h2 style="text-align:center; margin-top:20px;">🏏 Welcome to streamXcric</h2>
 
-  <!-- Search Bar (kept here for now) -->
-  <div style="text-align:center; margin: 20px;">
-    <input type="text" id="playerSearch" placeholder="Search player..." 
-           style="padding:10px; width:250px; border:1px solid #ccc; border-radius:8px;">
-  </div>
+<!-- Search Bar (kept here for now) -->
+<div style="text-align:center; margin: 20px;">
+  <input type="text" id="playerSearch" placeholder="Search player..." 
+         style="padding:10px; width:250px; border:1px solid #ccc; border-radius:8px;">
+</div>
+
+<!-- Highlight Section -->
+<div class="highlight-card big">
+  <!-- Thumbnail image for video preview -->
+  <img id="highlight-thumb" src="static/highlight1.jpg" alt="Highlight Thumbnail">
+
+  <!-- Play button in the center -->
+  <div class="play-button" id="play-button">&#9658;</div>
+
+  <!-- Video iframe (hidden initially) -->
+  <iframe id="highlight-frame" src="" frameborder="0" allowfullscreen style="display:none; width:100%; height:320px;"></iframe>
+
+  <!-- Title overlay -->
+  <div class="highlight-title" id="highlight-title">Highlight Title</div>
 </section>
 
   <!-- Root Options (newly added here) -->
@@ -755,14 +812,91 @@ function showPage(pageId) {
   });
   document.getElementById(pageId).classList.remove("hidden");
 
-  // Footer logic
+  // Footer logic (show only on welcome)
   const footer = document.getElementById("mainFooter");
-  if(pageId === "welcome") {
-    footer.style.display = "block"; // show only on welcome
+  if (pageId === "welcome") {
+    footer.style.display = "block";
   } else {
-    footer.style.display = "none";  // hide everywhere else
+    footer.style.display = "none";
   }
 }
+
+const allHighlights = [];
+
+// Collect all highlights from players
+for (const key in players) {
+  const player = players[key];
+  
+  if (player.fifties) {
+    player.fifties.forEach(h => {
+      allHighlights.push({ ...h, player: player.name });
+    });
+  }
+  if (player.centuries) {
+    player.centuries.forEach(h => {
+      allHighlights.push({ ...h, player: player.name });
+    });
+  }
+}
+
+let lastIndex = -1;
+const frame = document.getElementById("highlight-frame");
+const thumb = document.getElementById("highlight-thumb");
+const title = document.getElementById("highlight-title");
+const playBtn = document.getElementById("play-button");
+
+let userSelected = false; // flag to check if user picked a video manually
+
+function getThumbnail(url) {
+  if (url.includes("youtube.com")) {
+    const id = url.split("/embed/")[1];
+    return `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
+  } else if (url.includes("dailymotion.com")) {
+    const id = url.split("/video/")[1];
+    return `https://www.dailymotion.com/thumbnail/video/${id}`;
+  } else if (url.includes("drive.google.com")) {
+    const id = url.split("/d/")[1].split("/")[0];
+    return `https://drive.google.com/thumbnail?id=${id}`;
+  }
+  return "";
+}
+
+function showRandomHighlight() {
+  if (allHighlights.length === 0) return;
+  if (userSelected) return; // skip random highlights if user picked a video
+
+  let index;
+  do { index = Math.floor(Math.random() * allHighlights.length); }
+  while (index === lastIndex);
+  lastIndex = index;
+
+  const highlight = allHighlights[index];
+  
+  // Show thumbnail instead of iframe initially
+  thumb.src = getThumbnail(highlight.video);
+  title.textContent = `${highlight.player} - ${highlight.title}`;
+  
+  // Hide iframe until play clicked
+  frame.style.display = "none";
+  playBtn.style.display = "block";
+
+  // Set iframe src
+  frame.src = highlight.video;
+}
+
+// Play video when user clicks
+playBtn.addEventListener("click", () => {
+  userSelected = true;       // stop auto-random highlights
+  thumb.style.display = "none";
+  playBtn.style.display = "none";
+  frame.style.display = "block";
+});
+
+// Show random highlight immediately
+showRandomHighlight();
+
+// Change highlight every 10 seconds (only thumbnail, user must click play)
+setInterval(showRandomHighlight, 10000);
 </script>
 </body>
 </html>
