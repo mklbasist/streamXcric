@@ -872,24 +872,29 @@ function showRandomHighlight() {
 
   const highlight = allHighlights[index];
   
-  // Show thumbnail instead of iframe initially
+  // Show thumbnail and title
   thumb.src = getThumbnail(highlight.video);
   title.textContent = `${highlight.player} - ${highlight.title}`;
   
-  // Hide iframe until play clicked
+  // Hide iframe and show play button
   frame.style.display = "none";
   playBtn.style.display = "block";
 
-  // Set iframe src
-  frame.src = highlight.video;
+  // DO NOT set iframe src here
+  frame.src = ""; // optional: clear previous src
 }
 
 // Play video when user clicks
 playBtn.addEventListener("click", () => {
-  userSelected = true;       // stop auto-random highlights
+  userSelected = true;
+
   thumb.style.display = "none";
   playBtn.style.display = "none";
   frame.style.display = "block";
+
+  // Set the iframe src **only when user clicks play**
+  const highlight = allHighlights[lastIndex];
+  frame.src = highlight.video;
 });
 
 // Show random highlight immediately
