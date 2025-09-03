@@ -349,6 +349,13 @@ function showPage(pageId) {
   footer.style.display = (pageId === "welcome") ? "block" : "none";
 }
 
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
 const allHighlights = [];
 for (const key in players) {
   const player = players[key];
@@ -360,39 +367,60 @@ for (const key in players) {
   }
 }
 
-let lastIndex = -1;
-const frame = document.getElementById("highlight-frame");
+shuffle(allHighlights);
+
+// Carousel cards
+const cards = {
+  left: document.querySelector(".highlight-card.left"),
+  center: document.querySelector(".highlight-card.center"),
+  right: document.querySelector(".highlight-card.right"),
+};
 const thumb = document.getElementById("highlight-thumb");
 const title = document.getElementById("highlight-title");
+const frame = document.getElementById("highlight-frame");
 const playBtn = document.getElementById("play-button");
 
+let index = Math.floor(Math.random() * allHighlights.length);
 let userSelected = false;
 
-function showRandomHighlight() {
-  if (allHighlights.length === 0) return;
-  if (userSelected) return;
+function updateCards() {
+  const prev = allHighlights[(index - 1 + allHighlights.length) % allHighlights.length];
+  const current = allHighlights[index % allHighlights.length];
+  const next = allHighlights[(index + 1) % allHighlights.length];
 
-  let index;
-  do { index = Math.floor(Math.random() * allHighlights.length); }
-  while (index === lastIndex);
-  lastIndex = index;
+  // left preview
+  cards.left.style.backgroundImage = `url(${getThumbnail(prev.video)})`;
+  cards.left.style.backgroundSize = "cover";
 
-  const highlight = allHighlights[index];
-  thumb.src = getThumbnail(highlight.video);
-  title.textContent = `${highlight.player} - ${highlight.title}`;
+  // center preview
+  thumb.src = getThumbnail(current.video);
+  title.textContent = `${current.player} - ${current.title}`;
+  frame.src = "";
   frame.style.display = "none";
   playBtn.style.display = "block";
-  frame.src = "";
+  thumb.style.display = "block";
+
+  // right preview
+  cards.right.style.backgroundImage = `url(${getThumbnail(next.video)})`;
+  cards.right.style.backgroundSize = "cover";
 }
 
+function rotateCarousel() {
+  if (userSelected) return; // stop rotation while video plays
+  index = (index + 1) % allHighlights.length;
+  updateCards();
+}
+
+// Play video
 playBtn.addEventListener("click", () => {
   userSelected = true;
   thumb.style.display = "none";
   playBtn.style.display = "none";
   frame.style.display = "block";
-  const highlight = allHighlights[lastIndex];
+  const highlight = allHighlights[index];
   frame.src = highlight.video;
 });
 
-showRandomHighlight();
-setInterval(showRandomHighlight, 8000);
+// Init
+updateCards();
+setInterval(rotateCarousel, 8000); // rotate every 8s

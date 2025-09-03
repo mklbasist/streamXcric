@@ -34,13 +34,18 @@
              style="padding:10px; width:250px; border:1px solid #ccc; border-radius:8px;">
     </div>
 
-    <!-- Highlight Section -->
-    <div class="highlight-card big">
-      <img id="highlight-thumb" src="static/highlight1.jpg" alt="Highlight Thumbnail">
-      <div class="play-button" id="play-button">&#9658;</div>
-      <iframe id="highlight-frame" src="" frameborder="0" allowfullscreen style="display:none; width:100%; height:320px;"></iframe>
-      <div class="highlight-title" id="highlight-title">Highlight Title</div>
-    </div>
+<div class="highlight-carousel">
+  <div class="highlight-card left"></div>
+
+  <div class="highlight-card center">
+    <img class="highlight-thumb" id="highlight-thumb" src="" alt="Highlight Thumbnail">
+    <div class="play-button" id="play-button">&#9658;</div>
+    <iframe class="highlight-frame" id="highlight-frame" src="" frameborder="0" allowfullscreen style="display:none;"></iframe>
+    <div class="highlight-title" id="highlight-title">Highlight Title</div>
+  </div>
+
+  <div class="highlight-card right"></div>
+</div>
   </section>
 
   <!-- Root Options -->
