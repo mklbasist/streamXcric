@@ -459,7 +459,7 @@ padding-bottom: 70px; /* 👈 space for input bar */
 /* Mobile Fix */
 @media (max-width: 768px) {
   #chat-box {
-    height: calc(100vh - 180px); /* leaves space for header + nav + input bar */
+    height: calc(60vh - 130px); /* leaves space for header + nav + input bar */
     margin-top: 10px;
     margin-bottom: 70px; /* avoid overlap with input */
     border-radius: 12px;
