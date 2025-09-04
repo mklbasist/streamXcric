@@ -455,3 +455,19 @@ padding-bottom: 70px; /* 👈 space for input bar */
 #chat-input button:active {
   transform: scale(0.95);
 }
+
+/* Mobile Fix */
+@media (max-width: 768px) {
+  #chat-box {
+    height: calc(100vh - 180px); /* leaves space for header + nav + input bar */
+    margin-top: 10px;
+    margin-bottom: 70px; /* avoid overlap with input */
+    border-radius: 12px;
+  }
+
+  #chat-input {
+    bottom: 60px; /* stays just above your YT nav */
+    max-width: 100%; /* full width on mobile */
+    padding: 8px 10px;
+  }
+}
