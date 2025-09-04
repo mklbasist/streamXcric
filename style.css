@@ -480,3 +480,22 @@ header, footer { text-align: center; padding: 20px; background: #000000; color: 
     padding: 8px 10px;
   }
 }
+
+/* Mobile Fix for sender alignment and text-transform */
+@media (max-width: 768px) {
+  .user-msg {
+    align-self: flex-end !important;   /* force right alignment */
+    text-transform: none !important;   /* prevent all caps */
+    text-align: left;                  /* keep text left inside bubble */
+  }
+
+  .bot-msg {
+    align-self: flex-start !important; /* force left alignment */
+    text-transform: none !important;
+  }
+
+  #chat-box {
+    display: flex;
+    flex-direction: column;
+  }
+}
