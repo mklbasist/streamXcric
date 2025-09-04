@@ -445,17 +445,31 @@ function sendMessage() {
   input.value = "";
   chatBox.scrollTop = chatBox.scrollHeight;
 
-  // Show bot reply (placeholder for now)
-  setTimeout(() => {
-    const botMsg = document.createElement("div");
-    botMsg.className = "bot-msg";
-    botMsg.innerText = "🤖 (Demo reply) You said: " + message;
-    chatBox.appendChild(botMsg);
-
-    chatBox.scrollTop = chatBox.scrollHeight;
-  }, 800);
+  // Show bot reply from backend
+  fetch("http://localhost:3000/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: message })
+  })
+  .then(res => res.json())
+  .then(data => {
+      const botMsg = document.createElement("div");
+      botMsg.className = "bot-msg";
+      botMsg.innerText = data.reply;
+      chatBox.appendChild(botMsg);
+      chatBox.scrollTop = chatBox.scrollHeight;
+  })
+  .catch(err => {
+      console.error(err);
+      const botMsg = document.createElement("div");
+      botMsg.className = "bot-msg";
+      botMsg.innerText = "🤖 Sorry, something went wrong.";
+      chatBox.appendChild(botMsg);
+      chatBox.scrollTop = chatBox.scrollHeight;
+  });
 }
 
+// Function to go back to main page (existing)
 function backToMain() {
   showPage('main');
 }
