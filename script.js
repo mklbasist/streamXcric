@@ -338,7 +338,7 @@ document.getElementById("playerSearch").addEventListener("keyup", function() {
 });
 
 function showPage(pageId) {
-  const pages = ["main","players","trending","about","playerPage","rootOptions"];
+  const pages = ["main","players","trending","about","playerPage","rootOptions", "askAI"];
   pages.forEach(id => {
     const el = document.getElementById(id);
     if(el) el.classList.add("hidden");
@@ -423,4 +423,39 @@ playBtn.addEventListener("click", () => {
 
 // Init
 updateCards();
-setInterval(rotateCarousel, 8000); // rotate every 8s
+setInterval(rotateCarousel, 8000); // rotate every 8 seconds
+
+// ====================
+// Chat AI Logic
+// ====================
+
+function sendMessage() {
+  const input = document.getElementById("user-input");
+  const chatBox = document.getElementById("chat-box");
+  const message = input.value.trim();
+
+  if (message === "") return;
+
+  // Show user message
+  const userMsg = document.createElement("div");
+  userMsg.className = "user-msg";
+  userMsg.innerText = message;
+  chatBox.appendChild(userMsg);
+
+  input.value = "";
+  chatBox.scrollTop = chatBox.scrollHeight;
+
+  // Show bot reply (placeholder for now)
+  setTimeout(() => {
+    const botMsg = document.createElement("div");
+    botMsg.className = "bot-msg";
+    botMsg.innerText = "🤖 (Demo reply) You said: " + message;
+    chatBox.appendChild(botMsg);
+
+    chatBox.scrollTop = chatBox.scrollHeight;
+  }, 800);
+}
+
+function backToMain() {
+  showPage('main');
+}

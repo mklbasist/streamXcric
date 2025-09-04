@@ -109,12 +109,26 @@
     </p>
   </section>
 
+<!-- Chat AI Page -->
+<section id="askAI" class="hidden">
+  <button class="back-btn" onclick="backToMain()">⬅ Back</button>
+  <h2 style="text-align:center;">🤖 Ask AI</h2>
+
+  <div id="chat-box"></div>
+
+  <div id="chat-input">
+    <input type="text" id="user-input" placeholder="Type your message..." />
+    <button onclick="sendMessage()">Send</button>
+  </div>
+</section>
+
   <!-- Bottom Navigation -->
   <nav class="yt-bottom-nav">
     <div class="yt-tab" onclick="showPage('main')"><span class="icon">🏠</span><span>Home</span></div>
     <div class="yt-tab" onclick="showPage('trending')"><span class="icon">🔥</span><span>Trending</span></div>
     <div class="yt-tab" onclick="showPage('players')"><span class="icon">👤</span><span>Players</span></div>
     <div class="yt-tab" onclick="showPage('about')"><span class="icon">ℹ️</span><span>About</span></div>
+    <div class="yt-tab" onclick="showPage('askAI')">🤖 Ask AI</div>
   </nav>
 
   <footer id="mainFooter">
