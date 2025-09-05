@@ -24,7 +24,6 @@ function backToPlayers() {
   document.getElementById("players").classList.remove("hidden");
   document.getElementById("playerName").innerText = "";
   document.getElementById("centuriesList").innerHTML = "";
-  document.querySelectorAll(".player-card").forEach(card => card.style.display = "flex");
 }
 
     const players = {
@@ -235,15 +234,6 @@ function backToPlayers() {
       }
     };
 
-function hideAllPlayers() {
-  const allPlayers = document.getElementById("all-players");
-  if (allPlayers) allPlayers.style.display = "none";
-}
-function showAllPlayers() {
-  const allPlayers = document.getElementById("all-players");
-  if (allPlayers) allPlayers.style.display = "flex";
-}
-
 let currentPlayerKey = null;
 
 function openPlayer(playerKey) {
@@ -328,14 +318,6 @@ function backToWelcome() {
   document.getElementById("main").classList.add("hidden");
   document.querySelector(".yt-bottom-nav").style.display = "none";
 }
-
-document.getElementById("playerSearch").addEventListener("keyup", function() {
-  const filter = this.value.toLowerCase();
-  document.querySelectorAll(".player-card").forEach(card => {
-    const name = card.innerText.toLowerCase();
-    card.style.display = name.includes(filter) ? "flex" : "none";
-  });
-});
 
 function showPage(pageId) {
   const pages = ["main","players","trending","about","playerPage","rootOptions", "askSection"];
@@ -494,3 +476,32 @@ function showAsk(type) {
   // hide menu after choosing
   document.getElementById("askMenu").classList.add("hidden");
 }
+
+window.addEventListener("DOMContentLoaded", () => {
+  const explorePlayers = document.getElementById("all-players"); // Explore section
+  const mainPlayers = document.getElementById("main-players");   // Main search results
+  const searchInput = document.getElementById("playerSearch");
+
+  if (searchInput) {
+    searchInput.addEventListener("input", () => {
+      const query = searchInput.value.toLowerCase();
+
+      // Clear main results
+      mainPlayers.innerHTML = "";
+
+      if (query) {
+        const cards = explorePlayers.querySelectorAll(".player-card");
+        cards.forEach(card => {
+          const name = card.innerText.toLowerCase();
+          if (name.includes(query)) {
+            const clone = card.cloneNode(true);
+            clone.addEventListener("click", () => {
+              card.click();
+            });
+            mainPlayers.appendChild(clone);
+          }
+        });
+      }
+    });
+  }
+});
