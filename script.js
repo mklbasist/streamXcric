@@ -338,7 +338,7 @@ document.getElementById("playerSearch").addEventListener("keyup", function() {
 });
 
 function showPage(pageId) {
-  const pages = ["main","players","trending","about","playerPage","rootOptions", "askAI"];
+  const pages = ["main","players","trending","about","playerPage","rootOptions", "askSection"];
   pages.forEach(id => {
     const el = document.getElementById(id);
     if(el) el.classList.add("hidden");
@@ -472,4 +472,25 @@ function sendMessage() {
 // Function to go back to main page (existing)
 function backToMain() {
   showPage('main');
+}
+
+function toggleAsk() {
+  const menu = document.getElementById("askMenu");
+  menu.classList.toggle("hidden");
+}
+
+function showAsk(type) {
+  document.getElementById("askAI").classList.add("hidden");
+  document.getElementById("askStats").classList.add("hidden");
+
+  if (type === "ai") {
+    document.getElementById("askAI").classList.remove("hidden");
+    document.getElementById("askToggleBtn").innerText = "Ask AI";
+  } else {
+    document.getElementById("askStats").classList.remove("hidden");
+    document.getElementById("askToggleBtn").innerText = "Ask Stats";
+  }
+
+  // hide menu after choosing
+  document.getElementById("askMenu").classList.add("hidden");
 }

@@ -499,3 +499,53 @@ header, footer { text-align: center; padding: 20px; background: #000000; color: 
     flex-direction: column;
   }
 }
+
+.ask-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+#askToggleBtn {
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 20px; /* round corners */
+  padding: 8px 18px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+  transition: background 0.2s, transform 0.1s;
+}
+
+#askToggleBtn:hover {
+  background: #0056b3;
+  transform: scale(1.05);
+}
+
+.ask-menu {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 10px 0;
+}
+
+.ask-menu.hidden {
+  display: none;
+}
+
+.ask-option {
+  padding: 8px 14px;
+  cursor: pointer;
+  border-radius: 12px;
+  background: #f4f4f4;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.ask-option:hover {
+  background: #007bff;
+  color: white;
+}

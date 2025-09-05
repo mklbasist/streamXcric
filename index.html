@@ -109,17 +109,36 @@
     </p>
   </section>
 
-<!-- Chat AI Page -->
-<section id="askAI" class="hidden">
+<!-- Ask Section -->
+<section id="askSection" class="hidden">
   <button class="back-btn" onclick="backToMain()">⬅ Back</button>
-  <h2 style="text-align:center;">🤖 Ask AI</h2>
 
-  <div id="chat-box"></div>
+  <!-- Header with toggle -->
+  <div class="ask-header">
+    <button id="askToggleBtn" onclick="toggleAsk()">Ask AI</button>
+  </div>
 
-  <div id="chat-input">
-  <input type="text" id="user-input" placeholder="Ask anything...">
-  <button onclick="sendMessage()">↑</button>
-</div>
+  <!-- Dropdown menu (hidden by default) -->
+  <div id="askMenu" class="ask-menu hidden">
+    <div class="ask-option" onclick="showAsk('ai')">Ask AI</div>
+    <div class="ask-option" onclick="showAsk('stats')">Ask Stats</div>
+  </div>
+
+  <!-- Ask AI content -->
+  <div id="askAI">
+    <h2 style="text-align:center;">🤖 Ask AI</h2>
+    <div id="chat-box"></div>
+    <div id="chat-input">
+      <input type="text" id="user-input" placeholder="Ask anything...">
+      <button onclick="sendMessage()">↑</button>
+    </div>
+  </div>
+
+  <!-- Ask Stats content -->
+  <div id="askStats" class="hidden">
+    <h2 style="text-align:center;">📊 Ask Stats</h2>
+    <p style="text-align:center;">(Stats content will go here later...)</p>
+  </div>
 </section>
 
   <!-- Bottom Navigation -->
@@ -128,7 +147,9 @@
     <div class="yt-tab" onclick="showPage('trending')"><span class="icon">🔥</span><span>Trending</span></div>
     <div class="yt-tab" onclick="showPage('players')"><span class="icon">👤</span><span>Players</span></div>
     <div class="yt-tab" onclick="showPage('about')"><span class="icon">ℹ️</span><span>About</span></div>
-    <div class="yt-tab" onclick="showPage('askAI')"><span class="icon">🤖</span><span>Ask AI</span></div>
+    <div class="yt-tab" onclick="showPage('askSection')">
+    <span class="icon">🤖</span><span>Ask</span>
+    </div>
   </nav>
 
   <footer id="mainFooter">
