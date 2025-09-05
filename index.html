@@ -115,18 +115,17 @@
 
   <!-- Header with toggle -->
   <div class="ask-header">
-    <button id="askToggleBtn" onclick="toggleAsk()">Ask AI</button>
+    <button id="askToggleBtn" onclick="toggleAsk()">🤖 Ask AI</button>
   </div>
 
   <!-- Dropdown menu (hidden by default) -->
   <div id="askMenu" class="ask-menu hidden">
-    <div class="ask-option" onclick="showAsk('ai')">Ask AI</div>
-    <div class="ask-option" onclick="showAsk('stats')">Ask Stats</div>
+    <div class="ask-option" onclick="showAsk('ai')">🤖 Ask AI</div>
+    <div class="ask-option" onclick="showAsk('stats')">📊 Ask Stats</div>
   </div>
 
   <!-- Ask AI content -->
   <div id="askAI">
-    <h2 style="text-align:center;">🤖 Ask AI</h2>
     <div id="chat-box"></div>
     <div id="chat-input">
       <input type="text" id="user-input" placeholder="Ask anything...">
@@ -136,7 +135,6 @@
 
   <!-- Ask Stats content -->
   <div id="askStats" class="hidden">
-    <h2 style="text-align:center;">📊 Ask Stats</h2>
     <p style="text-align:center;">(Stats content will go here later...)</p>
   </div>
 </section>
