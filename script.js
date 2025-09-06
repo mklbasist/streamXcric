@@ -546,8 +546,7 @@ async function fetchStats() {
     if (data.balls !== undefined) html += `<tr><td>Balls</td><td>${data.balls}</td></tr>`;
     if (data.outs !== undefined) html += `<tr><td>Outs</td><td>${data.outs}</td></tr>`;
     if (data.average !== undefined) html += `<tr><td>Average</td><td>${data.average}</td></tr>`;
-    if (data.strikeRate !== undefined) html += `<tr><td>Strike Rate</td><td>${data.strikeRate}</td></tr>`;
-    if (data.strike_rate !== undefined) html += `<tr><td>Strike Rate</td><td>${data.strike_rate}</td></tr>`; // fallback
+    if (data.strike_rate !== undefined) html += `<tr><td>Strike Rate</td><td>${data.strike_rate}</td></tr>`;
 
     html += `</table>`;
 
