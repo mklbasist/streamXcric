@@ -167,5 +167,14 @@
 
   <!-- External JS -->
   <script src="script.js"></script>
+
+  <script>
+  // Ping your Render backend when the site loads
+  window.addEventListener("load", () => {
+    fetch("https://cric-matchup.onrender.com/")
+      .then(() => console.log("Render pinged"))
+      .catch(() => console.log("Render ping failed"));
+  });
+</script>
 </body>
 </html>
