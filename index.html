@@ -139,11 +139,11 @@
 <div id="askStats" class="hidden">
   <h2 style="text-align:center;">📊 Player Matchup Stats</h2>
 
-  <div class="ask-stats" style="text-align:center; margin-top:10px;">
-    <input id="batterInput" placeholder="Enter Batter">
-    <input id="bowlerInput" placeholder="Enter Bowler">
-    <button onclick="fetchStats()">Get Stats</button>
-  </div>
+  <div class="ask-stats" style="text-align:center; margin-top:10px; display:flex; flex-direction:column; align-items:center; gap:8px;">
+  <input id="batterInput" placeholder="Enter Batter Name" style="padding:6px; width:200px;">
+  <input id="bowlerInput" placeholder="Enter Bowler Name" style="padding:6px; width:200px;">
+  <button onclick="fetchStats()" style="padding:6px 12px;">Get Stats</button>
+</div>
 
   <!-- Stats results will appear here -->
   <div id="statsResult" class="stats-box hidden"></div>
