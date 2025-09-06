@@ -557,29 +557,28 @@ header, footer { text-align: center; padding: 20px; background: #000000; color: 
   background: #ffffff;
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
   max-width: 420px;
-  text-align: center;   /* centers the table itself */
 }
 
 .stats-box table {
   width: 100%;
-  border-collapse: collapse;  /* makes a lined table */
-}
-
-.stats-box tr {
-  border-bottom: 1px solid #ddd;  /* horizontal lines between rows */
-}
-
-.stats-box tr:last-child {
-  border-bottom: none;
+  border-collapse: collapse;   /* merge borders into clean grid */
+  border: 1px solid #ccc;      /* outer border */
 }
 
 .stats-box td {
   padding: 12px;
   font-size: 15px;
-  text-align: center;   /* 👈 centers ALL cells */
+  border: 1px solid #ccc;      /* inner cell borders */
 }
 
 .stats-box td:first-child {
+  text-align: left;            /* left-align labels */
   font-weight: 600;
   color: #444;
+}
+
+.stats-box td:last-child {
+  text-align: center;          /* center values */
+  color: #007bff;
+  font-weight: 500;
 }
