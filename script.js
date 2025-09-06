@@ -505,3 +505,34 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+async function getStats() {
+  const batter = document.getElementById("batter").value;
+  const bowler = document.getElementById("bowler").value;
+
+  if (!batter || !bowler) {
+    alert("Please enter both batter and bowler");
+    return;
+  }
+
+  try {
+    const res = await fetch("https://cric-matchup.onrender.com/get_stats", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    format: "Tests",
+    batter: batter,
+    bowler: bowler
+  })
+});
+
+    if (!res.ok) throw new Error("API request failed");
+
+    const data = await res.json();
+    document.getElementById("statsOutput").innerText =
+      JSON.stringify(data, null, 2);
+  } catch (err) {
+    console.error(err);
+    alert("Failed to fetch stats");
+  }
+}
