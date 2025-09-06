@@ -549,3 +549,32 @@ header, footer { text-align: center; padding: 20px; background: #000000; color: 
   background: #007bff;
   color: white;
 }
+
+.stats-box {
+  margin: 15px auto;          /* centers the box horizontally */
+  padding: 15px;
+  border-radius: 12px;
+  background: #f4f4f9;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  max-width: 400px;
+  overflow-x: auto;
+  text-align: center;         /* centers content inside */
+}
+
+.stats-box table {
+  margin: 0 auto;             /* centers the table inside the box */
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.stats-box th, .stats-box td {
+  padding: 8px 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.stats-box th {
+  background: #007bff;
+  color: white;
+  border-radius: 8px 8px 0 0;
+}

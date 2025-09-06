@@ -506,33 +506,44 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-async function getStats() {
-  const batter = document.getElementById("batter").value;
-  const bowler = document.getElementById("bowler").value;
+async function fetchStats() {
+  const batter = document.getElementById("batterInput").value;
+  const bowler = document.getElementById("bowlerInput").value;
+  const resultDiv = document.getElementById("statsResult");
 
   if (!batter || !bowler) {
-    alert("Please enter both batter and bowler");
+    alert("Please enter both batter and bowler names.");
     return;
   }
 
+  resultDiv.classList.add("hidden");
+  resultDiv.innerHTML = "Loading stats...";
+
   try {
     const res = await fetch("https://cric-matchup.onrender.com/get_stats", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({
-    format: "Tests",
-    batter: batter,
-    bowler: bowler
-  })
-});
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ format: "Tests", batter, bowler })
+    });
 
-    if (!res.ok) throw new Error("API request failed");
+    if (!res.ok) throw new Error("Failed to fetch stats");
 
     const data = await res.json();
-    document.getElementById("statsOutput").innerText =
-      JSON.stringify(data, null, 2);
+
+    // Build table
+    let html = `<table>
+                  <tr><th>Category</th><th>Value</th></tr>`;
+
+    for (const key in data) {
+      html += `<tr><td>${key}</td><td>${data[key]}</td></tr>`;
+    }
+
+    html += "</table>";
+
+    resultDiv.innerHTML = html;
+    resultDiv.classList.remove("hidden");
   } catch (err) {
-    console.error(err);
-    alert("Failed to fetch stats");
+    resultDiv.innerHTML = "Error fetching stats. Try again!";
+    resultDiv.classList.remove("hidden");
   }
 }
