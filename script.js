@@ -529,18 +529,25 @@ async function fetchStats() {
     if (!res.ok) throw new Error("Failed to fetch stats");
 
     const data = await res.json();
+    console.log("Stats response:", data); // 👈 check keys coming from backend
 
     // Build clean stat card
     let html = `<table>`;
 
-    // Add Format row first
+    // Format row
     html += `<tr><td>Format</td><td>Tests</td></tr>`;
 
+    // Full names (if backend sends them)
+    if (data.batterName) html += `<tr><td>Batter</td><td>${data.batterName}</td></tr>`;
+    if (data.bowlerName) html += `<tr><td>Bowler</td><td>${data.bowlerName}</td></tr>`;
+
+    // Stats rows
     if (data.runs !== undefined) html += `<tr><td>Runs</td><td>${data.runs}</td></tr>`;
     if (data.balls !== undefined) html += `<tr><td>Balls</td><td>${data.balls}</td></tr>`;
     if (data.outs !== undefined) html += `<tr><td>Outs</td><td>${data.outs}</td></tr>`;
     if (data.average !== undefined) html += `<tr><td>Average</td><td>${data.average}</td></tr>`;
-    if (data.strike_rate !== undefined) html += `<tr><td>Strike Rate</td><td>${data.strike_rate}</td></tr>`;
+    if (data.strikeRate !== undefined) html += `<tr><td>Strike Rate</td><td>${data.strikeRate}</td></tr>`;
+    if (data.strike_rate !== undefined) html += `<tr><td>Strike Rate</td><td>${data.strike_rate}</td></tr>`; // fallback
 
     html += `</table>`;
 
