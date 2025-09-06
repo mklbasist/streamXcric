@@ -507,8 +507,8 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 async function fetchStats() {
-  const batter = document.getElementById("batterInput").value;
-  const bowler = document.getElementById("bowlerInput").value;
+  const batter = document.getElementById("batterInput").value.trim();
+  const bowler = document.getElementById("bowlerInput").value.trim();
   const resultDiv = document.getElementById("statsResult");
 
   if (!batter || !bowler) {
@@ -530,20 +530,26 @@ async function fetchStats() {
 
     const data = await res.json();
 
-    // Build table
-    let html = `<table>
-                  <tr><th>Category</th><th>Value</th></tr>`;
+    // Build clean stat card
+    let html = `<table>`;
 
-    for (const key in data) {
-      html += `<tr><td>${key}</td><td>${data[key]}</td></tr>`;
-    }
+    // Add Format row first
+    html += `<tr><td>Format</td><td>Tests</td></tr>`;
 
-    html += "</table>";
+    if (data.runs !== undefined) html += `<tr><td>Runs</td><td>${data.runs}</td></tr>`;
+    if (data.balls !== undefined) html += `<tr><td>Balls</td><td>${data.balls}</td></tr>`;
+    if (data.outs !== undefined) html += `<tr><td>Outs</td><td>${data.outs}</td></tr>`;
+    if (data.average !== undefined) html += `<tr><td>Average</td><td>${data.average}</td></tr>`;
+    if (data.strikeRate !== undefined) html += `<tr><td>Strike Rate</td><td>${data.strikeRate}</td></tr>`;
+
+    html += `</table>`;
 
     resultDiv.innerHTML = html;
     resultDiv.classList.remove("hidden");
+
   } catch (err) {
-    resultDiv.innerHTML = "Error fetching stats. Try again!";
+    resultDiv.innerHTML = "<p style='color:red;'>Error fetching stats. Try again!</p>";
     resultDiv.classList.remove("hidden");
+    console.error(err);
   }
 }
