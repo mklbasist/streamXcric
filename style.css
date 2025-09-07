@@ -582,3 +582,47 @@ header, footer { text-align: center; padding: 20px; background: #000000; color: 
   color: #007bff;
   font-weight: 500;
 }
+
+/* ---------- Articles Section ---------- */
+.articles-container {
+  display: flex;
+  flex-direction: column;   /* vertical stack */
+  gap: 25px;
+  max-width: 700px;         /* narrower for nice reading layout */
+  margin: 30px auto;
+  padding: 0 15px;
+}
+
+.article-card {
+  background: #fff;
+  border-radius: 16px;      /* rounded corners */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;         /* ensures image respects border-radius */
+}
+
+.article-card img {
+  width: 100%;
+  aspect-ratio: 16 / 9;     /* force 16:9 thumbnail */
+  object-fit: cover;
+  display: block;
+}
+
+.article-card h3 {
+  padding: 15px;
+  font-size: 20px;
+  text-align: center;
+  color: #333;
+}
+
+.article-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+}
+
+.article-page {
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+}

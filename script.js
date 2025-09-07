@@ -559,3 +559,58 @@ async function fetchStats() {
     console.error(err);
   }
 }
+
+/* ---------- Auto-generate Articles from JSON ---------- */
+document.addEventListener("DOMContentLoaded", () => {
+  fetch("articles.json")
+    .then(res => {
+      if (!res.ok) throw new Error("Failed to load articles.json");
+      return res.json();
+    })
+    .then(data => {
+      const container = document.getElementById("articlesList");
+      container.innerHTML = ""; // clear placeholder if any
+
+      data.forEach(article => {
+        const card = document.createElement("div");
+        card.className = "article-card";
+        card.onclick = () => openArticle(article.file);
+
+        card.innerHTML = `
+          <img src="${article.thumbnail}" alt="Article Thumbnail">
+          <h3>${article.title}</h3>
+        `;
+
+        container.appendChild(card);
+      });
+    })
+    .catch(err => {
+      console.error("Error loading articles:", err);
+      document.getElementById("articlesList").innerHTML =
+        "<p style='color:red; text-align:center;'>Failed to load articles.</p>";
+    });
+});
+
+/* ---------- Open an Article ---------- */
+function openArticle(path) {
+  // Hide all sections
+  document.querySelectorAll("section").forEach(sec => sec.classList.add("hidden"));
+
+  // Show the article page
+  document.getElementById("articlePage").classList.remove("hidden");
+
+  // Load the external article file
+  fetch(path)
+    .then(res => {
+      if (!res.ok) throw new Error("Failed to load article");
+      return res.text();
+    })
+    .then(html => {
+      document.getElementById("articleContent").innerHTML = html;
+    })
+    .catch(err => {
+      document.getElementById("articleContent").innerHTML =
+        "<p style='color:red;'>Could not load article.</p>";
+      console.error(err);
+    });
+}

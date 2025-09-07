@@ -101,15 +101,25 @@
     <p style="text-align:center;">Coming Soon...</p>
   </section>
 
-  <!-- About Page -->
-  <section id="about" class="hidden">
-    <button class="back-btn" onclick="backToMain()">⬅ Back</button>
-    <h2 style="text-align:center;">ℹ️ About streamXcric</h2>
-    <p style="max-width:600px; margin:auto; text-align:center;">
-      streamXcric is a cricket highlights hub featuring every player’s iconic centuries. 
-      Relive the greatest moments in cricket history — all in one place!
-    </p>
-  </section>
+<section id="about" class="hidden">
+  <button class="back-btn" onclick="backToMain()">⬅ Back</button>
+  <h2 style="text-align:center;">ℹ️ About streamXcric</h2>
+  <p style="max-width:600px; margin:auto; text-align:center;">
+    streamXcric is a cricket highlights hub featuring every player’s iconic centuries. 
+    Relive the greatest moments in cricket history — all in one place!
+  </p>
+
+  <!-- Articles Section (JS will fill this from articles.json) -->
+  <div class="articles-container" id="articlesList">
+    <!-- Cards will be auto-generated here -->
+  </div>
+</section>
+
+<!-- Article Page -->
+<section id="articlePage" class="article-page hidden">
+  <button class="back-btn" onclick="showPage('about')">⬅ Back</button>
+  <div id="articleContent"></div>
+</section>
 
 <!-- Ask Section -->
 <section id="askSection" class="hidden">
