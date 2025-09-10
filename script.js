@@ -320,7 +320,7 @@ function backToWelcome() {
 }
 
 function showPage(pageId) {
-  const pages = ["main","players","trending","about","playerPage","rootOptions", "askSection"];
+  const pages = ["main","players","trending","about","playerPage","rootOptions", "askSection", "articlePage"];
   pages.forEach(id => {
     const el = document.getElementById(id);
     if(el) el.classList.add("hidden");

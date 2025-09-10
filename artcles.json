@@ -1,0 +1,12 @@
+[
+  {
+    "title": "Evolution of Test Cricket",
+    "thumbnail": "static/sample1.jpg",
+    "file": "articles/article1.html"
+  },
+  {
+    "title": "Virat Kohli’s Greatest Innings",
+    "thumbnail": "static/virat149.png",
+    "file": "articles/article2.html"
+  }
+]
