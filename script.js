@@ -424,29 +424,30 @@ function sendMessage() {
   userMsg.innerText = message;
   chatBox.appendChild(userMsg);
 
+  // Show fetching message
+  const fetchingMsg = document.createElement("div");
+  fetchingMsg.className = "bot-msg";
+  fetchingMsg.innerText = "🤖 Fetching stats...";
+  chatBox.appendChild(fetchingMsg);
+
   input.value = "";
   chatBox.scrollTop = chatBox.scrollHeight;
 
-  // Show bot reply from backend
-  fetch("http://localhost:3000/chat", {
+  // Fetch reply from Render backend
+  fetch("https://statpulse-v1-0.onrender.com/query", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message: message })
+      body: JSON.stringify({ q: message })
   })
   .then(res => res.json())
   .then(data => {
-      const botMsg = document.createElement("div");
-      botMsg.className = "bot-msg";
-      botMsg.innerText = data.reply;
-      chatBox.appendChild(botMsg);
+      // Replace fetching message with actual answer
+      fetchingMsg.innerText = data.answer || "🤖 Sorry, no response from backend.";
       chatBox.scrollTop = chatBox.scrollHeight;
   })
   .catch(err => {
       console.error(err);
-      const botMsg = document.createElement("div");
-      botMsg.className = "bot-msg";
-      botMsg.innerText = "🤖 Sorry, something went wrong.";
-      chatBox.appendChild(botMsg);
+      fetchingMsg.innerText = "🤖 Sorry, something went wrong.";
       chatBox.scrollTop = chatBox.scrollHeight;
   });
 }
@@ -472,6 +473,7 @@ function showAsk(type) {
     document.getElementById("askStats").classList.remove("hidden");
     document.getElementById("askToggleBtn").innerText = "Ask Stats";
   }
+}
 
   // hide menu after choosing
   document.getElementById("askMenu").classList.add("hidden");
