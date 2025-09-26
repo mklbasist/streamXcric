@@ -473,7 +473,6 @@ function showAsk(type) {
     document.getElementById("askStats").classList.remove("hidden");
     document.getElementById("askToggleBtn").innerText = "Ask Stats";
   }
-}
 
   // hide menu after choosing
   document.getElementById("askMenu").classList.add("hidden");
