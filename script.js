@@ -433,12 +433,28 @@ function sendMessage() {
   input.value = "";
   chatBox.scrollTop = chatBox.scrollHeight;
 
-  // Fetch reply from Render backend
-  fetch(`https://statpulse-v1-0.onrender.com/query?q=${encodeURIComponent(message)}`)
+// Fetch reply from Render backend
+fetch(`https://statpulse-v1-0.onrender.com/query?q=${encodeURIComponent(message)}`)
   .then(res => res.json())
   .then(data => {
       // Replace fetching message with actual answer
-      fetchingMsg.innerText = data.answer || "🤖 Sorry, no response from backend.";
+      if (data.error) {
+          fetchingMsg.innerText = `🤖 ${data.error}`;
+      } else {
+          // Build a readable string from returned stats
+          let responseText = `Player: ${data.player || ""}\n`;
+          if (data.runs !== undefined) responseText += `Runs: ${data.runs}\n`;
+          if (data.batting_average !== undefined) responseText += `Batting Avg: ${data.batting_average}\n`;
+          if (data["50s"] !== undefined) responseText += `50s: ${data["50s"]}\n`;
+          if (data["100s"] !== undefined) responseText += `100s: ${data["100s"]}\n`;
+          if (data.highest_score !== undefined) responseText += `Highest Score: ${data.highest_score}\n`;
+          if (data.balls_faced !== undefined) responseText += `Balls Faced: ${data.balls_faced}\n`;
+          if (data.wickets !== undefined) responseText += `Wickets: ${data.wickets}\n`;
+          if (data.economy !== undefined) responseText += `Economy: ${data.economy}\n`;
+
+          fetchingMsg.innerText = responseText.trim();
+      }
+
       chatBox.scrollTop = chatBox.scrollHeight;
   })
   .catch(err => {
