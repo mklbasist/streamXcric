@@ -412,61 +412,84 @@ setInterval(rotateCarousel, 8000); // rotate every 8 seconds
 // ====================
 
 function sendMessage() {
-  const input = document.getElementById("user-input");
-  const chatBox = document.getElementById("chat-box");
-  const message = input.value.trim();
+    const input = document.getElementById("user-input");
+    const chatBox = document.getElementById("chat-box");
+    const message = input.value.trim();
 
-  if (message === "") return;
+    if (message === "") return;
 
-  // Show user message
-  const userMsg = document.createElement("div");
-  userMsg.className = "user-msg";
-  userMsg.innerText = message;
-  chatBox.appendChild(userMsg);
+    // Show user message
+    const userMsg = document.createElement("div");
+    userMsg.className = "user-msg";
+    userMsg.innerText = message;
+    chatBox.appendChild(userMsg);
 
-  // Show fetching message
-  const fetchingMsg = document.createElement("div");
-  fetchingMsg.className = "bot-msg";
-  fetchingMsg.innerText = "🤖 Fetching stats...";
-  chatBox.appendChild(fetchingMsg);
+    // Show fetching message
+    const fetchingMsg = document.createElement("div");
+    fetchingMsg.className = "bot-msg";
+    fetchingMsg.innerText = "🤖 Fetching stats...";
+    chatBox.appendChild(fetchingMsg);
 
-  input.value = "";
-  chatBox.scrollTop = chatBox.scrollHeight;
+    input.value = "";
+    chatBox.scrollTop = chatBox.scrollHeight;
 
-// Fetch reply from Render backend
-fetch(`https://statpulse-v1-0.onrender.com/query?q=${encodeURIComponent(message)}`)
-  .then(res => res.json())
-  .then(data => {
-      // Replace fetching message with actual answer
-      if (data.error) {
-          fetchingMsg.innerText = `🤖 ${data.error}`;
-      } else {
-          // Build a readable string from returned stats
-          let responseText = `Player: ${data.player || ""}\n`;
-          if (data.runs !== undefined) responseText += `Runs: ${data.runs}\n`;
-          if (data.batting_average !== undefined) responseText += `Batting Avg: ${data.batting_average}\n`;
-          if (data["50s"] !== undefined) responseText += `50s: ${data["50s"]}\n`;
-          if (data["100s"] !== undefined) responseText += `100s: ${data["100s"]}\n`;
-          if (data.highest_score !== undefined) responseText += `Highest Score: ${data.highest_score}\n`;
-          if (data.balls_faced !== undefined) responseText += `Balls Faced: ${data.balls_faced}\n`;
-          if (data.wickets !== undefined) responseText += `Wickets: ${data.wickets}\n`;
-          if (data.economy !== undefined) responseText += `Economy: ${data.economy}\n`;
+    // Fetch reply from Render backend
+    fetch(`https://statpulse-v1-0.onrender.com/query?q=${encodeURIComponent(message)}`)
+        .then(res => res.json())
+        .then(data => {
+            let reply = "";
 
-          fetchingMsg.innerText = responseText.trim();
-      }
+            if (data.error) {
+                reply = `🤖 ${data.error}`;
+            } else if (data["50s"] !== undefined) {
+                reply = `🤖 ${data.player} has ${data["50s"]} fifty(s)` +
+                        (data.country ? ` in ${data.country}` : "") +
+                        (data.against ? ` against ${data.against}` : "");
+            } else if (data["100s"] !== undefined) {
+                reply = `🤖 ${data.player} has ${data["100s"]} century(ies)` +
+                        (data.country ? ` in ${data.country}` : "") +
+                        (data.against ? ` against ${data.against}` : "");
+            } else if (data.runs !== undefined) {
+                reply = `🤖 ${data.player} has scored ${data.runs} run(s)` +
+                        (data.country ? ` in ${data.country}` : "") +
+                        (data.against ? ` against ${data.against}` : "");
+            } else if (data.batting_average !== undefined) {
+                reply = `🤖 ${data.player}'s batting average is ${data.batting_average}` +
+                        (data.country ? ` in ${data.country}` : "") +
+                        (data.against ? ` against ${data.against}` : "");
+            } else if (data.highest_score !== undefined) {
+                reply = `🤖 ${data.player}'s highest score is ${data.highest_score}` +
+                        (data.country ? ` in ${data.country}` : "") +
+                        (data.against ? ` against ${data.against}` : "");
+            } else if (data.balls_faced !== undefined) {
+                reply = `🤖 ${data.player} faced ${data.balls_faced} ball(s)` +
+                        (data.country ? ` in ${data.country}` : "") +
+                        (data.against ? ` against ${data.against}` : "");
+            } else if (data.wickets !== undefined) {
+                reply = `🤖 ${data.player} took ${data.wickets} wicket(s)` +
+                        (data.country ? ` in ${data.country}` : "") +
+                        (data.against ? ` against ${data.against}` : "");
+            } else if (data.economy !== undefined) {
+                reply = `🤖 ${data.player}'s economy rate is ${data.economy}` +
+                        (data.country ? ` in ${data.country}` : "") +
+                        (data.against ? ` against ${data.against}` : "");
+            } else {
+                reply = `🤖 Query understood but not handled yet.`;
+            }
 
-      chatBox.scrollTop = chatBox.scrollHeight;
-  })
-  .catch(err => {
-      console.error(err);
-      fetchingMsg.innerText = "🤖 Sorry, something went wrong.";
-      chatBox.scrollTop = chatBox.scrollHeight;
-  });
+            fetchingMsg.innerText = reply;
+            chatBox.scrollTop = chatBox.scrollHeight;
+        })
+        .catch(err => {
+            console.error(err);
+            fetchingMsg.innerText = "🤖 Sorry, something went wrong.";
+            chatBox.scrollTop = chatBox.scrollHeight;
+        });
 }
 
-// Function to go back to main page (existing)
+// Function to go back to main page
 function backToMain() {
-  showPage('main');
+    showPage('main');
 }
 
 function toggleAsk() {
