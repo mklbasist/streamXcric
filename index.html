@@ -184,8 +184,13 @@
     fetch("https://cric-matchup.onrender.com/")
       .then(() => console.log("Render pinged"))
       .catch(() => console.log("Render ping failed"));
+
+    // StatPulse backend
+    fetch("https://statpulse-v1-0.onrender.com/healthz")
+      .then(() => console.log("StatPulse backend pinged"))
+      .catch(() => console.log("StatPulse ping failed"));
   });
 </script>
 </body>
-
 </html>
+
