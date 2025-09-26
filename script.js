@@ -434,11 +434,7 @@ function sendMessage() {
   chatBox.scrollTop = chatBox.scrollHeight;
 
   // Fetch reply from Render backend
-  fetch("https://statpulse-v1-0.onrender.com/query", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ q: message })
-  })
+  fetch(`https://statpulse-v1-0.onrender.com/query?q=${encodeURIComponent(message)}`)
   .then(res => res.json())
   .then(data => {
       // Replace fetching message with actual answer
