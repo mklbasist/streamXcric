@@ -191,7 +191,7 @@ function backToPlayers() {
         name: "Cheteshwar Pujara",
         centuries: [
           { title: "1. 138* vs Eng, 2013", video: "https://www.dailymotion.com/embed/video/x8qpc8r" },
-          { title: "2. 206* v Eng, 2012", video: "https://mega.nz/embed/RndDADhY#fDuVX_Hy6s9GeNd48tB5E_Xtzc6KIboWajKdhBCaL_8" }
+          { title: "2. 206* v Eng, 2012", video: "https://mega.nz/embed/RndDADhY#fDuVX_Hy6s9GeNd48tB5E_Xtzc6KIboWajKdhBCaL_8?p=1" }
         ]
       },
       kane: {
