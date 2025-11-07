@@ -190,8 +190,25 @@ function backToPlayers() {
       pujara: {
         name: "Cheteshwar Pujara",
         centuries: [
-          { title: "1. 138* vs Eng, 2013", video: "https://www.dailymotion.com/embed/video/x8qpc8r" },
-          { title: "2. 206* v Eng, 2012", video: "https://mega.nz/embed/RndDADhY#fDuVX_Hy6s9GeNd48tB5E_Xtzc6KIboWajKdhBCaL_8?p=1" }
+          { title: "1. 159 vs NZ, 2012", video: "https://www.dailymotion.com/embed/video/x8qpc8r" },
+          { title: "2. 206* v Eng, 2012", video: "" }
+          { title: "3. 135 v Eng, 2012", video: "" }
+          { title: "4. 204 v AUS, 2013", video: "" }
+          { title: "5. 113 v WI, 2013", video: "" }
+          { title: "6. 153 v SA, 2013", video: "" }
+          { title: "7. 143* v SL, 2015", video: "" }
+          { title: "8. 101* v NZ, 2016", video: "" }
+          { title: "9. 124 v Eng, 2016", video: "" }
+          { title: "10. 119 v Eng, 2016", video: "" }
+          { title: "11. 202 v AUS, 2017", video: "" }
+          { title: "12. 153 v SL, 2017", video: "" }
+          { title: "13. 133 v SL, 2017", video: "" }
+          { title: "14. 143 v SL, 2017", video: "" }
+          { title: "15. 132* v Eng, 2018", video: "" }
+          { title: "16. 123 v AUS, 2018", video: "" }
+          { title: "17. 106 v AUS, 2018", video: "" }
+          { title: "18. 193* v AUS, 2019", video: "" }
+          { title: "19. 102* v BAN, 2022", video: "" }
         ]
       },
       kane: {
