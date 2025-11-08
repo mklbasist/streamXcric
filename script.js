@@ -190,7 +190,7 @@ function backToPlayers() {
       pujara: {
         name: "Cheteshwar Pujara",
         centuries: [
-          { title: "1. 159 vs NZ, 2012", video: "https://www.dailymotion.com/embed/video/x3qcmky" },
+          { title: "1. 159 vs NZ, 2012", video: "https://www.dailymotion.com/embed/video/x9terug" },
           { title: "2. 206* v Eng, 2012", video: "https://www.dailymotion.com/embed/video/x9tdo40" },
           { title: "3. 135 v Eng, 2012", video: "https://www.dailymotion.com/embed/video/x9tdo46" },
           { title: "4. 204 v AUS, 2013", video: "https://www.dailymotion.com/embed/video/x9tdo46" },
@@ -202,9 +202,9 @@ function backToPlayers() {
           { title: "10. 119 v Eng, 2016", video: "https://www.dailymotion.com/embed/video/x9tdo46" },
           { title: "11. 202 v AUS, 2017", video: "https://www.dailymotion.com/embed/video/x9tdo44" },
           { title: "12. 153 v SL, 2017", video: "https://www.dailymotion.com/embed/video/x9tdo46" },
-          { title: "13. 133 v SL, 2017", video: "https://www.dailymotion.com/embed/video/x3qcmky" },
-          { title: "14. 143 v SL, 2017", video: "https://www.dailymotion.com/embed/video/x9tdo46" },
-          { title: "15. 132* v Eng, 2018", video: "https://www.dailymotion.com/embed/video/x3qcmky" },
+          { title: "13. 133 v SL, 2017", video: "https://www.dailymotion.com/embed/video/x9teruc" },
+          { title: "14. 143 v SL, 2017", video: "https://www.dailymotion.com/embed/video/x9terue" },
+          { title: "15. 132* v Eng, 2018", video: "https://www.dailymotion.com/embed/video/x9terua" },
           { title: "16. 123 v AUS, 2018", video: "https://www.dailymotion.com/embed/video/x9ter0m" },
           { title: "17. 106 v AUS, 2018", video: "https://www.dailymotion.com/embed/video/x9tdo42" },
           { title: "18. 193* v AUS, 2019", video: "https://www.dailymotion.com/embed/video/x9tdo46" },
