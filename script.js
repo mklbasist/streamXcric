@@ -235,7 +235,7 @@ function backToPlayers() {
           { title: "15. 132* v Eng, 2018", video: "https://www.dailymotion.com/embed/video/x9terua" },
           { title: "16. 123 v AUS, 2018", video: "https://www.dailymotion.com/embed/video/x9ter0m" },
           { title: "17. 106 v AUS, 2018", video: "https://www.dailymotion.com/embed/video/x9tdo42" },
-          { title: "18. 193* v AUS, 2019", video: "https://www.dailymotion.com/embed/video/x9tdo46" },
+          { title: "18. 193* v AUS, 2019", video: "https://www.youtube.com/embed/xU0a64YZ3kw&t" },
           { title: "19. 102* v BAN, 2022", video: "https://www.dailymotion.com/embed/video/x9tdo46" }
         ]
       },
