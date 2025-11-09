@@ -8,7 +8,8 @@ body { font-family: "Marcellus SC"; background: #f4f4f9; }
 header, footer {
   text-align: center;
   padding: 20px;
-  background: transparent !important;
+  background: rgba(0,0,0,0.2);
+  backdrop-filter: blur(10px);
   color: rgb(120, 203, 224);
 }
 
@@ -35,6 +36,13 @@ header, footer {
   filter: blur(20px);
   transform: scale(1.1);   /* removes blur edges */
   z-index: 0;
+}
+
+#welcome header,
+#welcome footer {
+  background: transparent !important;
+  backdrop-filter: blur(25px);
+  z-index: 2;
 }
 
 /* ✅ Keep content above blurred image */
