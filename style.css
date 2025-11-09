@@ -8,8 +8,7 @@ body { font-family: "Marcellus SC"; background: #f4f4f9; }
 header, footer {
   text-align: center;
   padding: 20px;
-  background: rgba(0,0,0,0.2);
-  backdrop-filter: blur(10px);
+  background: transparent !important;
   color: rgb(120, 203, 224);
 }
 
