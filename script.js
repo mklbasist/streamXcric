@@ -226,7 +226,7 @@ function backToPlayers() {
           { title: "6. 153 v SA, 2013", video: "https://www.youtube.com/embed/73vstQTUYhk" },
           { title: "7. 145* v SL, 2015", video: "https://www.youtube.com/embed/Dl45nzQleik" },
           { title: "8. 101* v NZ, 2016", video: "https://www.dailymotion.com/embed/video/x9tdo3y" },
-          { title: "9. 124 v Eng, 2016", video: "https://www.dailymotion.com/embed/video/x9tdo46" },
+          { title: "9. 124 v Eng, 2016", video: "https://www.dailymotion.com/embed/video/x3qcmky" },
           { title: "10. 119 v Eng, 2016", video: "https://www.dailymotion.com/embed/video/x9tfv5m" },
           { title: "11. 202 v AUS, 2017", video: "https://www.dailymotion.com/embed/video/x9tdo44" },
           { title: "12. 153 v SL, 2017", video: "https://www.dailymotion.com/embed/video/x9tfv5u" },
@@ -235,7 +235,7 @@ function backToPlayers() {
           { title: "15. 132* v Eng, 2018", video: "https://www.dailymotion.com/embed/video/x9terua" },
           { title: "16. 123 v AUS, 2018", video: "https://www.dailymotion.com/embed/video/x9ter0m" },
           { title: "17. 106 v AUS, 2018", video: "https://www.dailymotion.com/embed/video/x9tdo42" },
-          { title: "18. 193* v AUS, 2019", video: "https://www.youtube.com/embed/xU0a64YZ3kw?start=147" },
+          { title: "18. 193* v AUS, 2019", video: "https://www.dailymotion.com/embed/video/x9thnvw" },
           { title: "19. 102* v BAN, 2022", video: "https://www.dailymotion.com/embed/video/x9tdo46" }
         ]
       },
