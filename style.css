@@ -5,7 +5,13 @@
 }
 
 body { font-family: "Marcellus SC"; background: #f4f4f9; }
-header, footer { text-align: center; padding: 20px; background: #000000; color: rgb(120, 203, 224); }
+header, footer {
+  text-align: center;
+  padding: 20px;
+  background: rgba(0,0,0,0.2);
+  backdrop-filter: blur(10px);
+  color: rgb(120, 203, 224);
+}
 
 .welcome {
   display: flex;
