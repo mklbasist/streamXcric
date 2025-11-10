@@ -5,12 +5,22 @@
 }
 
 body { font-family: "Marcellus SC"; background: #f4f4f9; }
-header, footer {
+/* ✅ Default header/footer (MAIN PAGE) */
+.main-header {
   text-align: center;
   padding: 20px;
-  background: rgba(0,0,0,0.2);
-  backdrop-filter: blur(10px);
+  background: #000000;
   color: rgb(120, 203, 224);
+}
+
+/* ✅ Transparent header/footer for WELCOME PAGE only */
+.welcome-header {
+  text-align: center;
+  padding: 20px;
+  background: none !important;
+  color: white;
+  position: relative;
+  z-index: 5;
 }
 
 .welcome {
