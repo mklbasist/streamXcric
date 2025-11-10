@@ -4,7 +4,11 @@
   font-style: normal;
 }
 
-body { font-family: "Marcellus SC"; background: #f4f4f9; }
+body { 
+  font-family: "Marcellus SC"; 
+  background: #f4f4f9; 
+}
+
 /* ✅ Default header/footer (MAIN PAGE) */
 .main-header {
   text-align: center;
@@ -13,7 +17,7 @@ body { font-family: "Marcellus SC"; background: #f4f4f9; }
   color: rgb(120, 203, 224);
 }
 
-/* ✅ Transparent header/footer for WELCOME PAGE only */
+/* ✅ Transparent header ONLY for WELCOME PAGE */
 .welcome-header {
   text-align: center;
   padding: 20px;
@@ -23,42 +27,38 @@ body { font-family: "Marcellus SC"; background: #f4f4f9; }
   z-index: 5;
 }
 
+/* ✅ Welcome Page container */
 .welcome {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 90vh;
-
   position: relative;
   overflow: hidden;
-
   color: white;
 }
 
-/* ✅ Blurred Background Image */
+/* ✅ Blurred Background Image (Fullscreen) */
 .welcome::before {
   content: "";
   position: absolute;
   inset: 0;
-
   background: url('static/IMG_5200.jpeg') center/cover no-repeat;
   filter: blur(20px);
-  transform: scale(1.1);   /* removes blur edges */
+  transform: scale(1.1);
   z-index: 0;
 }
 
-#welcome header,
-#welcome footer {
-  background: transparent !important;
-  backdrop-filter: blur(25px);
-  z-index: 2;
-}
-
-/* ✅ Keep content above blurred image */
+/* ✅ Keep content above blur */
 .welcome > * {
   position: relative;
   z-index: 2;
+}
+
+/* ✅ Hide main page initially */
+.hidden {
+  display: none;
 }
 
 .enter-btn { padding: 12px 25px; font-size: 18px; background: #ffffff; border: 2px solid #222; color: rgb(0, 0, 0); border-radius: 8px; cursor: pointer; }
