@@ -289,7 +289,7 @@ function backToPlayers() {
           { title: "7. 171 v NZ, 2024", video: "https://www.youtube.com/embed/kHfLw61s48o" },
           { title: "8. 123 v NZ, 2024", video: "https://www.youtube.com/embed/1qpol7BgAfk" },
           { title: "9. 158 v PAK, 2025", video: "https://www.dailymotion.com/embed/video/x9tjj92" },
-          { title: "10. 111 v IND, 2025", video: "https://www.dailymotion.com/embed/video/x9tdo40" }
+          { title: "10. 111 v IND, 2025", video: "https://www.dailymotion.com/embed/video/x9tjknq" }
         ]
       }  
     };
