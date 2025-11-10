@@ -280,9 +280,9 @@ function backToPlayers() {
       brook: {
         name: "Harry Brook",
         centuries: [
-          { title: "1. 153 vs Pak, 2022", video: "https://www.dailymotion.com/embed/video/x9terug" },
+          { title: "1. 153 vs Pak, 2022", video: "https://www.dailymotion.com/embed/video/x9tjk4o" },
           { title: "2. 108 v PAK, 2022", video: "https://www.dailymotion.com/embed/video/x9tjje4" },
-          { title: "3. 111 v PAK, 2022", video: "https://www.dailymotion.com/embed/video/x9tdo40" },
+          { title: "3. 111 v PAK, 2022", video: "https://www.dailymotion.com/embed/video/x9tjjvo" },
           { title: "4. 186 v NZ, 2023", video: "https://www.youtube.com/embed/k1-TQjivPp8" },
           { title: "5. 109 v WI, 2024", video: "https://www.youtube.com/embed/6Kin88NDY4Y" },
           { title: "6. 311 v PAK, 2024", video: "https://www.dailymotion.com/embed/video/x9tdo40" },
