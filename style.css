@@ -17,17 +17,17 @@ body {
   color: rgb(120, 203, 224);
 }
 
-/* ✅ Transparent header ONLY for WELCOME PAGE */
 .welcome-header {
-  text-align: center;
-  padding: 20px;
-  background: none !important;
-  color: white;
-  position: absolute;
+  position: absolute !important;
   top: 0;
   left: 0;
-  width: 100%;
-  z-index: 5;
+  right: 0;
+
+  text-align: center;
+  padding: 20px 0;
+  background: none !important;
+  color: white;
+  z-index: 10;
 }
 
 /* ✅ Welcome Page container */
@@ -39,6 +39,7 @@ body {
   height: 90vh;
   position: relative;
   overflow: hidden;
+  padding-top: 80px; /* ✅ ensures content moves down, header stays top */
   color: white;
 }
 
