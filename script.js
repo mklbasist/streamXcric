@@ -143,7 +143,7 @@ function backToPlayers() {
         name: "Virat Kohli",
         centuries: [
           { title: "1. 116 vs AUS, 2012", video: "https://drive.google.com/file/d/1iu5jU8DWK3Zwxv3r-bHPM0KP4ah8h5aF/preview" },
-          { title: "2. 103 vs NZ, 2012", video: "https://www.dailymotion.com/embed/video/VIDEO_ID" }, // Dailymotion example
+          { title: "2. 103 vs NZ, 2012", video: "https://www.dailymotion.com/embed/video/x9tld54" },
           { title: "3. 103 vs ENG, 2012", video: "https://drive.google.com/file/d/drive_file_id_03/preview" },
           { title: "4. 107 vs AUS, 2013", video: "https://drive.google.com/file/d/drive_file_id_04/preview" },
           { title: "5. 119 vs SA, 2013", video: "https://drive.google.com/file/d/1j0Eb2KygBbqofPSkXfVsIasdV-PjkiJt/preview" },
@@ -152,7 +152,7 @@ function backToPlayers() {
           { title: "8. 141 vs AUS, 2014", video: "https://drive.google.com/file/d/1jNmELz33GRpDlwqJvHkO27CNuPhPw0zY/preview" },
           { title: "9. 169 vs AUS, 2014", video: "https://drive.google.com/file/d/1jQv6uicVoarzC6qBHTxnHx1gHxHmrl2z/preview" },
           { title: "10. 147 vs AUS, 2015", video: "https://drive.google.com/file/d/1jWgDiVYZUBVY-OsJuvn03EYusUKCY2Kn/preview" },
-          { title: "11. 103 vs SL, 2015", video: "https://drive.google.com/file/d/drive_file_id_11/preview" },
+          { title: "11. 103 vs SL, 2015", video: "https://www.dailymotion.com/embed/video/x9tld52" },
           { title: "12. 200 vs WI, 2016", video: "https://drive.google.com/file/d/drive_file_id_12/preview" },
           { title: "13. 211 vs NZ, 2016", video: "https://drive.google.com/file/d/drive_file_id_13/preview" },
           { title: "14. 167 vs ENG, 2016", video: "https://drive.google.com/file/d/drive_file_id_14/preview" },
