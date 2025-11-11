@@ -668,3 +668,13 @@ body {
   max-width: 800px;
   margin: auto;
 }
+
+/* ✅ Fade-in Animation for entire page */
+body {
+  animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
