@@ -81,57 +81,17 @@ body {
 }
 
 /* ✅ Glass + Animated Color Ring Button */
+/* ✅ Glassmorphism Enter Button */
 .enter-btn {
-  position: relative;
-  padding: 14px 32px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
   border-radius: 30px;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 14px 32px;
   color: white;
   font-size: 18px;
   cursor: pointer;
-  background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(14px);
-  overflow: hidden;
-  z-index: 1;
-}
-
-/* ✅ Animated rainbow border */
-.enter-btn::before {
-  content: "";
-  position: absolute;
-  inset: -3px; /* Outward border */
-  border-radius: inherit;
-  padding: 3px;
-  background: linear-gradient(
-    120deg,
-    #ff004c,
-    #ffbe0b,
-    #00f5d4,
-    #00b4d8,
-    #8338ec,
-    #ff006e
-  );
-  background-size: 300% 300%;
-  animation: borderRotate 4s linear infinite;
-  z-index: -1;
-}
-
-/* ✅ Inner glass layer to cover center */
-.enter-btn::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: rgba(255,255,255,0.12);
-  backdrop-filter: blur(15px);
-  z-index: -1;
-}
-
-/* ✅ Animation */
-@keyframes borderRotate {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  transition: 0.3s ease;
 }
 
 .enter-btn:hover {
