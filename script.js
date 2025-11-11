@@ -144,8 +144,8 @@ function backToPlayers() {
         centuries: [
           { title: "1. 116 vs AUS, 2012", video: "https://drive.google.com/file/d/1iu5jU8DWK3Zwxv3r-bHPM0KP4ah8h5aF/preview" },
           { title: "2. 103 vs NZ, 2012", video: "https://www.dailymotion.com/embed/video/x9tld54" },
-          { title: "3. 103 vs ENG, 2012", video: "https://drive.google.com/file/d/drive_file_id_03/preview" },
-          { title: "4. 107 vs AUS, 2013", video: "https://drive.google.com/file/d/drive_file_id_04/preview" },
+          { title: "3. 103 vs ENG, 2012", video: "https://www.youtube.com/embed/5TOJpz_EYAw" },
+          { title: "4. 107 vs AUS, 2013", video: "https://www.youtube.com/embed/5TOJpz_EYAw" },
           { title: "5. 119 vs SA, 2013", video: "https://drive.google.com/file/d/1j0Eb2KygBbqofPSkXfVsIasdV-PjkiJt/preview" },
           { title: "6. 105* vs NZ, 2014", video: "https://drive.google.com/file/d/1j2WiFmJEP11jGU4cWHoosvyV8oYwX4u2/preview" },
           { title: "7. 115 vs AUS, 2014", video: "https://drive.google.com/file/d/1jWAixgkrU9lVDTbxl9BmGJXwFg5CytKd/preview" },
@@ -153,9 +153,9 @@ function backToPlayers() {
           { title: "9. 169 vs AUS, 2014", video: "https://drive.google.com/file/d/1jQv6uicVoarzC6qBHTxnHx1gHxHmrl2z/preview" },
           { title: "10. 147 vs AUS, 2015", video: "https://drive.google.com/file/d/1jWgDiVYZUBVY-OsJuvn03EYusUKCY2Kn/preview" },
           { title: "11. 103 vs SL, 2015", video: "https://www.dailymotion.com/embed/video/x9tld52" },
-          { title: "12. 200 vs WI, 2016", video: "https://drive.google.com/file/d/drive_file_id_12/preview" },
+          { title: "12. 200 vs WI, 2016", video: "https://www.youtube.com/embed/5TOJpz_EYAw" },
           { title: "13. 211 vs NZ, 2016", video: "https://drive.google.com/file/d/drive_file_id_13/preview" },
-          { title: "14. 167 vs ENG, 2016", video: "https://drive.google.com/file/d/drive_file_id_14/preview" },
+          { title: "14. 167 vs ENG, 2016", video: "https://www.youtube.com/embed/5TOJpz_EYAw" },
           { title: "15. 235 vs ENG, 2016", video: "https://drive.google.com/file/d/drive_file_id_15/preview" },
           { title: "16. 204 vs BAN, 2017", video: "https://drive.google.com/file/d/drive_file_id_16/preview" },
           { title: "17. 103* vs SL, 2017", video: "https://drive.google.com/file/d/drive_file_id_17/preview" },
@@ -171,7 +171,7 @@ function backToPlayers() {
           { title: "27. 136 vs BAN, 2019", video: "https://drive.google.com/file/d/drive_file_id_27/preview" },
           { title: "28. 186 vs AUS, 2023", video: "https://drive.google.com/file/d/drive_file_id_28/preview" },
           { title: "29. 121 vs WI, 2023", video: "https://drive.google.com/file/d/drive_file_id_29/preview" },
-          { title: "30. 100* vs AUS, 2024", video: "https://drive.google.com/file/d/drive_file_id_30/preview" },
+          { title: "30. 100* vs AUS, 2024", video: "https://www.dailymotion.com/embed/video/x9tlei8" },
         ]
       },
       smith: {
