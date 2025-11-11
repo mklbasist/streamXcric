@@ -60,11 +60,12 @@ body {
   z-index: 0;
 }
 
+/* ✅ Dark overlay on blurred background */
 .welcome::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0.6), rgba(0,0,0,0.3));
+  background: rgba(0, 0, 0, 0.60); /* adjust darkness here */
   z-index: 1;
 }
 
