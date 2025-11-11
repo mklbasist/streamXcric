@@ -60,15 +60,6 @@ body {
   z-index: 0;
 }
 
-/* ✅ Dark overlay on blurred background */
-.welcome::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.45); /* adjust darkness here */
-  z-index: 1;
-}
-
 .welcome::after {
   content: "";
   position: absolute;
