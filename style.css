@@ -683,6 +683,19 @@ body {
   animation: fadeIn 0.8s ease-out;
 }
 
+.search-bar {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 12px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  width: 90%;
+  max-width: 400px;
+  outline: none;
+  font-size: 16px;
+}
+
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
