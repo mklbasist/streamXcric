@@ -80,8 +80,24 @@ body {
   display: none;
 }
 
-.enter-btn { padding: 12px 25px; font-size: 18px; background: #ffffff; border: 2px solid #222; color: rgb(0, 0, 0); border-radius: 8px; cursor: pointer; }
-.enter-btn:hover { background: #0278ff; }
+/* ✅ Glassmorphism Enter Button */
+.enter-btn {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 14px 32px;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.enter-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
 .hidden { display: none; }
 
 .boton-elegante {
