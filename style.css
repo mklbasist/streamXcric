@@ -69,6 +69,14 @@ body {
   z-index: 1;
 }
 
+.welcome::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.6), rgba(0,0,0,0.3));
+  z-index: 1;
+}
+
 /* ✅ Keep content above blur */
 .welcome > * {
   position: relative;
