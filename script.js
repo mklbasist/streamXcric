@@ -211,8 +211,8 @@ function backToPlayers() {
           { title: "32. 110 v Eng, 2023", video: "https://www.dailymotion.com/embed/video/x8p5x1r" },
           { title: "33. 101 v IND, 2024", video: "https://www.dailymotion.com/embed/video/x9cchl8" },
           { title: "34. 140 v IND, 2024", video: "https://www.dailymotion.com/embed/video/x9cchji" },
-          { title: "35. 141 v SL, 2025", video: "https://www.dailymotion.com/embed/video/x8" },
-          { title: "36. 131 v SL, 2025", video: "https://www.dailymotion.com/embed/video/x8" }
+          { title: "35. 141 v SL, 2025", video: "https://www.dailymotion.com/embed/video/x9tmwsk" },
+          { title: "36. 131 v SL, 2025", video: "https://www.dailymotion.com/embed/video/x9tmwsm" }
         ]
       },
       pujara: {
