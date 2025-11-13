@@ -169,7 +169,7 @@ function backToPlayers() {
           { title: "25. 123 vs AUS, 2018", video: "https://drive.google.com/file/d/1kwCKLuoUMdAFIoHe7Uxj3cbPQPoPKN7P/preview" },
           { title: "26. 254* vs SA, 2019", video: "https://www.dailymotion.com/embed/video/x9tmyfo" },
           { title: "27. 136 vs BAN, 2019", video: "https://www.dailymotion.com/embed/video/x9tmzik" },
-          { title: "28. 186 vs AUS, 2023", video: "https://www.dailymotion.com/embed/video/preview" },
+          { title: "28. 186 vs AUS, 2023", video: "https://www.dailymotion.com/embed/video/x9tpr60" },
           { title: "29. 121 vs WI, 2023", video: "https://www.youtube.com/embed/tQzoOgOiF08" },
           { title: "30. 100* vs AUS, 2024", video: "https://www.dailymotion.com/embed/video/x9tlei8" },
         ]
