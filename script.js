@@ -285,7 +285,7 @@ function backToPlayers() {
           { title: "3. 111 v PAK, 2022", video: "https://www.dailymotion.com/embed/video/x9tjjvo" },
           { title: "4. 186 v NZ, 2023", video: "https://www.youtube.com/embed/k1-TQjivPp8" },
           { title: "5. 109 v WI, 2024", video: "https://www.youtube.com/embed/6Kin88NDY4Y" },
-          { title: "6. 317 v PAK, 2024", video: "https://www.dailymotion.com/embed/video/x9tdo40" },
+          { title: "6. 317 v PAK, 2024", video: "https://www.dailymotion.com/embed/video/x9trnns" },
           { title: "7. 171 v NZ, 2024", video: "https://www.youtube.com/embed/kHfLw61s48o" },
           { title: "8. 123 v NZ, 2024", video: "https://www.youtube.com/embed/1qpol7BgAfk" },
           { title: "9. 158 v PAK, 2025", video: "https://www.dailymotion.com/embed/video/x9tjj92" },
