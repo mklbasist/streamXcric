@@ -47,7 +47,7 @@
   <h1>streamXcric</h1>
 
   <!-- Right: Dark Mode Toggle -->
-  <button id="themeToggle" class="theme-btn">☀️</button>
+  <button id="themeToggle" class="theme-btn">🔆</button>
 
 </header>
 
@@ -206,7 +206,6 @@
 <!-- External JS -->
 <script src="script.js"></script>
 
-<!-- 🌙 STEP 2 — Dark Mode + Hamburger JS -->
 <script>
   // 🌙 Toggle Dark Mode
   const themeBtn = document.getElementById("themeToggle");
@@ -215,7 +214,7 @@
     themeBtn.addEventListener("click", () => {
       document.body.classList.toggle("dark-mode");
       themeBtn.textContent =
-        document.body.classList.contains("dark-mode") ? "🌙" : "☀️";
+        document.body.classList.contains("dark-mode") ? "🌙" : "🔆";
     });
   }
 
@@ -245,6 +244,7 @@
 </script>
 </body>
 </html>
+
 
 
 
