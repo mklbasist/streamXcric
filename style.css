@@ -798,3 +798,24 @@ body {
   color: white !important;
 }
 
+/* ========================= */
+/*  DARK MODE — Bottom Nav   */
+/* ========================= */
+.dark-mode .yt-bottom-nav {
+  background: #111 !important;
+  border-top: 1px solid #333 !important;
+}
+
+.dark-mode .yt-tab {
+  color: white !important;
+}
+
+.dark-mode .yt-tab .icon {
+  color: rgb(120, 203, 224) !important;
+}
+
+.dark-mode .yt-tab:hover {
+  background: #1a1a1a !important;
+}
+
+
