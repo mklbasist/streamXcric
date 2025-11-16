@@ -825,35 +825,4 @@ body {
   border-color: white !important;
 }
 
-/* Fix Google Drive player in highlight carousel */
-.highlight-frame {
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 10% !important;
-    height: 10% !important;
-    object-fit: cover !important;  /* removes black background */
-    background: black;             /* avoids blank area behind */
-    border: none;
-}
-
-/* Ensure the center card keeps 16:9 ratio */
-.highlight-card.center {
-    position: relative;
-    width: 100%;
-    padding-top: 56.25%; /* 16:9 video ratio */
-    overflow: hidden;
-    border-radius: 12px;
-}
-
-/* Thumbnail and play button should overlay correctly */
-.highlight-thumb,
-#play-button {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 10%;
-    height: 10%;
-}
-
 
