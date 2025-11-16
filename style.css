@@ -818,4 +818,11 @@ body {
   background: #1a1a1a !important;
 }
 
+/* Dark Mode – Player profile border becomes white */
+.dark-mode .player-card img,
+.dark-mode .players-list img,
+.dark-mode .century-card img {
+  border-color: white !important;
+}
+
 
