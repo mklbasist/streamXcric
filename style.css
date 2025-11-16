@@ -717,3 +717,84 @@ body {
   from { opacity: 0; }
   to { opacity: 1; }
 }
+
+/* ========================= */
+/*      HAMBURGER MENU       */
+/* ========================= */
+.hamburger {
+  width: 28px;
+  height: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  position: absolute;
+  left: 20px;
+  top: 22px;
+  z-index: 100;
+}
+
+.hamburger span {
+  display: block;
+  height: 3px;
+  background: rgb(120, 203, 224);
+  border-radius: 5px;
+}
+
+/* ========================= */
+/*     DARK MODE TOGGLE      */
+/* ========================= */
+.theme-btn {
+  position: absolute;
+  right: 20px;
+  top: 18px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: rgb(120, 203, 224);
+}
+
+/* ========================= */
+/*        DARK MODE          */
+/* ========================= */
+.dark-mode body,
+.dark-mode {
+  background: #0e0e0e !important;
+  color: #ffffff !important;
+}
+
+.dark-mode .main-header {
+  background: #111 !important;
+  color: rgb(120, 203, 224) !important;
+}
+
+/* fix text in cards */
+.dark-mode .article-card,
+.dark-mode .stats-box,
+.dark-mode .century-card {
+  background: #1a1a1a !important;
+  color: white !important;
+  box-shadow: 0 0 10px rgba(255,255,255,0.1);
+}
+
+.dark-mode .search-bar {
+  background: rgba(255,255,255,0.1) !important;
+  border-color: rgba(255,255,255,0.3) !important;
+  color: #fff !important;
+}
+
+.dark-mode #chat-box {
+  background: #1c1c1c !important;
+  border-color: #333 !important;
+}
+
+.dark-mode .user-msg {
+  background: #005bbb !important;
+}
+
+.dark-mode .bot-msg {
+  background: #333 !important;
+  color: white !important;
+}
+
