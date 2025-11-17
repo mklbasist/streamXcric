@@ -230,14 +230,14 @@
     });
   }
 
-  // 🍔 Hamburger Menu Click
-  const hamBtn = document.getElementById("hamburgerBtn");
+// 🍔 Hamburger Menu Click
+const hamBtn = document.getElementById("hamburgerBtn");
 
-  if (hamBtn) {
-    hamBtn.addEventListener("click", () => {
-      alert("Hamburger clicked — menu coming soon!");
-    });
-  }
+if (hamBtn) {
+  hamBtn.addEventListener("click", () => {
+    document.getElementById("sideMenu").classList.toggle("open");
+  });
+}
 </script>
 
 <!-- Existing Backend Ping Script -->
@@ -256,6 +256,7 @@
 </script>
 </body>
 </html>
+
 
 
 
