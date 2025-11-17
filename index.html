@@ -67,6 +67,9 @@
   </ul>
 </nav>
 
+  <!-- 🔥 CLICK OUTSIDE OVERLAY -->
+  <div id="menuOverlay" class="menu-overlay"></div>
+  
   <h2 style="text-align:center; margin-top:20px;">🏏 Welcome to streamXcric</h2>
 
   <!-- Search Bar -->
@@ -237,7 +240,7 @@
   // 🍔 Hamburger Menu
   const hamBtn = document.getElementById("hamburgerBtn");
   const sideMenu = document.getElementById("sideMenu");
-  const closeBtn = document.getElementById("closeMenuBtn"); // moved OUTSIDE
+  const closeBtn = document.getElementById("closeMenuBtn");
 
   if (hamBtn) {
     hamBtn.addEventListener("click", () => {
@@ -251,6 +254,17 @@
       sideMenu.classList.remove("open");
     });
   }
+
+  // 🖱️ Step 3: Close menu when clicking outside
+  document.addEventListener("click", (event) => {
+    const clickedInsideMenu = sideMenu.contains(event.target);
+    const clickedHamburger = hamBtn.contains(event.target);
+
+    // If menu is open & click is NOT on menu or hamburger → close it
+    if (sideMenu.classList.contains("open") && !clickedInsideMenu && !clickedHamburger) {
+      sideMenu.classList.remove("open");
+    }
+  });
 </script>
 
 <!-- Existing Backend Ping Script -->
@@ -269,6 +283,7 @@
 </script>
 </body>
 </html>
+
 
 
 
