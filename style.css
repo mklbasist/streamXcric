@@ -825,4 +825,37 @@ body {
   border-color: white !important;
 }
 
+/* Side Menu Hidden by default */
+.side-menu {
+  position: fixed;
+  left: -250px;
+  top: 0;
+  width: 250px;
+  height: 100%;
+  background: #111;
+  padding-top: 60px;
+  transition: 0.3s;
+  z-index: 9999;
+}
+
+.side-menu ul {
+  list-style: none;
+  padding: 0;
+}
+
+.side-menu ul li {
+  padding: 15px 20px;
+}
+
+.side-menu ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  display: block;
+}
+
+.side-menu.open {
+  left: 0;
+}
+
 
