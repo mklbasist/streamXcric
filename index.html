@@ -53,6 +53,10 @@
 
   <!-- Side Menu Panel -->
 <nav id="sideMenu" class="side-menu">
+
+    <!-- Close Button -->
+  <div class="close-btn" id="closeMenuBtn">✖</div>
+  
   <ul>
     <li><a href="#main">🏠 Home</a></li>
     <li><a href="#search">🔍 Search</a></li>
@@ -236,6 +240,13 @@ const hamBtn = document.getElementById("hamburgerBtn");
 if (hamBtn) {
   hamBtn.addEventListener("click", () => {
     document.getElementById("sideMenu").classList.toggle("open");
+
+// ❌ Close menu
+const closeBtn = document.getElementById("closeMenuBtn");
+
+if (closeBtn) {
+  closeBtn.addEventListener("click", () => {
+    document.getElementById("sideMenu").classList.remove("open");
   });
 }
 </script>
@@ -256,6 +267,7 @@ if (hamBtn) {
 </script>
 </body>
 </html>
+
 
 
 
