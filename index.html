@@ -234,23 +234,23 @@
     });
   }
 
-// 🍔 Hamburger Menu Click
-const hamBtn = document.getElementById("hamburgerBtn");
+  // 🍔 Hamburger Menu
+  const hamBtn = document.getElementById("hamburgerBtn");
+  const sideMenu = document.getElementById("sideMenu");
+  const closeBtn = document.getElementById("closeMenuBtn"); // moved OUTSIDE
 
-if (hamBtn) {
-  hamBtn.addEventListener("click", () => {
-    document.getElementById("sideMenu").classList.toggle("open");
-
-// ❌ Close menu
-const closeBtn = document.getElementById("closeMenuBtn");
+  if (hamBtn) {
+    hamBtn.addEventListener("click", () => {
+      sideMenu.classList.add("open");
     });
   }
-  
-if (closeBtn) {
-  closeBtn.addEventListener("click", () => {
-    document.getElementById("sideMenu").classList.remove("open");
-  });
-}
+
+  // ❌ Close Button Click
+  if (closeBtn) {
+    closeBtn.addEventListener("click", () => {
+      sideMenu.classList.remove("open");
+    });
+  }
 </script>
 
 <!-- Existing Backend Ping Script -->
@@ -269,6 +269,7 @@ if (closeBtn) {
 </script>
 </body>
 </html>
+
 
 
 
