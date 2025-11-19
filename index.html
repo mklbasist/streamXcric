@@ -58,8 +58,8 @@
   <div class="close-btn" id="closeMenuBtn">✖</div>
   
   <ul>
-    <li><a href="#main">🏠 Home</a></li>
-    <li><a href="#search">🔍 Search</a></li>
+    <li><a href="#" onclick="showPage('main'); closeMenu();">🏠 Home</a></li>
+    <li><a href="#" onclick="openSearch(); closeMenu();">🔍 Search</a></li>
     <li><a href="about.html">ℹ️ About Us</a></li>
     <li><a href="dmca.html">⚖️ DMCA</a></li>
     <li><a href="privacy.html">🔒 Privacy Policy</a></li>
@@ -255,6 +255,20 @@
     });
   }
 
+    // ✅ STEP 2: Close Menu Function
+  function closeMenu() {
+    sideMenu.classList.remove("open");
+  }
+
+  // 🔍 Focus Search Bar
+  function focusSearch() {
+    showPage('main');               // Make sure main page is visible
+    const searchInput = document.getElementById("playerSearch");
+    if (searchInput) {
+      setTimeout(() => searchInput.focus(), 100);
+    }
+  }
+  
   // 🖱️ Step 3: Close menu when clicking outside
   document.addEventListener("click", (event) => {
     const clickedInsideMenu = sideMenu.contains(event.target);
@@ -283,6 +297,7 @@
 </script>
 </body>
 </html>
+
 
 
 
