@@ -884,19 +884,18 @@ body {
   display: block;
 }
 
-/* Center the whole header */
-.simple-header {
+/* Only for static pages (DMCA, About, Contact, Privacy) */
+.static-header {
   display: flex;
-  flex-direction: column;  
-  align-items: center;     /* Centers everything */
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   padding: 15px 0;
-  background-color: #222;  /* same style you want */
+  background-color: #222;
   color: white;
 }
 
-/* Back button style */
-.back-btn {
+.static-header .back-btn {
   display: inline-block;
   padding: 8px 16px;
   background: #333;
@@ -908,14 +907,12 @@ body {
   transition: 0.25s ease;
 }
 
-.back-btn:hover {
+.static-header .back-btn:hover {
   background: #444;
 }
 
-/* Center the heading */
-.simple-header h2 {
+.static-header h2 {
   margin: 0;
   font-size: 22px;
   text-align: center;
 }
-
