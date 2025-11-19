@@ -255,40 +255,33 @@
     });
   }
 
-// 🔍 STEP 2: Menu Search → Open main page + focus search bar
-const searchBtn = document.getElementById("menuSearch");
-if (searchBtn) {
-  searchBtn.addEventListener("click", () => {
-    window.location.href = "index.html#search";
-  });
-}
-
-  // 🔍 Focus Search Bar
-  function focusSearch() {
-    showPage('main');               // Make sure main page is visible
-    const searchInput = document.getElementById("playerSearch");
-    if (searchInput) {
-      setTimeout(() => searchInput.focus(), 100);
-    }
+  // 🔍 STEP 2: Menu Search → go to #search
+  const searchBtn = document.getElementById("menuSearch");
+  if (searchBtn) {
+    searchBtn.addEventListener("click", () => {
+      window.location.href = "index.html#search";
+    });
   }
-  
-  // 🖱️ Step 3: Close menu when clicking outside
+
+  // 🖱️ Close menu when clicking outside
   document.addEventListener("click", (event) => {
     const clickedInsideMenu = sideMenu.contains(event.target);
     const clickedHamburger = hamBtn.contains(event.target);
 
-    // If menu is open & click is NOT on menu or hamburger → close it
-    if (sideMenu.classList.contains("open") && !clickedInsideMenu && !clickedHamburger) {
+    if (sideMenu.classList.contains("open") &&
+        !clickedInsideMenu &&
+        !clickedHamburger) {
       sideMenu.classList.remove("open");
     }
-  }
+  });
 
-  // STEP 3: Auto-focus search bar if arriving via #search
-window.addEventListener("load", () => {
-  if (window.location.hash === "#search") {
-    const searchInput = document.getElementById("playerSearch");
-    if (searchInput) {
-      setTimeout(() => searchInput.focus(), 150);
+  // ✅ STEP 3: Auto-focus search bar if arriving via #search
+  window.addEventListener("load", () => {
+    if (window.location.hash === "#search") {
+      const searchInput = document.getElementById("playerSearch");
+      if (searchInput) {
+        setTimeout(() => searchInput.focus(), 150);
+      }
     }
   });
 </script>
@@ -309,6 +302,7 @@ window.addEventListener("load", () => {
 </script>
 </body>
 </html>
+
 
 
 
