@@ -58,8 +58,8 @@
   <div class="close-btn" id="closeMenuBtn">✖</div>
   
   <ul>
-    <li><a href="#" onclick="showPage('main'); closeMenu();">🏠 Home</a></li>
-    <li><a href="#" onclick="openSearch(); closeMenu();">🔍 Search</a></li>
+    <li><a id="menuHome" href="#">🏠 Home</a></li>
+    <li><a id="menuSearch" href="#">🔍 Search</a></li>
     <li><a href="about.html">ℹ️ About Us</a></li>
     <li><a href="dmca.html">⚖️ DMCA</a></li>
     <li><a href="privacy.html">🔒 Privacy Policy</a></li>
@@ -226,9 +226,8 @@
 <script src="script.js"></script>
 
 <script>
-  // 🌙 Toggle Dark Mode
+  // 🌙 Dark Mode Toggle
   const themeBtn = document.getElementById("themeToggle");
-
   if (themeBtn) {
     themeBtn.addEventListener("click", () => {
       document.body.classList.toggle("dark-mode");
@@ -248,14 +247,22 @@
     });
   }
 
-  // ❌ Close Button Click
+  // ❌ Close Menu Button
   if (closeBtn) {
     closeBtn.addEventListener("click", () => {
       sideMenu.classList.remove("open");
     });
   }
 
-  // 🔍 STEP 2: Menu Search → go to #search
+  // 🏠 HOME BUTTON (Menu)
+  const homeBtn = document.getElementById("menuHome");
+  if (homeBtn) {
+    homeBtn.addEventListener("click", () => {
+      window.location.href = "index.html#main";
+    });
+  }
+
+  // 🔍 SEARCH BUTTON (Menu)
   const searchBtn = document.getElementById("menuSearch");
   if (searchBtn) {
     searchBtn.addEventListener("click", () => {
@@ -275,7 +282,7 @@
     }
   });
 
-  // ✅ STEP 3: Auto-focus search bar if arriving via #search
+  // 🎯 Auto-focus search bar when page loads with #search
   window.addEventListener("load", () => {
     if (window.location.hash === "#search") {
       const searchInput = document.getElementById("playerSearch");
@@ -302,6 +309,7 @@
 </script>
 </body>
 </html>
+
 
 
 
