@@ -255,10 +255,13 @@
     });
   }
 
-    // ✅ STEP 2: Close Menu Function
-  function closeMenu() {
-    sideMenu.classList.remove("open");
-  }
+// 🔍 STEP 2: Menu Search → Open main page + focus search bar
+const searchBtn = document.getElementById("menuSearch");
+if (searchBtn) {
+  searchBtn.addEventListener("click", () => {
+    window.location.href = "index.html#search";
+  });
+}
 
   // 🔍 Focus Search Bar
   function focusSearch() {
@@ -279,6 +282,15 @@
       sideMenu.classList.remove("open");
     }
   });
+
+  // STEP 3: Auto-focus search bar if arriving via #search
+window.addEventListener("load", () => {
+  if (window.location.hash === "#search") {
+    const searchInput = document.getElementById("playerSearch");
+    if (searchInput) {
+      setTimeout(() => searchInput.focus(), 150);
+    }
+  });
 </script>
 
 <!-- Existing Backend Ping Script -->
@@ -297,6 +309,7 @@
 </script>
 </body>
 </html>
+
 
 
 
