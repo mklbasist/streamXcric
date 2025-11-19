@@ -884,4 +884,38 @@ body {
   display: block;
 }
 
+/* Center the whole header */
+.simple-header {
+  display: flex;
+  flex-direction: column;  
+  align-items: center;     /* Centers everything */
+  justify-content: center;
+  padding: 15px 0;
+  background-color: #222;  /* same style you want */
+  color: white;
+}
+
+/* Back button style */
+.back-btn {
+  display: inline-block;
+  padding: 8px 16px;
+  background: #333;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  transition: 0.25s ease;
+}
+
+.back-btn:hover {
+  background: #444;
+}
+
+/* Center the heading */
+.simple-header h2 {
+  margin: 0;
+  font-size: 22px;
+  text-align: center;
+}
 
