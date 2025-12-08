@@ -136,7 +136,8 @@ function backToPlayers() {
           { title: "36. 106 vs NZ, 2024", video: "https://www.youtube.com/embed/vnklt6QyyxQ" },
           { title: "37. 104 vs IND, 2025", video: "https://drive.google.com/file/d/1AqMDgLo0JXiCoEJHeXwEs6OLgSd_1fK7/preview" },
           { title: "38. 150 vs IND, 2025", video: "https://drive.google.com/file/d/1HyPNe0M1TbE4FKTlA8Oqr3QQcMAFX68X/preview" },
-          { title: "39. 105 vs IND, 2025", video: "https://drive.google.com/file/d/1F9zXNU1EyxoKdgC7rEIpLt_nWKTc_YPP/preview" }
+          { title: "39. 105 vs IND, 2025", video: "https://drive.google.com/file/d/1F9zXNU1EyxoKdgC7rEIpLt_nWKTc_YPP/preview" },
+          { title: "40. 138* vs AUS, 2025", video: "https://www.dailymotion.com/embed/video/x9v9lz8" }
       ]
       },
       kohli: {
