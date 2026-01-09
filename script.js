@@ -137,7 +137,8 @@ function backToPlayers() {
           { title: "37. 104 vs IND, 2025", video: "https://drive.google.com/file/d/1AqMDgLo0JXiCoEJHeXwEs6OLgSd_1fK7/preview" },
           { title: "38. 150 vs IND, 2025", video: "https://drive.google.com/file/d/1HyPNe0M1TbE4FKTlA8Oqr3QQcMAFX68X/preview" },
           { title: "39. 105 vs IND, 2025", video: "https://drive.google.com/file/d/1F9zXNU1EyxoKdgC7rEIpLt_nWKTc_YPP/preview" },
-          { title: "40. 138* vs AUS, 2025", video: "https://www.dailymotion.com/embed/video/x9v9lz8" }
+          { title: "40. 138* vs AUS, 2025", video: "https://www.dailymotion.com/embed/video/x9xe380" },
+          { title: "41. 160* vs AUS, 2026", video: "https://www.dailymotion.com/embed/video/x9xe380" }
       ]
       },
       kohli: {
@@ -209,11 +210,12 @@ function backToPlayers() {
           { title: "29. 200* v WI, 2022", video: "https://www.dailymotion.com/embed/video/x8rldwk" },
           { title: "30. 104 v SA, 2023", video: "https://www.dailymotion.com/embed/video/x8rjn87" },
           { title: "31. 121 v IND, 2023", video: "https://www.dailymotion.com/embed/video/x8rmayk" },
-          { title: "32. 110 v Eng, 2023", video: "https://www.dailymotion.com/embed/video/x8p5x1r" },
+          { title: "32. 110 v ENG, 2023", video: "https://www.dailymotion.com/embed/video/x8p5x1r" },
           { title: "33. 101 v IND, 2024", video: "https://www.dailymotion.com/embed/video/x9cchl8" },
           { title: "34. 140 v IND, 2024", video: "https://www.dailymotion.com/embed/video/x9cchji" },
           { title: "35. 141 v SL, 2025", video: "https://www.dailymotion.com/embed/video/x9tmwsk" },
-          { title: "36. 131 v SL, 2025", video: "https://www.dailymotion.com/embed/video/x9tmwsm" }
+          { title: "36. 131 v SL, 2025", video: "https://www.dailymotion.com/embed/video/x9tmwsm" },
+          { title: "37. 138 v ENG, 2025", video: "https://www.dailymotion.com/embed/video/x9tmwsm" }
         ]
       },
       pujara: {
