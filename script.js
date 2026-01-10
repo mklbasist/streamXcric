@@ -138,7 +138,7 @@ function backToPlayers() {
           { title: "38. 150 vs IND, 2025", video: "https://drive.google.com/file/d/1HyPNe0M1TbE4FKTlA8Oqr3QQcMAFX68X/preview" },
           { title: "39. 105 vs IND, 2025", video: "https://drive.google.com/file/d/1F9zXNU1EyxoKdgC7rEIpLt_nWKTc_YPP/preview" },
           { title: "40. 138* vs AUS, 2025", video: "https://www.dailymotion.com/embed/video/x9xe380" },
-          { title: "41. 160* vs AUS, 2026", video: "https://drive.google.com/file/d/1fbHcjJQUygzXzaN7ZAkE5_Q7TZ-JUb0Y/preview" }
+          { title: "41. 160* vs AUS, 2026", video: "https://www.dailymotion.com/embed/video/x9xgyny" }
       ]
       },
       kohli: {
@@ -291,10 +291,27 @@ function backToPlayers() {
           { title: "6. 317 v PAK, 2024", video: "https://www.dailymotion.com/embed/video/x9trnns" },
           { title: "7. 171 v NZ, 2024", video: "https://www.youtube.com/embed/kHfLw61s48o" },
           { title: "8. 123 v NZ, 2024", video: "https://www.youtube.com/embed/1qpol7BgAfk" },
-          { title: "9. 158 v PAK, 2025", video: "https://www.dailymotion.com/embed/video/x9tjj92" },
+          { title: "9. 158 v IND, 2025", video: "https://www.dailymotion.com/embed/video/x9tjj92" },
           { title: "10. 111 v IND, 2025", video: "https://www.dailymotion.com/embed/video/x9tjknq" }
         ]
-      }  
+      },
+      head: {
+        name: "Travis Head",
+        centuries: [
+          { title: "1. 161 vs SL, 2019", video: "https://www.dailymotion.com/embed/video/x9tjk4o" },
+          { title: "2. 114 v NZ, 2019", video: "https://www.dailymotion.com/embed/video/x9tjje4" },
+          { title: "3. 152 v ENG, 2021", video: "https://www.dailymotion.com/embed/video/x9tjjvo" },
+          { title: "4. 101 v ENG, 2022", video: "https://www.youtube.com/embed/k1-TQjivPp8" },
+          { title: "5. 175 v WI, 2022", video: "https://www.youtube.com/embed/6Kin88NDY4Y" },
+          { title: "6. 163 v IND, 2023", video: "https://www.dailymotion.com/embed/video/x9trnns" },
+          { title: "7. 119 v WI, 2024", video: "https://www.youtube.com/embed/kHfLw61s48o" },
+          { title: "8. 140 v IND, 2024", video: "https://www.youtube.com/embed/1qpol7BgAfk" },
+          { title: "9. 152 v IND, 2024", video: "https://www.dailymotion.com/embed/video/x9tjj92" },
+          { title: "10. 123 v ENG, 2025", video: "https://www.dailymotion.com/embed/video/x9tjknq" },
+          { title: "9. 1170 v ENG, 2025", video: "https://www.dailymotion.com/embed/video/x9tjj92" },
+          { title: "10. 163 v ENG, 2026", video: "https://www.dailymotion.com/embed/video/x9tjknq" }
+        ]
+      }
     };
 
 let currentPlayerKey = null;
