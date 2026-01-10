@@ -298,18 +298,18 @@ function backToPlayers() {
       head: {
         name: "Travis Head",
         centuries: [
-          { title: "1. 161 vs SL, 2019", video: "https://www.dailymotion.com/embed/video/x9tjk4o" },
-          { title: "2. 114 v NZ, 2019", video: "https://www.dailymotion.com/embed/video/x9tjje4" },
+          { title: "1. 161 vs SL, 2019", video: "https://www.youtube.com/embed/vdoIV5gbgPw" },
+          { title: "2. 114 v NZ, 2019", video: "https://www.youtube.com/embed/gcjRANi2ThY" },
           { title: "3. 152 v ENG, 2021", video: "https://www.youtube.com/embed/HY0c0m0XpNs" },
-          { title: "4. 101 v ENG, 2022", video: "https://www.youtube.com/embed/k1-TQjivPp8" },
-          { title: "5. 175 v WI, 2022", video: "https://www.youtube.com/embed/6Kin88NDY4Y" },
+          { title: "4. 101 v ENG, 2022", video: "https://www.youtube.com/embed/ZM2NG7LgkBc" },
+          { title: "5. 175 v WI, 2022", video: "https://www.youtube.com/embed/Bbf-5LHZA3s" },
           { title: "6. 163 v IND, 2023", video: "https://www.dailymotion.com/embed/video/x9trnns" },
           { title: "7. 119 v WI, 2024", video: "https://www.youtube.com/embed/kHfLw61s48o" },
-          { title: "8. 140 v IND, 2024", video: "https://www.youtube.com/embed/1qpol7BgAfk" },
-          { title: "9. 152 v IND, 2024", video: "https://www.dailymotion.com/embed/video/x9tjj92" },
-          { title: "10. 123 v ENG, 2025", video: "https://www.dailymotion.com/embed/video/x9tjknq" },
-          { title: "9. 1170 v ENG, 2025", video: "https://www.dailymotion.com/embed/video/x9tjj92" },
-          { title: "10. 163 v ENG, 2026", video: "https://www.dailymotion.com/embed/video/x9tjknq" }
+          { title: "8. 140 v IND, 2024", video: "https://www.youtube.com/embed/N78Ln0rFX9A" },
+          { title: "9. 152 v IND, 2024", video: "https://www.youtube.com/embed/1bvyXICUuWE" },
+          { title: "10. 123 v ENG, 2025", video: "https://www.youtube.com/embed/vh1GyUDcuqc" },
+          { title: "9. 170 v ENG, 2025", video: "https://www.youtube.com/embed/W_HJVKJ79BY" },
+          { title: "10. 163 v ENG, 2026", video: "https://www.youtube.com/embed/AAfx0iI2Pz4" }
         ]
       }
     };
