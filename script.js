@@ -311,6 +311,25 @@ function backToPlayers() {
           { title: "9. 170 v ENG, 2025", video: "https://www.youtube.com/embed/W_HJVKJ79BY" },
           { title: "10. 163 v ENG, 2026", video: "https://www.youtube.com/embed/AAfx0iI2Pz4" }
         ]
+      },
+      stokes: {
+        name: "Ben Stokes",
+        centuries: [
+          { title: "1. 120 vs AUS, 2013", video: "https://www.youtube.com/embed/jTEeIc06Zn4" },
+          { title: "2. 101 v NZ, 2015", video: "https://www.youtube.com/embed/o0nxgumvrFQ" },
+          { title: "3. 258 v SA, 2016", video: "https://www.youtube.com/embed/3jlW60qPFIk" },
+          { title: "4. 128 v IND, 2016", video: "https://www.youtube.com/embed/tUhJVpcYlG" },
+          { title: "5. 112 v SA, 2017", video: "https://www.youtube.com/embed/iciI1po5ge0" },
+          { title: "6. 100 v WI, 2017", video: "https://www.youtube.com/embed/vsv3fQPdyK4" },
+          { title: "7. 115* v AUS, 2019", video: "https://www.youtube.com/embed/gxgPMV_EtCk" },
+          { title: "8. 135* v AUS, 2019", video: "https://www.youtube.com/embed/HrIew7-4isI" },
+          { title: "9. 120 v SA, 2020", video: "https://www.youtube.com/embed/NltIyHT1WOw" },
+          { title: "10. 176 v WI, 2020", video: "https://www.youtube.com/embed/scl4KJIfds8" },
+          { title: "11. 120 v WI, 2022", video: "https://www.youtube.com/embed/SYbiyj5OCSQ" },
+          { title: "12. 103 v SA, 2022", video: "https://www.youtube.com/embed/76CKTrpMqLw" },
+          { title: "13. 155 v AUS, 2023", video: "https://www.youtube.com/embed/M2b4A0nKzXY" },
+          { title: "14. 141 v IND, 2025", video: "https://www.youtube.com/embed/F27lhwqxo2M" }        
+        ]
       }
     };
 
