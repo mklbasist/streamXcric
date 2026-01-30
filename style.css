@@ -986,3 +986,95 @@ body {
   min-width: 120px;
   text-align: center;
 }
+
+/* ===============================
+   CENTERED ROUND TOGGLE TABS
+   =============================== */
+
+.toggle-block {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+/* small centered pill (NO stretch) */
+.player-toggle-tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  max-width: 320px;
+  padding: 12px 26px;
+  border-radius: 999px;
+  background: #111;
+  color: #fff;
+  font-family: 'Marcellus SC', serif;
+  font-size: 16px;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  box-shadow: 0 0 12px rgba(0,0,0,0.4);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.player-toggle-tab:hover {
+  transform: scale(1.06);
+}
+
+.player-toggle-tab.active {
+  background: #ff9800;
+  color: #000;
+  box-shadow: 0 0 18px rgba(255,152,0,0.7);
+}
+
+/* ===============================
+   CAROUSEL FIXES (NO OVERLAP)
+   =============================== */
+
+.players-carousel {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.players-track {
+  display: flex;
+  gap: 16px;
+  padding: 10px 16px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+
+/* player cards sizing */
+.players-track .player-card {
+  min-width: 120px;
+  text-align: center;
+}
+
+/* ===============================
+   MATCH PLACEHOLDER
+   =============================== */
+
+.match-placeholder {
+  min-width: 260px;
+  height: 120px;
+  background: rgba(0,0,0,0.35);
+  border-radius: 18px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  opacity: 0.8;
+}
+
+/* ===============================
+   UTILITY
+   =============================== */
+
+.hidden {
+  display: none !important;
+}
