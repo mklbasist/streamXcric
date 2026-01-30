@@ -749,3 +749,19 @@ function openArticle(path) {
       console.error(err);
     });
 }
+
+// ====================
+// Player Highlights Toggle
+// ====================
+document.addEventListener("DOMContentLoaded", () => {
+  const toggleTab = document.getElementById("playerToggleTab");
+  const playersGrid = document.getElementById("all-players");
+
+  if (!toggleTab || !playersGrid) return;
+
+  toggleTab.addEventListener("click", () => {
+    toggleTab.classList.toggle("active");
+    playersGrid.classList.toggle("hidden");
+  });
+});
+
