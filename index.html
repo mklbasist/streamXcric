@@ -114,25 +114,30 @@
   <!-- Players Page -->
 <section id="players" class="hidden">
 
-  <!-- Round Toggle Tab -->
-  <div class="player-toggle-wrapper">
-    <div id="playerToggleTab" class="player-toggle-tab">
-      🏏 Player Highlights
-    </div>
+<!-- Player Highlights -->
+<div class="toggle-block">
+  <div id="playerToggleTab" class="player-toggle-tab">
+    🏏 Player Highlights
   </div>
 
-  <!-- Match Highlights Toggle -->
-<div class="player-toggle-wrapper">
-  <div id="matchToggleTab" class="player-toggle-tab match-tab">
-    🎥 Match Highlights
+  <div id="playersCarousel" class="players-carousel hidden">
+    <div class="players-track">
+      <!-- player cards here -->
+    </div>
   </div>
 </div>
 
-<!-- Match Highlights Container (hidden initially) -->
-<div id="matchHighlights" class="players-carousel hidden">
-  <div class="players-track">
-    <div class="match-placeholder">
-      Match highlights coming soon…
+<!-- Match Highlights -->
+<div class="toggle-block">
+  <div id="matchToggleTab" class="player-toggle-tab">
+    🎥 Match Highlights
+  </div>
+
+  <div id="matchHighlights" class="players-carousel hidden">
+    <div class="players-track">
+      <div class="match-placeholder">
+        Match highlights coming soon…
+      </div>
     </div>
   </div>
 </div>
@@ -341,6 +346,7 @@
 </script>
 </body>
 </html>
+
 
 
 
