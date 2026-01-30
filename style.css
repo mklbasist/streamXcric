@@ -916,3 +916,37 @@ body {
   font-size: 22px;
   text-align: center;
 }
+
+/* Round Player Highlights Tab */
+.player-toggle-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.player-toggle-tab {
+  padding: 12px 26px;
+  border-radius: 999px;
+  background: #111;
+  color: #fff;
+  font-family: 'Marcellus SC', serif;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  user-select: none;
+}
+
+.player-toggle-tab:hover {
+  transform: scale(1.05);
+}
+
+.player-toggle-tab.active {
+  background: #ff9800;
+  color: #000;
+}
+
+/* Hide utility */
+.hidden {
+  display: none !important;
+}
+
