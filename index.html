@@ -112,9 +112,17 @@
   </section>
 
   <!-- Players Page -->
-  <section id="players" class="hidden">
-    <h2 style="text-align:center; margin-top:20px;">Player Highlights</h2>
-    <div id="all-players" class="players-list">
+<section id="players" class="hidden">
+
+  <!-- Round Toggle Tab -->
+  <div class="player-toggle-wrapper">
+    <div id="playerToggleTab" class="player-toggle-tab">
+      🏏 Player Highlights
+    </div>
+  </div>
+
+  <!-- Players Cards (hidden initially) -->
+  <div id="all-players" class="players-list hidden">
       <div class="player-card" onclick="openPlayer('root')">
         <img src="static/root.png" alt="Joe Root">
         <span>Joe Root</span>
@@ -317,6 +325,7 @@
 </script>
 </body>
 </html>
+
 
 
 
