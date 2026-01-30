@@ -974,3 +974,15 @@ body {
   margin-bottom: 14px;
 }
 
+/* Force carousel cards to render */
+.players-track {
+  display: flex !important;
+  gap: 16px;
+  padding: 10px;
+}
+
+/* Fix card sizing inside carousel */
+.players-track .player-card {
+  min-width: 120px;
+  text-align: center;
+}
