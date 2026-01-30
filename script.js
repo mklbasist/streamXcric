@@ -413,21 +413,52 @@ function toggleVideo(url, containerId) {
 }
 
 function backToWelcome() {
-  document.getElementById("welcome").classList.remove("hidden");
-  document.getElementById("main").classList.add("hidden");
-  document.querySelector(".yt-bottom-nav").style.display = "none";
+  document.getElementById("welcome")?.classList.remove("hidden");
+  document.getElementById("main")?.classList.add("hidden");
+
+  const nav = document.querySelector(".yt-bottom-nav");
+  if (nav) nav.style.display = "none";
 }
 
 function showPage(pageId) {
-  const pages = ["main","players","trending","about","playerPage","rootOptions", "askSection", "articlePage"];
+  const pages = [
+    "welcome",
+    "main",
+    "players",
+    "trending",
+    "about",
+    "playerPage",
+    "rootOptions",
+    "askSection",
+    "articlePage"
+  ];
+
+  // Hide all sections safely
   pages.forEach(id => {
     const el = document.getElementById(id);
-    if(el) el.classList.add("hidden");
+    if (el) el.classList.add("hidden");
   });
-  document.getElementById(pageId).classList.remove("hidden");
 
+  // Show requested page safely
+  const target = document.getElementById(pageId);
+  if (target) target.classList.remove("hidden");
+
+  // 🔴 FORCE RESET Player / Match Highlights (KEY FIX)
+  const playerBox = document.getElementById("playersCarousel");
+  const matchBox = document.getElementById("matchHighlights");
+  const playerTab = document.getElementById("playerToggleTab");
+  const matchTab = document.getElementById("matchToggleTab");
+
+  if (playerBox) playerBox.classList.add("hidden");
+  if (matchBox) matchBox.classList.add("hidden");
+  if (playerTab) playerTab.classList.remove("active");
+  if (matchTab) matchTab.classList.remove("active");
+
+  // Footer logic (safe)
   const footer = document.getElementById("mainFooter");
-  footer.style.display = (pageId === "welcome") ? "block" : "none";
+  if (footer) {
+    footer.style.display = (pageId === "welcome") ? "block" : "none";
+  }
 }
 
 function shuffle(array) {
@@ -437,14 +468,21 @@ function shuffle(array) {
   }
 }
 
+// Build highlights pool safely
 const allHighlights = [];
-for (const key in players) {
-  const player = players[key];
-  if (player.fifties) {
-    player.fifties.forEach(h => { allHighlights.push({ ...h, player: player.name }); });
-  }
-  if (player.centuries) {
-    player.centuries.forEach(h => { allHighlights.push({ ...h, player: player.name }); });
+if (typeof players !== "undefined") {
+  for (const key in players) {
+    const player = players[key];
+    if (player.fifties) {
+      player.fifties.forEach(h =>
+        allHighlights.push({ ...h, player: player.name })
+      );
+    }
+    if (player.centuries) {
+      player.centuries.forEach(h =>
+        allHighlights.push({ ...h, player: player.name })
+      );
+    }
   }
 }
 
