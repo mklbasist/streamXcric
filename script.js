@@ -751,33 +751,37 @@ function openArticle(path) {
 }
 
 // ====================
-// Player Highlights Toggle
+// Unified Toggle Logic
 // ====================
 document.addEventListener("DOMContentLoaded", () => {
-  const toggleTab = document.getElementById("playerToggleTab");
-  const playersGrid = document.getElementById("all-players");
+  const playerTab = document.getElementById("playerToggleTab");
+  const playerBox = document.getElementById("playersCarousel");
 
-  if (!toggleTab || !playersGrid) return;
-
-  toggleTab.addEventListener("click", () => {
-    toggleTab.classList.toggle("active");
-    playersGrid.classList.toggle("hidden");
-  });
-});
-
-// ====================
-// Match Highlights Toggle
-// ====================
-document.addEventListener("DOMContentLoaded", () => {
   const matchTab = document.getElementById("matchToggleTab");
   const matchBox = document.getElementById("matchHighlights");
 
-  if (!matchTab || !matchBox) return;
+  function closeAll() {
+    playerTab.classList.remove("active");
+    matchTab.classList.remove("active");
+    playerBox.classList.add("hidden");
+    matchBox.classList.add("hidden");
+  }
+
+  playerTab.addEventListener("click", () => {
+    const isOpen = !playerBox.classList.contains("hidden");
+    closeAll();
+    if (!isOpen) {
+      playerTab.classList.add("active");
+      playerBox.classList.remove("hidden");
+    }
+  });
 
   matchTab.addEventListener("click", () => {
-    matchTab.classList.toggle("active");
-    matchBox.classList.toggle("hidden");
+    const isOpen = !matchBox.classList.contains("hidden");
+    closeAll();
+    if (!isOpen) {
+      matchTab.classList.add("active");
+      matchBox.classList.remove("hidden");
+    }
   });
 });
-
-
