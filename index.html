@@ -111,79 +111,87 @@
     <div class="centuries" id="centuriesList"></div>
   </section>
 
-  <!-- Players Page -->
-<section id="players" class="hidden">
+<!-- Players Page -->
+<section id="players">
 
-<!-- Player Highlights -->
-<div class="toggle-block">
-  <div id="playerToggleTab" class="player-toggle-tab">
-    🏏 Player Highlights
-  </div>
+  <!-- Player Highlights -->
+  <div class="toggle-block">
+    <div id="playerToggleTab" class="player-toggle-tab">
+      🏏 Player Highlights
+    </div>
 
-  <div id="playersCarousel" class="players-carousel hidden">
-    <div class="players-track">
-      <!-- player cards here -->
+    <!-- PLAYER CARDS (moved INSIDE player carousel) -->
+    <div id="playersCarousel" class="players-carousel hidden">
+      <div class="players-track players-list">
+
+        <div class="player-card" onclick="openPlayer('root')">
+          <img src="static/root.png" alt="Joe Root">
+          <span>Joe Root</span>
+        </div>
+
+        <div class="player-card" onclick="openPlayer('kohli')">
+          <img src="static/kohli.PNG" alt="Virat Kohli">
+          <span>Virat Kohli</span>
+        </div>
+
+        <div class="player-card" onclick="openPlayer('smith')">
+          <img src="static/spdsmith.PNG" alt="Steve Smith">
+          <span>Steve Smith</span>
+        </div>
+
+        <div class="player-card" onclick="openPlayer('pujara')">
+          <img src="static/pujara.png" alt="Cheteshwar Pujara">
+          <span>Cheteshwar Pujara</span>
+        </div>
+
+        <div class="player-card" onclick="openPlayer('kane')">
+          <img src="static/kane.PNG" alt="Kane Williamson">
+          <span>Kane Williamson</span>
+        </div>
+
+        <div class="player-card" onclick="openPlayer('brook')">
+          <img src="static/brook.PNG" alt="Harry Brook">
+          <span>Harry Brook</span>
+        </div>
+
+        <div class="player-card" onclick="openPlayer('head')">
+          <img src="static/head.PNG" alt="Travis Head">
+          <span>Travis Head</span>
+        </div>
+
+        <div class="player-card" onclick="openPlayer('stokes')">
+          <img src="static/stokes1.png" alt="Ben Stokes">
+          <span>Ben Stokes</span>
+        </div>
+
+      </div>
     </div>
   </div>
-</div>
 
-<!-- Match Highlights -->
-<div class="toggle-block">
-  <div id="matchToggleTab" class="player-toggle-tab">
-    🎥 Match Highlights
-  </div>
+  <!-- Match Highlights -->
+  <div class="toggle-block">
+    <div id="matchToggleTab" class="player-toggle-tab">
+      🎥 Match Highlights
+    </div>
 
-  <div id="matchHighlights" class="players-carousel hidden">
-    <div class="players-track">
-      <div class="match-placeholder">
-        Match highlights coming soon…
+    <div id="matchHighlights" class="players-carousel hidden">
+      <div class="players-track">
+        <div class="match-placeholder">
+          Match highlights coming soon…
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-  <!-- Players Cards (hidden initially) -->
-  <div id="all-players" class="players-list hidden">
-      <div class="player-card" onclick="openPlayer('root')">
-        <img src="static/root.png" alt="Joe Root">
-        <span>Joe Root</span>
-      </div>
-      <div class="player-card" onclick="openPlayer('kohli')">
-        <img src="static/kohli.PNG" alt="Virat Kohli">
-        <span>Virat Kohli</span>
-      </div>
-      <div class="player-card" onclick="openPlayer('smith')">
-        <img src="static/spdsmith.PNG" alt="Steve Smith">
-        <span>Steve Smith</span>
-      </div>
-      <div class="player-card" onclick="openPlayer('pujara')">
-        <img src="static/pujara.png" alt="Cheteshwar Pujara">
-        <span>Cheteshwar Pujara</span>
-      </div>
-      <div class="player-card" onclick="openPlayer('kane')">
-        <img src="static/kane.PNG" alt="Kane Williamson">
-        <span>Kane Williamson</span>
-      </div>
-      <div class="player-card" onclick="openPlayer('brook')">
-        <img src="static/brook.PNG" alt="Harry Brook">
-        <span>Harry Brook</span>
-      </div>
-      <div class="player-card" onclick="openPlayer('head')">
-        <img src="static/head.PNG" alt="Travis Head">
-        <span>Travis Head</span>
-      </div>
-      <div class="player-card" onclick="openPlayer('stokes')">
-        <img src="static/stokes1.png" alt="Ben Stokes">
-        <span>Ben Stokes</span>
-      </div>
-  </section>
+</section>
 
-  <!-- Trending Page -->
-  <section id="trending" class="hidden">
-    <button class="back-btn" onclick="backToMain()">⬅ Back</button>
-    <h2 style="text-align:center;">🔥 Trending Highlights</h2>
-    <p style="text-align:center;">Coming Soon...</p>
-  </section>
+<!-- Trending Page -->
+<section id="trending" class="hidden">
+  <button class="back-btn" onclick="backToMain()">⬅ Back</button>
+  <h2 style="text-align:center;">🔥 Trending Highlights</h2>
+  <p style="text-align:center;">Coming Soon...</p>
+</section>
+
 
 <section id="about" class="hidden">
   <button class="back-btn" onclick="backToMain()">⬅ Back</button>
@@ -346,6 +354,7 @@
 </script>
 </body>
 </html>
+
 
 
 
