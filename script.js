@@ -765,23 +765,19 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-/* Match Highlights placeholder */
-.match-placeholder {
-  min-width: 260px;
-  height: 120px;
-  background: rgba(0,0,0,0.35);
-  border-radius: 18px;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 15px;
-  opacity: 0.8;
-}
+// ====================
+// Match Highlights Toggle
+// ====================
+document.addEventListener("DOMContentLoaded", () => {
+  const matchTab = document.getElementById("matchToggleTab");
+  const matchBox = document.getElementById("matchHighlights");
 
-/* Optional: different accent color */
-.match-tab.active {
-  background: #00c2ff;
-  color: #000;
-}
+  if (!matchTab || !matchBox) return;
+
+  matchTab.addEventListener("click", () => {
+    matchTab.classList.toggle("active");
+    matchBox.classList.toggle("hidden");
+  });
+});
+
 
