@@ -1080,8 +1080,12 @@ body {
 }
 
 #players {
-  padding-top: 32px;   /* adjust: 24–40px */
+  padding-top: 32px; /* safe spacing from header */
 }
+
+/* ===============================
+   ARCHIVE TITLE
+   =============================== */
 
 .archive-title {
   text-align: center;
@@ -1089,13 +1093,21 @@ body {
   font-family: 'Marcellus SC', serif;
 }
 
+/* ===============================
+   LAYOUT
+   =============================== */
+
 .archive-layout {
   display: flex;
   gap: 20px;
   padding: 20px;
+  align-items: flex-start;
 }
 
-/* YEARS COLUMN */
+/* ===============================
+   YEARS COLUMN
+   =============================== */
+
 .years-column {
   width: 90px;
   display: flex;
@@ -1110,7 +1122,7 @@ body {
   color: #aaa;
   border-radius: 10px;
   cursor: pointer;
-  transition: 0.3s;
+  transition: 0.3s ease;
 }
 
 .year:hover,
@@ -1119,23 +1131,72 @@ body {
   color: #000;
 }
 
-/* MAP COLUMN */
+/* ===============================
+   MAP COLUMN
+   =============================== */
+
 .map-column {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+/* MAP WRAPPER (prevents stretch) */
+.map-wrapper {
+  width: 100%;
+  max-width: 520px;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+/* SVG MAP */
 #worldMap {
   width: 100%;
-  height: 420px;
+  height: 100%;
+  object-fit: contain;
   filter: invert(1) brightness(0.9);
 }
 
-/* RESULTS */
+/* ===============================
+   RESULTS
+   =============================== */
+
 .results-box {
   margin-top: 15px;
   padding: 14px;
   background: #111;
   border-radius: 12px;
   min-height: 120px;
+  width: 100%;
+  max-width: 520px;
 }
+
+/* ===============================
+   MOBILE FIX
+   =============================== */
+
+@media (max-width: 768px) {
+  .archive-layout {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .years-column {
+    flex-direction: row;
+    width: 100%;
+    overflow-x: auto;
+    justify-content: center;
+  }
+
+  .year {
+    min-width: 70px;
+  }
+
+  .map-wrapper {
+    max-width: 90vw;
+    aspect-ratio: 4 / 3;
+  }
+}
+
 
