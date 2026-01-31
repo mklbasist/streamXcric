@@ -944,3 +944,7 @@ body {
   background: #ff9800;
   color: #000;
 }
+
+#players {
+  padding-top: 32px;   /* adjust: 24–40px */
+}
