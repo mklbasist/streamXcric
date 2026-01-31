@@ -750,30 +750,6 @@ function openArticle(path) {
     });
 }
 
-function showMatches(countryCode) {
-  const matches = testMatches.filter(
-    m => m.year === selectedYear && m.country === countryCode
-  );
-
-  const box = document.getElementById("testResults");
-
-  if (!matches.length) {
-    box.innerHTML = "No Test matches found.";
-    return;
-  }
-
-  box.innerHTML = matches.map(m => `
-    <div style="margin-bottom:10px">
-      <strong>${m.title}</strong><br>
-      ${m.venue}<br>
-      <em>${m.result}</em>
-    </div>
-  `).join("");
-    };
-  });
-});
-
-
 // ====================
 // Unified Toggle Logic
 // ====================
