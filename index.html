@@ -120,7 +120,6 @@
       🏏 Player Highlights
     </div>
 
-    <!-- PLAYER CARDS (moved INSIDE player carousel) -->
     <div id="playersCarousel" class="players-carousel hidden">
       <div class="players-track players-list">
 
@@ -176,14 +175,18 @@
 
     <div id="matchHighlights" class="players-carousel hidden">
       <div class="players-track">
-        <div class="match-placeholder">
-          Match highlights coming soon…
+        <div class="match-placeholder" onclick="showPage('testArchive')">
+          🌍 Browse Test Matches by Year
         </div>
       </div>
     </div>
   </div>
 
-  <section id="testArchive" class="hidden">
+</section>
+
+
+<!-- Test Match Archive Page -->
+<section id="testArchive" class="hidden">
 
   <h2 class="archive-title">🌍 Test Match Archive</h2>
 
@@ -203,14 +206,12 @@
     <!-- MAP + RESULTS -->
     <div class="map-column">
 
-      <!-- WORLD MAP -->
       <object
         id="worldMap"
         type="image/svg+xml"
         data="assetsworld.svg">
       </object>
 
-      <!-- RESULTS -->
       <div id="testResults" class="results-box">
         Select a country to view matches
       </div>
@@ -389,6 +390,7 @@
 </script>
 </body>
 </html>
+
 
 
 
