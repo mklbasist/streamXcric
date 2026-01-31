@@ -203,18 +203,42 @@
       <div class="year" data-year="2020">2020</div>
     </div>
 
-    <!-- MAP + RESULTS -->
-    <div class="map-column">
+    <!-- CAROUSEL COLUMN -->
+    <div class="carousel-column">
+      <h2 class="carousel-title">Test Series – 2025</h2>
 
+      <div class="carousel">
+        <button class="nav prev">&#10094;</button>
 
-<div class="map-wrapper">
-  <object
-    id="worldMap"
-    type="image/svg+xml"
-    data="assets/assetsworld.svg">
-  </object>
-</div> 
+        <div class="carousel-track">
 
+          <div class="card">
+            <img src="assets/bgt.jpg" alt="BGT 2025">
+            <span>IND vs AUS</span>
+          </div>
+
+          <div class="card">
+            <img src="assets/ashes.jpg" alt="Ashes 2025">
+            <span>The Ashes</span>
+          </div>
+
+          <div class="card">
+            <img src="assets/wtc.jpg" alt="WTC Final 2025">
+            <span>WTC Final</span>
+          </div>
+
+          <div class="card">
+            <img src="assets/eng-ind.jpg" alt="ENG vs IND">
+            <span>ENG vs IND</span>
+          </div>
+
+        </div>
+
+        <button class="nav next">&#10095;</button>
+      </div>
+    </div>
+
+  </div>
 </section>
 
 <!-- Trending Page -->
@@ -384,10 +408,7 @@
       .catch(() => console.log("StatPulse ping failed"));
   });
 </script>
-
-<!-- Test Archive Scripts -->
-<script src="test-data.js"></script>
-<script src="test-archive.js"></script>
+<script src="carousel.js"></script>
 </body>
 </html>
 
