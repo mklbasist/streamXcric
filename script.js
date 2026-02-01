@@ -424,6 +424,11 @@ function showPage(pageId) {
     const el = document.getElementById(id);
     if(el) el.classList.add("hidden");
   });
+
+    if (pageId !== "players") {
+    resetExploreState();
+  }
+  
   document.getElementById(pageId).classList.remove("hidden");
 
   const footer = document.getElementById("mainFooter");
