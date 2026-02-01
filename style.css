@@ -1079,6 +1079,55 @@ body {
   display: none !important;
 }
 
+/* ===============================
+   BROWSE BY YEAR
+   =============================== */
+
+/* ===== Test Archive ===== */
+.archive-title {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.year-bar,
+.team-bar {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 10px 16px;
+  justify-content: center;
+}
+
+.year-btn,
+.team-btn {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.year-btn.active,
+.team-btn.active {
+  background: #000;
+  color: #fff;
+}
+
+.divider {
+  height: 1px;
+  background: #000;
+  margin: 10px 20px;
+  opacity: 0.2;
+}
+
+.archive-placeholder {
+  text-align: center;
+  color: #777;
+  margin-top: 40px;
+}
+
+
 #players {
   padding-top: 32px;   /* adjust: 24–40px */
 }
