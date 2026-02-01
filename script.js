@@ -412,28 +412,56 @@ function toggleVideo(url, containerId) {
   }
 }
 
+function resetExploreState() {
+  const playerBox = document.getElementById("playersCarousel");
+  const matchBox = document.getElementById("matchHighlights");
+
+  if (playerBox) playerBox.classList.add("hidden");
+  if (matchBox) matchBox.classList.add("hidden");
+
+  document
+    .querySelectorAll(".toggle-tab.active")
+    .forEach(tab => tab.classList.remove("active"));
+}
+
 function backToWelcome() {
-  document.getElementById("welcome").classList.remove("hidden");
-  document.getElementById("main").classList.add("hidden");
-  document.querySelector(".yt-bottom-nav").style.display = "none";
+  document.getElementById("welcome")?.classList.remove("hidden");
+  document.getElementById("main")?.classList.add("hidden");
+
+  const nav = document.querySelector(".yt-bottom-nav");
+  if (nav) nav.style.display = "none";
 }
 
 function showPage(pageId) {
-  const pages = ["main","players","trending","about","playerPage","rootOptions", "askSection", "articlePage"];
+  const pages = [
+    "welcome",
+    "main",
+    "players",
+    "trending",
+    "about",
+    "playerPage",
+    "rootOptions",
+    "askSection",
+    "articlePage"
+  ];
+
   pages.forEach(id => {
     const el = document.getElementById(id);
-    if(el) el.classList.add("hidden");
+    if (el) el.classList.add("hidden");
   });
 
-    if (pageId !== "players") {
+  // ✅ reset players highlights when leaving players page
+  if (pageId !== "players") {
     resetExploreState();
   }
-  
-  document.getElementById(pageId).classList.remove("hidden");
-}
 
+  document.getElementById(pageId)?.classList.remove("hidden");
+
+  // footer logic
   const footer = document.getElementById("mainFooter");
-  footer.style.display = (pageId === "welcome") ? "block" : "none";
+  if (footer) {
+    footer.style.display = pageId === "welcome" ? "block" : "none";
+  }
 }
 
 function shuffle(array) {
