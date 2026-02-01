@@ -786,37 +786,67 @@ function openArticle(path) {
 }
 
 // ====================
-// Unified Toggle Logic
+// Unified Toggle + Archive Logic
 // ====================
 document.addEventListener("DOMContentLoaded", () => {
+
+  /* -------------------
+     Player / Match Toggle
+  ------------------- */
   const playerTab = document.getElementById("playerToggleTab");
   const playerBox = document.getElementById("playersCarousel");
 
   const matchTab = document.getElementById("matchToggleTab");
   const matchBox = document.getElementById("matchHighlights");
 
-  function closeAll() {
-    playerTab.classList.remove("active");
-    matchTab.classList.remove("active");
-    playerBox.classList.add("hidden");
-    matchBox.classList.add("hidden");
+  if (playerTab && matchTab && playerBox && matchBox) {
+
+    function closeAll() {
+      playerTab.classList.remove("active");
+      matchTab.classList.remove("active");
+      playerBox.classList.add("hidden");
+      matchBox.classList.add("hidden");
+    }
+
+    playerTab.addEventListener("click", () => {
+      const isOpen = !playerBox.classList.contains("hidden");
+      closeAll();
+      if (!isOpen) {
+        playerTab.classList.add("active");
+        playerBox.classList.remove("hidden");
+      }
+    });
+
+    matchTab.addEventListener("click", () => {
+      const isOpen = !matchBox.classList.contains("hidden");
+      closeAll();
+      if (!isOpen) {
+        matchTab.classList.add("active");
+        matchBox.classList.remove("hidden");
+      }
+    });
   }
 
-  playerTab.addEventListener("click", () => {
-    const isOpen = !playerBox.classList.contains("hidden");
-    closeAll();
-    if (!isOpen) {
-      playerTab.classList.add("active");
-      playerBox.classList.remove("hidden");
-    }
-  });
+  /* -------------------
+     Test Archive Year Logic
+  ------------------- */
+  const yearButtons = document.querySelectorAll(".archive-year");
+  const teamRows = document.querySelectorAll(".team-row");
 
-  matchTab.addEventListener("click", () => {
-    const isOpen = !matchBox.classList.contains("hidden");
-    closeAll();
-    if (!isOpen) {
-      matchTab.classList.add("active");
-      matchBox.classList.remove("hidden");
-    }
-  });
+  if (yearButtons.length && teamRows.length) {
+    yearButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        yearButtons.forEach(b => b.classList.remove("active"));
+        teamRows.forEach(row => row.classList.add("hidden"));
+
+        btn.classList.add("active");
+
+        const year = btn.dataset.year;
+        const row = document.getElementById(`teams-${year}`);
+        if (row) row.classList.remove("hidden");
+      });
+    });
+  }
+
 });
+
