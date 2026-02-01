@@ -430,6 +430,7 @@ function showPage(pageId) {
   }
   
   document.getElementById(pageId).classList.remove("hidden");
+}
 
   const footer = document.getElementById("mainFooter");
   footer.style.display = (pageId === "welcome") ? "block" : "none";
