@@ -183,39 +183,41 @@
   </div>
 </section>
 
-  <section id="testArchive" class="hidden">
+<section id="testArchive" class="hidden">
 
   <h2 class="archive-title">📅 Browse Test Matches</h2>
 
   <!-- YEAR BAR -->
   <div class="year-bar">
-    <button class="year-btn active">2026</button>
-    <button class="year-btn">2025</button>
-    <button class="year-btn">2024</button>
-    <button class="year-btn">2023</button>
-    <button class="year-btn">2022</button>
-    <button class="year-btn">2021</button>
-    <button class="year-btn">2020</button>
+    <button class="year-btn active" data-year="2026">2026</button>
+    <button class="year-btn" data-year="2025">2025</button>
+    <button class="year-btn" data-year="2024">2024</button>
+    <button class="year-btn" data-year="2023">2023</button>
+    <button class="year-btn" data-year="2022">2022</button>
+    <button class="year-btn" data-year="2021">2021</button>
+    <button class="year-btn" data-year="2020">2020</button>
   </div>
 
   <div class="divider"></div>
 
   <!-- TEAMS BAR -->
   <div class="team-bar">
-    <button class="team-btn active">India</button>
-    <button class="team-btn">Australia</button>
-    <button class="team-btn">England</button>
-    <button class="team-btn">Pakistan</button>
-    <button class="team-btn">South Africa</button>
-    <button class="team-btn">New Zealand</button>
+    <button class="team-btn active" data-team="india">India</button>
+    <button class="team-btn" data-team="australia">Australia</button>
+    <button class="team-btn" data-team="england">England</button>
+    <button class="team-btn" data-team="pakistan">Pakistan</button>
+    <button class="team-btn" data-team="south-africa">South Africa</button>
+    <button class="team-btn" data-team="new-zealand">New Zealand</button>
   </div>
 
   <div class="divider"></div>
 
-  <!-- Placeholder -->
-  <p class="archive-placeholder">
-    Match highlights will appear here later
-  </p>
+  <!-- RESULTS AREA -->
+  <div id="archiveResults" class="archive-results">
+    <p class="archive-placeholder">
+      Showing Test matches for <strong>2026</strong> — <strong>India</strong>
+    </p>
+  </div>
 
 </section>
 
@@ -389,6 +391,7 @@
 <script src="carousel.js"></script>
 </body>
 </html>
+
 
 
 
