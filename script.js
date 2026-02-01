@@ -786,7 +786,7 @@ function openArticle(path) {
 }
 
 // ====================
-// Unified Toggle + Archive Logic
+// Unified Toggle + Archive Logic (FIXED)
 // ====================
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -828,19 +828,25 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* -------------------
-     Test Archive Year Logic
+     Test Archive – Year → Team Logic
   ------------------- */
-  const yearButtons = document.querySelectorAll(".archive-year");
+  const yearButtons = document.querySelectorAll(".year");
   const teamRows = document.querySelectorAll(".team-row");
 
-  if (yearButtons.length && teamRows.length) {
+  if (yearButtons.length) {
     yearButtons.forEach(btn => {
       btn.addEventListener("click", () => {
+
+        // reset years
         yearButtons.forEach(b => b.classList.remove("active"));
+
+        // hide all team rows
         teamRows.forEach(row => row.classList.add("hidden"));
 
+        // activate selected year
         btn.classList.add("active");
 
+        // show matching teams
         const year = btn.dataset.year;
         const row = document.getElementById(`teams-${year}`);
         if (row) row.classList.remove("hidden");
@@ -849,4 +855,5 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 });
+
 
