@@ -442,7 +442,8 @@ function showPage(pageId) {
     "playerPage",
     "rootOptions",
     "askSection",
-    "articlePage"
+    "articlePage",
+    "testArchive"
   ];
 
   pages.forEach(id => {
