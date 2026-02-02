@@ -1,102 +1,122 @@
-/* ===============================
-   Match Data (EASY TO EDIT)
-================================ */
-
-const MATCHES = [
+// ===============================
+// MATCH DATA (clean)
+// ===============================
+const matches = [
   {
-    year: "2026",
-    teams: ["India", "Australia"],
-    title: "IND vs AUS – Border Gavaskar Trophy"
+    year: 2026,
+    team: "India",
+    title: "India vs Australia – 1st Test",
   },
   {
-    year: "2026",
-    teams: ["India", "England"],
-    title: "IND vs ENG – Test Series"
+    year: 2026,
+    team: "India",
+    title: "India vs England – 2nd Test",
   },
   {
-    year: "2026",
-    teams: ["Pakistan", "Australia"],
-    title: "PAK vs AUS – Test Series"
+    year: 2026,
+    team: "Australia",
+    title: "Australia vs Pakistan – 1st Test",
   },
   {
-    year: "2025",
-    teams: ["India", "South Africa"],
-    title: "IND vs SA – Freedom Series"
-  }
+    year: 2025,
+    team: "England",
+    title: "The Ashes – 3rd Test",
+  },
+  {
+    year: 2025,
+    team: "India",
+    title: "India vs South Africa – 2nd Test",
+  },
 ];
 
-/* ===============================
-   Archive Logic
-================================ */
+// ===============================
+// STATE
+// ===============================
+let activeYear = null;
+let activeTeam = null;
 
-document.addEventListener("DOMContentLoaded", () => {
-
-  const yearBtns = document.querySelectorAll(".year-btn");
-  const teamBtns = document.querySelectorAll(".team-btn");
+// ===============================
+// RENDER MATCHES
+// ===============================
+function renderMatches() {
   const container = document.getElementById("matchesContainer");
+  container.innerHTML = "";
 
-  let selectedYear = null;
-  let selectedTeam = null;
+  let filtered = matches.filter(m => m.year === activeYear);
 
-  /* Render matches */
-  function renderMatches() {
-    container.innerHTML = "";
-
-    MATCHES.forEach(match => {
-      if (match.year !== selectedYear) return;
-      if (selectedTeam && !match.teams.includes(selectedTeam)) return;
-
-      const card = document.createElement("div");
-      card.className = "match-card";
-      card.innerText = match.title;
-
-      container.appendChild(card);
-    });
-
-    if (!container.innerHTML) {
-      container.innerHTML =
-        "<p class='archive-placeholder'>No matches found</p>";
-    }
+  if (activeTeam) {
+    filtered = filtered.filter(
+      m => m.team.toLowerCase() === activeTeam.toLowerCase()
+    );
   }
 
-  /* YEAR CLICK */
-  yearBtns.forEach(btn => {
-    btn.addEventListener("click", () => {
+  if (!filtered.length) {
+    container.innerHTML = `
+      <p class="archive-placeholder">
+        No matches found
+      </p>`;
+    return;
+  }
 
-      yearBtns.forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-
-      selectedYear = btn.textContent;
-
-      // reset team filter
-      teamBtns.forEach(t => t.classList.remove("active"));
-      selectedTeam = null;
-
-      renderMatches();
-    });
+  filtered.forEach(match => {
+    const card = document.createElement("div");
+    card.className = "match-card";
+    card.innerText = match.title;
+    container.appendChild(card);
   });
+}
 
-  /* TEAM CLICK (TOGGLE) */
-  teamBtns.forEach(btn => {
-    btn.addEventListener("click", () => {
+// ===============================
+// YEAR BUTTON LOGIC
+// ===============================
+document.querySelectorAll(".year-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".year-btn")
+      .forEach(b => b.classList.remove("active"));
 
-      if (btn.classList.contains("active")) {
-        btn.classList.remove("active");
-        selectedTeam = null;
-      } else {
-        teamBtns.forEach(t => t.classList.remove("active"));
-        btn.classList.add("active");
-        selectedTeam = btn.textContent;
-      }
+    btn.classList.add("active");
+    activeYear = Number(btn.dataset.year);
 
-      renderMatches();
-    });
-  });
+    // reset team when year changes
+    activeTeam = null;
+    document.querySelectorAll(".team-btn")
+      .forEach(t => t.classList.remove("active"));
 
-  /* DEFAULT → LATEST YEAR */
-  if (yearBtns.length) {
-    yearBtns[0].classList.add("active");
-    selectedYear = yearBtns[0].textContent;
     renderMatches();
-  }
+  });
 });
+
+// ===============================
+// TEAM BUTTON LOGIC (toggle on/off)
+// ===============================
+document.querySelectorAll(".team-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const team = btn.dataset.team;
+
+    if (activeTeam === team) {
+      // unselect team
+      activeTeam = null;
+      btn.classList.remove("active");
+    } else {
+      document.querySelectorAll(".team-btn")
+        .forEach(t => t.classList.remove("active"));
+
+      activeTeam = team;
+      btn.classList.add("active");
+    }
+
+    renderMatches();
+  });
+});
+
+// ===============================
+// AUTO-SELECT LATEST YEAR
+// ===============================
+const yearButtons = [...document.querySelectorAll(".year-btn")];
+const latestYearBtn = yearButtons.sort(
+  (a, b) => b.dataset.year - a.dataset.year
+)[0];
+
+if (latestYearBtn) {
+  latestYearBtn.click(); // 🔥 auto default
+}
