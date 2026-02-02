@@ -1127,7 +1127,29 @@ body {
   margin-top: 40px;
 }
 
+.matches-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+  padding: 10px;
+}
+
+.match-card {
+  background: #111;
+  color: #fff;
+  padding: 16px;
+  border-radius: 14px;
+  font-size: 14px;
+  transition: transform 0.25s;
+  cursor: pointer;
+}
+
+.match-card:hover {
+  transform: scale(1.05);
+}
+
 
 #players {
   padding-top: 32px;   /* adjust: 24–40px */
 }
+
