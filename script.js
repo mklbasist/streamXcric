@@ -786,7 +786,7 @@ function openArticle(path) {
 }
 
 // ====================
-// Unified Toggle + Archive Logic (FINAL)
+// Unified Toggle Logic (CLEAN)
 // ====================
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -827,84 +827,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* ===================
-     Test Archive Logic
-  =================== */
-
-  let selectedYear = null;
-  let selectedTeam = null;
-
-  const yearBtns = [...document.querySelectorAll(".year-btn")];
-  const teamBtns = document.querySelectorAll(".team-btn");
-  const resultsBox = document.getElementById("archiveResults");
-
-  /* 🔥 Auto-select LATEST year */
-  if (yearBtns.length) {
-    const latestBtn = yearBtns.reduce((a, b) =>
-      Number(b.dataset.year) > Number(a.dataset.year) ? b : a
-    );
-
-    latestBtn.classList.add("active");
-    selectedYear = latestBtn.dataset.year;
-    updateArchiveText();
-  }
-
-  /* Year click */
-  yearBtns.forEach(btn => {
-    btn.addEventListener("click", () => {
-      yearBtns.forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      selectedYear = btn.dataset.year;
-      updateArchiveText();
-    });
-  });
-
-/* Team click (toggle on / off) */
-teamBtns.forEach(btn => {
-  btn.addEventListener("click", () => {
-
-    // If same team clicked again → unselect
-    if (btn.classList.contains("active")) {
-      btn.classList.remove("active");
-      selectedTeam = null;
-      updateArchiveText();
-      return;
-    }
-
-    // Otherwise select new team
-    teamBtns.forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-    selectedTeam = btn.dataset.team;
-    updateArchiveText();
-  });
 });
 
-  function updateArchiveText() {
-    if (!resultsBox) return;
-
-    if (!selectedTeam) {
-      resultsBox.innerHTML = `
-        <p class="archive-placeholder">
-          Showing Test matches for <strong>${selectedYear}</strong><br>
-          Select a team to continue
-        </p>`;
-      return;
-    }
-
-    resultsBox.innerHTML = `
-      <p class="archive-placeholder">
-        Showing Test matches for <strong>${selectedYear}</strong> —
-        <strong>${formatTeam(selectedTeam)}</strong>
-      </p>`;
-  }
-
-  function formatTeam(team) {
-    return team
-      .replace(/-/g, " ")
-      .replace(/\b\w/g, c => c.toUpperCase());
-  }
-
-});
 
 
 
