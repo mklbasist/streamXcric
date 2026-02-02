@@ -859,15 +859,25 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  /* Team click */
-  teamBtns.forEach(btn => {
-    btn.addEventListener("click", () => {
-      teamBtns.forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      selectedTeam = btn.dataset.team;
+/* Team click (toggle on / off) */
+teamBtns.forEach(btn => {
+  btn.addEventListener("click", () => {
+
+    // If same team clicked again → unselect
+    if (btn.classList.contains("active")) {
+      btn.classList.remove("active");
+      selectedTeam = null;
       updateArchiveText();
-    });
+      return;
+    }
+
+    // Otherwise select new team
+    teamBtns.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    selectedTeam = btn.dataset.team;
+    updateArchiveText();
   });
+});
 
   function updateArchiveText() {
     if (!resultsBox) return;
