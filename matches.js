@@ -27,14 +27,17 @@ function renderMatches() {
   const container = document.getElementById("matchesContainer");
   container.innerHTML = "";
 
+  // filter by selected year
   let filtered = matches.filter(m => m.year === activeYear);
 
+  // filter by selected country (search inside series title)
   if (activeTeam) {
-    filtered = filtered.filter(
-      m => m.team.toLowerCase() === activeTeam.toLowerCase()
+    filtered = filtered.filter(m =>
+      m.title.toLowerCase().includes(activeTeam.toLowerCase())
     );
   }
 
+  // no results
   if (!filtered.length) {
     container.innerHTML = `
       <p class="archive-placeholder">
@@ -43,10 +46,11 @@ function renderMatches() {
     return;
   }
 
-  filtered.forEach(match => {
+  // render series cards
+  filtered.forEach(series => {
     const card = document.createElement("div");
     card.className = "match-card";
-    card.innerText = match.title;
+    card.innerText = series.title;
     container.appendChild(card);
   });
 }
