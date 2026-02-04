@@ -1,39 +1,24 @@
-// ===============================
-// MATCH DATA (clean)
-// ===============================
-const matches = [
-  {
-    year: 2026,
-    team: "India",
-    title: "India vs Australia – 1st Test",
-  },
-  {
-    year: 2026,
-    team: "India",
-    title: "India vs England – 2nd Test",
-  },
-  {
-    year: 2026,
-    team: "Australia",
-    title: "Australia vs Pakistan – 1st Test",
-  },
-  {
-    year: 2025,
-    team: "England",
-    title: "The Ashes – 3rd Test",
-  },
-  {
-    year: 2025,
-    team: "India",
-    title: "India vs South Africa – 2nd Test",
-  },
-];
+let matches = [];
 
 // ===============================
 // STATE
 // ===============================
 let activeYear = null;
 let activeTeam = null;
+
+// ===============================
+// LOAD SERIES DATA
+// ===============================
+fetch("./data/testSeries.json")
+  .then(res => res.json())
+  .then(data => {
+    matches = data;
+    autoSelectLatestYear();
+    renderMatches();
+  })
+  .catch(err => {
+    console.error("Failed to load series data", err);
+  });
 
 // ===============================
 // RENDER MATCHES
@@ -112,11 +97,13 @@ document.querySelectorAll(".team-btn").forEach(btn => {
 // ===============================
 // AUTO-SELECT LATEST YEAR
 // ===============================
-const yearButtons = [...document.querySelectorAll(".year-btn")];
-const latestYearBtn = yearButtons.sort(
-  (a, b) => b.dataset.year - a.dataset.year
-)[0];
+function autoSelectLatestYear() {
+  const yearButtons = [...document.querySelectorAll(".year-btn")];
+  const latestYearBtn = yearButtons.sort(
+    (a, b) => b.dataset.year - a.dataset.year
+  )[0];
 
-if (latestYearBtn) {
-  latestYearBtn.click(); // 🔥 auto default
+  if (latestYearBtn) {
+    latestYearBtn.click();
+  }
 }
