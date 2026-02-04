@@ -27,17 +27,28 @@ function renderMatches() {
   const container = document.getElementById("matchesContainer");
   container.innerHTML = "";
 
-  // filter by selected year
   let filtered = matches.filter(m => m.year === activeYear);
 
-  // filter by selected country (search inside series title)
   if (activeTeam) {
-    filtered = filtered.filter(m =>
-      m.title.toLowerCase().includes(activeTeam.toLowerCase())
-    );
+    filtered = filtered.filter(m => {
+      const title = m.title.toLowerCase();
+      const team = activeTeam.toLowerCase();
+
+      // normal case
+      if (title.includes(team)) return true;
+
+      // special case: The Ashes
+      if (
+        title.includes("ashes") &&
+        (team === "england" || team === "australia")
+      ) {
+        return true;
+      }
+
+      return false;
+    });
   }
 
-  // no results
   if (!filtered.length) {
     container.innerHTML = `
       <p class="archive-placeholder">
@@ -46,7 +57,6 @@ function renderMatches() {
     return;
   }
 
-  // render series cards
   filtered.forEach(series => {
     const card = document.createElement("div");
     card.className = "match-card";
