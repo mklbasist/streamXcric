@@ -54,21 +54,22 @@ function renderMatches() {
 // ===============================
 // YEAR BUTTON LOGIC
 // ===============================
-document.querySelectorAll(".year-btn").forEach(btn => {
-  btn.addEventListener("click", () => {
-    document.querySelectorAll(".year-btn")
-      .forEach(b => b.classList.remove("active"));
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest(".year-btn");
+  if (!btn) return;
 
-    btn.classList.add("active");
-    activeYear = Number(btn.dataset.year);
+  document.querySelectorAll(".year-btn")
+    .forEach(b => b.classList.remove("active"));
 
-    // reset team when year changes
-    activeTeam = null;
-    document.querySelectorAll(".team-btn")
-      .forEach(t => t.classList.remove("active"));
+  btn.classList.add("active");
+  activeYear = Number(btn.dataset.year);
 
-    renderMatches();
-  });
+  // reset team when year changes
+  activeTeam = null;
+  document.querySelectorAll(".team-btn")
+    .forEach(t => t.classList.remove("active"));
+
+  renderMatches();
 });
 
 // ===============================
