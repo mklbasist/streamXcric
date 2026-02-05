@@ -39,31 +39,33 @@ function renderMatches() {
       if (
         title.includes("ashes") &&
         (team === "england" || team === "australia")
-      ) {
-        return true;
-      }
+      ) return true;
 
       return false;
     });
   }
 
   if (!filtered.length) {
-    container.innerHTML = `
-      <p class="archive-placeholder">No matches found</p>
-    `;
+    container.innerHTML =
+      `<p class="archive-placeholder">No matches found</p>`;
     return;
   }
 
   filtered.forEach(series => {
+    const flags = getFlagsFromTitle(series.title);
+
     const card = document.createElement("div");
     card.className = "series-card";
 
-    const bgClass = getTeamGradient(series.title);
-
     card.innerHTML = `
-      <div class="series-bg ${bgClass}">
-        <h4>${series.title}</h4>
-        <span>${series.year}</span>
+      <div class="flag-poster">
+        <div class="flag left" style="background-image:url('${flags.left}')"></div>
+        <div class="flag right" style="background-image:url('${flags.right}')"></div>
+
+        <div class="flag-overlay">
+          <h4>${series.title}</h4>
+          <span>${series.year}</span>
+        </div>
       </div>
     `;
 
@@ -72,26 +74,42 @@ function renderMatches() {
 }
 
 // ===============================
-// TEAM → GRADIENT MAPPING
+// FLAG DETECTION LOGIC
 // ===============================
-function getTeamGradient(title) {
+function getFlagsFromTitle(title) {
   const t = title.toLowerCase();
 
-  if (t.includes("ashes")) return "bg-england bg-australia";
+  const map = {
+    india: "in",
+    england: "gb",
+    australia: "au",
+    pakistan: "pk",
+    "south africa": "za",
+    "new zealand": "nz",
+    "sri lanka": "lk",
+    bangladesh: "bd",
+    ireland: "ie",
+    zimbabwe: "zw",
+    "west indies": "jm"
+  };
 
-  if (t.includes("india")) return "bg-india";
-  if (t.includes("england")) return "bg-england";
-  if (t.includes("australia")) return "bg-australia";
-  if (t.includes("pakistan")) return "bg-pakistan";
-  if (t.includes("sri lanka")) return "bg-sri-lanka";
-  if (t.includes("south africa")) return "bg-south-africa";
-  if (t.includes("new zealand")) return "bg-new-zealand";
-  if (t.includes("bangladesh")) return "bg-bangladesh";
-  if (t.includes("ireland")) return "bg-ireland";
-  if (t.includes("west indies")) return "bg-west-indies";
-  if (t.includes("zimbabwe")) return "bg-zimbabwe";
+  let found = [];
 
-  return "bg-default";
+  Object.keys(map).forEach(team => {
+    if (t.includes(team)) found.push(map[team]);
+  });
+
+  // Ashes
+  if (t.includes("ashes")) found = ["gb", "au"];
+
+  // fallback handling
+  if (found.length === 1) found.push(found[0]);
+  if (!found.length) found = ["in", "au"];
+
+  return {
+    left: `https://flagcdn.com/w320/${found[0]}.png`,
+    right: `https://flagcdn.com/w320/${found[1]}.png`
+  };
 }
 
 // ===============================
