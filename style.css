@@ -1140,60 +1140,95 @@ body {
 }
 
 /* ===============================
-   AUTO POSTER (WORKING)
+   SERIES CARD – FLAG GRADIENT
    =============================== */
 
-.auto-poster {
-  position: relative;
-  height: 260px;
+.series-card {
   border-radius: 16px;
   overflow: hidden;
-  background: #181818;
+  cursor: pointer;
+  transition: transform 0.25s ease;
 }
 
-/* gradient bg */
-.auto-bg {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    135deg,
-    #303030,
-    #1c1c1c,
-    #0f0f0f
-  );
+.series-card:hover {
+  transform: scale(1.05);
 }
 
-/* overlay */
-.auto-poster .overlay {
-  position: absolute;
-  inset: 0;
+/* background */
+.series-bg {
+  height: 260px;
+  padding: 16px;
+
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 14px;
 
-  background: linear-gradient(
-    to top,
-    rgba(0,0,0,0.9),
-    rgba(0,0,0,0.4),
-    transparent
-  );
-}
-
-.auto-poster h4 {
   color: #fff;
-  font-size: 14px;
+}
+
+/* text */
+.series-bg h4 {
   margin: 0;
+  font-size: 15px;
+  line-height: 1.3;
 }
 
-.auto-poster span {
-  color: #bbb;
+.series-bg span {
   font-size: 12px;
+  opacity: 0.85;
 }
 
-/* hover effect */
-.auto-poster:hover {
-  transform: scale(1.04);
+/* ===============================
+   COUNTRY GRADIENTS
+   =============================== */
+
+.bg-india {
+  background: linear-gradient(135deg, #ff9933, #ffffff, #138808);
+}
+
+.bg-england {
+  background: linear-gradient(135deg, #ffffff, #c8102e);
+}
+
+.bg-australia {
+  background: linear-gradient(135deg, #012169, #fcd116);
+}
+
+.bg-pakistan {
+  background: linear-gradient(135deg, #01411c, #ffffff);
+}
+
+.bg-sri-lanka {
+  background: linear-gradient(135deg, #8d153a, #f9c74f);
+}
+
+.bg-south-africa {
+  background: linear-gradient(135deg, #007a4d, #ffb612, #de3831);
+}
+
+.bg-new-zealand {
+  background: linear-gradient(135deg, #000000, #cc142b);
+}
+
+.bg-bangladesh {
+  background: linear-gradient(135deg, #006a4e, #f42a41);
+}
+
+.bg-ireland {
+  background: linear-gradient(135deg, #169b62, #ffffff, #ff883e);
+}
+
+.bg-west-indies {
+  background: linear-gradient(135deg, #7b1e3c, #f9c74f);
+}
+
+.bg-zimbabwe {
+  background: linear-gradient(135deg, #006400, #ffd200, #d40000);
+}
+
+/* fallback */
+.bg-default {
+  background: linear-gradient(135deg, #222, #000);
 }
 
 /* ===============================
