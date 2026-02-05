@@ -1185,6 +1185,24 @@ body {
   color: #bbb;
 }
 
+.auto-poster {
+  height: 260px;
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.auto-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    #1e1e1e,
+    #2a2a2a,
+    #111
+  );
+}
+
 /* ===============================
    OPTIONAL SECTION SPACING
    =============================== */
