@@ -21,7 +21,7 @@ fetch("./data/testSeries.json")
   });
 
 // ===============================
-// RENDER MATCHES
+// RENDER SERIES CARDS
 // ===============================
 function renderMatches() {
   const container = document.getElementById("matchesContainer");
@@ -58,8 +58,9 @@ function renderMatches() {
     card.className = "series-card";
 
     card.innerHTML = `
-      <div class="poster">
-        <img src="assets/posters/default.jpg" alt="${series.title}">
+      <div class="auto-poster">
+        <div class="auto-bg"></div>
+
         <div class="overlay">
           <h4>${series.title}</h4>
           <span>${series.year}</span>
@@ -93,14 +94,13 @@ document.addEventListener("click", (e) => {
 });
 
 // ===============================
-// TEAM BUTTON LOGIC (toggle on/off)
+// TEAM BUTTON LOGIC
 // ===============================
 document.querySelectorAll(".team-btn").forEach(btn => {
   btn.addEventListener("click", () => {
     const team = btn.dataset.team;
 
     if (activeTeam === team) {
-      // unselect team
       activeTeam = null;
       btn.classList.remove("active");
     } else {
