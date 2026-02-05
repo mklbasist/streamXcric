@@ -1222,17 +1222,22 @@ body {
   color: #ddd;
 }
 
-/* hover zoom (Netflix feel) */
-.series-card:hover .flag-poster {
-  transform: scale(1.06);
-}
-
 /* ===============================
    HOVER EFFECT (Netflix feel)
    =============================== */
 
 .series-card:hover .flag-poster {
   transform: scale(1.06);
+}
+
+/* ===============================
+   MOBILE NETFLIX CARD FIX
+   =============================== */
+@media (max-width: 768px) {
+  .flag-poster {
+    height: auto;                 /* remove fixed height */
+    aspect-ratio: 2 / 3;          /* keep Netflix poster ratio */
+  }
 }
 
 /* ===============================
