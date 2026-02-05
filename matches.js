@@ -34,10 +34,9 @@ function renderMatches() {
       const title = m.title.toLowerCase();
       const team = activeTeam.toLowerCase();
 
-      // normal case
       if (title.includes(team)) return true;
 
-      // special case: The Ashes
+      // Ashes support
       if (
         title.includes("ashes") &&
         (team === "england" || team === "australia")
@@ -50,17 +49,24 @@ function renderMatches() {
   }
 
   if (!filtered.length) {
-    container.innerHTML = `
-      <p class="archive-placeholder">
-        No matches found
-      </p>`;
+    container.innerHTML = `<p class="archive-placeholder">No matches found</p>`;
     return;
   }
 
   filtered.forEach(series => {
     const card = document.createElement("div");
-    card.className = "match-card";
-    card.innerText = series.title;
+    card.className = "series-card";
+
+    card.innerHTML = `
+      <div class="poster">
+        <img src="assets/posters/default.jpg" alt="${series.title}">
+        <div class="overlay">
+          <h4>${series.title}</h4>
+          <span>${series.year}</span>
+        </div>
+      </div>
+    `;
+
     container.appendChild(card);
   });
 }
