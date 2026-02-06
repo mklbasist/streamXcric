@@ -69,6 +69,11 @@ function renderMatches() {
       </div>
     `;
 
+      // 🔥 Page-06-02-2026
+  card.addEventListener("click", () => {
+    window.location.href = `series.html?id=${encodeURIComponent(series.title)}`;
+  });
+
     container.appendChild(card);
   });
 }
