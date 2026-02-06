@@ -1245,9 +1245,9 @@ body {
   }
 }
 
-/* ===== WATCH PAGE ===== */
+/* ===== WATCH PAGE (SCOPED – SAFE) ===== */
 
-body {
+.series-watch-page {
   margin: 0;
   background: #000;
   color: #fff;
@@ -1255,12 +1255,12 @@ body {
 }
 
 /* PLAYER */
-.watch-player {
+.series-watch-page .watch-player {
   max-width: 1100px;
   margin: 20px auto;
 }
 
-.watch-player iframe {
+.series-watch-page .watch-player iframe {
   width: 100%;
   height: 520px;
   border-radius: 10px;
@@ -1269,25 +1269,25 @@ body {
 }
 
 /* EPISODES SECTION */
-.watch-episodes {
+.series-watch-page .watch-episodes {
   max-width: 1100px;
   margin: auto;
   padding: 10px;
 }
 
-.episodes-top {
+.series-watch-page .episodes-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 14px;
 }
 
-.episodes-top h2 {
+.series-watch-page .episodes-top h2 {
   margin: 0;
   font-size: 20px;
 }
 
-.episodes-top select {
+.series-watch-page .episodes-top select {
   background: #111;
   color: #fff;
   border: 1px solid #333;
@@ -1296,13 +1296,13 @@ body {
 }
 
 /* EPISODE LIST */
-.episodes-list {
+.series-watch-page .episodes-list {
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
 
-.episode-row {
+.series-watch-page .episode-row {
   display: flex;
   gap: 14px;
   cursor: pointer;
@@ -1310,12 +1310,12 @@ body {
   border-radius: 8px;
 }
 
-.episode-row:hover {
+.series-watch-page .episode-row:hover {
   background: #111;
 }
 
 /* THUMB */
-.ep-thumb {
+.series-watch-page .ep-thumb {
   width: 160px;
   height: 90px;
   background: #222;
@@ -1329,12 +1329,12 @@ body {
 }
 
 /* INFO */
-.ep-info h4 {
+.series-watch-page .ep-info h4 {
   margin: 0;
   font-size: 16px;
 }
 
-.ep-info span {
+.series-watch-page .ep-info span {
   font-size: 12px;
   color: #888;
 }
