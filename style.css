@@ -1245,6 +1245,69 @@ body {
   }
 }
 
+/* ===== SERIES PAGE ===== */
+
+.series-hero {
+  text-align: center;
+  padding: 20px;
+}
+
+.series-hero h1 {
+  font-size: 26px;
+}
+
+.video-frame {
+  max-width: 900px;
+  margin: 20px auto;
+}
+
+.video-frame iframe {
+  width: 100%;
+  height: 480px;
+  border-radius: 16px;
+  border: none;
+  background: #000;
+}
+
+.match-bar {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 14px;
+  justify-content: center;
+}
+
+.match-btn {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.match-btn.active {
+  background: #000;
+  color: #fff;
+}
+
+.highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 18px;
+  padding: 20px;
+}
+
+.highlight-card .thumb {
+  height: 150px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #222, #333, #111);
+}
+
+.highlight-card .info {
+  padding: 10px 4px;
+}
+
 /* ===============================
    OPTIONAL SECTION SPACING
    =============================== */
