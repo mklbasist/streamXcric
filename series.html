@@ -1,63 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Series Highlights</title>
-
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>Series Watch</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- SERIES HERO -->
-  <section class="series-hero">
-    <h1 id="seriesTitle">Loading series...</h1>
-    <p>Match Highlights</p>
-  </section>
-
-  <!-- VIDEO FRAME -->
-  <div class="video-frame">
+  <!-- VIDEO PLAYER -->
+  <div class="watch-player">
     <iframe
-      id="highlightFrame"
+      id="videoFrame"
       src=""
-      allowfullscreen
-    ></iframe>
+      allowfullscreen>
+    </iframe>
   </div>
 
-  <!-- MATCH BUTTONS -->
-  <div class="match-bar" id="matchBar">
-    <!-- buttons injected by JS -->
-  </div>
+  <!-- EPISODES / HIGHLIGHTS -->
+  <section class="watch-episodes">
 
-  <div class="divider"></div>
+    <div class="episodes-top">
+      <h2>Highlights</h2>
 
-  <!-- HIGHLIGHTS GRID (DESIGN ONLY) -->
-  <section class="highlights-grid">
-    <div class="highlight-card">
-      <div class="thumb"></div>
-      <div class="info">
-        <h4>Day 1 Highlights</h4>
-        <span>10 min</span>
-      </div>
+      <!-- TEST MATCH DROPDOWN -->
+      <select id="testSelect">
+        <option value="1st Test">1st Test</option>
+      </select>
     </div>
 
-    <div class="highlight-card">
-      <div class="thumb"></div>
-      <div class="info">
-        <h4>Day 2 Highlights</h4>
-        <span>12 min</span>
-      </div>
+    <!-- DAY LIST -->
+    <div class="episodes-list" id="episodesList">
+      <!-- injected by JS -->
     </div>
 
-    <div class="highlight-card">
-      <div class="thumb"></div>
-      <div class="info">
-        <h4>Best Moments</h4>
-        <span>8 min</span>
-      </div>
-    </div>
   </section>
-
-  <button class="back-btn" onclick="history.back()">⬅ Back</button>
 
   <script src="series.js"></script>
 </body>
