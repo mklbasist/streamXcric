@@ -7,33 +7,35 @@
 </head>
 <body>
 
-  <!-- VIDEO PLAYER -->
-  <div class="watch-player">
-    <iframe
-      id="videoFrame"
-      src=""
-      allowfullscreen>
-    </iframe>
+  <div class="series-watch-page">
+
+    <!-- VIDEO PLAYER -->
+    <div class="watch-player">
+      <iframe
+        id="videoFrame"
+        src=""
+        allowfullscreen>
+      </iframe>
+    </div>
+
+    <!-- EPISODES / HIGHLIGHTS -->
+    <section class="watch-episodes">
+
+      <div class="episodes-top">
+        <!-- TEST MATCH DROPDOWN (LEFT) -->
+        <select id="testSelect">
+          <option value="1st Test">1st Test</option>
+        </select>
+      </div>
+
+      <!-- DAY LIST -->
+      <div class="episodes-list" id="episodesList">
+        <!-- injected by JS -->
+      </div>
+
+    </section>
+
   </div>
-
-  <!-- EPISODES / HIGHLIGHTS -->
-  <section class="watch-episodes">
-
-    <div class="episodes-top">
-      <h2>Highlights</h2>
-
-      <!-- TEST MATCH DROPDOWN -->
-      <select id="testSelect">
-        <option value="1st Test">1st Test</option>
-      </select>
-    </div>
-
-    <!-- DAY LIST -->
-    <div class="episodes-list" id="episodesList">
-      <!-- injected by JS -->
-    </div>
-
-  </section>
 
   <script src="series.js"></script>
 </body>
