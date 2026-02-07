@@ -198,6 +198,10 @@ document.querySelectorAll(".team-btn").forEach(btn => {
 // AUTO-SELECT LATEST YEAR
 // ===============================
 function autoSelectLatestYear() {
+  // ⛔ If coming back from series page, DO NOT override restored state
+  const restoredYear = sessionStorage.getItem("activeYear");
+  if (restoredYear) return;
+
   const yearButtons = [...document.querySelectorAll(".year-btn")];
 
   const latestYearBtn = yearButtons.sort(
@@ -214,11 +218,9 @@ function autoSelectLatestYear() {
 // ===============================
 document.addEventListener("DOMContentLoaded", () => {
   const openPage = sessionStorage.getItem("openPage");
-
-  // 🚨 CRITICAL: if not coming from series page, DO NOTHING
   if (!openPage) return;
 
-  // clear FIRST to avoid loops
+  // 🔥 clear immediately to prevent loops
   sessionStorage.removeItem("openPage");
 
   if (openPage === "testArchive") {
@@ -229,6 +231,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (savedYear) activeYear = Number(savedYear);
     if (savedTeam) activeTeam = savedTeam || null;
+
+    // 🔥 IMPORTANT: visually re-activate buttons
+    document.querySelectorAll(".year-btn").forEach(btn => {
+      btn.classList.toggle(
+        "active",
+        Number(btn.dataset.year) === activeYear
+      );
+    });
+
+    document.querySelectorAll(".team-btn").forEach(btn => {
+      btn.classList.toggle(
+        "active",
+        btn.dataset.team === activeTeam
+      );
+    });
 
     renderMatches();
   }
