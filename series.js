@@ -49,3 +49,9 @@ document.addEventListener("DOMContentLoaded", () => {
     loadTest(testSelect.value);
   });
 });
+
+document.getElementById("seriesBackBtn").addEventListener("click", () => {
+  // Always go back to series cards page
+  window.location.href = "index.html";
+});
+
