@@ -50,6 +50,21 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-document.getElementById("seriesBackBtn").addEventListener("click", () => {
-  window.location.href = "index.html"; // or your cards page
+const backBtn = document.getElementById("seriesBackBtn");
+
+backBtn.addEventListener("click", () => {
+  // save current archive state
+  sessionStorage.setItem("openPage", "testArchive");
+
+  // 👇 these must already exist in your main page JS
+  if (window.activeYear) {
+    sessionStorage.setItem("activeYear", window.activeYear);
+  }
+
+  if (window.activeTeam) {
+    sessionStorage.setItem("activeTeam", window.activeTeam);
+  }
+
+  window.location.href = "index.html";
 });
+
