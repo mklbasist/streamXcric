@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       row.innerHTML = `
         <div class="ep-thumb">
-          <img src="${ep.thumb}" alt="">
+          <img src="${ep.thumbnail}" alt="">
         </div>
         <div class="ep-info">
           <h4>${ep.day}</h4>
