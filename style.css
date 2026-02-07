@@ -1339,6 +1339,19 @@ body {
   color: #888;
 }
 
+.yt-bottom-nav {
+  display: flex !important;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+}
+
+body {
+  padding-bottom: 70px; /* space for bottom nav */
+}
+
 /* ===============================
    OPTIONAL SECTION SPACING
    =============================== */
