@@ -9,33 +9,21 @@
         "highlights": [
           {
             "day": "Day 1 Highlights",
-            "video": "https://www.youtube.com/embed/ptKLdFTZSCw",
-            "thumbnail": "https://img.youtube.com/vi/ptKLdFTZSCw/hqdefault.jpg",
+            "video": "https://www.youtube.com/embed/7zjNhpoVsuc",
+            "thumbnail": "https://img.youtube.com/vi/7zjNhpoVsuc/hqdefault.jpg",
             "duration": "8 min"
           },
           {
             "day": "Day 2 Highlights",
-            "video": "https://www.youtube.com/embed/5TOJpz_EYAw",
-            "thumbnail": "https://img.youtube.com/vi/5TOJpz_EYAw/hqdefault.jpg",
+            "video": "https://www.youtube.com/embed/F84G9Z3eQuM",
+            "thumbnail": "https://img.youtube.com/vi/F84G9Z3eQuM/hqdefault.jpg",
             "duration": "9 min"
           },
           {
             "day": "Day 3 Highlights",
-            "video": "https://www.youtube.com/embed/l482T0yNkeo",
-            "thumbnail": "https://img.youtube.com/vi/l482T0yNkeo/hqdefault.jpg",
+            "video": "https://www.youtube.com/embed/GnT9_uOP_mk",
+            "thumbnail": "https://img.youtube.com/vi/GnT9_uOP_mk/hqdefault.jpg",
             "duration": "10 min"
-          },
-          {
-            "day": "Day 4 Highlights",
-            "video": "https://www.youtube.com/embed/9bZkp7q19f0",
-            "thumbnail": "https://img.youtube.com/vi/9bZkp7q19f0/hqdefault.jpg",
-            "duration": "11 min"
-          },
-          {
-            "day": "Day 5 Highlights",
-            "video": "https://www.youtube.com/embed/3tmd-ClpJxA",
-            "thumbnail": "https://img.youtube.com/vi/3tmd-ClpJxA/hqdefault.jpg",
-            "duration": "12 min"
           }
         ]
       },
