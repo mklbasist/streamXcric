@@ -8,8 +8,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   const testSelect = document.getElementById("testSelect");
   const list = document.getElementById("episodesList");
 
-  frame.src = "https://www.youtube.com/embed/5TOJpz_EYAw";
-
   const params = new URLSearchParams(window.location.search);
   const seriesTitle = params.get("id");
   if (!seriesTitle) return;
@@ -40,17 +38,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     const match = series.matches[index];
     if (!match || !match.highlights) return;
 
-    match.highlights.forEach((ep, i) => {
+    match.highlights.forEach((ep) => {
       const row = document.createElement("div");
       row.className = "episode-row";
 
       row.innerHTML = `
         <div class="ep-thumb">
-          <img src="${ep.thumb}" alt="">
+          <img src="${ep.thumbnail}" alt="">
         </div>
         <div class="ep-info">
-          <h4>${ep.day} Highlights</h4>
-          <span>Watch</span>
+          <h4>${ep.day}</h4>
+          <span>${ep.duration || ""}</span>
         </div>
       `;
 
@@ -61,10 +59,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       list.appendChild(row);
     });
 
-    // autoplay first day
-    if (match.highlights[0]) {
-      frame.src = match.highlights[0].video;
-    }
+    // autoplay first available highlight
+    frame.src = match.highlights[0].video;
   }
 
   loadMatch(0);
