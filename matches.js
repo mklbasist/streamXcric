@@ -70,10 +70,9 @@ function renderMatches() {
     `;
 
       // 🔥 Page-06-02-2026
-card.addEventListener("click", () => {
-  window.location.href =
-    `series.html?id=${encodeURIComponent(series.title)}&from=archive`;
-});
+  card.addEventListener("click", () => {
+    window.location.href = `series.html?id=${encodeURIComponent(series.title)}`;
+  });
 
     container.appendChild(card);
   });
