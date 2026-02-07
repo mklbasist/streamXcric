@@ -1,3 +1,7 @@
+if (!document.referrer.includes("index.html")) {
+  window.location.replace("index.html");
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const frame = document.getElementById("videoFrame");
   const testSelect = document.getElementById("testSelect");
