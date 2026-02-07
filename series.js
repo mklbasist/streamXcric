@@ -50,8 +50,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-const backBtn = document.getElementById("seriesBackBtn");
-
 document.getElementById("seriesBackBtn").addEventListener("click", () => {
   window.location.href = "index.html"; // or your cards page
 });
