@@ -1,60 +1,89 @@
+// ⛔ If user refreshes series page, send back to main
 if (performance.getEntriesByType("navigation")[0]?.type === "reload") {
   window.location.replace("index.html");
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   const frame = document.getElementById("videoFrame");
   const testSelect = document.getElementById("testSelect");
   const list = document.getElementById("episodesList");
 
-  // Default video
+  // fallback video (won't break)
   frame.src = "https://www.youtube.com/embed/5TOJpz_EYAw";
 
-  // Fake data (DESIGN ONLY)
-  const tests = {
-    "1st Test": [
-      { day: "Day 1 Highlights", duration: "10 min" },
-      { day: "Day 2 Highlights", duration: "11 min" },
-      { day: "Day 3 Highlights", duration: "9 min" },
-      { day: "Day 4 Highlights", duration: "12 min" },
-      { day: "Day 5 Highlights", duration: "8 min" }
-    ]
-  };
+  // ✅ get series title from card click
+  const params = new URLSearchParams(window.location.search);
+  const seriesTitle = params.get("id");
 
-  function loadTest(testName) {
+  if (!seriesTitle) return;
+
+  let data;
+  try {
+    const res = await fetch("./data/testSeries.json");
+    data = await res.json();
+  } catch (e) {
+    console.error("Failed to load testSeries.json");
+    return;
+  }
+
+  // ✅ find selected series
+  const series = data.find(s => s.title === seriesTitle);
+  if (!series || !series.tests) return;
+
+  // 🔽 populate Test dropdown
+  testSelect.innerHTML = "";
+  series.tests.forEach((test, i) => {
+    const opt = document.createElement("option");
+    opt.value = i;
+    opt.textContent = test.name;
+    testSelect.appendChild(opt);
+  });
+
+  // 🎥 load highlights for selected test
+  function loadTest(index) {
     list.innerHTML = "";
+    const test = series.tests[index];
+    if (!test || !test.highlights) return;
 
-    tests[testName].forEach((ep, i) => {
+    test.highlights.forEach((ep, i) => {
       const row = document.createElement("div");
       row.className = "episode-row";
 
       row.innerHTML = `
         <div class="ep-thumb">
-          <span>${i + 1}</span>
+          <img src="${ep.thumb}" alt="">
         </div>
         <div class="ep-info">
           <h4>${ep.day}</h4>
-          <span>${ep.duration}</span>
+          <span>Highlights</span>
         </div>
       `;
 
       row.onclick = () => {
-        frame.src = frame.src; // placeholder
+        frame.src = ep.video;
       };
 
       list.appendChild(row);
     });
+
+    // autoplay first highlight
+    if (test.highlights[0]) {
+      frame.src = test.highlights[0].video;
+    }
   }
 
   // initial load
-  loadTest("1st Test");
+  loadTest(0);
 
   testSelect.addEventListener("change", () => {
     loadTest(testSelect.value);
   });
 });
 
-document.getElementById("seriesBackBtn").addEventListener("click", () => {
-  window.location.href = "index.html"; // or your cards page
-});
-
+// ⬅ Back button (unchanged behavior)
+const backBtn = document.getElementById("seriesBackBtn");
+if (backBtn) {
+  backBtn.addEventListener("click", () => {
+    window.location.href = "index.html";
+  });
+}
