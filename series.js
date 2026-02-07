@@ -51,7 +51,5 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.getElementById("seriesBackBtn").addEventListener("click", () => {
-  // Always go back to series cards page
-  window.location.href = "index.html";
+  window.history.back();
 });
-
