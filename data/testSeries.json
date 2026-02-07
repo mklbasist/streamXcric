@@ -14906,13 +14906,13 @@
           {
             "day": "Day 1 Highlights",
             "video": "https://www.youtube.com/embed/ptKLdFTZSCw",
-            "thumbnail": "https://img.youtube.com/vi/ptKLdFTZSCw/hqdefault.jpg",
+            "ep-thumb": "https://img.youtube.com/vi/ptKLdFTZSCw/hqdefault.jpg",
             "duration": "8 min"
           },
           {
             "day": "Day 2 Highlights",
             "video": "https://www.youtube.com/embed/I2g0pGqYOIs",
-            "thumbnail": "https://img.youtube.com/vi/I2g0pGqYOIs/hqdefault.jpg",
+            "ep-thumb": "https://img.youtube.com/vi/I2g0pGqYOIs/hqdefault.jpg",
             "duration": "8 min"
           }
         ]
