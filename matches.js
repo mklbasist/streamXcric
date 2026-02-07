@@ -7,37 +7,6 @@ let activeYear = null;
 let activeTeam = null;
 
 // ===============================
-// RESTORE ARCHIVE STATE (BACK FROM SERIES PAGE)
-// ===============================
-document.addEventListener("DOMContentLoaded", () => {
-  const savedYear = sessionStorage.getItem("activeYear");
-  const savedTeam = sessionStorage.getItem("activeTeam");
-
-  if (savedYear) {
-    activeYear = Number(savedYear);
-
-    // activate year button
-    const yearBtn = document.querySelector(
-      `.year-btn[data-year="${activeYear}"]`
-    );
-    if (yearBtn) yearBtn.classList.add("active");
-  }
-
-  if (savedTeam) {
-    activeTeam = savedTeam;
-
-    const teamBtn = document.querySelector(
-      `.team-btn[data-team="${activeTeam}"]`
-    );
-    if (teamBtn) teamBtn.classList.add("active");
-  }
-
-  if (activeYear) {
-    renderMatches();
-  }
-});
-
-// ===============================
 // LOAD SERIES DATA
 // ===============================
 fetch("./data/testSeries.json")
@@ -198,10 +167,6 @@ document.querySelectorAll(".team-btn").forEach(btn => {
 // AUTO-SELECT LATEST YEAR
 // ===============================
 function autoSelectLatestYear() {
-  // ⛔ If coming back from series page, DO NOT override restored state
-  const restoredYear = sessionStorage.getItem("activeYear");
-  if (restoredYear) return;
-
   const yearButtons = [...document.querySelectorAll(".year-btn")];
 
   const latestYearBtn = yearButtons.sort(
@@ -212,42 +177,3 @@ function autoSelectLatestYear() {
     latestYearBtn.click();
   }
 }
-
-// ===============================
-// Restore archive state ONLY when coming back from series page
-// ===============================
-document.addEventListener("DOMContentLoaded", () => {
-  const openPage = sessionStorage.getItem("openPage");
-  if (!openPage) return;
-
-  // 🔥 clear immediately to prevent loops
-  sessionStorage.removeItem("openPage");
-
-  if (openPage === "testArchive") {
-    showPage("testArchive");
-
-    const savedYear = sessionStorage.getItem("activeYear");
-    const savedTeam = sessionStorage.getItem("activeTeam");
-
-    if (savedYear) activeYear = Number(savedYear);
-    if (savedTeam) activeTeam = savedTeam || null;
-
-    // 🔥 IMPORTANT: visually re-activate buttons
-    document.querySelectorAll(".year-btn").forEach(btn => {
-      btn.classList.toggle(
-        "active",
-        Number(btn.dataset.year) === activeYear
-      );
-    });
-
-    document.querySelectorAll(".team-btn").forEach(btn => {
-      btn.classList.toggle(
-        "active",
-        btn.dataset.team === activeTeam
-      );
-    });
-
-    renderMatches();
-  }
-});
-
