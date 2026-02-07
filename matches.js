@@ -7,6 +7,37 @@ let activeYear = null;
 let activeTeam = null;
 
 // ===============================
+// RESTORE ARCHIVE STATE (BACK FROM SERIES PAGE)
+// ===============================
+document.addEventListener("DOMContentLoaded", () => {
+  const savedYear = sessionStorage.getItem("activeYear");
+  const savedTeam = sessionStorage.getItem("activeTeam");
+
+  if (savedYear) {
+    activeYear = Number(savedYear);
+
+    // activate year button
+    const yearBtn = document.querySelector(
+      `.year-btn[data-year="${activeYear}"]`
+    );
+    if (yearBtn) yearBtn.classList.add("active");
+  }
+
+  if (savedTeam) {
+    activeTeam = savedTeam;
+
+    const teamBtn = document.querySelector(
+      `.team-btn[data-team="${activeTeam}"]`
+    );
+    if (teamBtn) teamBtn.classList.add("active");
+  }
+
+  if (activeYear) {
+    renderMatches();
+  }
+});
+
+// ===============================
 // LOAD SERIES DATA
 // ===============================
 fetch("./data/testSeries.json")
