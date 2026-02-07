@@ -1,4 +1,4 @@
-// ⛔ redirect on refresh
+// ⛔ redirect on refresh 
 if (performance.getEntriesByType("navigation")[0]?.type === "reload") {
   window.location.replace("index.html");
 }
@@ -8,8 +8,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const testSelect = document.getElementById("testSelect");
   const list = document.getElementById("episodesList");
 
-  // ✅ remove forced song
-  frame.src = "";
+  frame.src = "https://www.youtube.com/embed/5TOJpz_EYAw";
 
   const params = new URLSearchParams(window.location.search);
   const seriesTitle = params.get("id");
@@ -41,13 +40,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     const match = series.matches[index];
     if (!match || !match.highlights) return;
 
-    match.highlights.forEach(ep => {
+    match.highlights.forEach((ep, i) => {
       const row = document.createElement("div");
       row.className = "episode-row";
 
       row.innerHTML = `
         <div class="ep-thumb">
-          <img src="${ep.thumbnail}" alt="">
+          <img src="${ep.thumb}" alt="">
         </div>
         <div class="ep-info">
           <h4>${ep.day} Highlights</h4>
@@ -62,7 +61,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       list.appendChild(row);
     });
 
-    // ✅ autoplay first highlight
+    // autoplay first day
     if (match.highlights[0]) {
       frame.src = match.highlights[0].video;
     }
