@@ -8,8 +8,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   const testSelect = document.getElementById("testSelect");
   const list = document.getElementById("episodesList");
 
-  // frame.src = "https://www.youtube.com/embed/5TOJpz_EYAw";
-
   const params = new URLSearchParams(window.location.search);
   const seriesTitle = params.get("id");
   if (!seriesTitle) return;
@@ -45,7 +43,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       row.className = "episode-row";
 
       row.innerHTML = `
-        <div class="ep-thumb">
+        <div class="ep-thumbnail">
           <img src="${ep.thumbnail}" alt="">
         </div>
         <div class="ep-info">
