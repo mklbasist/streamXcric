@@ -210,25 +210,23 @@ function autoSelectLatestYear() {
 }
 
 // ===============================
-// Back button logic
+// Restore archive state ONLY when coming back from series page
 // ===============================
-
 document.addEventListener("DOMContentLoaded", () => {
   const openPage = sessionStorage.getItem("openPage");
-  const savedYear = sessionStorage.getItem("activeYear");
-  const savedTeam = sessionStorage.getItem("activeTeam");
 
   if (openPage === "testArchive") {
-    showPage("testArchive"); // this already exists in your site
+    // 🔁 restore page only once
+    sessionStorage.removeItem("openPage");
 
-    if (savedYear) {
-      activeYear = Number(savedYear);
-    }
+    showPage("testArchive");
 
-    if (savedTeam) {
-      activeTeam = savedTeam || null;
-    }
+    const savedYear = sessionStorage.getItem("activeYear");
+    const savedTeam = sessionStorage.getItem("activeTeam");
 
-    renderMatches(); // re-render cards
+    if (savedYear) activeYear = Number(savedYear);
+    if (savedTeam) activeTeam = savedTeam || null;
+
+    renderMatches();
   }
 });
