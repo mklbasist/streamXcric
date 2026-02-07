@@ -1,4 +1,4 @@
-if (!document.referrer.includes("index.html")) {
+if (performance.getEntriesByType("navigation")[0]?.type === "reload") {
   window.location.replace("index.html");
 }
 
