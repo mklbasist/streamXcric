@@ -50,6 +50,17 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-document.getElementById("seriesBackBtn").addEventListener("click", () => {
-  window.history.back();
-});
+const backBtn = document.getElementById("seriesBackBtn");
+
+if (backBtn) {
+  backBtn.addEventListener("click", () => {
+    const params = new URLSearchParams(window.location.search);
+    const from = params.get("from");
+
+    if (from === "archive") {
+      window.location.href = "index.html#archive";
+    } else {
+      window.location.href = "index.html";
+    }
+  });
+}
