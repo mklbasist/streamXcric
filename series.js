@@ -1,9 +1,14 @@
+// ⛔ redirect on refresh
+if (performance.getEntriesByType("navigation")[0]?.type === "reload") {
+  window.location.replace("index.html");
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
   const frame = document.getElementById("videoFrame");
   const testSelect = document.getElementById("testSelect");
   const list = document.getElementById("episodesList");
 
-  // keep default frame (no autoplay chaos)
+  // ✅ remove forced song
   frame.src = "";
 
   const params = new URLSearchParams(window.location.search);
@@ -14,15 +19,15 @@ document.addEventListener("DOMContentLoaded", async () => {
   try {
     const res = await fetch("./data/testSeries.json");
     data = await res.json();
-  } catch (e) {
-    console.error("Failed to load JSON");
+  } catch {
+    console.error("JSON load failed");
     return;
   }
 
   const series = data.find(s => s.title === seriesTitle);
-  if (!series || !Array.isArray(series.matches)) return;
+  if (!series || !series.matches) return;
 
-  // 🔽 Populate Test dropdown
+  // Populate Test dropdown
   testSelect.innerHTML = "";
   series.matches.forEach((match, i) => {
     const opt = document.createElement("option");
@@ -33,12 +38,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   function loadMatch(index) {
     list.innerHTML = "";
-    frame.src = "";
-
     const match = series.matches[index];
-    if (!match || !Array.isArray(match.highlights)) return;
+    if (!match || !match.highlights) return;
 
-    match.highlights.forEach((ep, i) => {
+    match.highlights.forEach(ep => {
       const row = document.createElement("div");
       row.className = "episode-row";
 
@@ -47,20 +50,24 @@ document.addEventListener("DOMContentLoaded", async () => {
           <img src="${ep.thumbnail}" alt="">
         </div>
         <div class="ep-info">
-          <h4>${ep.day}</h4>
-          <span>${ep.duration || ""}</span>
+          <h4>${ep.day} Highlights</h4>
+          <span>Watch</span>
         </div>
       `;
 
-      row.addEventListener("click", () => {
+      row.onclick = () => {
         frame.src = ep.video;
-      });
+      };
 
       list.appendChild(row);
     });
+
+    // ✅ autoplay first highlight
+    if (match.highlights[0]) {
+      frame.src = match.highlights[0].video;
+    }
   }
 
-  // load first test only (NO autoplay)
   loadMatch(0);
 
   testSelect.addEventListener("change", () => {
@@ -68,7 +75,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 });
 
-// Back button (unchanged, simple, safe)
+// Back button
 const backBtn = document.getElementById("seriesBackBtn");
 if (backBtn) {
   backBtn.addEventListener("click", () => {
