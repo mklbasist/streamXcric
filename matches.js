@@ -177,3 +177,27 @@ function autoSelectLatestYear() {
     latestYearBtn.click();
   }
 }
+
+// ===============================
+// Back button logic
+// ===============================
+
+document.addEventListener("DOMContentLoaded", () => {
+  const openPage = sessionStorage.getItem("openPage");
+  const savedYear = sessionStorage.getItem("activeYear");
+  const savedTeam = sessionStorage.getItem("activeTeam");
+
+  if (openPage === "testArchive") {
+    showPage("testArchive"); // this already exists in your site
+
+    if (savedYear) {
+      activeYear = Number(savedYear);
+    }
+
+    if (savedTeam) {
+      activeTeam = savedTeam || null;
+    }
+
+    renderMatches(); // re-render cards
+  }
+});
