@@ -215,10 +215,13 @@ function autoSelectLatestYear() {
 document.addEventListener("DOMContentLoaded", () => {
   const openPage = sessionStorage.getItem("openPage");
 
-  if (openPage === "testArchive") {
-    // 🔁 restore page only once
-    sessionStorage.removeItem("openPage");
+  // 🚨 CRITICAL: if not coming from series page, DO NOTHING
+  if (!openPage) return;
 
+  // clear FIRST to avoid loops
+  sessionStorage.removeItem("openPage");
+
+  if (openPage === "testArchive") {
     showPage("testArchive");
 
     const savedYear = sessionStorage.getItem("activeYear");
@@ -230,3 +233,4 @@ document.addEventListener("DOMContentLoaded", () => {
     renderMatches();
   }
 });
+
