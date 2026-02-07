@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const list = document.getElementById("episodesList");
 
   // Default video
-  frame.src = "https://www.youtube.com/embed/dQw4w9WgXcQ";
+  frame.src = "https://www.youtube.com/embed/5TOJpz_EYAw";
 
   // Fake data (DESIGN ONLY)
   const tests = {
@@ -49,12 +49,3 @@ document.addEventListener("DOMContentLoaded", () => {
     loadTest(testSelect.value);
   });
 });
-
-const backBtn = document.getElementById("seriesBackBtn");
-
-if (backBtn) {
-  backBtn.addEventListener("click", () => {
-    sessionStorage.setItem("openPage", "testArchive");
-    window.location.href = "index.html";
-  });
-}
