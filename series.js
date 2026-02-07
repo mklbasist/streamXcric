@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const testSelect = document.getElementById("testSelect");
   const list = document.getElementById("episodesList");
 
-  frame.src = "https://www.youtube.com/embed/5TOJpz_EYAw";
+  // frame.src = "https://www.youtube.com/embed/5TOJpz_EYAw";
 
   const params = new URLSearchParams(window.location.search);
   const seriesTitle = params.get("id");
@@ -46,10 +46,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       row.innerHTML = `
         <div class="ep-thumb">
-          <img src="${ep.thumb}" alt="">
+          <img src="${ep.thumbnail}" alt="">
         </div>
         <div class="ep-info">
-          <h4>${ep.day} Highlights</h4>
+          <h4>${ep.day}</h4>
           <span>Watch</span>
         </div>
       `;
