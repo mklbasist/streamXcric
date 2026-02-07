@@ -70,9 +70,13 @@ function renderMatches() {
     `;
 
       // 🔥 Page-06-02-2026
-  card.addEventListener("click", () => {
-    window.location.href = `series.html?id=${encodeURIComponent(series.title)}`;
-  });
+card.addEventListener("click", () => {
+  sessionStorage.setItem("activeYear", activeYear);
+  sessionStorage.setItem("activeTeam", activeTeam || "");
+
+  window.location.href = `series.html?id=${encodeURIComponent(series.title)}`;
+});
+
 
     container.appendChild(card);
   });
