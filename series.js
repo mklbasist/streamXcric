@@ -43,8 +43,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       row.className = "episode-row";
 
       row.innerHTML = `
-        <div class="ep-thumb">
-          <img src="${ep.thumb}" alt="">
+        <div class="ep-thumbnail">
+          <img src="${ep.thumbnail}" alt="">
         </div>
         <div class="ep-info">
           <h4>${ep.day}</h4>
