@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     return;
   }
 
-  const series = data.find(s => s.title === seriesTitle);
+  const series = data.find(s => s.id === seriesTitle);
   if (!series || !series.matches) return;
 
   // Populate Test dropdown
