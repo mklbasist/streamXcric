@@ -74,7 +74,7 @@ card.addEventListener("click", () => {
   sessionStorage.setItem("activeYear", activeYear);
   sessionStorage.setItem("activeTeam", activeTeam || "");
 
-  window.location.href = `series.html?id=${encodeURIComponent(series.title)}`;
+  window.location.href = `series.html?id=${series.id}`;
 });
 
 
