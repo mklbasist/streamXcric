@@ -1376,16 +1376,22 @@ body {
   display: none;
 }
 
-/* MOBILE VIDEO SIZE CONTROL */
+/* MOBILE ONLY – video height control */
 @media (max-width: 768px) {
+  .series-watch-page {
+    background: #000;
+  }
+
   .series-watch-page .watch-player {
     margin: 10px auto;
-    padding: 0 4px;
+    padding: 0 6px;
+    background: #000;
   }
 
   .series-watch-page .watch-player iframe {
-    height: 180px; 
-    border-radius: 12px;
+    height: 200px; /* <-- tweak this freely */
+    border-radius: 10px;
+    background: #000;
   }
 }
 
