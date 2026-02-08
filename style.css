@@ -1384,8 +1384,8 @@ body {
   }
 
   .series-watch-page .watch-player iframe {
-    height: 200px; 
-    border-radius: 8px;
+    height: 180px; 
+    border-radius: 12px;
   }
 }
 
