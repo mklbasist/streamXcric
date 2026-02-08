@@ -1248,16 +1248,19 @@ body {
 /* ===== WATCH PAGE (SCOPED – SAFE) ===== */
 
 .series-watch-page {
-  margin: 0;
+  min-height: 100vh;
   background: #000;
   color: #fff;
   font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
 }
 
 /* PLAYER */
 .series-watch-page .watch-player {
   max-width: 1100px;
   margin: 20px auto;
+  background: #000;
 }
 
 .series-watch-page .watch-player iframe {
@@ -1266,15 +1269,18 @@ body {
   border-radius: 10px;
   border: none;
   background: #000;
+  display: block;
 }
 
 /* EPISODES SECTION */
 .series-watch-page .watch-episodes {
-  max-width: 900px; /* tighter like reference site */
+  max-width: 900px;
   margin: 0 auto;
   padding: 10px;
+  background: #000;
 }
 
+/* TOP BAR */
 .series-watch-page .episodes-top {
   display: flex;
   justify-content: space-between;
@@ -1295,7 +1301,7 @@ body {
   border-radius: 6px;
 }
 
-/* EPISODE LIST (ROW STYLE) */
+/* EPISODE LIST */
 .series-watch-page .episodes-list {
   display: flex;
   flex-direction: column;
@@ -1349,9 +1355,17 @@ body {
   color: #fff;
 }
 
-/* REMOVE EXTRA TEXT IF PRESENT */
+/* REMOVE EXTRA TEXT */
 .series-watch-page .ep-info span {
   display: none;
+}
+
+/* MOBILE SAFETY */
+@media (max-width: 768px) {
+  .series-watch-page .watch-player iframe {
+    height: 220px;
+    border-radius: 8px;
+  }
 }
 
 /* ===============================
