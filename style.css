@@ -1270,8 +1270,8 @@ body {
 
 /* EPISODES SECTION */
 .series-watch-page .watch-episodes {
-  max-width: 1100px;
-  margin: auto;
+  max-width: 900px; /* tighter like reference site */
+  margin: 0 auto;
   padding: 10px;
 }
 
@@ -1284,7 +1284,7 @@ body {
 
 .series-watch-page .episodes-top h2 {
   margin: 0;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .series-watch-page .episodes-top select {
@@ -1295,48 +1295,63 @@ body {
   border-radius: 6px;
 }
 
-/* EPISODE LIST */
+/* EPISODE LIST (ROW STYLE) */
 .series-watch-page .episodes-list {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 10px;
 }
 
+/* SINGLE ROW */
 .series-watch-page .episode-row {
   display: flex;
-  gap: 14px;
-  cursor: pointer;
-  padding: 8px;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
   border-radius: 8px;
+  cursor: pointer;
+  background: #0b0b0b;
+  transition: background 0.2s ease;
 }
 
 .series-watch-page .episode-row:hover {
-  background: #111;
+  background: #1a1a1a;
 }
 
-/* THUMB */
-.series-watch-page .ep-thumb {
-  width: 160px;
-  height: 90px;
-  background: #222;
+/* THUMBNAIL */
+.series-watch-page .ep-thumb,
+.series-watch-page .ep-thumbnail {
+  width: 130px;
+  height: 75px;
   border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  color: #aaa;
+  overflow: hidden;
   flex-shrink: 0;
+  background: #222;
+}
+
+.series-watch-page .ep-thumb img,
+.series-watch-page .ep-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* INFO */
-.series-watch-page .ep-info h4 {
-  margin: 0;
-  font-size: 16px;
+.series-watch-page .ep-info {
+  display: flex;
+  align-items: center;
 }
 
+.series-watch-page .ep-info h4 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+}
+
+/* REMOVE EXTRA TEXT IF PRESENT */
 .series-watch-page .ep-info span {
-  font-size: 12px;
-  color: #888;
+  display: none;
 }
 
 /* ===============================
