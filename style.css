@@ -1390,7 +1390,7 @@ body {
 
   .series-watch-page .watch-player iframe {
     height: 200px; /* <-- tweak this freely */
-    border-radius: 10px;
+    border-radius: 14px;
     background: #000;
   }
 }
