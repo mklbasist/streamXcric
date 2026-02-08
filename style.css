@@ -1376,6 +1376,19 @@ body {
   display: none;
 }
 
+/* MOBILE VIDEO SIZE CONTROL */
+@media (max-width: 768px) {
+  .series-watch-page .watch-player {
+    margin: 10px auto;
+    padding: 0 6px;
+  }
+
+  .series-watch-page .watch-player iframe {
+    height: 200px; 
+    border-radius: 8px;
+  }
+}
+
 /* ===============================
    OPTIONAL SECTION SPACING
    =============================== */
