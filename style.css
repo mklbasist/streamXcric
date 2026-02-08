@@ -1380,7 +1380,7 @@ body {
 @media (max-width: 768px) {
   .series-watch-page .watch-player {
     margin: 10px auto;
-    padding: 0 6px;
+    padding: 0 4px;
   }
 
   .series-watch-page .watch-player iframe {
