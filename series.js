@@ -54,6 +54,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       row.onclick = () => {
         frame.src = ep.video + "?autoplay=1&modestbranding=1&rel=0";
+
+        // mobile UX fix: bring player into view
+        frame.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+       });
       };
 
       list.appendChild(row);
