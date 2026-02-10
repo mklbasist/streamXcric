@@ -1,3 +1,11 @@
+function normalize(str) {
+  return str
+    .toLowerCase()
+    .replace(/[-_]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 let matches = [];
 
 // ===============================
@@ -30,10 +38,11 @@ function renderMatches() {
 
   if (activeTeam) {
     filtered = filtered.filter(m => {
-      const title = m.title.toLowerCase();
-      const team = activeTeam.toLowerCase();
+      const title = normalize(m.title);
+      const team = normalize(activeTeam);
 
       if (title.includes(team)) return true;
+
 
       // Ashes support
       if (
