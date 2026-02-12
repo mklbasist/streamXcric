@@ -1403,3 +1403,17 @@ body {
   padding-top: 32px;
 }
 
+/* MOBILE SCROLL FIX */
+@media (max-width: 768px) {
+
+  html, body {
+    height: auto !important;
+    overflow-y: auto !important;
+  }
+
+  #players {
+    min-height: auto !important;
+    height: auto !important;
+  }
+
+}
