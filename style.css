@@ -1403,19 +1403,22 @@ body {
   padding-top: 32px;
 }
 
-/* FORCE MOBILE SCROLL FIX */
+/* ===== MOBILE SCROLL STABILITY FIX ===== */
 @media (max-width: 768px) {
 
-  body,
-  html {
-    overflow-y: auto !important;
+  body {
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
-  section,
-  #players,
-  #matchHighlights,
-  .players-carousel {
-    overflow: visible !important;
+  .players-track,
+  .year-bar,
+  .team-bar {
+    overflow-x: auto;
+    overflow-y: hidden;
+    touch-action: pan-x;
   }
 
 }
+
