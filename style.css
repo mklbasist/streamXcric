@@ -1403,17 +1403,19 @@ body {
   padding-top: 32px;
 }
 
-/* MOBILE SCROLL FIX */
+/* FORCE MOBILE SCROLL FIX */
 @media (max-width: 768px) {
 
-  html, body {
-    height: auto !important;
+  body,
+  html {
     overflow-y: auto !important;
   }
 
-  #players {
-    min-height: auto !important;
-    height: auto !important;
+  section,
+  #players,
+  #matchHighlights,
+  .players-carousel {
+    overflow: visible !important;
   }
 
 }
