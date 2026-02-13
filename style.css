@@ -54,7 +54,7 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: url('static/IMG_5201.jpeg') center/cover no-repeat;
+  background: url('static/IMG_5200.jpeg') center/cover no-repeat;
   filter: blur(20px);
   transform: scale(1.1);
   z-index: 0;
