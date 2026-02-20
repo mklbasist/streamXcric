@@ -1403,8 +1403,16 @@ body {
   padding-top: 32px;
 }
 
+#quicks {
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
 .reels-feed {
   height: 100vh;
+  width: 100%;
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
 }
@@ -1414,17 +1422,9 @@ body {
   height: 100vh;
   border: none;
   scroll-snap-align: start;
+  display: block;
 }
 
-.reels-feed {
-  height: 100vh;
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
-}
-
-.reels-feed iframe {
-  width: 100%;
-  height: 100vh;
-  border: none;
-  scroll-snap-align: start;
+#quicks {
+  padding: 0 !important;
 }
