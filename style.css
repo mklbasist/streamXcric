@@ -1403,4 +1403,28 @@ body {
   padding-top: 32px;
 }
 
+.reels-feed {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+}
 
+.reels-feed iframe {
+  width: 100%;
+  height: 100vh;
+  border: none;
+  scroll-snap-align: start;
+}
+
+.reels-feed {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+}
+
+.reels-feed iframe {
+  width: 100%;
+  height: 100vh;
+  border: none;
+  scroll-snap-align: start;
+}
