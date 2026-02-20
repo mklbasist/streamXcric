@@ -437,7 +437,7 @@ function showPage(pageId) {
     "welcome",
     "main",
     "players",
-    "trending",
+    "quicks",
     "about",
     "playerPage",
     "rootOptions",
@@ -457,6 +457,10 @@ function showPage(pageId) {
   }
 
   document.getElementById(pageId)?.classList.remove("hidden");
+
+  if (pageId === "quicks") {
+  loadAllShorts();
+}
 
   // footer logic
   const footer = document.getElementById("mainFooter");
@@ -829,6 +833,51 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
+// ====================
+// YouTube Shorts Logic
+// ====================
 
+const API_KEY = "AIzaSyD2p4EfEFpP8QQ3Ly6BwuxykHc8OhbHjpM";
+
+const CHANNELS = [
+  "UCz1D0n02BR3t51KuBOPmfTQ",
+  "UC2MHTOXktfTK26aDKyQs3cQ",
+  "UCt2JXOLNxqry7B_4rRZME3Q",
+];
+
+async function fetchVideosFromChannel(channelId) {
+  const url = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${channelId}&part=snippet,id&order=date&maxResults=5`;
+
+  const response = await fetch(url);
+  const data = await response.json();
+
+  return data.items
+    .filter(item => item.id.videoId)
+    .map(item => item.id.videoId);
+}
+
+async function loadAllShorts() {
+  const container = document.getElementById("shorts-container");
+  if (!container) return;
+
+  if (container.hasChildNodes()) return; // prevent reloading
+
+  let allVideos = [];
+
+  for (let channel of CHANNELS) {
+    const videos = await fetchVideosFromChannel(channel);
+    allVideos = allVideos.concat(videos);
+  }
+
+  allVideos.sort(() => Math.random() - 0.5);
+
+  allVideos.forEach(videoId => {
+    const iframe = document.createElement("iframe");
+    iframe.src = `https://www.youtube.com/embed/${videoId}?rel=0`;
+    iframe.allowFullscreen = true;
+    iframe.loading = "lazy";
+    container.appendChild(iframe);
+  });
+}
 
 
