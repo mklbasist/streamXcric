@@ -837,7 +837,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // YouTube Shorts Logic
 // ====================
 
-const API_KEY = "AIzaSyD2p4EfEFpP8QQ3Ly6BwuxykHc8OhbHjpM";
+const API_KEY = "AIzaSyDE0EDFla4HKtNrceiw5CzdEivygaal9YI";
 
 const CHANNELS = [
   "UCz1D0n02BR3t51KuBOPmfTQ",
