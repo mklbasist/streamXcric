@@ -1,3 +1,5 @@
+let userInteracted = false;
+
 function getThumbnail(url) {
   if (url.includes("youtube.com")) {
     const id = url.split("/embed/")[1];
@@ -906,3 +908,7 @@ function setupAutoPlay() {
 
   iframes.forEach(iframe => observer.observe(iframe));
 }
+
+document.addEventListener("click", () => {
+  userInteracted = true;
+}, { once: true });
