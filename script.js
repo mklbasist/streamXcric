@@ -893,16 +893,20 @@ function setupAutoPlay() {
       const iframe = entry.target;
 
       if (entry.isIntersecting) {
-        iframe.contentWindow.postMessage(
-          '{"event":"command","func":"playVideo","args":""}',
-          '*'
-        );
-      } else {
-        iframe.contentWindow.postMessage(
-          '{"event":"command","func":"pauseVideo","args":""}',
-          '*'
-        );
-      }
+
+  if (userInteracted) {
+    iframe.contentWindow.postMessage(
+      '{"event":"command","func":"playVideo","args":""}',
+      '*'
+    );
+  }
+
+} else {
+  iframe.contentWindow.postMessage(
+    '{"event":"command","func":"pauseVideo","args":""}',
+    '*'
+  );
+}
     });
   }, { threshold: 0.6 });
 
