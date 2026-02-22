@@ -846,7 +846,7 @@ const CHANNELS = [
 ];
 
 async function fetchVideosFromChannel(channelId) {
-  const url = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${channelId}&part=snippet,id&order=date&maxResults=5`;
+  const url = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${channelId}&part=snippet,id&order=relevance&maxResults=15`;
 
   const response = await fetch(url);
   const data = await response.json();
@@ -873,7 +873,7 @@ async function loadAllShorts() {
 
   allVideos.forEach(videoId => {
     const iframe = document.createElement("iframe");
-    iframe.src = `https://www.youtube.com/embed/${videoId}?rel=0`;
+    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&playsinline=1&rel=0`;
     iframe.allowFullscreen = true;
     iframe.loading = "lazy";
     container.appendChild(iframe);
