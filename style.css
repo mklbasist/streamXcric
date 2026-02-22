@@ -25,7 +25,7 @@ body {
 
 .welcome-header h1,
 .main-header h1 {
-  font-family: "Silkscreen", sans-serif;
+  font-family: "VT323", monospace;
   font-weight: 400;
   font-size: 1.5rem;
 }
