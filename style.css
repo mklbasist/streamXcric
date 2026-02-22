@@ -760,13 +760,13 @@ body {
 /* ========================= */
 .dark-mode body,
 .dark-mode {
-  background: #0e0e0e !important;
+  background: #0b0f14 !important;
   color: #ffffff !important;
 }
 
 .dark-mode .main-header {
-  background: #111 !important;
-  color: rgb(120, 203, 224) !important;
+  background: #0b0f14 !important;
+  color: #3df2e0;
 }
 
 /* fix text in cards */
