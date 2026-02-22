@@ -873,11 +873,36 @@ async function loadAllShorts() {
 
   allVideos.forEach(videoId => {
     const iframe = document.createElement("iframe");
-    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&playsinline=1&rel=0`;
+    iframe.src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1&playsinline=1&rel=0`;
+    iframe.setAttribute("allow", "autoplay");
     iframe.allowFullscreen = true;
     iframe.loading = "lazy";
     container.appendChild(iframe);
   });
+
+  setupAutoPlay();
 }
 
+function setupAutoPlay() {
+  const iframes = document.querySelectorAll("#shorts-container iframe");
 
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const iframe = entry.target;
+
+      if (entry.isIntersecting) {
+        iframe.contentWindow.postMessage(
+          '{"event":"command","func":"playVideo","args":""}',
+          '*'
+        );
+      } else {
+        iframe.contentWindow.postMessage(
+          '{"event":"command","func":"pauseVideo","args":""}',
+          '*'
+        );
+      }
+    });
+  }, { threshold: 0.6 });
+
+  iframes.forEach(iframe => observer.observe(iframe));
+}
