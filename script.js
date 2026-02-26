@@ -392,7 +392,7 @@ function backToPlayers() {
       cook: {
         name: "Alastair Cook",
         centuries: [
-          { title: "1. 104 vs IND, 2006", video: "https://drive.google.com/file/d/1iu5jU8DWK3Zwxv3r-bHPM0KP4ah8h5aF/preview" },
+          { title: "1. 104 vs IND, 2006", video: "https://www.youtube.com/embed/nOmjmijq_i4" },
           { title: "2. 105 vs PAK, 2006", video: "https://www.youtube.com/embed/e4lXg9y8vPU" },
           { title: "3. 127 vs PAK, 2006", video: "https://www.youtube.com/embed/p_iffs9GysU" },
           { title: "4. 116 vs AUS, 2006", video: "https://www.youtube.com/embed/CM0zfsQ7-2k" },
