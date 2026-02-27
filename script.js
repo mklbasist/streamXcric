@@ -2,15 +2,26 @@ let userInteracted = false;
 
 function getThumbnail(url) {
   if (url.includes("youtube.com")) {
-    const id = url.split("/embed/")[1];
-    return `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
-  } else if (url.includes("dailymotion.com")) {
+    let id = url.split("/embed/")[1];
+
+    if (!id) return "";
+
+    // Remove query parameters like ?rel=0
+    id = id.split("?")[0];
+
+    return `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
+  }
+
+  else if (url.includes("dailymotion.com")) {
     const id = url.split("/video/")[1];
     return `https://www.dailymotion.com/thumbnail/video/${id}`;
-  } else if (url.includes("drive.google.com")) {
+  }
+
+  else if (url.includes("drive.google.com")) {
     const id = url.split("/d/")[1].split("/")[0];
     return `https://drive.google.com/thumbnail?id=${id}`;
   }
+
   return "";
 }
 
