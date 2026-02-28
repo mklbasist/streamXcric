@@ -1,15 +1,12 @@
-let userInteracted = false;
-
 function getThumbnail(url) {
   if (url.includes("youtube.com")) {
     let id = url.split("/embed/")[1];
-
     if (!id) return "";
 
-    // Remove query parameters like ?rel=0
     id = id.split("?")[0];
 
-    return `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
+    // Use hqdefault (works for ALL videos, old + new)
+    return `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
   }
 
   else if (url.includes("dailymotion.com")) {
@@ -347,7 +344,7 @@ function backToPlayers() {
       sachin: {
         name: "Sachin Tendulkar",
         centuries: [
-          { title: "1. 119* vs ENG, 1990", video: "https://www.youtube.com/embed/mPFvIA7S2j4" },
+          { title: "1. 119* vs ENG, 1990", video: "https://www.youtube.com/embed/q4dnhNtZ1ao" },
           { title: "2. 148* vs AUS, 1992", video: "https://www.youtube.com/embed/1MCeEbAdZX0" },
           { title: "3. 114 vs AUS, 1992", video: "https://www.youtube.com/embed/SA3hAX5uJ8A" },
           { title: "4. 111 vs SA, 1992", video: "https://www.youtube.com/embed/JKojeYrTsmM" },
@@ -403,7 +400,7 @@ function backToPlayers() {
       cook: {
         name: "Alastair Cook",
         centuries: [
-          { title: "1. 104 vs IND, 2006", video: "https://www.youtube.com/embed/nOmjmijq_i4" },
+          { title: "1. 104 vs IND, 2006", video: "https://drive.google.com/file/d/1iu5jU8DWK3Zwxv3r-bHPM0KP4ah8h5aF/preview" },
           { title: "2. 105 vs PAK, 2006", video: "https://www.youtube.com/embed/e4lXg9y8vPU" },
           { title: "3. 127 vs PAK, 2006", video: "https://www.youtube.com/embed/p_iffs9GysU" },
           { title: "4. 116 vs AUS, 2006", video: "https://www.youtube.com/embed/CM0zfsQ7-2k" },
