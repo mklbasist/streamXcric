@@ -369,7 +369,7 @@ function backToPlayers() {
           { title: "23. 122 vs ZIM, 2000", video: "https://www.youtube.com/embed/q4dnhNtZ1ao" },
           { title: "24. 201* vs ZIM, 2000", video: "https://www.youtube.com/embed/q4dnhNtZ1ao" },
           { title: "25. 126 vs AUS, 2001", video: "https://www.youtube.com/embed/mOGnFKSR_Lo" },
-          { title: "26. 155 vs SA, 2001", video: "https://www.youtube.com/embed/q4dnhNtZ1ao" },
+          { title: "26. 155 vs SA, 2001", video: "https://www.youtube.com/embed/H_2zrz20XUs" },
           { title: "27. 103 vs ENG, 2001", video: "https://www.youtube.com/embed/q4dnhNtZ1ao" },
           { title: "28. 176 vs ZIM, 2002", video: "https://www.youtube.com/embed/q4dnhNtZ1ao" },
           { title: "29. 117 vs WI, 2002", video: "https://www.youtube.com/embed/tQzoOgOiF08" },
@@ -383,7 +383,7 @@ function backToPlayers() {
           { title: "37. 122* vs BAN, 2007", video: "https://www.youtube.com/embed/q4dnhNtZ1ao" },
           { title: "38. 154* vs AUS, 2008", video: "https://www.youtube.com/embed/ypd-s37SKWA" },
           { title: "39. 153 vs AUS, 2008", video: "https://www.youtube.com/embed/N3nknf_u5BA" },
-          { title: "40. 109 vs AUS, 2008", video: "https://www.youtube.com/embed/q4dnhNtZ1ao" },
+          { title: "40. 109 vs AUS, 2008", video: "https://www.youtube.com/embed/X82N8VOFraA" },
           { title: "41. 103* vs ENG, 2008", video: "https://www.youtube.com/embed/WEsLGf5jVds" },
           { title: "42. 160 vs NZ, 2009", video: "https://www.youtube.com/embed/WlEgBby3gK0" },
           { title: "43. 100* vs SL, 2009", video: "https://www.youtube.com/embed/q4dnhNtZ1ao" },
@@ -392,7 +392,7 @@ function backToPlayers() {
           { title: "46. 100 vs SA, 2010", video: "https://www.youtube.com/embed/eqqdCM04k6c" },
           { title: "47. 106 vs SA, 2010", video: "https://www.youtube.com/embed/6QDYqAyihas" },
           { title: "48. 203 vs SL, 2010", video: "https://www.youtube.com/embed/14Tu-V9ONoc" },
-          { title: "49. 214 vs AUS, 2010", video: "https://www.youtube.com/embed/q4dnhNtZ1ao" },
+          { title: "49. 214 vs AUS, 2010", video: "https://www.youtube.com/embed/K7oTqWUx3l4" },
           { title: "50. 111* vs SA, 2010", video: "https://www.youtube.com/embed/9txrdKwBXJQ" },
           { title: "51. 146 vs SA, 2011", video: "https://www.youtube.com/embed/BkQHJMbvyh0" }
         ]
