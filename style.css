@@ -62,7 +62,7 @@ body {
   position: absolute;
   inset: 0;
   background: url('static/b5a885fcd9f6f9112ac8b3a336fa42d9-instagram-stories_reels.png') center/cover no-repeat;
-  filter: blur(20px);
+  filter: blur(5px);
   transform: scale(1.1);
   z-index: 0;
 }
