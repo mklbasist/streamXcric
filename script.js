@@ -355,7 +355,7 @@ function backToPlayers() {
           { title: "9. 122 vs ENG, 1996", video: "https://www.youtube.com/embed/cVtSkjoVEwg" },
           { title: "10. 177 vs ENG, 1996", video: "https://www.youtube.com/embed/kcfslHtq7C0" },
           { title: "11. 169 vs SA, 1997", video: "https://www.youtube.com/embed/sJ40mTqVtcg" },
-          { title: "12. 143 vs SL, 1997", video: "https://www.youtube.com/embed/8WGzDyK4r8s" },
+          { title: "12. 143 vs SL, 1997", video: "https://www.youtube.com/embed/SXO0bkhJJVY" },
           { title: "13. 139 vs SL, 1997", video: "https://www.youtube.com/embed/oewseYBKzfQ" },
           { title: "14. 148 vs SL, 1997", video: "https://www.youtube.com/embed/s-iup8Iak5k" },
           { title: "15. 155* vs AUS, 1998", video: "https://www.youtube.com/embed/TR_KZGaOyO4" },
