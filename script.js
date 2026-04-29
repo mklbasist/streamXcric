@@ -612,7 +612,7 @@ function showPage(pageId) {
     "main",
     "players",
     "quicks",
-    "about",
+    "insider",
     "playerPage",
     "rootOptions",
     "askSection",
@@ -1198,6 +1198,6 @@ function formatTime(date) {
 }
 
 window.showInsider = function() {
-  document.getElementById('insider').classList.remove('hidden');
+  showPage('insider');
   loadInsiderNews();
 };
