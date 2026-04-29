@@ -1102,30 +1102,28 @@ const TRENDING_TOPICS = [
 
 async function loadInsiderNews() {
   try {
-    const corsProxy = 'https://api.allorigins.win/get?url=';
+    const corsProxy = 'https://api.rss2json.com/v1/api.json?rss_url=';
     let allNews = [];
 
     for (let feed of RSS_FEEDS) {
-      try {
-        const response = await fetch(corsProxy + encodeURIComponent(feed));
-        const data = await response.json();
-        const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(data.contents, 'text/xml');
-        
-        const items = xmlDoc.querySelectorAll('item');
-        items.forEach(item => {
-          const title = item.querySelector('title')?.textContent || 'No title';
-          const description = item.querySelector('description')?.textContent || '';
-          const pubDate = item.querySelector('pubDate')?.textContent || new Date();
-          
-          allNews.push({
-            title: title.substring(0, 100),
-            description: description.substring(0, 120),
-            date: new Date(pubDate),
-            source: feed.includes('espncricinfo') ? 'ESPNcricinfo' : 
-                    feed.includes('cricketaddictor') ? 'Cricket Addictor' : 'Cricbuzz'
-          });
-        });
+  try {
+    const response = await fetch(corsProxy + encodeURIComponent(feed));
+    const data = await response.json();
+
+    data.items.forEach(item => {
+      allNews.push({
+        title: item.title.substring(0, 100),
+        description: item.description.replace(/<[^>]+>/g, '').substring(0, 120),
+        date: new Date(item.pubDate),
+        source: feed.includes('espncricinfo') ? 'ESPNcricinfo' : 
+                feed.includes('cricketaddictor') ? 'Cricket Addictor' : 'Cricbuzz'
+      });
+    });
+
+  } catch (err) {
+    console.log('Feed error:', err);
+  }
+}
       } catch (err) {
         console.log('Feed error:', err);
       }
