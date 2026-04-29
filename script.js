@@ -1124,10 +1124,6 @@ async function loadInsiderNews() {
     console.log('Feed error:', err);
   }
 }
-      } catch (err) {
-        console.log('Feed error:', err);
-      }
-    }
 
     allNews.sort((a, b) => b.date - a.date);
 
