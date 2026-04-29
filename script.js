@@ -1110,7 +1110,12 @@ async function loadInsiderNews() {
     const response = await fetch(corsProxy + encodeURIComponent(feed));
     const data = await response.json();
 
-    data.items.forEach(item => {
+    if (!data.items) {
+  console.log("No items from API", data);
+  continue;
+}
+
+data.items.forEach(item => {
       allNews.push({
         title: item.title.substring(0, 100),
         description: item.description.replace(/<[^>]+>/g, '').substring(0, 120),
