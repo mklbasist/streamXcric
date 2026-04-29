@@ -314,7 +314,7 @@
     <div class="yt-tab" onclick="showPage('main')"><span class="icon">🏠</span><span>Home</span></div>
     <div class="yt-tab" onclick="showPage('quicks')"><span class="icon">🔥</span><span>Quicks</span></div>
     <div class="yt-tab" onclick="showPage('players')"><span class="icon">🔎</span><span>Explore</span></div>
-    <div class="yt-tab" onclick="showPage('about')"><span class="icon">ℹ️</span><span>About</span></div>
+    <div class="yt-tab" onclick="showPage('about')"><span class="icon">ℹ️</span><span>Insider</span></div>
     <div class="yt-tab" onclick="showPage('askSection')">
     <span class="icon">🤖</span><span>Ask</span>
     </div>
@@ -329,15 +329,20 @@
 <script src="matches.js"></script>
 
 <script>
-  // 🌙 Dark Mode Toggle
-  const themeBtn = document.getElementById("themeToggle");
-  if (themeBtn) {
-    themeBtn.addEventListener("click", () => {
-      document.body.classList.toggle("dark-mode");
-      themeBtn.textContent =
-        document.body.classList.contains("dark-mode") ? "🌙" : "🔆";
-    });
-  }
+// 🌙 Dark Mode Toggle
+const themeBtn = document.getElementById("themeToggle");
+
+// Set dark mode as default on page load
+document.body.classList.add("dark-mode");
+themeBtn.textContent = "🔆";
+
+if (themeBtn) {
+  themeBtn.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+    themeBtn.textContent =
+      document.body.classList.contains("dark-mode") ? "🔆" : "🌙";
+  });
+}
 
   // 🍔 Hamburger Menu
   const hamBtn = document.getElementById("hamburgerBtn");
