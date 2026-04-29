@@ -1088,3 +1088,116 @@ function setupAutoPlay() {
 document.addEventListener("click", () => {
   userInteracted = true;
 }, { once: true });
+
+const RSS_FEEDS = [
+  'https://www.espncricinfo.com/rss/news',
+  'https://cricketaddictor.com/feed/',
+  'https://www.cricbuzz.com/rss-feeds/cricket-news'
+];
+
+const TRENDING_TOPICS = [
+  'Test Cricket', 'IPL', 'World Cup', 'Injury Report',
+  'Selection', 'Captaincy', 'Transfer', 'Record'
+];
+
+async function loadInsiderNews() {
+  try {
+    const corsProxy = 'https://api.allorigins.win/get?url=';
+    let allNews = [];
+
+    for (let feed of RSS_FEEDS) {
+      try {
+        const response = await fetch(corsProxy + encodeURIComponent(feed));
+        const data = await response.json();
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(data.contents, 'text/xml');
+        
+        const items = xmlDoc.querySelectorAll('item');
+        items.forEach(item => {
+          const title = item.querySelector('title')?.textContent || 'No title';
+          const description = item.querySelector('description')?.textContent || '';
+          const pubDate = item.querySelector('pubDate')?.textContent || new Date();
+          
+          allNews.push({
+            title: title.substring(0, 100),
+            description: description.substring(0, 120),
+            date: new Date(pubDate),
+            source: feed.includes('espncricinfo') ? 'ESPNcricinfo' : 
+                    feed.includes('cricketaddictor') ? 'Cricket Addictor' : 'Cricbuzz'
+          });
+        });
+      } catch (err) {
+        console.log('Feed error:', err);
+      }
+    }
+
+    allNews.sort((a, b) => b.date - a.date);
+
+    if (allNews.length > 0) {
+      const featured = allNews[0];
+      document.getElementById('featuredTitle').textContent = featured.title;
+      document.getElementById('featuredDesc').textContent = featured.description;
+      document.getElementById('featuredTime').textContent = formatTime(featured.date);
+      document.getElementById('featuredSource').textContent = featured.source;
+    }
+
+    const recentFeed = document.getElementById('recentFeed');
+    recentFeed.innerHTML = '';
+    allNews.slice(1, 10).forEach(news => {
+      const newsEl = document.createElement('div');
+      newsEl.className = 'news-item';
+      newsEl.innerHTML = `
+        <h4 class="news-item-title">${news.title}</h4>
+        <p class="news-item-desc">${news.description}</p>
+        <div class="news-item-meta">
+          <span class="news-item-time">${formatTime(news.date)}</span>
+          <span class="news-item-source">${news.source}</span>
+        </div>
+      `;
+      recentFeed.appendChild(newsEl);
+    });
+
+    const keywordEl = document.getElementById('trendingKeywords');
+    keywordEl.innerHTML = '';
+    TRENDING_TOPICS.forEach(topic => {
+      const tag = document.createElement('span');
+      tag.className = 'keyword-tag';
+      tag.textContent = topic;
+      keywordEl.appendChild(tag);
+    });
+
+    const breakingEl = document.getElementById('breakingTicker');
+    breakingEl.innerHTML = '';
+    allNews.slice(0, 3).forEach(news => {
+      const item = document.createElement('div');
+      item.className = 'breaking-item';
+      item.textContent = news.title;
+      breakingEl.appendChild(item);
+    });
+
+    document.getElementById('loadingState').style.display = 'none';
+
+  } catch (err) {
+    console.error('Error:', err);
+    document.getElementById('loadingState').textContent = 'Unable to load news. Check connection.';
+  }
+}
+
+function formatTime(date) {
+  const now = new Date();
+  const diff = now - date;
+  const minutes = Math.floor(diff / 60000);
+  const hours = Math.floor(diff / 3600000);
+  const days = Math.floor(diff / 86400000);
+
+  if (minutes < 1) return 'just now';
+  if (minutes < 60) return `${minutes}m ago`;
+  if (hours < 24) return `${hours}h ago`;
+  if (days < 7) return `${days}d ago`;
+  return date.toLocaleDateString();
+}
+
+window.showInsider = function() {
+  document.getElementById('insider').classList.remove('hidden');
+  loadInsiderNews();
+};
