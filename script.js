@@ -908,61 +908,6 @@ async function fetchStats() {
   }
 }
 
-/* ---------- Auto-generate Articles from JSON ---------- */
-document.addEventListener("DOMContentLoaded", () => {
-  fetch("articles.json")
-    .then(res => {
-      if (!res.ok) throw new Error("Failed to load articles.json");
-      return res.json();
-    })
-    .then(data => {
-      const container = document.getElementById("articlesList");
-      container.innerHTML = ""; // clear placeholder if any
-
-      data.forEach(article => {
-        const card = document.createElement("div");
-        card.className = "article-card";
-        card.onclick = () => openArticle(article.file);
-
-        card.innerHTML = `
-          <img src="${article.thumbnail}" alt="Article Thumbnail">
-          <h3>${article.title}</h3>
-        `;
-
-        container.appendChild(card);
-      });
-    })
-    .catch(err => {
-      console.error("Error loading articles:", err);
-      document.getElementById("articlesList").innerHTML =
-        "<p style='color:red; text-align:center;'>Failed to load articles.</p>";
-    });
-});
-
-/* ---------- Open an Article ---------- */
-function openArticle(path) {
-  // Hide all sections
-  document.querySelectorAll("section").forEach(sec => sec.classList.add("hidden"));
-
-  // Show the article page
-  document.getElementById("articlePage").classList.remove("hidden");
-
-  // Load the external article file
-  fetch(path)
-    .then(res => {
-      if (!res.ok) throw new Error("Failed to load article");
-      return res.text();
-    })
-    .then(html => {
-      document.getElementById("articleContent").innerHTML = html;
-    })
-    .catch(err => {
-      document.getElementById("articleContent").innerHTML =
-        "<p style='color:red;'>Could not load article.</p>";
-      console.error(err);
-    });
-}
-
 // ====================
 // Unified Toggle Logic (CLEAN)
 // ====================
@@ -1019,6 +964,8 @@ const CHANNELS = [
   "UCt2JXOLNxqry7B_4rRZME3Q",
 ];
 
+let userInteracted = false;
+
 async function fetchVideosFromChannel(channelId) {
   const url = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${channelId}&part=snippet,id&order=relevance&maxResults=15`;
 
@@ -1065,20 +1012,18 @@ function setupAutoPlay() {
       const iframe = entry.target;
 
       if (entry.isIntersecting) {
-
-  if (userInteracted) {
-    iframe.contentWindow.postMessage(
-      '{"event":"command","func":"playVideo","args":""}',
-      '*'
-    );
-  }
-
-} else {
-  iframe.contentWindow.postMessage(
-    '{"event":"command","func":"pauseVideo","args":""}',
-    '*'
-  );
-}
+        if (userInteracted) {
+          iframe.contentWindow.postMessage(
+            '{"event":"command","func":"playVideo","args":""}',
+            '*'
+          );
+        }
+      } else {
+        iframe.contentWindow.postMessage(
+          '{"event":"command","func":"pauseVideo","args":""}',
+          '*'
+        );
+      }
     });
   }, { threshold: 0.6 });
 
@@ -1088,6 +1033,10 @@ function setupAutoPlay() {
 document.addEventListener("click", () => {
   userInteracted = true;
 }, { once: true });
+
+// ====================
+// INSIDER NEWS SECTION
+// ====================
 
 const RSS_FEEDS = [
   'https://www.espncricinfo.com/rss/news',
@@ -1107,6 +1056,11 @@ async function loadInsiderNews() {
 
     console.log('🚀 Starting to load news feeds...');
     const loadingEl = document.getElementById('loadingState');
+    if (!loadingEl) {
+      console.error('❌ loadingState element not found');
+      return;
+    }
+
     loadingEl.textContent = 'Loading news feeds...';
     loadingEl.style.display = 'block';
 
@@ -1191,33 +1145,39 @@ async function loadInsiderNews() {
 
     // Display trending keywords
     const keywordEl = document.getElementById('trendingKeywords');
-    keywordEl.innerHTML = '';
-    TRENDING_TOPICS.forEach(topic => {
-      const tag = document.createElement('span');
-      tag.className = 'keyword-tag';
-      tag.textContent = topic;
-      keywordEl.appendChild(tag);
-    });
-
-    console.log('✅ Trending topics displayed');
+    if (keywordEl) {
+      keywordEl.innerHTML = '';
+      TRENDING_TOPICS.forEach(topic => {
+        const tag = document.createElement('span');
+        tag.className = 'keyword-tag';
+        tag.textContent = topic;
+        keywordEl.appendChild(tag);
+      });
+      console.log('✅ Trending topics displayed');
+    }
 
     // Display breaking news
     const breakingEl = document.getElementById('breakingTicker');
-    breakingEl.innerHTML = '';
-    allNews.slice(0, 3).forEach(news => {
-      const item = document.createElement('div');
-      item.className = 'breaking-item';
-      item.textContent = news.title;
-      breakingEl.appendChild(item);
-    });
+    if (breakingEl) {
+      breakingEl.innerHTML = '';
+      allNews.slice(0, 3).forEach(news => {
+        const item = document.createElement('div');
+        item.className = 'breaking-item';
+        item.textContent = news.title;
+        breakingEl.appendChild(item);
+      });
+      console.log('✅ Breaking news displayed');
+    }
 
-    console.log('✅ Breaking news displayed');
-    document.getElementById('loadingState').style.display = 'none';
+    loadingEl.style.display = 'none';
 
   } catch (err) {
     console.error('❌ Major error:', err);
-    document.getElementById('loadingState').textContent = `Error: ${err.message}`;
-    document.getElementById('loadingState').style.color = 'red';
+    const loadingEl = document.getElementById('loadingState');
+    if (loadingEl) {
+      loadingEl.textContent = `Error: ${err.message}`;
+      loadingEl.style.color = 'red';
+    }
   }
 }
 
