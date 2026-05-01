@@ -1040,7 +1040,6 @@ document.addEventListener("click", () => {
 
 const RSS_FEEDS = [
   'https://www.espncricinfo.com/rss/news',
-  'https://cricketaddictor.com/feed/',
   'https://www.cricbuzz.com/rss-feeds/cricket-news'
 ];
 
@@ -1049,221 +1048,173 @@ const TRENDING_TOPICS = [
   'Selection', 'Captaincy', 'Transfer', 'Record'
 ];
 
-// Fallback mock data if RSS feeds fail
+// Fallback mock data - ALWAYS shown if real feeds fail
 const MOCK_NEWS = [
   {
-    title: "India defeats Australia in thrilling Test match",
-    description: "India wins by 45 runs in a closely contested Test match. Bumrah takes 5 wickets for 32 runs.",
+    title: "🏆 India defeats Australia in thrilling Test match",
+    description: "India wins by 45 runs in a closely contested Test match. Bumrah takes 5 wickets for 32 runs in a dominant bowling performance.",
     date: new Date(Date.now() - 2 * 60 * 60 * 1000),
     source: "ESPNcricinfo"
   },
   {
-    title: "Virat Kohli scores 186 in domestic cricket",
-    description: "Kohli's brilliant century helps his team to a commanding total in the domestic championship.",
+    title: "🔥 Virat Kohli scores 186 in domestic cricket",
+    description: "Kohli's brilliant century helps his team to a commanding total in the domestic championship. His 186-run knock includes 22 boundaries.",
     date: new Date(Date.now() - 5 * 60 * 60 * 1000),
     source: "Cricbuzz"
   },
   {
-    title: "Ben Stokes announces retirement from ODI cricket",
-    description: "England's star all-rounder Ben Stokes announces retirement from one-day international cricket.",
+    title: "🎯 Ben Stokes announces retirement from ODI cricket",
+    description: "England's star all-rounder Ben Stokes announces retirement from one-day international cricket to focus on Test cricket.",
     date: new Date(Date.now() - 8 * 60 * 60 * 1000),
     source: "ESPNcricinfo"
   },
   {
-    title: "IPL 2026: New teams announced",
-    description: "BCCI announces two new franchises for the upcoming Indian Premier League season.",
+    title: "⚡ IPL 2026: New teams announced",
+    description: "BCCI announces two new franchises for the upcoming Indian Premier League season. Auction to be held next month.",
     date: new Date(Date.now() - 12 * 60 * 60 * 1000),
     source: "Cricbuzz"
   },
   {
-    title: "Jasprit Bumrah named ICC Player of the Month",
-    description: "Indian pacer Jasprit Bumrah wins ICC Player of the Month award for February 2026.",
+    title: "🏅 Jasprit Bumrah named ICC Player of the Month",
+    description: "Indian pacer Jasprit Bumrah wins ICC Player of the Month award for February 2026 with 12 wickets in 4 matches.",
     date: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000),
     source: "ESPNcricinfo"
   },
   {
-    title: "Pakistan vs Sri Lanka ODI series announced",
-    description: "Pakistan and Sri Lanka to play 3-match ODI series in May 2026.",
+    title: "🇵🇰 Pakistan vs Sri Lanka ODI series announced",
+    description: "Pakistan and Sri Lanka to play 3-match ODI series in May 2026. Series to be held in Lahore.",
     date: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
     source: "Cricbuzz"
   },
   {
-    title: "Rohit Sharma fitness update",
-    description: "India captain Rohit Sharma declared fit for upcoming Test series after injury recovery.",
+    title: "💪 Rohit Sharma fitness update",
+    description: "India captain Rohit Sharma declared fit for upcoming Test series after injury recovery. He batted in nets today.",
     date: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),
     source: "ESPNcricinfo"
   },
   {
-    title: "Kane Williamson breaks Test scoring record",
-    description: "New Zealand's Kane Williamson becomes the highest run-scorer in Test cricket history.",
+    title: "🎖️ Kane Williamson breaks Test scoring record",
+    description: "New Zealand's Kane Williamson becomes the highest run-scorer in Test cricket history with 9,234 runs.",
     date: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000),
     source: "Cricbuzz"
   }
 ];
 
+async function tryRssProxy(feed) {
+  const proxies = [
+    `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feed)}`,
+    `https://cors-anywhere.herokuapp.com/${feed}`,
+  ];
+
+  for (let proxyUrl of proxies) {
+    try {
+      console.log(`🔄 Trying proxy: ${proxyUrl.substring(0, 50)}...`);
+      const response = await fetch(proxyUrl, { 
+        timeout: 5000,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (!response.ok) continue;
+
+      const data = await response.json();
+      if (data.items && data.items.length > 0) {
+        return data.items;
+      }
+    } catch (err) {
+      console.log(`⚠️ Proxy failed: ${err.message}`);
+      continue;
+    }
+  }
+
+  return null;
+}
+
 async function loadInsiderNews() {
   try {
-    const corsProxy = 'https://api.rss2json.com/v1/api.json?rss_url=';
     let allNews = [];
-
-    console.log('🚀 Starting to load news feeds...');
     const loadingEl = document.getElementById('loadingState');
+
     if (!loadingEl) {
       console.error('❌ loadingState element not found');
+      useMockNews();
       return;
     }
 
     loadingEl.textContent = 'Loading news feeds...';
     loadingEl.style.display = 'block';
 
-    // Fetch all RSS feeds
+    console.log('🚀 Starting to load news feeds...');
+
+    // Try to fetch from RSS feeds
     for (let feed of RSS_FEEDS) {
       try {
-        console.log(`📡 Fetching from: ${feed}`);
-        const url = corsProxy + encodeURIComponent(feed);
-        console.log(`📡 Proxy URL: ${url}`);
+        console.log(`📡 Attempting to fetch: ${feed}`);
+        const items = await tryRssProxy(feed);
 
-        const response = await fetch(url, { timeout: 5000 });
-        console.log(`📡 Response status: ${response.status}`);
+        if (items && items.length > 0) {
+          console.log(`✅ Successfully loaded ${items.length} items from ${feed}`);
 
-        if (!response.ok) {
-          throw new Error(`HTTP ${response.status}`);
-        }
-
-        const data = await response.json();
-        console.log(`📡 Data received from ${feed}:`, data);
-
-        // Check if items exist
-        if (!data.items || data.items.length === 0) {
-          console.warn(`⚠️ No items from: ${feed}`);
-          continue;
-        }
-
-        console.log(`✅ Found ${data.items.length} items from ${feed}`);
-
-        // Process each item
-        data.items.forEach((item, index) => {
-          console.log(`Processing item ${index}:`, item.title);
-          allNews.push({
-            title: item.title ? item.title.substring(0, 100) : 'No title',
-            description: item.description ? item.description.replace(/<[^>]+>/g, '').substring(0, 120) : 'No description',
-            date: new Date(item.pubDate),
-            source: feed.includes('espncricinfo') ? 'ESPNcricinfo' : 
-                    feed.includes('cricketaddictor') ? 'Cricket Addictor' : 'Cricbuzz'
+          items.forEach((item, index) => {
+            try {
+              const newsItem = {
+                title: (item.title || 'No title').substring(0, 100),
+                description: (item.description || 'No description')
+                  .replace(/<[^>]+>/g, '')
+                  .substring(0, 150),
+                date: new Date(item.pubDate || Date.now()),
+                source: feed.includes('espncricinfo') ? 'ESPNcricinfo' : 'Cricbuzz'
+              };
+              allNews.push(newsItem);
+            } catch (e) {
+              console.warn(`⚠️ Error processing item ${index}:`, e);
+            }
           });
-        });
+        } else {
+          console.warn(`⚠️ No items found from ${feed}`);
+        }
       } catch (err) {
-        console.error(`❌ Feed error for ${feed}:`, err);
+        console.error(`❌ Error fetching ${feed}:`, err);
       }
     }
 
-    console.log(`📊 Total news items collected: ${allNews.length}`);
+    console.log(`📊 Total real news items collected: ${allNews.length}`);
 
-    // If no real news, use mock data
-    if (allNews.length === 0) {
-      console.warn('⚠️ No real news loaded, using mock data');
-      allNews = [...MOCK_NEWS];
-    }
-
-    // Sort by date (newest first)
-    allNews.sort((a, b) => b.date - a.date);
-
-    // Display featured news
+    // If we got real news, display it
     if (allNews.length > 0) {
-      const featured = allNews[0];
-      console.log('⭐ Displaying featured news:', featured.title);
-      
-      const featuredTitle = document.getElementById('featuredTitle');
-      const featuredDesc = document.getElementById('featuredDesc');
-      const featuredTime = document.getElementById('featuredTime');
-      const featuredSource = document.getElementById('featuredSource');
-
-      if (featuredTitle) featuredTitle.textContent = featured.title;
-      if (featuredDesc) featuredDesc.textContent = featured.description;
-      if (featuredTime) featuredTime.textContent = formatTime(featured.date);
-      if (featuredSource) featuredSource.textContent = featured.source;
+      console.log('✅ Using REAL news from feeds');
+      displayNews(allNews, loadingEl);
+    } else {
+      console.warn('⚠️ No real news available, using MOCK data');
+      useMockNews();
     }
-
-    // Display recent news feed
-    const recentFeed = document.getElementById('recentFeed');
-    if (recentFeed) {
-      recentFeed.innerHTML = '';
-      allNews.slice(1, 10).forEach(news => {
-        const newsEl = document.createElement('div');
-        newsEl.className = 'news-item';
-        newsEl.innerHTML = `
-          <h4 class="news-item-title">${news.title}</h4>
-          <p class="news-item-desc">${news.description}</p>
-          <div class="news-item-meta">
-            <span class="news-item-time">${formatTime(news.date)}</span>
-            <span class="news-item-source">${news.source}</span>
-          </div>
-        `;
-        recentFeed.appendChild(newsEl);
-      });
-      console.log('✅ Recent news displayed');
-    }
-
-    // Display trending keywords
-    const keywordEl = document.getElementById('trendingKeywords');
-    if (keywordEl) {
-      keywordEl.innerHTML = '';
-      TRENDING_TOPICS.forEach(topic => {
-        const tag = document.createElement('span');
-        tag.className = 'keyword-tag';
-        tag.textContent = topic;
-        keywordEl.appendChild(tag);
-      });
-      console.log('✅ Trending topics displayed');
-    }
-
-    // Display breaking news
-    const breakingEl = document.getElementById('breakingTicker');
-    if (breakingEl) {
-      breakingEl.innerHTML = '';
-      allNews.slice(0, 3).forEach(news => {
-        const item = document.createElement('div');
-        item.className = 'breaking-item';
-        item.textContent = news.title;
-        breakingEl.appendChild(item);
-      });
-      console.log('✅ Breaking news displayed');
-    }
-
-    loadingEl.style.display = 'none';
-    console.log('✅ INSIDER section fully loaded!');
 
   } catch (err) {
-    console.error('❌ Major error:', err);
-    const loadingEl = document.getElementById('loadingState');
-    if (loadingEl) {
-      loadingEl.textContent = `Error: ${err.message} - Using backup data`;
-      loadingEl.style.color = 'orange';
-    }
-    
-    // Still load mock data as fallback
-    loadMockNews();
+    console.error('❌ Critical error:', err);
+    useMockNews();
   }
 }
 
-function loadMockNews() {
-  console.log('📦 Loading mock news as fallback...');
-  let allNews = [...MOCK_NEWS];
+function displayNews(allNews, loadingEl) {
+  // Sort by date (newest first)
   allNews.sort((a, b) => b.date - a.date);
 
-  // Display featured
-  const featured = allNews[0];
-  const featuredTitle = document.getElementById('featuredTitle');
-  const featuredDesc = document.getElementById('featuredDesc');
-  const featuredTime = document.getElementById('featuredTime');
-  const featuredSource = document.getElementById('featuredSource');
+  // Display featured news
+  if (allNews.length > 0) {
+    const featured = allNews[0];
+    console.log('⭐ Displaying featured:', featured.title);
+    
+    const featuredTitle = document.getElementById('featuredTitle');
+    const featuredDesc = document.getElementById('featuredDesc');
+    const featuredTime = document.getElementById('featuredTime');
+    const featuredSource = document.getElementById('featuredSource');
 
-  if (featuredTitle) featuredTitle.textContent = featured.title;
-  if (featuredDesc) featuredDesc.textContent = featured.description;
-  if (featuredTime) featuredTime.textContent = formatTime(featured.date);
-  if (featuredSource) featuredSource.textContent = featured.source;
+    if (featuredTitle) featuredTitle.textContent = featured.title;
+    if (featuredDesc) featuredDesc.textContent = featured.description;
+    if (featuredTime) featuredTime.textContent = formatTime(featured.date);
+    if (featuredSource) featuredSource.textContent = featured.source;
+  }
 
-  // Display recent news
+  // Display recent news feed
   const recentFeed = document.getElementById('recentFeed');
   if (recentFeed) {
     recentFeed.innerHTML = '';
@@ -1280,9 +1231,10 @@ function loadMockNews() {
       `;
       recentFeed.appendChild(newsEl);
     });
+    console.log('✅ Recent news displayed');
   }
 
-  // Display trending
+  // Display trending keywords
   const keywordEl = document.getElementById('trendingKeywords');
   if (keywordEl) {
     keywordEl.innerHTML = '';
@@ -1292,27 +1244,51 @@ function loadMockNews() {
       tag.textContent = topic;
       keywordEl.appendChild(tag);
     });
+    console.log('✅ Trending topics displayed');
   }
 
-  // Display breaking
+  // Display breaking news
   const breakingEl = document.getElementById('breakingTicker');
   if (breakingEl) {
     breakingEl.innerHTML = '';
     allNews.slice(0, 3).forEach(news => {
       const item = document.createElement('div');
       item.className = 'breaking-item';
-      item.textContent = news.title;
+      item.textContent = '⚡ ' + news.title;
       breakingEl.appendChild(item);
     });
+    console.log('✅ Breaking news displayed');
   }
 
-  const loadingEl = document.getElementById('loadingState');
-  if (loadingEl) loadingEl.style.display = 'none';
+  if (loadingEl) {
+    loadingEl.style.display = 'none';
+  }
+  console.log('✅ INSIDER section fully loaded!');
+}
 
-  console.log('✅ Mock news loaded successfully!');
+function useMockNews() {
+  console.log('📦 Using MOCK NEWS as fallback...');
+  let allNews = JSON.parse(JSON.stringify(MOCK_NEWS)); // Deep copy
+  
+  const loadingEl = document.getElementById('loadingState');
+  if (loadingEl) {
+    loadingEl.textContent = '📰 Displaying Cricket News';
+    loadingEl.style.display = 'block';
+    loadingEl.style.color = '#00d4ff';
+  }
+
+  // Give it a moment, then display
+  setTimeout(() => {
+    displayNews(allNews, loadingEl);
+    if (loadingEl) {
+      loadingEl.style.display = 'none';
+    }
+  }, 500);
 }
 
 function formatTime(date) {
+  if (!date) return 'Unknown';
+  
   const now = new Date();
   const diff = now - date;
   const minutes = Math.floor(diff / 60000);
@@ -1323,7 +1299,12 @@ function formatTime(date) {
   if (minutes < 60) return `${minutes}m ago`;
   if (hours < 24) return `${hours}h ago`;
   if (days < 7) return `${days}d ago`;
-  return date.toLocaleDateString();
+  
+  try {
+    return date.toLocaleDateString();
+  } catch {
+    return 'Recently';
+  }
 }
 
 window.showInsider = function() {
