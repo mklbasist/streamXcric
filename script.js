@@ -1105,41 +1105,72 @@ async function loadInsiderNews() {
     const corsProxy = 'https://api.rss2json.com/v1/api.json?rss_url=';
     let allNews = [];
 
+    console.log('🚀 Starting to load news feeds...');
+    const loadingEl = document.getElementById('loadingState');
+    loadingEl.textContent = 'Loading news feeds...';
+    loadingEl.style.display = 'block';
+
+    // Fetch all RSS feeds
     for (let feed of RSS_FEEDS) {
-  try {
-    const response = await fetch(corsProxy + encodeURIComponent(feed));
-    const data = await response.json();
+      try {
+        console.log(`📡 Fetching from: ${feed}`);
+        const url = corsProxy + encodeURIComponent(feed);
+        console.log(`📡 Proxy URL: ${url}`);
 
-    if (!data.items) {
-  console.log("No items from API", data);
-  continue;
-}
+        const response = await fetch(url);
+        console.log(`📡 Response status: ${response.status}`);
 
-data.items.forEach(item => {
-      allNews.push({
-        title: item.title.substring(0, 100),
-        description: item.description.replace(/<[^>]+>/g, '').substring(0, 120),
-        date: new Date(item.pubDate),
-        source: feed.includes('espncricinfo') ? 'ESPNcricinfo' : 
-                feed.includes('cricketaddictor') ? 'Cricket Addictor' : 'Cricbuzz'
-      });
-    });
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
 
-  } catch (err) {
-    console.log('Feed error:', err);
-  }
-}
+        const data = await response.json();
+        console.log(`📡 Data received:`, data);
 
-    allNews.sort((a, b) => b.date - a.date);
+        // Check if items exist
+        if (!data.items || data.items.length === 0) {
+          console.warn(`⚠️ No items from: ${feed}`);
+          continue;
+        }
 
-    if (allNews.length > 0) {
-      const featured = allNews[0];
-      document.getElementById('featuredTitle').textContent = featured.title;
-      document.getElementById('featuredDesc').textContent = featured.description;
-      document.getElementById('featuredTime').textContent = formatTime(featured.date);
-      document.getElementById('featuredSource').textContent = featured.source;
+        console.log(`✅ Found ${data.items.length} items from ${feed}`);
+
+        // Process each item
+        data.items.forEach((item, index) => {
+          console.log(`Processing item ${index}:`, item.title);
+          allNews.push({
+            title: item.title ? item.title.substring(0, 100) : 'No title',
+            description: item.description ? item.description.replace(/<[^>]+>/g, '').substring(0, 120) : 'No description',
+            date: new Date(item.pubDate),
+            source: feed.includes('espncricinfo') ? 'ESPNcricinfo' : 
+                    feed.includes('cricketaddictor') ? 'Cricket Addictor' : 'Cricbuzz'
+          });
+        });
+      } catch (err) {
+        console.error(`❌ Feed error for ${feed}:`, err);
+      }
     }
 
+    console.log(`📊 Total news items collected: ${allNews.length}`);
+
+    if (allNews.length === 0) {
+      loadingEl.textContent = '❌ No news available. RSS feeds may be blocked or unavailable.';
+      loadingEl.style.color = 'red';
+      return;
+    }
+
+    // Sort by date (newest first)
+    allNews.sort((a, b) => b.date - a.date);
+
+    // Display featured news
+    const featured = allNews[0];
+    console.log('⭐ Displaying featured news:', featured.title);
+    document.getElementById('featuredTitle').textContent = featured.title;
+    document.getElementById('featuredDesc').textContent = featured.description;
+    document.getElementById('featuredTime').textContent = formatTime(featured.date);
+    document.getElementById('featuredSource').textContent = featured.source;
+
+    // Display recent news feed
     const recentFeed = document.getElementById('recentFeed');
     recentFeed.innerHTML = '';
     allNews.slice(1, 10).forEach(news => {
@@ -1156,6 +1187,9 @@ data.items.forEach(item => {
       recentFeed.appendChild(newsEl);
     });
 
+    console.log('✅ Recent news displayed');
+
+    // Display trending keywords
     const keywordEl = document.getElementById('trendingKeywords');
     keywordEl.innerHTML = '';
     TRENDING_TOPICS.forEach(topic => {
@@ -1165,6 +1199,9 @@ data.items.forEach(item => {
       keywordEl.appendChild(tag);
     });
 
+    console.log('✅ Trending topics displayed');
+
+    // Display breaking news
     const breakingEl = document.getElementById('breakingTicker');
     breakingEl.innerHTML = '';
     allNews.slice(0, 3).forEach(news => {
@@ -1174,11 +1211,13 @@ data.items.forEach(item => {
       breakingEl.appendChild(item);
     });
 
+    console.log('✅ Breaking news displayed');
     document.getElementById('loadingState').style.display = 'none';
 
   } catch (err) {
-    console.error('Error:', err);
-    document.getElementById('loadingState').textContent = 'Unable to load news. Check connection.';
+    console.error('❌ Major error:', err);
+    document.getElementById('loadingState').textContent = `Error: ${err.message}`;
+    document.getElementById('loadingState').style.color = 'red';
   }
 }
 
