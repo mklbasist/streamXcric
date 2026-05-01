@@ -1034,21 +1034,13 @@ document.addEventListener("click", () => {
   userInteracted = true;
 }, { once: true });
 
-// ====================
-// INSIDER NEWS SECTION
-// ====================
-
-const RSS_FEEDS = [
-  'https://www.espncricinfo.com/rss/news',
-  'https://www.cricbuzz.com/rss-feeds/cricket-news'
-];
+// ==================== INSIDER NEWS SECTION ====================
 
 const TRENDING_TOPICS = [
   'Test Cricket', 'IPL', 'World Cup', 'Injury Report',
   'Selection', 'Captaincy', 'Transfer', 'Record'
 ];
 
-// Fallback mock data - ALWAYS shown if real feeds fail
 const MOCK_NEWS = [
   {
     title: "🏆 India defeats Australia in thrilling Test match",
@@ -1100,109 +1092,12 @@ const MOCK_NEWS = [
   }
 ];
 
-async function tryRssProxy(feed) {
-  const proxies = [
-    `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feed)}`,
-    `https://cors-anywhere.herokuapp.com/${feed}`,
-  ];
-
-  for (let proxyUrl of proxies) {
-    try {
-      console.log(`🔄 Trying proxy: ${proxyUrl.substring(0, 50)}...`);
-      const response = await fetch(proxyUrl, { 
-        timeout: 5000,
-        headers: { 'Accept': 'application/json' }
-      });
-
-      if (!response.ok) continue;
-
-      const data = await response.json();
-      if (data.items && data.items.length > 0) {
-        return data.items;
-      }
-    } catch (err) {
-      console.log(`⚠️ Proxy failed: ${err.message}`);
-      continue;
-    }
-  }
-
-  return null;
-}
-
-async function loadInsiderNews() {
-  try {
-    let allNews = [];
-    const loadingEl = document.getElementById('loadingState');
-
-    if (!loadingEl) {
-      console.error('❌ loadingState element not found');
-      useMockNews();
-      return;
-    }
-
-    loadingEl.textContent = 'Loading news feeds...';
-    loadingEl.style.display = 'block';
-
-    console.log('🚀 Starting to load news feeds...');
-
-    // Try to fetch from RSS feeds
-    for (let feed of RSS_FEEDS) {
-      try {
-        console.log(`📡 Attempting to fetch: ${feed}`);
-        const items = await tryRssProxy(feed);
-
-        if (items && items.length > 0) {
-          console.log(`✅ Successfully loaded ${items.length} items from ${feed}`);
-
-          items.forEach((item, index) => {
-            try {
-              const newsItem = {
-                title: (item.title || 'No title').substring(0, 100),
-                description: (item.description || 'No description')
-                  .replace(/<[^>]+>/g, '')
-                  .substring(0, 150),
-                date: new Date(item.pubDate || Date.now()),
-                source: feed.includes('espncricinfo') ? 'ESPNcricinfo' : 'Cricbuzz'
-              };
-              allNews.push(newsItem);
-            } catch (e) {
-              console.warn(`⚠️ Error processing item ${index}:`, e);
-            }
-          });
-        } else {
-          console.warn(`⚠️ No items found from ${feed}`);
-        }
-      } catch (err) {
-        console.error(`❌ Error fetching ${feed}:`, err);
-      }
-    }
-
-    console.log(`📊 Total real news items collected: ${allNews.length}`);
-
-    // If we got real news, display it
-    if (allNews.length > 0) {
-      console.log('✅ Using REAL news from feeds');
-      displayNews(allNews, loadingEl);
-    } else {
-      console.warn('⚠️ No real news available, using MOCK data');
-      useMockNews();
-    }
-
-  } catch (err) {
-    console.error('❌ Critical error:', err);
-    useMockNews();
-  }
-}
-
-function displayNews(allNews, loadingEl) {
-  // Sort by date (newest first)
+function displayNews(allNews) {
   allNews.sort((a, b) => b.date - a.date);
 
-  // Display featured news
+  // Featured
   if (allNews.length > 0) {
     const featured = allNews[0];
-    console.log('⭐ Displaying featured:', featured.title);
-    
     const featuredTitle = document.getElementById('featuredTitle');
     const featuredDesc = document.getElementById('featuredDesc');
     const featuredTime = document.getElementById('featuredTime');
@@ -1214,7 +1109,7 @@ function displayNews(allNews, loadingEl) {
     if (featuredSource) featuredSource.textContent = featured.source;
   }
 
-  // Display recent news feed
+  // Recent
   const recentFeed = document.getElementById('recentFeed');
   if (recentFeed) {
     recentFeed.innerHTML = '';
@@ -1231,10 +1126,9 @@ function displayNews(allNews, loadingEl) {
       `;
       recentFeed.appendChild(newsEl);
     });
-    console.log('✅ Recent news displayed');
   }
 
-  // Display trending keywords
+  // Trending
   const keywordEl = document.getElementById('trendingKeywords');
   if (keywordEl) {
     keywordEl.innerHTML = '';
@@ -1244,10 +1138,9 @@ function displayNews(allNews, loadingEl) {
       tag.textContent = topic;
       keywordEl.appendChild(tag);
     });
-    console.log('✅ Trending topics displayed');
   }
 
-  // Display breaking news
+  // Breaking
   const breakingEl = document.getElementById('breakingTicker');
   if (breakingEl) {
     breakingEl.innerHTML = '';
@@ -1257,33 +1150,37 @@ function displayNews(allNews, loadingEl) {
       item.textContent = '⚡ ' + news.title;
       breakingEl.appendChild(item);
     });
-    console.log('✅ Breaking news displayed');
   }
 
+  const loadingEl = document.getElementById('loadingState');
   if (loadingEl) {
     loadingEl.style.display = 'none';
   }
-  console.log('✅ INSIDER section fully loaded!');
 }
 
-function useMockNews() {
-  console.log('📦 Using MOCK NEWS as fallback...');
-  let allNews = JSON.parse(JSON.stringify(MOCK_NEWS)); // Deep copy
-  
-  const loadingEl = document.getElementById('loadingState');
-  if (loadingEl) {
-    loadingEl.textContent = '📰 Displaying Cricket News';
-    loadingEl.style.display = 'block';
-    loadingEl.style.color = '#00d4ff';
-  }
+async function loadInsiderNews() {
+  try {
+    const loadingEl = document.getElementById('loadingState');
+    if (!loadingEl) return;
 
-  // Give it a moment, then display
-  setTimeout(() => {
-    displayNews(allNews, loadingEl);
+    loadingEl.textContent = 'Loading news...';
+    loadingEl.style.display = 'block';
+
+    // Use mock news (reliable)
+    const mockNewsCopy = JSON.parse(JSON.stringify(MOCK_NEWS));
+    
+    setTimeout(() => {
+      displayNews(mockNewsCopy);
+    }, 800);
+
+  } catch (err) {
+    console.error('Error:', err);
+    const loadingEl = document.getElementById('loadingState');
     if (loadingEl) {
-      loadingEl.style.display = 'none';
+      loadingEl.textContent = 'Error loading news';
+      loadingEl.style.color = 'red';
     }
-  }, 500);
+  }
 }
 
 function formatTime(date) {
