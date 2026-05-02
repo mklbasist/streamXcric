@@ -1068,13 +1068,15 @@ async function loadInsiderNews() {
           console.log(`✅ Got ${data.items.length} items from ${feed}`);
           
           data.items.forEach(item => {
-            allNews.push({
-              title: (item.title || 'No title').substring(0, 100),
-              description: (item.description || '').replace(/<[^>]+>/g, '').substring(0, 150),
-              date: new Date(item.pubDate),
-              source: feed.includes('espncricinfo') ? 'ESPNcricinfo' : 'Sky Sports'
-            });
-          });
+  allNews.push({
+    title: (item.title || 'No title').substring(0, 100),
+    description: (item.description || '').replace(/<[^>]+>/g, '').substring(0, 150),
+    date: new Date(item.pubDate),
+    source: feed.includes('espncricinfo') ? 'ESPNcricinfo' : 'Sky Sports',
+    link: item.link || '#',
+    image: item.enclosure?.link || item.image?.url || ''
+  });
+});
         }
       } catch (err) {
         console.error(`❌ Error fetching ${feed}:`, err);
@@ -1110,23 +1112,22 @@ function displayNews(allNews) {
     document.getElementById('featuredSource').textContent = featured.source;
   }
 
-  const recentFeed = document.getElementById('recentFeed');
-  if (recentFeed) {
-    recentFeed.innerHTML = '';
-    allNews.slice(1, 10).forEach(news => {
-      const newsEl = document.createElement('div');
-      newsEl.className = 'news-item';
-      newsEl.innerHTML = `
-        <h4 class="news-item-title">${news.title}</h4>
-        <p class="news-item-desc">${news.description}</p>
-        <div class="news-item-meta">
-          <span class="news-item-time">${formatTime(news.date)}</span>
-          <span class="news-item-source">${news.source}</span>
-        </div>
-      `;
-      recentFeed.appendChild(newsEl);
-    });
-  }
+  allNews.slice(1, 10).forEach(news => {
+  const newsEl = document.createElement('div');
+  newsEl.className = 'news-item';
+  newsEl.innerHTML = `
+    <a href="${news.link}" target="_blank" style="text-decoration:none; color:inherit;">
+      ${news.image ? `<img src="${news.image}" style="width:100%; border-radius:8px; margin-bottom:10px; max-height:200px; object-fit:cover;">` : ''}
+      <h4 class="news-item-title">${news.title}</h4>
+      <p class="news-item-desc">${news.description}</p>
+      <div class="news-item-meta">
+        <span class="news-item-time">${formatTime(news.date)}</span>
+        <span class="news-item-source">${news.source}</span>
+      </div>
+    </a>
+  `;
+  recentFeed.appendChild(newsEl);
+});
 
   const keywordEl = document.getElementById('trendingKeywords');
   if (keywordEl) {
