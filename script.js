@@ -1036,79 +1036,80 @@ document.addEventListener("click", () => {
 
 // ==================== INSIDER NEWS SECTION ====================
 
+const RSS_FEEDS = [
+  'https://www.espncricinfo.com/rss/content/story/feeds/0.xml',
+  'http://www.skysports.com/rss/0,20514,12123,00.xml'
+];
+
 const TRENDING_TOPICS = [
   'Test Cricket', 'IPL', 'World Cup', 'Injury Report',
   'Selection', 'Captaincy', 'Transfer', 'Record'
 ];
 
-const MOCK_NEWS = [
-  {
-    title: "🏆 India defeats Australia in thrilling Test match",
-    description: "India wins by 45 runs in a closely contested Test match. Bumrah takes 5 wickets for 32 runs in a dominant bowling performance.",
-    date: new Date(Date.now() - 2 * 60 * 60 * 1000),
-    source: "ESPNcricinfo"
-  },
-  {
-    title: "🔥 Virat Kohli scores 186 in domestic cricket",
-    description: "Kohli's brilliant century helps his team to a commanding total in the domestic championship. His 186-run knock includes 22 boundaries.",
-    date: new Date(Date.now() - 5 * 60 * 60 * 1000),
-    source: "Cricbuzz"
-  },
-  {
-    title: "🎯 Ben Stokes announces retirement from ODI cricket",
-    description: "England's star all-rounder Ben Stokes announces retirement from one-day international cricket to focus on Test cricket.",
-    date: new Date(Date.now() - 8 * 60 * 60 * 1000),
-    source: "ESPNcricinfo"
-  },
-  {
-    title: "⚡ IPL 2026: New teams announced",
-    description: "BCCI announces two new franchises for the upcoming Indian Premier League season. Auction to be held next month.",
-    date: new Date(Date.now() - 12 * 60 * 60 * 1000),
-    source: "Cricbuzz"
-  },
-  {
-    title: "🏅 Jasprit Bumrah named ICC Player of the Month",
-    description: "Indian pacer Jasprit Bumrah wins ICC Player of the Month award for February 2026 with 12 wickets in 4 matches.",
-    date: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000),
-    source: "ESPNcricinfo"
-  },
-  {
-    title: "🇵🇰 Pakistan vs Sri Lanka ODI series announced",
-    description: "Pakistan and Sri Lanka to play 3-match ODI series in May 2026. Series to be held in Lahore.",
-    date: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
-    source: "Cricbuzz"
-  },
-  {
-    title: "💪 Rohit Sharma fitness update",
-    description: "India captain Rohit Sharma declared fit for upcoming Test series after injury recovery. He batted in nets today.",
-    date: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),
-    source: "ESPNcricinfo"
-  },
-  {
-    title: "🎖️ Kane Williamson breaks Test scoring record",
-    description: "New Zealand's Kane Williamson becomes the highest run-scorer in Test cricket history with 9,234 runs.",
-    date: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000),
-    source: "Cricbuzz"
+async function loadInsiderNews() {
+  const corsProxy = 'https://api.rss2json.com/v1/api.json?rss_url=';
+  const loadingEl = document.getElementById('loadingState');
+  
+  console.log('🚀 Loading news from feeds...');
+  loadingEl.textContent = 'Loading news...';
+  loadingEl.style.display = 'block';
+
+  let allNews = [];
+
+  try {
+    for (let feed of RSS_FEEDS) {
+      try {
+        console.log(`📡 Fetching: ${feed}`);
+        const url = corsProxy + encodeURIComponent(feed);
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (data.items && data.items.length > 0) {
+          console.log(`✅ Got ${data.items.length} items from ${feed}`);
+          
+          data.items.forEach(item => {
+            allNews.push({
+              title: (item.title || 'No title').substring(0, 100),
+              description: (item.description || '').replace(/<[^>]+>/g, '').substring(0, 150),
+              date: new Date(item.pubDate),
+              source: feed.includes('espncricinfo') ? 'ESPNcricinfo' : 'Sky Sports'
+            });
+          });
+        }
+      } catch (err) {
+        console.error(`❌ Error fetching ${feed}:`, err);
+      }
+    }
+
+    console.log(`📊 Total news items: ${allNews.length}`);
+    
+    if (allNews.length > 0) {
+      displayNews(allNews);
+    } else {
+      loadingEl.textContent = '❌ No news available';
+      loadingEl.style.color = 'red';
+    }
+
+  } catch (err) {
+    console.error('❌ Error:', err);
+    loadingEl.textContent = 'Error loading news';
+    loadingEl.style.color = 'red';
   }
-];
+}
 
 function displayNews(allNews) {
-  console.log('📺 displayNews called with', allNews.length, 'items');
+  console.log('📺 Displaying news...');
   
   allNews.sort((a, b) => b.date - a.date);
 
-  // Featured
   if (allNews.length > 0) {
     const featured = allNews[0];
-    console.log('⭐ Featured:', featured.title);
-    
     document.getElementById('featuredTitle').textContent = featured.title;
     document.getElementById('featuredDesc').textContent = featured.description;
     document.getElementById('featuredTime').textContent = formatTime(featured.date);
     document.getElementById('featuredSource').textContent = featured.source;
   }
 
-  // Recent news
   const recentFeed = document.getElementById('recentFeed');
   if (recentFeed) {
     recentFeed.innerHTML = '';
@@ -1125,10 +1126,8 @@ function displayNews(allNews) {
       `;
       recentFeed.appendChild(newsEl);
     });
-    console.log('✅ Recent news added');
   }
 
-  // Trending
   const keywordEl = document.getElementById('trendingKeywords');
   if (keywordEl) {
     keywordEl.innerHTML = '';
@@ -1138,10 +1137,8 @@ function displayNews(allNews) {
       tag.textContent = topic;
       keywordEl.appendChild(tag);
     });
-    console.log('✅ Trending topics added');
   }
 
-  // Breaking
   const breakingEl = document.getElementById('breakingTicker');
   if (breakingEl) {
     breakingEl.innerHTML = '';
@@ -1151,37 +1148,12 @@ function displayNews(allNews) {
       item.textContent = '⚡ ' + news.title;
       breakingEl.appendChild(item);
     });
-    console.log('✅ Breaking news added');
   }
 
   const loadingEl = document.getElementById('loadingState');
   if (loadingEl) {
     loadingEl.style.display = 'none';
   }
-  
-  console.log('✅ displayNews COMPLETE');
-}
-
-async function loadInsiderNews() {
-  console.log('🚀 loadInsiderNews START');
-  
-  const loadingEl = document.getElementById('loadingState');
-  if (!loadingEl) {
-    console.error('❌ loadingState not found!');
-    return;
-  }
-
-  loadingEl.textContent = 'Loading news...';
-  loadingEl.style.display = 'block';
-
-  // Use mock news
-  let mockNewsCopy = JSON.parse(JSON.stringify(MOCK_NEWS));
-  console.log('📦 Mock news items:', mockNewsCopy.length);
-  
-  setTimeout(() => {
-    console.log('⏳ Displaying news now...');
-    displayNews(mockNewsCopy);
-  }, 500);
 }
 
 function formatTime(date) {
@@ -1206,10 +1178,8 @@ function formatTime(date) {
 }
 
 window.showInsider = function() {
-  console.log('📰 showInsider called');
   showPage('insider');
   setTimeout(() => {
-    console.log('⏱️ Calling loadInsiderNews after delay');
     loadInsiderNews();
   }, 300);
 };
