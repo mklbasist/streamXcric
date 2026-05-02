@@ -1208,3 +1208,18 @@ window.showInsider = function() {
   showPage('insider');
   loadInsiderNews();
 };
+
+// Force load news when page loads
+window.addEventListener('load', () => {
+  console.log('✅ Page loaded, checking INSIDER...');
+});
+
+// Make sure showInsider works
+window.showInsider = function() {
+  console.log('📰 showInsider called');
+  showPage('insider');
+  setTimeout(() => {
+    console.log('⏱️ Calling loadInsiderNews after delay');
+    loadInsiderNews();
+  }, 300);
+};
