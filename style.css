@@ -1581,9 +1581,15 @@ body {
 .news-item-title {
   margin: 0 0 8px 0;
   font-size: 0.95em;
-  color: #ffffff;
+  color: #00d4ff;
   line-height: 1.4;
   font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.news-item-title:hover {
+  color: #fff;
 }
 
 .news-item-desc {
@@ -1658,8 +1664,9 @@ body {
 }
 
 .keyword-tag:hover {
-  background: rgba(61, 242, 224, 0.2);
-  border-color: #3df2e0;
+  background: #00d4ff;
+  border-color: #00d4ff;
+  color: #000;
 }
 
 /* Breaking Ticker */
@@ -1677,6 +1684,13 @@ body {
   font-size: 0.85em;
   color: #ccc;
   line-height: 1.4;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.breaking-item:hover {
+  background: rgba(0, 212, 255, 0.15);
+  border-left-color: #00d4ff;
 }
 
 .breaking-item::before {
@@ -1698,7 +1712,7 @@ body {
   .news-grid {
     grid-template-columns: 1fr;
   }
-
+  
   .sidebar-section {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -1710,23 +1724,23 @@ body {
   .insider-page {
     padding: 20px 15px;
   }
-
+  
   .insider-header h2 {
     font-size: 1.8em;
   }
-
+  
   .featured-news {
     padding: 20px;
   }
-
+  
   .featured-news h3 {
     font-size: 1.3em;
   }
-
+  
   .sidebar-section {
     grid-template-columns: 1fr;
   }
-
+  
   .news-item {
     padding: 12px;
   }
