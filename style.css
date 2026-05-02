@@ -61,7 +61,7 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: url('static/IMG_8251.jpeg') center/cover no-repeat;
+  background: url('static/IMG_8258.jpeg') center/cover no-repeat;
   filter: blur(4px);
   transform: scale(1.1);
   z-index: 0;
@@ -1825,8 +1825,8 @@ body:not(.dark-mode) .loading-message {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px 0;  
-  background: linear-gradient(to bottom, #0b0f1a, #0e1628);
+  padding: 6px 0;  
+  background-color: #0b0f1a;
 }
 
 .logo {
