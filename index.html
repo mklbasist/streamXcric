@@ -365,6 +365,18 @@ function showPage(pageId) {
   if (page) page.classList.remove("hidden");
   window.scrollTo(0, 0);
 }
+
+// TEST
+console.log('✅ showPage defined');
+window.showInsider = function() {
+  console.log('📰 showInsider called');
+  showPage('insider');
+  setTimeout(() => {
+    console.log('⏱️ About to load news');
+    loadInsiderNews();
+  }, 300);
+};
+console.log('✅ showInsider defined');
 </script>
 <script src="script.js"></script>
 <script src="matches.js"></script>
