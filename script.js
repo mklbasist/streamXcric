@@ -1093,23 +1093,22 @@ const MOCK_NEWS = [
 ];
 
 function displayNews(allNews) {
+  console.log('📺 displayNews called with', allNews.length, 'items');
+  
   allNews.sort((a, b) => b.date - a.date);
 
   // Featured
   if (allNews.length > 0) {
     const featured = allNews[0];
-    const featuredTitle = document.getElementById('featuredTitle');
-    const featuredDesc = document.getElementById('featuredDesc');
-    const featuredTime = document.getElementById('featuredTime');
-    const featuredSource = document.getElementById('featuredSource');
-
-    if (featuredTitle) featuredTitle.textContent = featured.title;
-    if (featuredDesc) featuredDesc.textContent = featured.description;
-    if (featuredTime) featuredTime.textContent = formatTime(featured.date);
-    if (featuredSource) featuredSource.textContent = featured.source;
+    console.log('⭐ Featured:', featured.title);
+    
+    document.getElementById('featuredTitle').textContent = featured.title;
+    document.getElementById('featuredDesc').textContent = featured.description;
+    document.getElementById('featuredTime').textContent = formatTime(featured.date);
+    document.getElementById('featuredSource').textContent = featured.source;
   }
 
-  // Recent
+  // Recent news
   const recentFeed = document.getElementById('recentFeed');
   if (recentFeed) {
     recentFeed.innerHTML = '';
@@ -1126,6 +1125,7 @@ function displayNews(allNews) {
       `;
       recentFeed.appendChild(newsEl);
     });
+    console.log('✅ Recent news added');
   }
 
   // Trending
@@ -1138,6 +1138,7 @@ function displayNews(allNews) {
       tag.textContent = topic;
       keywordEl.appendChild(tag);
     });
+    console.log('✅ Trending topics added');
   }
 
   // Breaking
@@ -1150,37 +1151,37 @@ function displayNews(allNews) {
       item.textContent = '⚡ ' + news.title;
       breakingEl.appendChild(item);
     });
+    console.log('✅ Breaking news added');
   }
 
   const loadingEl = document.getElementById('loadingState');
   if (loadingEl) {
     loadingEl.style.display = 'none';
   }
+  
+  console.log('✅ displayNews COMPLETE');
 }
 
 async function loadInsiderNews() {
-  try {
-    const loadingEl = document.getElementById('loadingState');
-    if (!loadingEl) return;
-
-    loadingEl.textContent = 'Loading news...';
-    loadingEl.style.display = 'block';
-
-    // Use mock news (reliable)
-    const mockNewsCopy = JSON.parse(JSON.stringify(MOCK_NEWS));
-    
-    setTimeout(() => {
-      displayNews(mockNewsCopy);
-    }, 800);
-
-  } catch (err) {
-    console.error('Error:', err);
-    const loadingEl = document.getElementById('loadingState');
-    if (loadingEl) {
-      loadingEl.textContent = 'Error loading news';
-      loadingEl.style.color = 'red';
-    }
+  console.log('🚀 loadInsiderNews START');
+  
+  const loadingEl = document.getElementById('loadingState');
+  if (!loadingEl) {
+    console.error('❌ loadingState not found!');
+    return;
   }
+
+  loadingEl.textContent = 'Loading news...';
+  loadingEl.style.display = 'block';
+
+  // Use mock news
+  let mockNewsCopy = JSON.parse(JSON.stringify(MOCK_NEWS));
+  console.log('📦 Mock news items:', mockNewsCopy.length);
+  
+  setTimeout(() => {
+    console.log('⏳ Displaying news now...');
+    displayNews(mockNewsCopy);
+  }, 500);
 }
 
 function formatTime(date) {
@@ -1204,17 +1205,6 @@ function formatTime(date) {
   }
 }
 
-window.showInsider = function() {
-  showPage('insider');
-  loadInsiderNews();
-};
-
-// Force load news when page loads
-window.addEventListener('load', () => {
-  console.log('✅ Page loaded, checking INSIDER...');
-});
-
-// Make sure showInsider works
 window.showInsider = function() {
   console.log('📰 showInsider called');
   showPage('insider');
