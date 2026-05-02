@@ -1825,11 +1825,12 @@ body:not(.dark-mode) .loading-message {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 120px;
-  background-color: #0b0f1a;
+  padding: 10px 0;  
+  background: linear-gradient(to bottom, #0b0f1a, #0e1628);
 }
 
 .logo {
-  height: 80%;   /* takes most of header height */
-  max-height: 110px;
+  height: 85px;
+  width: auto;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.6));
 }
