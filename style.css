@@ -87,6 +87,10 @@ body {
   display: none;
 }
 
+#welcome .yt-bottom-nav {
+  display: none;
+}
+
 /* ✅ Glass + Animated Color Ring Button */
 /* ✅ Glassmorphism Enter Button */
 .enter-btn {
