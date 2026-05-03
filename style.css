@@ -87,7 +87,7 @@ body {
   display: none;
 }
 
-#welcome .yt-bottom-nav {
+.welcome ~ .yt-bottom-nav {
   display: none;
 }
 
