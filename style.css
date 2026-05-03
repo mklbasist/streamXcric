@@ -281,19 +281,20 @@ body {
 
 @media (max-width: 600px) {
   .yt-bottom-nav {
-    padding: 10px 12px;
-    gap: 2px;
+    padding: 10px 16px;
+    gap: 3px;
     bottom: 10px;
   }
   
   .yt-tab {
-    padding: 8px 12px;
+    padding: 8px 14px;
     font-size: 9px;
+    gap: 4px;
   }
   
   .yt-bottom-nav .yt-tab .icon {
     font-size: 18px;
-    margin-bottom: 2px;
+    margin-bottom: 2.5px;
   }
 }
 
