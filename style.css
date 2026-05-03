@@ -247,8 +247,8 @@ body {
   left: 50%;
   transform: translateX(-50%);
   background: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   border-radius: 50px;
   padding: 14px 24px;
   gap: 5px;
@@ -836,8 +836,8 @@ body {
 /* Dark Mode - Bottom Nav */
 .dark-mode .yt-bottom-nav {
   background: rgba(20, 20, 20, 0.5);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   border-color: rgba(61, 242, 224, 0.4);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
