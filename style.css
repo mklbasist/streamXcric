@@ -281,13 +281,14 @@ body {
 
 @media (max-width: 600px) {
   .yt-bottom-nav {
-    padding: 10px 16px;
-    gap: 3px;
+    padding: 8px 20px;
+    gap: 10px;
     bottom: 10px;
+    width: 80%;
   }
   
   .yt-tab {
-    padding: 8px 14px;
+    padding: 8px 10px;
     font-size: 9px;
     gap: 4px;
   }
