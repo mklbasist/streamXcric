@@ -285,7 +285,7 @@ body {
 
 @media (max-width: 600px) {
   .yt-bottom-nav {
-    padding: 8px 10px;
+    padding: 6px 10px;
     gap: 8px;
     bottom: 10px;
     width: 70%;
