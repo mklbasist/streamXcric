@@ -639,9 +639,6 @@ function showPage(pageId) {
   document.getElementById('main-players').innerHTML = '';
 }
   
-  updateNavHighlight(pageId);
-}
-
   const footer = document.getElementById("mainFooter");
   if (footer) {
     footer.style.display = pageId === "welcome" ? "block" : "none";
