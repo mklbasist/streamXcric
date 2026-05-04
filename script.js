@@ -851,17 +851,19 @@ function showAsk(type) {
 function focusSearch(e) {
   e.preventDefault();
   showPage('main');
-  const searchInput = document.getElementById('playerSearch');
-  if (searchInput) {
-    setTimeout(() => {
-      searchInput.focus();
-      searchInput.click();
-      // Force keyboard on mobile
-      searchInput.setAttribute('autocomplete', 'off');
-      searchInput.select();
-    }, 100);
-  }
   document.getElementById('sideMenu').classList.remove('open');
+  
+  setTimeout(() => {
+    const searchInput = document.getElementById('playerSearch');
+    if (searchInput) {
+      searchInput.focus();
+      // iOS fix
+      searchInput.value = ' ';
+      searchInput.value = '';
+      // Trigger input event
+      searchInput.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+  }, 200);
 }
 
 document.getElementById('playerSearch').addEventListener('input', function(e) {
