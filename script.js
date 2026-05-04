@@ -643,12 +643,20 @@ function showPage(pageId) {
 }
 
 function updateNavHighlight(pageId) {
-  document.querySelectorAll('.yt-tab').forEach(tab => {
+  document.querySelectorAll('.yt-tab').forEach((tab, index) => {
     tab.classList.remove('active');
   });
   
-  if (pageId === 'main') {
-    document.querySelector('.yt-tab:first-child').classList.add('active');
+  const tabIndex = {
+    'main': 0,
+    'quicks': 1,
+    'players': 2,
+    'insider': 3,
+    'askSection': 4
+  };
+  
+  if (tabIndex[pageId] !== undefined) {
+    document.querySelectorAll('.yt-tab')[tabIndex[pageId]].classList.add('active');
   }
 }
 
