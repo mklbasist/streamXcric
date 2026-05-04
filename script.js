@@ -1202,3 +1202,19 @@ window.showInsider = function() {
     loadInsiderNews();
   }, 300);
 };
+
+document.getElementById('playerSearch').addEventListener('input', function(e) {
+  const query = e.target.value.toLowerCase();
+  const mainPlayers = document.getElementById('main-players');
+  
+  mainPlayers.innerHTML = '';
+  
+  if (query) {
+    const allCards = document.querySelectorAll('.player-card');
+    allCards.forEach(card => {
+      if (card.innerText.toLowerCase().includes(query)) {
+        mainPlayers.appendChild(card.cloneNode(true));
+      }
+    });
+  }
+});
