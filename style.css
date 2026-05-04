@@ -287,6 +287,14 @@ body {
   filter: brightness(0) saturate(100%) invert(99%) sepia(100%) saturate(10000%) hue-rotate(160deg);
 }
 
+body:not(.dark-mode) .yt-tab.active {
+  background: rgba(0, 102, 204, 0.15);
+}
+
+body:not(.dark-mode) .yt-tab.active .icon {
+  filter: brightness(0) saturate(100%) invert(30%) sepia(100%) saturate(800%) hue-rotate(180deg);
+}
+
 .yt-tab:hover {
   background: rgba(0, 0, 0, 0.1);
   color: #333;
