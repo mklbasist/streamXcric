@@ -643,11 +643,11 @@ function showPage(pageId) {
 }
 
 function updateNavHighlight(pageId) {
-  document.querySelectorAll('.yt-tab').forEach((tab, index) => {
+  document.querySelectorAll('.yt-tab').forEach(tab => {
     tab.classList.remove('active');
   });
   
-  const tabIndex = {
+  const tabMap = {
     'main': 0,
     'quicks': 1,
     'players': 2,
@@ -655,8 +655,9 @@ function updateNavHighlight(pageId) {
     'askSection': 4
   };
   
-  if (tabIndex[pageId] !== undefined) {
-    document.querySelectorAll('.yt-tab')[tabIndex[pageId]].classList.add('active');
+  const index = tabMap[pageId];
+  if (index !== undefined) {
+    document.querySelectorAll('.yt-tab')[index].classList.add('active');
   }
 }
 
