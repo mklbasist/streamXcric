@@ -633,7 +633,15 @@ function showPage(pageId) {
   if (pageId === "quicks") {
     loadAllShorts();
   }
+
+  if (pageId !== 'main') {
+  document.getElementById('playerSearch').value = '';
+  document.getElementById('main-players').innerHTML = '';
+}
   
+  updateNavHighlight(pageId);
+}
+
   const footer = document.getElementById("mainFooter");
   if (footer) {
     footer.style.display = pageId === "welcome" ? "block" : "none";
@@ -858,6 +866,20 @@ document.getElementById('playerSearch').addEventListener('input', function(e) {
     });
   }
 });
+
+function focusSearch(e) {
+  e.preventDefault();
+  showPage('main');
+  const searchInput = document.getElementById('playerSearch');
+  if (searchInput) {
+    setTimeout(() => {
+      searchInput.focus();
+      searchInput.click();
+    }, 100);
+  }
+  // Close menu
+  document.getElementById('sideMenu').classList.remove('open');
+}
 
 async function fetchStats() {
   const batter = document.getElementById("batterInput").value.trim();
