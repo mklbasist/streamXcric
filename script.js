@@ -852,7 +852,7 @@ document.getElementById('playerSearch').addEventListener('input', function(e) {
   if (query) {
     const allCards = document.querySelectorAll('.player-card');
     allCards.forEach(card => {
-      if (card.innerText.toLowerCase().includes(query)) {
+      if (card.innerText.toLowerCase().startsWith(query)) {
         mainPlayers.appendChild(card.cloneNode(true));
       }
     });
