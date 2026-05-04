@@ -261,6 +261,11 @@ body {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
 }
 
+.yt-bottom-nav .icon {
+  width: 20px;
+  height: 20px;
+}
+
 .yt-tab {
   padding: 8px 14px;
   border-radius: 30px;
