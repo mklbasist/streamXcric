@@ -1193,13 +1193,3 @@ window.showInsider = function() {
     loadInsiderNews();
   }, 300);
 };
-
-function updateNavHighlight(pageId) {
-  document.querySelectorAll('.yt-tab').forEach(tab => {
-    tab.classList.remove('active');
-  });
-  
-  if (pageId === 'main') {
-    document.querySelector('.yt-tab:first-child').classList.add('active');
-  }
-}
