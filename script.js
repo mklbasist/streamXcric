@@ -848,6 +848,22 @@ function showAsk(type) {
   document.getElementById("askMenu").classList.add("hidden");
 }
 
+function focusSearch(e) {
+  e.preventDefault();
+  showPage('main');
+  const searchInput = document.getElementById('playerSearch');
+  if (searchInput) {
+    setTimeout(() => {
+      searchInput.focus();
+      searchInput.click();
+      // Force keyboard on mobile
+      searchInput.setAttribute('autocomplete', 'off');
+      searchInput.select();
+    }, 100);
+  }
+  document.getElementById('sideMenu').classList.remove('open');
+}
+
 document.getElementById('playerSearch').addEventListener('input', function(e) {
   const query = e.target.value.toLowerCase();
   const mainPlayers = document.getElementById('main-players');
@@ -863,20 +879,6 @@ document.getElementById('playerSearch').addEventListener('input', function(e) {
     });
   }
 });
-
-function focusSearch(e) {
-  e.preventDefault();
-  showPage('main');
-  const searchInput = document.getElementById('playerSearch');
-  if (searchInput) {
-    setTimeout(() => {
-      searchInput.focus();
-      searchInput.click();
-    }, 100);
-  }
-  // Close menu
-  document.getElementById('sideMenu').classList.remove('open');
-}
 
 async function fetchStats() {
   const batter = document.getElementById("batterInput").value.trim();
