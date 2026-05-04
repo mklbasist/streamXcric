@@ -287,14 +287,6 @@ body {
   filter: brightness(0) saturate(100%) invert(99%) sepia(100%) saturate(10000%) hue-rotate(160deg);
 }
 
-.yt-tab:first-child {
-  background: rgba(61, 242, 224, 0.15);
-}
-
-.yt-tab:first-child.active {
-  background: rgba(61, 242, 224, 0.15);
-}
-
 .yt-tab:hover {
   background: rgba(0, 0, 0, 0.1);
   color: #333;
