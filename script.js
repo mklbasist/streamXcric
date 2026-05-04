@@ -843,30 +843,17 @@ function showAsk(type) {
   document.getElementById("askMenu").classList.add("hidden");
 }
 
-window.addEventListener("DOMContentLoaded", () => {
-  const explorePlayers = document.getElementById("all-players"); // Explore section
-  const mainPlayers = document.getElementById("main-players");   // Main search results
-  const searchInput = document.getElementById("playerSearch");
-
-  if (searchInput) {
-    searchInput.addEventListener("input", () => {
-      const query = searchInput.value.toLowerCase();
-
-      // Clear main results
-      mainPlayers.innerHTML = "";
-
-      if (query) {
-        const cards = explorePlayers.querySelectorAll(".player-card");
-        cards.forEach(card => {
-          const name = card.innerText.toLowerCase();
-          if (name.includes(query)) {
-            const clone = card.cloneNode(true);
-            clone.addEventListener("click", () => {
-              card.click();
-            });
-            mainPlayers.appendChild(clone);
-          }
-        });
+document.getElementById('playerSearch').addEventListener('input', function(e) {
+  const query = e.target.value.toLowerCase();
+  const mainPlayers = document.getElementById('main-players');
+  
+  mainPlayers.innerHTML = '';
+  
+  if (query) {
+    const allCards = document.querySelectorAll('.player-card');
+    allCards.forEach(card => {
+      if (card.innerText.toLowerCase().includes(query)) {
+        mainPlayers.appendChild(card.cloneNode(true));
       }
     });
   }
