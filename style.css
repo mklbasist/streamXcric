@@ -274,6 +274,11 @@ body {
   font-size: 10px;
 }
 
+.yt-bottom-nav .icon {
+  width: 20px;
+  height: 20px;
+}
+
 .yt-tab .icon {
   filter: brightness(0) saturate(100%) invert(50%);
 }
