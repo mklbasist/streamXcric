@@ -261,6 +261,26 @@ body {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
 }
 
+.yt-tab {
+  color: #555;
+}
+
+.yt-tab .icon {
+  filter: brightness(0) saturate(100%) invert(50%);
+}
+
+.yt-tab.active .icon {
+  filter: brightness(0) saturate(100%) invert(40%) sepia(100%) saturate(500%) hue-rotate(150deg);
+}
+
+.yt-tab:first-child {
+  background: rgba(61, 242, 224, 0.15);
+}
+
+.yt-tab:first-child .icon {
+  filter: brightness(0) saturate(100%) invert(70%) sepia(100%) saturate(700%) hue-rotate(150deg);
+}
+
 .yt-bottom-nav .icon {
   width: 20px;
   height: 20px;
