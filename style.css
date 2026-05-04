@@ -275,15 +275,11 @@ body {
 }
 
 .yt-tab .icon {
-  width: 20px;
-  height: 20px;
-  filter: invert(60%);
+  filter: brightness(0) saturate(100%) invert(50%);
 }
 
 .yt-tab.active .icon {
-  width: 20px;
-  height: 20px;
-  filter: invert(20%) sepia(100%) saturate(600%) hue-rotate(160deg);
+  filter: brightness(0) saturate(100%) invert(99%) sepia(100%) saturate(10000%) hue-rotate(160deg);
 }
 
 .yt-tab:first-child {
