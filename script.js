@@ -619,27 +619,36 @@ function showPage(pageId) {
     "articlePage",
     "testArchive"
   ];
-
   pages.forEach(id => {
     const el = document.getElementById(id);
     if (el) el.classList.add("hidden");
   });
-
-  // ✅ reset players highlights when leaving players page
+  
   if (pageId !== "players") {
     resetExploreState();
   }
-
+  
   document.getElementById(pageId)?.classList.remove("hidden");
-
+  
   if (pageId === "quicks") {
-  loadAllShorts();
-}
-
-  // footer logic
+    loadAllShorts();
+  }
+  
   const footer = document.getElementById("mainFooter");
   if (footer) {
     footer.style.display = pageId === "welcome" ? "block" : "none";
+  }
+  
+  updateNavHighlight(pageId);
+}
+
+function updateNavHighlight(pageId) {
+  document.querySelectorAll('.yt-tab').forEach(tab => {
+    tab.classList.remove('active');
+  });
+  
+  if (pageId === 'main') {
+    document.querySelector('.yt-tab:first-child').classList.add('active');
   }
 }
 
@@ -1194,12 +1203,3 @@ function updateNavHighlight(pageId) {
     document.querySelector('.yt-tab:first-child').classList.add('active');
   }
 }
-
-// Update original showPage function
-window.showPage = function(pageId) {
-  document.querySelectorAll("section").forEach(s => s.classList.add("hidden"));
-  const page = document.getElementById(pageId);
-  if (page) page.classList.remove("hidden");
-  window.scrollTo(0, 0);
-  updateNavHighlight(pageId);
-};
