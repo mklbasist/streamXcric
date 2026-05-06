@@ -6,31 +6,35 @@
   <link rel="stylesheet" href="style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-
 <body>
-
 <header class="static-header">
   <a href="index.html" class="back-btn">⬅ Back</a>
   <h2>📞 Contact Us</h2>
 </header>
 
-<section style="max-width:700px; margin:auto; padding:20px; text-align:center;">
+<section style="max-width:600px; margin:auto; padding:40px 20px;">
+  <p style="text-align:center; color:#666; margin-bottom:30px;">Have questions or report copyright issues? We're here to help.</p>
 
-  <p>
-    Have a question, request, or issue?  
-    We're here to help.
-  </p>
+  <form action="https://formspree.io/f/xykojanb" method="POST" style="display:flex; flex-direction:column; gap:15px;">
+    
+    <input type="text" name="name" placeholder="Your Name" required style="padding:12px; border:1px solid #ccc; border-radius:8px;">
+    
+    <input type="email" name="email" placeholder="Your Email" required style="padding:12px; border:1px solid #ccc; border-radius:8px;">
+    
+    <select name="category" required style="padding:12px; border:1px solid #ccc; border-radius:8px;">
+      <option value="">Select Category</option>
+      <option value="feedback">General Feedback</option>
+      <option value="copyright">Copyright Takedown</option>
+      <option value="bug">Bug Report</option>
+      <option value="other">Other</option>
+    </select>
+    
+    <textarea name="message" placeholder="Your Message..." rows="6" required style="padding:12px; border:1px solid #ccc; border-radius:8px;"></textarea>
+    
+    <button type="submit" style="padding:12px; background:#3df2e0; color:#000; border:none; border-radius:8px; font-weight:bold; cursor:pointer;">Send Message</button>
+  </form>
 
-  <div style="margin-top:25px; font-size:18px;">
-    <p><strong>Email:</strong> support@streamxcric.com</p>
-    <p><strong>Instagram:</strong> @streamxcric</p>
-    <p><strong>Twitter (X):</strong> @streamxcric</p>
-  </div>
-
-  <p style="margin-top:20px; color:#777;">
-    We usually reply within 24–48 hours.
-  </p>
-
+  <p style="text-align:center; margin-top:30px; color:#666;">Response Time: Within 48 hours</p>
 </section>
 
 </body>
