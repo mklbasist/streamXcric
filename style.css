@@ -863,6 +863,25 @@ body {
   color: #3df2e0;
 }
 
+#main {
+  background: transparent !important;
+}
+
+#main .main-header {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+#main .site-header {
+  background: transparent !important;
+}
+
+.dark-mode #main,
+.dark-mode #main .main-header,
+.dark-mode #main .site-header {
+  background: transparent !important;
+}
+
 /* fix text in cards */
 .dark-mode .article-card,
 .dark-mode .stats-box,
