@@ -882,6 +882,17 @@ body {
   background: transparent !important;
 }
 
+/* white corners fix in light mode */
+body:not(.dark-mode) #main {
+  background: transparent !important;
+}
+
+body:not(.dark-mode) {
+  background: transparent !important;
+  margin: 0;
+  padding: 0;
+}
+
 /* fix text in cards */
 .dark-mode .article-card,
 .dark-mode .stats-box,
