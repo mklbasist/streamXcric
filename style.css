@@ -83,8 +83,21 @@ body {
 }
 
 #main {
-  background: url('static/E3375DC2-D3EF-4A60-9B8F-54BF1F23B0C5.gif') center/cover no-repeat fixed;
+  position: relative;
+}
+
+#main::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('static/your-gif.gif') center/cover no-repeat;
+  background-attachment: fixed;
   filter: blur(5px);
+  z-index: -1;
+  pointer-events: none;
 }
 
 /* ✅ Hide main page initially */
