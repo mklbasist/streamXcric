@@ -82,6 +82,11 @@ body {
   z-index: 2;
 }
 
+#main {
+  background: url('static/E3375DC2-D3EF-4A60-9B8F-54BF1F23B0C5.gif') center/cover no-repeat fixed;
+  filter: blur(5px);
+}
+
 /* ✅ Hide main page initially */
 .hidden {
   display: none;
