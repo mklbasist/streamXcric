@@ -421,12 +421,11 @@ body:not(.dark-mode) .yt-tab.active .icon {
 
 .highlight-card.left {
   left: -20%;
-  z-index: 2;
+  z-index: 3;
 }
-
 .highlight-card.right {
   right: -20%;
-  z-index: 2;
+  z-index: 3;
 }
 
 /* Thumbnail inside center card */
