@@ -360,6 +360,7 @@ body:not(.dark-mode) .yt-tab.active .icon {
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  z-index: 1;
 }
 
 .highlight-card {
