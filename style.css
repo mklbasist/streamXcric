@@ -2,6 +2,9 @@ html, body {
   margin: 0 !important;
   padding: 0 !important;
   overflow-x: hidden !important;
+  width: 100%;
+  height: 100%;
+  background: transparent !important;
 }
 
 .cal-sans-regular {
@@ -12,10 +15,15 @@ html, body {
 
 body { 
   font-family: "Cal Sans", sans-serif;
-  background: transparent !important;
 }
 
 body:not(.dark-mode) {
+  background: transparent !important;
+}
+
+#main {
+  position: relative;
+  overflow: hidden;
   background: transparent !important;
 }
 
