@@ -859,7 +859,7 @@ body {
 }
 
 .dark-mode .main-header {
-  background: #0b0f14 !important;
+  background: transparent !important;
   color: #3df2e0;
 }
 
