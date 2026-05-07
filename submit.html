@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Submit Highlights – streamXcric</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<header class="static-header">
+  <a href="index.html" class="back-btn">⬅ Back</a>
+  <h2>📤 Submit Highlights</h2>
+</header>
+
+<section style="max-width:600px; margin:auto; padding:40px 20px;">
+  <p style="text-align:center; color:#666; margin-bottom:30px;">Share cricket highlights you've discovered. Help us build the ultimate cricket library.</p>
+
+  <form action="https://formspree.io/f/mnjwzopa" method="POST" style="display:flex; flex-direction:column; gap:15px;" id="submitForm">
+    
+    <input type="text" name="name" placeholder="Your Name" required style="padding:14px 16px; border:none; border-radius:12px; background:#f0f0f0; font-size:16px;">
+    
+    <input type="email" name="email" placeholder="Your Email" required style="padding:14px 16px; border:none; border-radius:12px; background:#f0f0f0; font-size:16px;">
+    
+    <input type="text" name="player_name" placeholder="Player Name (Optional)" style="padding:14px 16px; border:none; border-radius:12px; background:#f0f0f0; font-size:16px;">
+    
+    <input type="text" name="match_details" placeholder="Match Details e.g., India vs England, 2020" style="padding:14px 16px; border:none; border-radius:12px; background:#f0f0f0; font-size:16px;">
+    
+    <select name="platform" required style="padding:14px 16px; border:none; border-radius:12px; background:#f0f0f0; font-size:16px;">
+      <option value="">Select Video Platform</option>
+      <option value="youtube">YouTube</option>
+      <option value="dailymotion">Dailymotion</option>
+      <option value="vimeo">Vimeo</option>
+    </select>
+    
+    <textarea name="video_link" placeholder="Paste video link here..." rows="3" required style="padding:14px 16px; border:none; border-radius:12px; background:#f0f0f0; font-size:16px; resize:none; font-family:monospace;"></textarea>
+    
+    <textarea name="description" placeholder="Brief description of the highlight (Optional)" rows="4" style="padding:14px 16px; border:none; border-radius:12px; background:#f0f0f0; font-size:16px; resize:none;"></textarea>
+    
+    <button type="submit" style="padding:14px; background:linear-gradient(135deg, #3df2e0, #00d4ff); color:#000; border:none; border-radius:12px; font-weight:bold; cursor:pointer; font-size:16px;">Submit Highlight</button>
+  </form>
+
+  <div id="successMessage" style="display:none; margin-top:20px; padding:15px; background:#d4edda; color:#155724; border-radius:8px; text-align:center;">
+    ✅ Thank you! Your highlight submission has been received. We'll review it and add it to our collection soon.
+  </div>
+
+  <p style="text-align:center; margin-top:30px; color:#666; font-size:0.9em;">Review Time: 2-5 business days</p>
+</section>
+
+<script>
+document.getElementById('submitForm').addEventListener('submit', function(e) {
+  setTimeout(() => {
+    document.getElementById('successMessage').style.display = 'block';
+  }, 500);
+});
+</script>
+
+</body>
+</html>
