@@ -1980,35 +1980,6 @@ body {
 
 #mainFooter {
   position: relative;
-  margin-top: 80px;
-  padding: 40px 20px;
-  text-align: center;
-}
-
-@media (max-width: 600px) {
-  body {
-    padding-bottom: 250px !important;
-  }
-
-.welcome {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-body {
-  padding-bottom: 0 !important;
-}
-
-#welcome #mainFooter {
-  display: none;
-}
-  
-/* Footer Fix */
-#mainFooter {
-  position: relative;
   margin-top: 50px !important;
   padding: 30px 20px !important;
   text-align: center;
@@ -2018,30 +1989,33 @@ body {
   padding-bottom: 150px !important;
 }
 
-/* Mobile Footer Visible */
-@media (max-width: 600px) {
-  #mainFooter {
-    display: block !important;
-    visibility: visible !important;
-    position: relative !important;
-    margin-top: 80px !important;
-    padding: 50px 20px !important;
-  }
-  
-  body, html {
-    padding-bottom: 200px !important;
-  }
-  
-  #main {
-    margin-bottom: 200px !important;
-  }
-}
-
-#welcome {
-  padding-bottom: 0 !important;
+.welcome {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 #welcome #mainFooter {
   display: none !important;
 }
 
+/* Mobile Footer Visible */
+@media (max-width: 600px) {
+  #mainFooter {
+    display: block !important;
+    visibility: visible !important;
+    position: relative !important;
+    margin-top: 20px !important;
+    padding: 50px 20px !important;
+  }
+  
+  body, html {
+    padding-bottom: 250px !important;
+  }
+  
+  #main {
+    margin-bottom: 50px !important;
+  }
+}
