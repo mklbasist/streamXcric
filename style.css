@@ -1987,11 +1987,23 @@ body {
 
 @media (max-width: 600px) {
   body {
-    padding-bottom: 150px;
+    padding-bottom: 250px !important;
   }
   
   #mainFooter {
-    margin-top: 100px;
-    padding: 30px 20px;
+    margin-top: 150px !important;
+    padding: 50px 20px !important;
   }
+}
+
+#mainFooter {
+  position: relative;
+  z-index: 50;
+  margin-top: 80px;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.yt-bottom-nav {
+  z-index: 100;
 }
