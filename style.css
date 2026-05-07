@@ -1989,6 +1989,22 @@ body {
   body {
     padding-bottom: 250px !important;
   }
+
+.welcome {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+body {
+  padding-bottom: 0 !important;
+}
+
+#welcome #mainFooter {
+  display: none;
+}
   
 /* Footer Fix */
 #mainFooter {
