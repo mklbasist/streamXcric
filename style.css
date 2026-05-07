@@ -2024,7 +2024,7 @@ body {
     display: block !important;
     visibility: visible !important;
     position: relative !important;
-    margin-top: 100px !important;
+    margin-top: 70px !important;
     padding: 50px 20px !important;
   }
   
@@ -2035,5 +2035,17 @@ body {
   #main {
     margin-bottom: 200px !important;
   }
+}
+
+#welcome {
+  padding-bottom: 0 !important;
+}
+
+#welcome #mainFooter {
+  display: none !important;
+}
+
+#welcome ~ #mainFooter {
+  display: none !important;
 }
 
