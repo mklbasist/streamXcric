@@ -1990,21 +1990,25 @@ body {
     padding-bottom: 250px !important;
   }
   
+/* Footer Fix */
 #mainFooter {
   position: relative;
-  z-index: 50;
-  margin-top: 150px;
-  padding: 60px 20px;
+  margin-top: 300px !important;
+  padding: 80px 20px !important;
   text-align: center;
 }
 
+body {
+  padding-bottom: 350px !important;
+}
+
 @media (max-width: 600px) {
-  body {
-    padding-bottom: 300px !important;
+  #mainFooter {
+    margin-top: 400px !important;
+    padding: 100px 20px !important;
   }
   
-  #mainFooter {
-    margin-top: 200px !important;
-    padding: 80px 20px !important;
+  body {
+    padding-bottom: 500px !important;
   }
 }
