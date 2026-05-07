@@ -1979,11 +1979,6 @@ body {
 }
 
 #mainFooter {
-  display: none !important;
-}
-
-#main #mainFooter {
-  display: block !important;
   position: relative;
   margin-top: 50px !important;
   padding: 30px 20px !important;
@@ -2002,9 +1997,20 @@ body {
   justify-content: center;
 }
 
+#welcome #mainFooter {
+  display: none !important;
+}
+
+#insider #mainFooter,
+#players #mainFooter,
+#quicks #mainFooter,
+#askSection #mainFooter {
+  display: none !important;
+}
+
 /* Mobile Footer Visible */
 @media (max-width: 600px) {
-  #main #mainFooter {
+  #mainFooter {
     display: block !important;
     visibility: visible !important;
     position: relative !important;
