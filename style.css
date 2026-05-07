@@ -2045,7 +2045,3 @@ body {
   display: none !important;
 }
 
-#welcome ~ #mainFooter {
-  display: none !important;
-}
-
