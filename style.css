@@ -1993,22 +1993,22 @@ body {
 /* Footer Fix */
 #mainFooter {
   position: relative;
-  margin-top: 300px !important;
-  padding: 80px 20px !important;
+  margin-top: 50px !important;
+  padding: 30px 20px !important;
   text-align: center;
 }
 
 body {
-  padding-bottom: 350px !important;
+  padding-bottom: 150px !important;
 }
 
 @media (max-width: 600px) {
   #mainFooter {
-    margin-top: 400px !important;
-    padding: 100px 20px !important;
+    margin-top: 60px !important;
+    padding: 40px 20px !important;
   }
   
   body {
-    padding-bottom: 500px !important;
+    padding-bottom: 200px !important;
   }
 }
