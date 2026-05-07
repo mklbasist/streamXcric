@@ -1990,20 +1990,21 @@ body {
     padding-bottom: 250px !important;
   }
   
-  #mainFooter {
-    margin-top: 150px !important;
-    padding: 50px 20px !important;
-  }
-}
-
 #mainFooter {
   position: relative;
   z-index: 50;
-  margin-top: 80px;
-  padding: 40px 20px;
+  margin-top: 150px;
+  padding: 60px 20px;
   text-align: center;
 }
 
-.yt-bottom-nav {
-  z-index: 100;
+@media (max-width: 600px) {
+  body {
+    padding-bottom: 300px !important;
+  }
+  
+  #mainFooter {
+    margin-top: 200px !important;
+    padding: 80px 20px !important;
+  }
 }
