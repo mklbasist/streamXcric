@@ -36,6 +36,11 @@ function backToPlayers() {
   document.getElementById("centuriesList").innerHTML = "";
 }
 
+function openPlayer(playerKey) {
+  window.scrollTo(0, 0);
+  showPage('playerPage');
+}
+
     const players = {
       root: {
         name: "Joe Root",
