@@ -1980,13 +1980,9 @@ body {
 
 #mainFooter {
   position: relative;
-  margin-top: 50px !important;
-  padding: 30px 20px !important;
+  margin-top: 30px;
+  padding: 30px 20px;
   text-align: center;
-}
-
-body {
-  padding-bottom: 150px !important;
 }
 
 .welcome {
@@ -2001,28 +1997,22 @@ body {
   display: none !important;
 }
 
-#insider #mainFooter,
-#players #mainFooter,
-#quicks #mainFooter,
-#askSection #mainFooter {
+#insider ~ #mainFooter,
+#players ~ #mainFooter,
+#quicks ~ #mainFooter,
+#askSection ~ #mainFooter {
   display: none !important;
 }
 
-/* Mobile Footer Visible */
+/* Mobile Footer */
 @media (max-width: 600px) {
   #mainFooter {
     display: block !important;
-    visibility: visible !important;
-    position: relative !important;
-    margin-top: 20px !important;
-    padding: 50px 20px !important;
+    margin-top: 20px;
+    padding: 40px 20px;
   }
   
-  body, html {
-    padding-bottom: 250px !important;
-  }
-  
-  #main {
-    margin-bottom: 50px !important;
+  body {
+    padding-bottom: 100px;
   }
 }
