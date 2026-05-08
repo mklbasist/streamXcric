@@ -1228,3 +1228,25 @@ document.getElementById('playerSearch').addEventListener('input', function(e) {
     });
   }
 });
+
+function toggleFooter() {
+  const footer = document.getElementById('mainFooter');
+  const currentPage = document.querySelector('section:not(.hidden)');
+  
+  if (currentPage && currentPage.id === 'main') {
+    footer.style.display = 'block';
+  } else {
+    footer.style.display = 'none';
+  }
+}
+
+// Call on page change
+window.showPage = (function(original) {
+  return function(pageId) {
+    original(pageId);
+    toggleFooter();
+  };
+})(window.showPage);
+
+// Initial check
+toggleFooter();
