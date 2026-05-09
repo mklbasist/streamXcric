@@ -17,6 +17,17 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+<!-- Skip welcome if coming from series -->
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get("from") === "series") {
+    document.getElementById("welcome").classList.add("hidden");
+    document.getElementById("main").classList.remove("hidden");
+  }
+});
+</script>
   
 <!-- Welcome Page -->
 <section id="welcome" class="welcome">
