@@ -10606,10 +10606,34 @@
         "name": "WTC Test",
         "highlights": [
           {
-            "day": "Full Match Highlights",
-            "video": "https://www.youtube.com/embed/gTo-lPOGPdg",
-            "thumbnail": "https://img.youtube.com/vi/gTo-lPOGPdg/hqdefault.jpg",
+            "day": "Day 1 Highlights",
+            "video": "https://players.brightcove.net/3588749423001/default_default/index.html?videoId=6329000025112",
+            "thumbnail": "https://documents.bcci.tv/resizedimageskirti/3588749423001/399c932d-c84f-4be9-a637-3c3d675b58d9/f3f4cd85-7431-4f18-ba0c-5fab2cbb45da/1280x720/match/image_compress.jpeg",
             "duration": "8 min"
+          },
+          {
+            "day": "Day 2 Highlights",
+            "video": "https://players.brightcove.net/3588749423001/default_default/index.html?videoId=6329070945112",
+            "thumbnail": "https://documents.bcci.tv/resizedimageskirti/3588749423001/0f3dfed8-cf5c-4598-8c49-e45369924d1b/227d6809-ac62-4db7-92bf-ffdfc4e3e2ea/1280x720/match/image_compress.jpeg",
+            "duration": "9 min"
+          },
+          {
+            "day": "Day 3 Highlights",
+            "video": "https://players.brightcove.net/3588749423001/default_default/index.html?videoId=6329104975112",
+            "thumbnail": "https://documents.bcci.tv/resizedimageskirti/3588749423001/112879a3-c8e3-4fb9-89b9-bdfdcba4a81d/8059c2ae-a7c9-456e-875e-35d542778cbe/1280x720/match/image_compress.jpeg",
+            "duration": "10 min"
+          },
+          {
+            "day": "Day 4 Highlights",
+            "video": "https://players.brightcove.net/3588749423001/default_default/index.html?videoId=6329264944112",
+            "thumbnail": "https://documents.bcci.tv/resizedimageskirti/3588749423001/45a5e488-c4fd-4de0-afad-f39d933c5722/cab2acb0-ff7f-4ed6-be9b-59c363bc9598/1280x720/match/image_compress.jpeg",
+            "duration": "11 min"
+          },
+          {
+            "day": "Day 5 Highlights",
+            "video": "https://players.brightcove.net/3588749423001/default_default/index.html?videoId=6329263859112",
+            "thumbnail": "https://documents.bcci.tv/resizedimageskirti/3588749423001/7c529cf4-a45f-408e-bc46-b5f5c0a12d55/5dc3dbc5-e532-4314-9c20-b88c5a858f5f/1280x720/match/image_compress.jpeg",
+            "duration": "12 min"
           }
         ]
       }
