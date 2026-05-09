@@ -104,7 +104,7 @@ body:not(.dark-mode) {
   left: 0;
   width: 115%;
   height: 115%;
-  background: url('tumblr_7fbd224f40be83556237fd8a9bbcd117_f04bb9e6_1280.gif') center/cover no-repeat;
+  background: url('static/tumblr_7fbd224f40be83556237fd8a9bbcd117_f04bb9e6_1280.gif') center/cover no-repeat;
   background-attachment: fixed;
   filter: blur(3px) brightness(0.5);
   z-index: -1;
