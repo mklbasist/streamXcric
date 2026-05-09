@@ -2012,3 +2012,16 @@ body {
     z-index: 100;
   }
 }
+
+/* FIX iOS VIDEO PLAYER */
+.series-watch-page .watch-player iframe {
+  playsinline: true;
+  aspect-ratio: 16/9;
+}
+
+@media (max-width: 768px) {
+  .series-watch-page .watch-player iframe {
+    height: auto;
+    aspect-ratio: 16/9;
+  }
+}
