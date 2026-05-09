@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>streamXcric</title>
-
   <!-- ✅ Google Search Console verification -->
   <meta name="google-site-verification" content="LB_PX_akR9vH0_0tlxMG43eq3sJBfP7OMi5sByNxh0Y" />
   
@@ -12,26 +11,26 @@
   
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Cal+Sans&family=VT323&display=swap" rel="stylesheet">
-
 <!-- External CSS -->
 <link rel="stylesheet" href="style.css">
-</head>
-<body>
 
 <!-- Skip welcome if coming from series -->
 <script>
-window.addEventListener("DOMContentLoaded", () => {
-  const params = new URLSearchParams(window.location.search);
-  if (params.get("from") === "series") {
-    document.getElementById("welcome").classList.add("hidden");
-    document.getElementById("main").classList.remove("hidden");
-  }
-});
+const params = new URLSearchParams(window.location.search);
+if (params.get("from") === "series") {
+  document.addEventListener("DOMContentLoaded", () => {
+    setTimeout(() => {
+      document.getElementById("welcome").classList.add("hidden");
+      document.getElementById("main").classList.remove("hidden");
+    }, 100);
+  });
+}
 </script>
+</head>
+<body>
   
 <!-- Welcome Page -->
 <section id="welcome" class="welcome">
-
   <!-- Transparent header only for welcome -->
   <header class="welcome-header">
     <h1>streamXcric</h1>
