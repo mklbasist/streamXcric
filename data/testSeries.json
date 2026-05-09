@@ -8890,27 +8890,15 @@
           },
           {
             "day": "Day 2 Highlights",
-            "video": "https://www.youtube.com/embed/5TOJpz_EYAw",
-            "thumbnail": "https://img.youtube.com/vi/5TOJpz_EYAw/hqdefault.jpg",
+            "video": "https://players.brightcove.net/3588749423001/default_default/index.html?videoId=6299725938001",
+            "thumbnail": "https://documents.bcci.tv/resizedimageskirti/3588749423001/23ed1f7f-914a-4099-98d9-2bc4d5db394e/15be925c-ff96-446d-9866-ff8c5808fd19/1280x720/match/image_compress.jpeg",
             "duration": "9 min"
           },
           {
             "day": "Day 3 Highlights",
-            "video": "https://www.youtube.com/embed/l482T0yNkeo",
-            "thumbnail": "https://img.youtube.com/vi/l482T0yNkeo/hqdefault.jpg",
+            "video": "https://players.brightcove.net/3588749423001/default_default/index.html?videoId=6299795201001",
+            "thumbnail": "https://documents.bcci.tv/resizedimageskirti/35887…9-e86fc88aa648/1280x720/match/image_compress.jpeg",
             "duration": "10 min"
-          },
-          {
-            "day": "Day 4 Highlights",
-            "video": "https://www.youtube.com/embed/9bZkp7q19f0",
-            "thumbnail": "https://img.youtube.com/vi/9bZkp7q19f0/hqdefault.jpg",
-            "duration": "11 min"
-          },
-          {
-            "day": "Day 5 Highlights",
-            "video": "https://www.youtube.com/embed/3tmd-ClpJxA",
-            "thumbnail": "https://img.youtube.com/vi/3tmd-ClpJxA/hqdefault.jpg",
-            "duration": "12 min"
           }
         ]
       },
@@ -8919,33 +8907,21 @@
         "highlights": [
           {
             "day": "Day 1 Highlights",
-            "video": "https://www.youtube.com/embed/dQw4w9WgXcQ",
-            "thumbnail": "https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg",
+            "video": "https://players.brightcove.net/3588749423001/default_default/index.html?videoId=6300457356001",
+            "thumbnail": "https://documents.bcci.tv/resizedimageskirti/3588749423001/27957a4e-a5fd-4c48-a87f-29879f7842df/0e157102-2e05-4d6b-8e90-72d7fb1b858b/1280x720/match/image_compress.jpeg",
             "duration": "8 min"
           },
           {
             "day": "Day 2 Highlights",
-            "video": "https://www.youtube.com/embed/5TOJpz_EYAw",
-            "thumbnail": "https://img.youtube.com/vi/5TOJpz_EYAw/hqdefault.jpg",
+            "video": "https://players.brightcove.net/3588749423001/default_default/index.html?videoId=6300542810001",
+            "thumbnail": "https://documents.bcci.tv/resizedimageskirti/3588749423001/f8cd7ab6-10a8-48fe-9896-7806ecc9195f/d1dd6fbf-7c71-4b27-94a7-eb406b289a74/1280x720/match/image_compress.jpeg",
             "duration": "9 min"
           },
           {
             "day": "Day 3 Highlights",
-            "video": "https://www.youtube.com/embed/l482T0yNkeo",
-            "thumbnail": "https://img.youtube.com/vi/l482T0yNkeo/hqdefault.jpg",
+            "video": "https://players.brightcove.net/3588749423001/default_default/index.html?videoId=6300619972001",
+            "thumbnail": "https://documents.bcci.tv/resizedimageskirti/3588749423001/b93ae237-8880-4ac4-b50e-c55c13568fe6/2a288b39-069e-49cf-b758-8d5f28cb06b5/1280x720/match/image_compress.jpeg",
             "duration": "10 min"
-          },
-          {
-            "day": "Day 4 Highlights",
-            "video": "https://www.youtube.com/embed/9bZkp7q19f0",
-            "thumbnail": "https://img.youtube.com/vi/9bZkp7q19f0/hqdefault.jpg",
-            "duration": "11 min"
-          },
-          {
-            "day": "Day 5 Highlights",
-            "video": "https://www.youtube.com/embed/3tmd-ClpJxA",
-            "thumbnail": "https://img.youtube.com/vi/3tmd-ClpJxA/hqdefault.jpg",
-            "duration": "12 min"
           }
         ]
       }
