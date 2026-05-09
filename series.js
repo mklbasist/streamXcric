@@ -85,5 +85,6 @@ const backBtn = document.getElementById("seriesBackBtn");
 if (backBtn) {
   backBtn.addEventListener("click", () => {
     window.location.href = "index.html";
+    // Redirect to index without query params, welcome will show normally
   });
 }
