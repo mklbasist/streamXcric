@@ -13,19 +13,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Cal+Sans&family=VT323&display=swap" rel="stylesheet">
 <!-- External CSS -->
 <link rel="stylesheet" href="style.css">
-
-<!-- Skip welcome if coming from series -->
-<script>
-const params = new URLSearchParams(window.location.search);
-if (params.get("from") === "series") {
-  document.addEventListener("DOMContentLoaded", () => {
-    setTimeout(() => {
-      document.getElementById("welcome").classList.add("hidden");
-      document.getElementById("main").classList.remove("hidden");
-    }, 100);
-  });
-}
-</script>
 </head>
 <body>
   
