@@ -53,14 +53,16 @@ document.addEventListener("DOMContentLoaded", async () => {
       `;
 
       row.onclick = () => {
-        frame.src = ep.video + "?autoplay=1&modestbranding=1&rel=0";
-
-        // mobile UX fix: bring player into view
-        frame.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-       });
-      };
+  // Clear and reload iframe for Brightcove
+  frame.src = '';
+  setTimeout(() => {
+    frame.src = ep.video;
+    frame.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  }, 50);
+};
 
       list.appendChild(row);
     });
@@ -82,6 +84,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 const backBtn = document.getElementById("seriesBackBtn");
 if (backBtn) {
   backBtn.addEventListener("click", () => {
-    window.location.href = "index.html";
+    window.location.href = "index.html#matches";
   });
 }
