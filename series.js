@@ -1,7 +1,7 @@
 // ⛔ redirect on refresh 
-if (performance.getEntriesByType("navigation")[0]?.type === "reload") {
-  window.location.replace("index.html");
-}
+// if (performance.getEntriesByType("navigation")[0]?.type === "reload") {
+//   window.location.replace("index.html");
+// }
 
 document.addEventListener("DOMContentLoaded", async () => {
   const frame = document.getElementById("videoFrame");
