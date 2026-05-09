@@ -84,6 +84,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 const backBtn = document.getElementById("seriesBackBtn");
 if (backBtn) {
   backBtn.addEventListener("click", () => {
-    window.history.back();
+    window.location.href = "index.html";
   });
 }
