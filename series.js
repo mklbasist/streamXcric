@@ -3,6 +3,22 @@
 //   window.location.replace("index.html");
 // }
 
+function loadVideo(videoUrl, frameElement) {
+  if (videoUrl.includes('hotstar.com')) {
+    frameElement.innerHTML = `
+      <div style="display:flex; align-items:center; justify-content:center; height:100%; background:#1a1a1a; border-radius:8px;">
+        <button onclick="window.open('${videoUrl}', '_blank')" 
+          style="padding:15px 30px; background:#3df2e0; color:#000; border:none; border-radius:8px; cursor:pointer; font-weight:bold; font-size:16px;">
+          ▶ Watch on Hotstar
+        </button>
+      </div>
+    `;
+  } else {
+    frameElement.innerHTML = '';
+    frameElement.src = videoUrl;
+  }
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
   const frame = document.getElementById("videoFrame");
   const testSelect = document.getElementById("testSelect");
@@ -56,7 +72,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Clear and reload iframe for Brightcove
   frame.src = '';
   setTimeout(() => {
-    frame.src = ep.video;
+    loadVideo(ep.video, frame);
     frame.scrollIntoView({
       behavior: "smooth",
       block: "start"
@@ -69,8 +85,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // autoplay first day
     if (match.highlights[0]) {
-      frame.src = match.highlights[0].video;
-    }
+  loadVideo(match.highlights[0].video, frame);
+}
   }
 
   loadMatch(0);
