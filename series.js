@@ -88,6 +88,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   loadMatch(0);
 
   testSelect.addEventListener("change", () => {
+    console.log('Changed to:', testSelect.value);
     frame.innerHTML = '';
     loadMatch(Number(testSelect.value));
   });
