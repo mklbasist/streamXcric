@@ -4,8 +4,8 @@
 // }
 function loadVideo(videoUrl, frameElement, thumbnail) {
   if (videoUrl.includes('hotstar.com')) {
-    frameElement.innerHTML = `
-      <div style="width:100%; height:100%; background:url('${thumbnail}') center/cover; display:flex; align-items:center; justify-content:center;">
+    frameElement.outerHTML = `
+      <div style="width:100%; height:520px; background-image:url('${thumbnail}'); background-size:cover; background-position:center; border-radius:10px; display:flex; align-items:center; justify-content:center; position:relative;">
         <button onclick="window.open('${videoUrl}', '_blank')" 
           style="padding:15px 30px; background:#3df2e0; color:#000; border:none; border-radius:8px; cursor:pointer; font-weight:bold; font-size:16px;">
           ▶ Watch on Hotstar
