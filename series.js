@@ -4,6 +4,7 @@
 // }
 function loadVideo(videoUrl, frameElement, thumbnail) {
   if (videoUrl.includes('hotstar.com')) {
+    frameElement.style.position = 'relative';
     frameElement.style.backgroundImage = `url('${thumbnail}')`;
     frameElement.style.backgroundSize = 'cover';
     frameElement.style.backgroundPosition = 'center';
