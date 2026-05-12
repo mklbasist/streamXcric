@@ -3,22 +3,16 @@
 //   window.location.replace("index.html");
 // }
 function loadVideo(videoUrl, frameElement, thumbnail) {
-  const parent = frameElement.parentElement;
-  
   if (videoUrl.includes('hotstar.com')) {
-    parent.style.position = 'relative';
-    parent.style.backgroundImage = `url('${thumbnail}')`;
-    parent.style.backgroundSize = 'cover';
-    parent.style.backgroundPosition = 'center';
-    frameElement.style.display = 'none';
-    parent.innerHTML += `
-      <button onclick="window.open('${videoUrl}', '_blank')" 
-        style="padding:15px 30px; background:#3df2e0; color:#000; border:none; border-radius:8px; cursor:pointer; font-weight:bold; font-size:16px; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); z-index:10;">
-        ▶ Watch on Hotstar
-      </button>
+    frameElement.innerHTML = `
+      <div style="width:100%; height:100%; background:url('${thumbnail}') center/cover; display:flex; align-items:center; justify-content:center;">
+        <button onclick="window.open('${videoUrl}', '_blank')" 
+          style="padding:15px 30px; background:#3df2e0; color:#000; border:none; border-radius:8px; cursor:pointer; font-weight:bold; font-size:16px;">
+          ▶ Watch on Hotstar
+        </button>
+      </div>
     `;
   } else {
-    frameElement.style.display = 'block';
     frameElement.src = videoUrl;
   }
 }
