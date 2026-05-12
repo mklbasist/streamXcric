@@ -4,27 +4,15 @@
 // }
 
 function loadVideo(videoUrl, frameElement) {
-  const container = frameElement.parentElement;
-  
   if (videoUrl.includes('hotstar.com')) {
-    container.innerHTML = `
-      <div style="display:flex; align-items:center; justify-content:center; height:400px; background:#1a1a1a; border-radius:8px;">
-        <button onclick="window.open('${videoUrl}', '_blank')" 
-          style="padding:15px 30px; background:#3df2e0; color:#000; border:none; border-radius:8px; cursor:pointer; font-weight:bold; font-size:16px;">
-          ▶ Watch on Hotstar
-        </button>
-      </div>
+    frameElement.innerHTML = `
+      <button onclick="window.open('${videoUrl}', '_blank')" 
+        style="padding:15px 30px; background:#3df2e0; color:#000; border:none; border-radius:8px; cursor:pointer; font-weight:bold; font-size:16px; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); z-index:10;">
+        ▶ Watch on Hotstar
+      </button>
     `;
   } else {
-    container.innerHTML = '';
-    const newFrame = document.createElement('iframe');
-    newFrame.id = 'videoFrame';
-    newFrame.src = videoUrl;
-    newFrame.style.width = '100%';
-    newFrame.style.height = '400px';
-    newFrame.style.border = 'none';
-    newFrame.style.borderRadius = '8px';
-    container.appendChild(newFrame);
+    frameElement.src = videoUrl;
   }
 }
 
