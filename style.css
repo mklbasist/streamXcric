@@ -2028,6 +2028,6 @@ body {
 
 @media (max-width: 768px) {
   .series-watch-page .watch-player div[style*="background-image"] {
-    height: 250px !important;
+    height: 200px !important;
   }
 }
