@@ -2025,3 +2025,9 @@ body {
     aspect-ratio: 16/9;
   }
 }
+
+@media (max-width: 768px) {
+  .series-watch-page .watch-player div[style*="background-image"] {
+    height: 250px !important;
+  }
+}
