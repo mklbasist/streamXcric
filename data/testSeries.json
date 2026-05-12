@@ -13055,34 +13055,10 @@
         "name": "1st Test",
         "highlights": [
           {
-            "day": "Day 1 Highlights",
+            "day": "Full Match Highlights",
             "video": "https://www.hotstar.com/in/sports/cricket/final-sa-vs-aus-day-1-highlights/1540044517/video/highlights/watch",
-            "thumbnail": "https://secure-media.hotstar.com/r1/thumbs/PCTV/15/1540044517/PCTV-1540044517-hcdl.jpg",
+            "thumbnail": "https://img10.hotstar.com/image/upload/f_auto,w_1280,h_720/sources/r1/cms/prod/2519/1749922922519-h.jpg",
             "duration": "8 min"
-          },
-          {
-            "day": "Day 2 Highlights",
-            "video": "https://www.youtube.com/embed/5TOJpz_EYAw",
-            "thumbnail": "https://img.youtube.com/vi/5TOJpz_EYAw/hqdefault.jpg",
-            "duration": "9 min"
-          },
-          {
-            "day": "Day 3 Highlights",
-            "video": "https://www.youtube.com/embed/l482T0yNkeo",
-            "thumbnail": "https://img.youtube.com/vi/l482T0yNkeo/hqdefault.jpg",
-            "duration": "10 min"
-          },
-          {
-            "day": "Day 4 Highlights",
-            "video": "https://www.youtube.com/embed/9bZkp7q19f0",
-            "thumbnail": "https://img.youtube.com/vi/9bZkp7q19f0/hqdefault.jpg",
-            "duration": "11 min"
-          },
-          {
-            "day": "Day 5 Highlights",
-            "video": "https://www.youtube.com/embed/3tmd-ClpJxA",
-            "thumbnail": "https://img.youtube.com/vi/3tmd-ClpJxA/hqdefault.jpg",
-            "duration": "12 min"
           }
         ]
       }
