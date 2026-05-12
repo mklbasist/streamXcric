@@ -2,9 +2,11 @@
 // if (performance.getEntriesByType("navigation")[0]?.type === "reload") {
 //   window.location.replace("index.html");
 // }
-
-function loadVideo(videoUrl, frameElement) {
+function loadVideo(videoUrl, frameElement, thumbnail) {
   if (videoUrl.includes('hotstar.com')) {
+    frameElement.style.backgroundImage = `url('${thumbnail}')`;
+    frameElement.style.backgroundSize = 'cover';
+    frameElement.style.backgroundPosition = 'center';
     frameElement.innerHTML = `
       <button onclick="window.open('${videoUrl}', '_blank')" 
         style="padding:15px 30px; background:#3df2e0; color:#000; border:none; border-radius:8px; cursor:pointer; font-weight:bold; font-size:16px; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); z-index:10;">
@@ -15,7 +17,6 @@ function loadVideo(videoUrl, frameElement) {
     frameElement.src = videoUrl;
   }
 }
-
 document.addEventListener("DOMContentLoaded", async () => {
   const frame = document.getElementById("videoFrame");
   const testSelect = document.getElementById("testSelect");
@@ -46,7 +47,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     testSelect.appendChild(opt);
   });
 
-  function loadMatch(index) {
+  function Match(index) {
     list.innerHTML = "";
     const match = series.matches[index];
     if (!match || !match.highlights) return;
@@ -69,7 +70,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Clear and reload iframe for Brightcove
   frame.src = '';
   setTimeout(() => {
-    loadVideo(ep.video, frame);
+    loadVideo(ep.video, frame, ep.thumbnail);
     frame.scrollIntoView({
       behavior: "smooth",
       block: "start"
@@ -82,7 +83,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // autoplay first day
     if (match.highlights[0]) {
-  loadVideo(match.highlights[0].video, frame);
+  loadVideo(match.highlights[0].video, frame, match.highlights[0].thumbnail);
 }
   }
 
