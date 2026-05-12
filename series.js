@@ -68,7 +68,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       row.onclick = () => {
   // Clear and reload iframe for Brightcove
-  frame.src = '';
   setTimeout(() => {
     loadVideo(ep.video, frame, ep.thumbnail);
     frame.scrollIntoView({
