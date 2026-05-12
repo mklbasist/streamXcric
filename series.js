@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     testSelect.appendChild(opt);
   });
 
-  function Match(index) {
+  function loadMatch(index) {
     list.innerHTML = "";
     const match = series.matches[index];
     if (!match || !match.highlights) return;
