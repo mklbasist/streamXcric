@@ -2138,19 +2138,20 @@ body {
   .insider-wrapper {
   flex: 1;
   display: flex;
-  align-items: flex-start;    
+  align-items: flex-start;
   justify-content: center;
-  padding: 1rem 1.5rem;
-  padding-bottom: 100px;
+  padding: 0.5rem 1rem 100px 1rem;
   position: relative;
   overflow: hidden;
 }
  
   .card-stack-view {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 0;
+  padding-top: 0;
+}
  
 .card-container {
   position: relative;
