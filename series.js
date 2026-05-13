@@ -85,16 +85,17 @@ document.addEventListener("DOMContentLoaded", async () => {
 }
   }
 
-  loadMatch(0);
-
-  testSelect.addEventListener("change", () => {
-  const parent = frame.parentElement;
-  const newFrame = document.createElement('iframe');
-  newFrame.id = 'videoFrame';
-  parent.replaceChild(newFrame, frame);
-  frame = newFrame;
+loadMatch(0);
   
-  loadMatch(Number(testSelect.value));
+  testSelect.addEventListener("change", () => {
+    const parent = frame.parentElement;
+    const newFrame = document.createElement('iframe');
+    newFrame.id = 'videoFrame';
+    parent.replaceChild(newFrame, frame);
+    frame = newFrame;
+    
+    loadMatch(Number(testSelect.value));
+  });
 });
 
 // Back button
@@ -102,6 +103,5 @@ const backBtn = document.getElementById("seriesBackBtn");
 if (backBtn) {
   backBtn.addEventListener("click", () => {
     window.location.href = "index.html";
-    // Redirect to index without query params, welcome will show normally
   });
 }
