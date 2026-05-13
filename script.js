@@ -1221,7 +1221,7 @@ ${
         src="${newsItem.image}"
         style="
           width:100%;
-          height:180px;
+          height:120px;
           border-radius:14px;
           object-fit:cover;
           object-position:center;
