@@ -88,10 +88,13 @@ document.addEventListener("DOMContentLoaded", async () => {
   loadMatch(0);
 
   testSelect.addEventListener("change", () => {
-    console.log('Changed to:', testSelect.value);
-    frame.innerHTML = '';
-    loadMatch(Number(testSelect.value));
-  });
+  const parent = frame.parentElement;
+  const newFrame = document.createElement('iframe');
+  newFrame.id = 'videoFrame';
+  parent.replaceChild(newFrame, frame);
+  frame = newFrame;
+  
+  loadMatch(Number(testSelect.value));
 });
 
 // Back button
