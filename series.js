@@ -4,15 +4,22 @@
 // }
 function loadVideo(videoUrl, frameElement, thumbnail) {
   if (videoUrl.includes('hotstar.com')) {
-    frameElement.outerHTML = `
-      <div style="width:100%; height:520px; background-image:url('${thumbnail}'); background-size:cover; background-position:center; border-radius:10px; display:flex; align-items:center; justify-content:center; position:relative;">
-        <button onclick="window.open('${videoUrl}', '_blank')" 
-          style="padding:15px 30px; background:#3df2e0; color:#000; border:none; border-radius:8px; cursor:pointer; font-weight:bold; font-size:16px;">
-          ▶ Watch on Hotstar
-        </button>
-      </div>
-    `;
+    frameElement.style.display = 'none';
+    let hotstarDiv = frameElement.nextElementSibling;
+    
+    if (hotstarDiv && hotstarDiv.id === 'hotstar-overlay') {
+      hotstarDiv.remove();
+    }
+    
+    const div = document.createElement('div');
+    div.id = 'hotstar-overlay';
+    div.style.cssText = `width:100%; height:520px; background-image:url('${thumbnail}'); background-size:cover; background-position:center; border-radius:10px; display:flex; align-items:center; justify-content:center;`;
+    div.innerHTML = `<button onclick="window.open('${videoUrl}', '_blank')" style="padding:15px 30px; background:#3df2e0; color:#000; border:none; border-radius:8px; cursor:pointer; font-weight:bold; font-size:16px;">▶ Watch on Hotstar</button>`;
+    frameElement.parentElement.insertBefore(div, frameElement.nextSibling);
   } else {
+    frameElement.style.display = 'block';
+    let hotstarDiv = document.getElementById('hotstar-overlay');
+    if (hotstarDiv) hotstarDiv.remove();
     frameElement.src = videoUrl;
   }
 }
