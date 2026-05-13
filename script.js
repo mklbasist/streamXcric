@@ -1214,21 +1214,24 @@ function createCard(newsItem) {
 
       </div>
 
-      ${
-        newsItem.image
-          ? `
-            <img
-              src="${newsItem.image}"
-              style="
-                width:100%;
-                border-radius:14px;
-                max-height:220px;
-                object-fit:cover;
-              "
-            >
-          `
-          : ''
-      }
+${
+  newsItem.image
+    ? `
+      <img
+        src="${newsItem.image}"
+        style="
+          width:100%;
+          height:180px;
+          border-radius:14px;
+          object-fit:cover;
+          object-position:center;
+          margin:0.5rem 0 0.8rem 0;
+          display:block;
+        "
+      >
+    `
+    : ''
+}
 
       <p class="card-description">
         ${newsItem.description}
