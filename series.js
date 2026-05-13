@@ -88,8 +88,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 loadMatch(0);
   
 testSelect.addEventListener("change", () => {
-  loadMatch(Number(testSelect.value));
-});
+  const index = Number(testSelect.value);
+  const match = series.matches[index];
+  if (match && match.highlights[0]) {
+    loadVideo(match.highlights[0].video, frame, match.highlights[0].thumbnail);
+  }
+  loadMatch(index);
 });
 
 // Back button
