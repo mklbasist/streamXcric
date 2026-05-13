@@ -2148,15 +2148,18 @@ body {
  
   .card-stack-view {
     width: 100%;
+    display: flex;
+    justify-content: center;
   }
  
 .card-container {
   position: relative;
-  width: 100%;
-  max-width: 400px;
+  width: calc(100% - 2rem);  /* add this */
+  max-width: 380px;
   margin: 0 auto;
   height: 520px;
   perspective: 1200px;
+  left: 0;  /* reset any offset */
 }
 
 .card-inner {
@@ -2190,6 +2193,7 @@ body {
     transform-origin: center;
     touch-action: none;
     overflow: hidden;
+    box-sizing: border-box;
   }
  
   .news-card:active {
@@ -2579,7 +2583,11 @@ body {
     .insider-wrapper {
       padding: 1.5rem 1rem;
       padding-bottom: 100px;
+      display: flex;
+      align-items: flex-start;  /* change from center to flex-start */
+      justify-content: center;
     }
+
  
     .swipe-hint {
       bottom: 85px;
