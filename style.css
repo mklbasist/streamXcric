@@ -2174,7 +2174,7 @@ body {
     height: 100%;
     background: linear-gradient(135deg, var(--secondary-dark) 0%, #0f172a 100%);
     border-radius: 24px;
-    padding: 2rem;
+    padding: 1.2rem;
     border: 1px solid rgba(71, 85, 105, 0.3);
     box-shadow: var(--card-shadow);
     display: flex;
@@ -2556,7 +2556,7 @@ body {
     }
  
     .news-card {
-      padding: 1.5rem;
+      padding: 1rem;
       border-radius: 20px;
     }
  
