@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
 loadMatch(0);
-  
+
 testSelect.addEventListener("change", () => {
   const index = Number(testSelect.value);
   const match = series.matches[index];
@@ -94,6 +94,7 @@ testSelect.addEventListener("change", () => {
     loadVideo(match.highlights[0].video, frame, match.highlights[0].thumbnail);
   }
   loadMatch(index);
+});
 });
 
 // Back button
