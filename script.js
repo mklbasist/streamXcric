@@ -1065,134 +1065,259 @@ document.addEventListener("click", () => {
   userInteracted = true;
 }, { once: true });
 
-// ==================== INSIDER NEWS SECTION ====================
+// ==================== INSIDER CARD STACK ====================
 
 const RSS_FEEDS = [
   'https://www.espncricinfo.com/rss/content/story/feeds/0.xml',
   'http://www.skysports.com/rss/0,20514,12123,00.xml'
 ];
 
-const TRENDING_TOPICS = [
-  'Test Cricket', 'IPL', 'World Cup', 'Injury Report',
-  'Selection', 'Captaincy', 'Transfer', 'Record'
-];
+let newsCards = [];
+let currentCardIndex = 0;
 
+let touchStartX = 0;
+let touchCurrentX = 0;
+let isAnimating = false;
+
+const SWIPE_THRESHOLD = 50;
+
+// LOAD NEWS
 async function loadInsiderNews() {
-  const corsProxy = 'https://api.rss2json.com/v1/api.json?rss_url=';
-  const loadingEl = document.getElementById('loadingState');
-  
-  console.log('🚀 Loading news from feeds...');
-  loadingEl.textContent = 'Loading news...';
-  loadingEl.style.display = 'block';
+
+  const loading = document.getElementById('loadingState');
+
+  if (loading) {
+    loading.classList.remove('hidden');
+  }
+
+  const corsProxy =
+    'https://api.rss2json.com/v1/api.json?rss_url=';
 
   let allNews = [];
 
   try {
+
     for (let feed of RSS_FEEDS) {
+
       try {
-        console.log(`📡 Fetching: ${feed}`);
-        const url = corsProxy + encodeURIComponent(feed);
-        const response = await fetch(url);
+
+        const response = await fetch(
+          corsProxy + encodeURIComponent(feed)
+        );
+
         const data = await response.json();
 
         if (data.items && data.items.length > 0) {
-          console.log(`✅ Got ${data.items.length} items from ${feed}`);
-          
+
           data.items.forEach(item => {
-  allNews.push({
-    title: (item.title || 'No title').substring(0, 100),
-    description: (item.description || '').replace(/<[^>]+>/g, '').substring(0, 150),
-    date: new Date(item.pubDate),
-    source: feed.includes('espncricinfo') ? 'ESPNcricinfo' : 'Sky Sports',
-    link: item.link || '#',
-    image: item.enclosure?.link || item.image?.url || ''
-  });
-});
+
+            allNews.push({
+
+              title:
+                (item.title || 'No title')
+                .substring(0, 120),
+
+              description:
+                (item.description || '')
+                .replace(/<[^>]+>/g, '')
+                .substring(0, 220),
+
+              pubDate:
+                new Date(item.pubDate),
+
+              source:
+                feed.includes('espncricinfo')
+                  ? 'ESPNcricinfo'
+                  : 'Sky Sports',
+
+              isBold:
+                item.title?.toLowerCase().includes('breaking') ||
+                item.title?.toLowerCase().includes('final') ||
+                item.title?.toLowerCase().includes('injury'),
+
+              link:
+                item.link || '#',
+
+              image:
+                item.enclosure?.link ||
+                item.thumbnail ||
+                ''
+
+            });
+
+          });
+
         }
+
       } catch (err) {
-        console.error(`❌ Error fetching ${feed}:`, err);
+
+        console.error('Feed error:', err);
+
       }
+
     }
 
-    console.log(`📊 Total news items: ${allNews.length}`);
-    
-    if (allNews.length > 0) {
-      displayNews(allNews);
-    } else {
-      loadingEl.textContent = '❌ No news available';
-      loadingEl.style.color = 'red';
+    allNews.sort(
+      (a, b) => new Date(b.pubDate) - new Date(a.pubDate)
+    );
+
+    if (loading) {
+      loading.classList.add('hidden');
     }
+
+    initializeCardStack(allNews);
 
   } catch (err) {
-    console.error('❌ Error:', err);
-    loadingEl.textContent = 'Error loading news';
-    loadingEl.style.color = 'red';
+
+    console.error(err);
+
+    if (loading) {
+      loading.innerHTML = '<p>Failed loading news</p>';
+    }
+
   }
+
 }
 
-function displayNews(allNews) {
-  console.log('📺 Displaying news...');
-  
-  allNews.sort((a, b) => b.date - a.date);
+// INITIALIZE STACK
+function initializeCardStack(newsData) {
 
-  if (allNews.length > 0) {
-    const featured = allNews[0];
-    document.getElementById('featuredTitle').textContent = featured.title;
-    document.getElementById('featuredDesc').textContent = featured.description;
-    document.getElementById('featuredTime').textContent = formatTime(featured.date);
-    document.getElementById('featuredSource').textContent = featured.source;
-  }
+  newsCards = newsData || [];
 
-  allNews.slice(1, 10).forEach(news => {
-  const newsEl = document.createElement('div');
-  newsEl.className = 'news-item';
-  newsEl.innerHTML = `
-    <a href="${news.link}" target="_blank" style="text-decoration:none; color:inherit;">
-      ${news.image ? `<img src="${news.image}" style="width:100%; border-radius:8px; margin-bottom:10px; max-height:200px; object-fit:cover;">` : ''}
-      <h4 class="news-item-title">${news.title}</h4>
-      <p class="news-item-desc">${news.description}</p>
-      <div class="news-item-meta">
-        <span class="news-item-time">${formatTime(news.date)}</span>
-        <span class="news-item-source">${news.source}</span>
+  currentCardIndex = 0;
+
+  renderCards();
+
+  updateCounter();
+
+}
+
+// RENDER CARDS
+function renderCards() {
+
+  const deck = document.getElementById('cardsDeck');
+
+  if (!deck) return;
+
+  deck.innerHTML = '';
+
+  newsCards
+    .slice(currentCardIndex, currentCardIndex + 3)
+    .forEach((newsItem, index) => {
+
+      const card = createCardElement(newsItem);
+
+      deck.appendChild(card);
+
+    });
+
+  updateEmptyState();
+
+}
+
+// CREATE CARD
+function createCardElement(newsItem) {
+
+  const card = document.createElement('div');
+
+  card.className = 'news-card';
+
+  const sourceClass =
+    newsItem.source.toLowerCase().includes('espn')
+      ? 'espn'
+      : 'sky';
+
+  card.innerHTML = `
+
+    <div class="card-decoration accent-red"></div>
+    <div class="card-decoration accent-cyan"></div>
+
+    <div class="card-inner">
+
+      <div class="card-header">
+
+        ${
+          newsItem.isBold
+            ? '<div class="card-badge breaking">⚡ Breaking</div>'
+            : '<div class="card-badge">📰 News</div>'
+        }
+
+        <h3 class="card-title">
+          ${newsItem.title}
+        </h3>
+
       </div>
-    </a>
+
+      ${
+        newsItem.image
+          ? `
+          <img
+            src="${newsItem.image}"
+            style="
+              width:100%;
+              height:220px;
+              object-fit:cover;
+              border-radius:16px;
+            "
+          >
+        `
+          : ''
+      }
+
+      <p class="card-description">
+        ${newsItem.description}
+      </p>
+
+      <div class="card-footer">
+
+        <div class="card-meta">
+
+          <span class="card-time">
+            ${formatTime(newsItem.pubDate)}
+          </span>
+
+          <span class="card-source ${sourceClass}">
+            ${newsItem.source}
+          </span>
+
+        </div>
+
+        <div class="card-actions">
+
+          <button
+            class="card-action-btn"
+            onclick="window.open('${newsItem.link}','_blank')"
+          >
+            ↗
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
   `;
-  recentFeed.appendChild(newsEl);
-});
 
-  const keywordEl = document.getElementById('trendingKeywords');
-  if (keywordEl) {
-    keywordEl.innerHTML = '';
-    TRENDING_TOPICS.forEach(topic => {
-      const tag = document.createElement('span');
-      tag.className = 'keyword-tag';
-      tag.textContent = topic;
-      keywordEl.appendChild(tag);
-    });
-  }
+  // TOUCH EVENTS
+  card.addEventListener('touchstart', handleTouchStart);
+  card.addEventListener('touchmove', handleTouchMove);
+  card.addEventListener('touchend', handleTouchEnd);
 
-  const breakingEl = document.getElementById('breakingTicker');
-  if (breakingEl) {
-    breakingEl.innerHTML = '';
-    allNews.slice(0, 3).forEach(news => {
-      const item = document.createElement('div');
-      item.className = 'breaking-item';
-      item.textContent = '⚡ ' + news.title;
-      breakingEl.appendChild(item);
-    });
-  }
+  // MOUSE EVENTS
+  card.addEventListener('mousedown', handleMouseDown);
 
-  const loadingEl = document.getElementById('loadingState');
-  if (loadingEl) {
-    loadingEl.style.display = 'none';
-  }
+  return card;
+
 }
 
+// FORMAT TIME
 function formatTime(date) {
-  if (!date) return 'Unknown';
-  
+
   const now = new Date();
-  const diff = now - date;
+
+  const diff = now - new Date(date);
+
   const minutes = Math.floor(diff / 60000);
   const hours = Math.floor(diff / 3600000);
   const days = Math.floor(diff / 86400000);
@@ -1201,55 +1326,212 @@ function formatTime(date) {
   if (minutes < 60) return `${minutes}m ago`;
   if (hours < 24) return `${hours}h ago`;
   if (days < 7) return `${days}d ago`;
-  
-  try {
-    return date.toLocaleDateString();
-  } catch {
-    return 'Recently';
-  }
+
+  return new Date(date).toLocaleDateString();
+
 }
 
-window.showInsider = function() {
-  showPage('insider');
-  setTimeout(() => {
+// TOUCH START
+function handleTouchStart(e) {
+
+  if (isAnimating) return;
+
+  touchStartX = e.touches[0].clientX;
+
+}
+
+// TOUCH MOVE
+function handleTouchMove(e) {
+
+  if (isAnimating) return;
+
+  touchCurrentX = e.touches[0].clientX;
+
+  const deltaX = touchCurrentX - touchStartX;
+
+  const rotation = deltaX / 20;
+
+  e.currentTarget.style.transform =
+    `translateX(${deltaX}px) rotate(${rotation}deg)`;
+
+}
+
+// TOUCH END
+function handleTouchEnd(e) {
+
+  if (isAnimating) return;
+
+  const deltaX = touchCurrentX - touchStartX;
+
+  if (Math.abs(deltaX) > SWIPE_THRESHOLD) {
+
+    isAnimating = true;
+
+    const card = e.currentTarget;
+
+    card.classList.add(
+      deltaX > 0
+        ? 'swipe-right'
+        : 'swipe-left'
+    );
+
+    setTimeout(() => {
+
+      currentCardIndex++;
+
+      renderCards();
+
+      updateCounter();
+
+      isAnimating = false;
+
+    }, 500);
+
+  } else {
+
+    e.currentTarget.style.transform = '';
+
+  }
+
+}
+
+// DESKTOP DRAG
+function handleMouseDown(e) {
+
+  let startX = e.clientX;
+
+  const card = e.currentTarget;
+
+  function moveHandler(ev) {
+
+    const deltaX = ev.clientX - startX;
+
+    card.style.transform =
+      `translateX(${deltaX}px) rotate(${deltaX / 20}deg)`;
+
+  }
+
+  function upHandler(ev) {
+
+    const deltaX = ev.clientX - startX;
+
+    if (Math.abs(deltaX) > SWIPE_THRESHOLD) {
+
+      card.classList.add(
+        deltaX > 0
+          ? 'swipe-right'
+          : 'swipe-left'
+      );
+
+      setTimeout(() => {
+
+        currentCardIndex++;
+
+        renderCards();
+
+        updateCounter();
+
+      }, 500);
+
+    } else {
+
+      card.style.transform = '';
+
+    }
+
+    document.removeEventListener('mousemove', moveHandler);
+    document.removeEventListener('mouseup', upHandler);
+
+  }
+
+  document.addEventListener('mousemove', moveHandler);
+  document.addEventListener('mouseup', upHandler);
+
+}
+
+// UPDATE COUNTER
+function updateCounter() {
+
+  const count =
+    document.getElementById('newsCount');
+
+  const total =
+    document.getElementById('newsTotalCount');
+
+  if (count) {
+    count.textContent =
+      Math.min(currentCardIndex + 1, newsCards.length);
+  }
+
+  if (total) {
+    total.textContent = newsCards.length;
+  }
+
+}
+
+// EMPTY STATE
+function updateEmptyState() {
+
+  const empty =
+    document.getElementById('emptyState');
+
+  const deck =
+    document.getElementById('cardsDeck');
+
+  if (currentCardIndex >= newsCards.length) {
+
+    if (empty) {
+      empty.classList.remove('hidden');
+    }
+
+    if (deck) {
+      deck.style.display = 'none';
+    }
+
+  } else {
+
+    if (empty) {
+      empty.classList.add('hidden');
+    }
+
+    if (deck) {
+      deck.style.display = 'block';
+    }
+
+  }
+
+}
+
+// RELOAD
+function reloadInsider() {
+
+  currentCardIndex = 0;
+
+  loadInsiderNews();
+
+}
+
+// SHOW PAGE
+window.showInsider = function () {
+
+  if (typeof showPage === 'function') {
+    showPage('insider');
+  }
+
+  if (newsCards.length === 0) {
     loadInsiderNews();
-  }, 300);
+  }
+
 };
 
-document.getElementById('playerSearch').addEventListener('input', function(e) {
-  const query = e.target.value.toLowerCase();
-  const mainPlayers = document.getElementById('main-players');
-  
-  mainPlayers.innerHTML = '';
-  
-  if (query) {
-    const allCards = document.querySelectorAll('.player-card');
-    allCards.forEach(card => {
-      if (card.innerText.toLowerCase().includes(query)) {
-        mainPlayers.appendChild(card.cloneNode(true));
-      }
-    });
+// AUTO LOAD
+document.addEventListener('DOMContentLoaded', () => {
+
+  const insider =
+    document.getElementById('insider');
+
+  if (insider && !insider.classList.contains('hidden')) {
+    loadInsiderNews();
   }
+
 });
-
-function toggleFooter() {
-  const footer = document.getElementById('mainFooter');
-  const currentPage = document.querySelector('section:not(.hidden)');
-  
-  if (currentPage && currentPage.id === 'main') {
-    footer.style.display = 'block';
-  } else {
-    footer.style.display = 'none';
-  }
-}
-
-// Call on page change
-window.showPage = (function(original) {
-  return function(pageId) {
-    original(pageId);
-    toggleFooter();
-  };
-})(window.showPage);
-
-// Initial check
-toggleFooter();
