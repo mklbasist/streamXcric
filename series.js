@@ -87,15 +87,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 loadMatch(0);
   
-  testSelect.addEventListener("change", () => {
-    const parent = frame.parentElement;
-    const newFrame = document.createElement('iframe');
-    newFrame.id = 'videoFrame';
-    parent.replaceChild(newFrame, frame);
-    frame = newFrame;
-    
-    loadMatch(Number(testSelect.value));
-  });
+testSelect.addEventListener("change", () => {
+  loadMatch(Number(testSelect.value));
+});
 });
 
 // Back button
