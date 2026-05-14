@@ -2366,7 +2366,7 @@ body {
   color: var(--text-primary);
 }
 
-/* Stacking Effect - Folder Style */
+/* Stacking Effect */
 .news-card:nth-child(1) {
   transform: translateY(0) scale(1);
   opacity: 1;
@@ -2374,15 +2374,17 @@ body {
 }
 
 .news-card:nth-child(2) {
-  transform: translateY(-8px) scale(0.98) translateX(3px);
-  opacity: 0.7;
+  transform: translateY(-12px) scale(0.95);
+  opacity: 0.7;  /* ← KEEP THIS */
   z-index: 2;
+  visibility: visible;  /* ← KEEP VISIBLE */
 }
 
 .news-card:nth-child(3) {
-  transform: translateY(-16px) scale(0.96) translateX(6px);
-  opacity: 0.5;
+  transform: translateY(-24px) scale(0.9);
+  opacity: 0;  /* ← HIDE THIS ONE */
   z-index: 1;
+  visibility: hidden;  /* ← HIDE THIS ONE */
 }
 
 .news-card:nth-child(n+4) {
