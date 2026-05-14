@@ -2372,7 +2372,6 @@ body {
   transform: translateY(0) scale(1);
   opacity: 1;
   z-index: 3;
-  height: auto;  /* ← ADD THIS */
 }
 
 .news-card:nth-child(2) {
