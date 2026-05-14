@@ -1069,7 +1069,15 @@ document.addEventListener("click", () => {
 
 const RSS_FEEDS = [
   'https://www.espncricinfo.com/rss/content/story/feeds/0.xml',
-  'https://www.skysports.com/rss/0,20514,12123,00.xml'
+  'https://www.skysports.com/rss/0,20514,12123,00.xml',
+  'https://cricketmood.com/rss.xml',
+  'https://feeds.bbci.co.uk/sport/cricket/rss.xml',
+  'https://www.thecricketpaper.com/feed/',
+  'https://www.abc.net.au/news/sport/cricket',
+  'https://www.kingcricket.co.uk/feed/',
+  'https://www.icc-cricket.com/news',
+  'https://www.ecb.co.uk/about/news/blogs/',
+  'https://yorkshireccc.com/news/feed/'
 ];
 
 let newsCards = [];
