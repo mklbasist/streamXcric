@@ -2410,7 +2410,7 @@ body {
     opacity: 1;
   }
   100% {
-    transform: translateY(-100px) translateX(150%) rotate(-25deg);
+    transform: translateY(-100px) translateX(150%) rotate(25deg);
     opacity: 0;
   }
 }
@@ -2421,7 +2421,7 @@ body {
     opacity: 1;
   }
   100% {
-    transform: translateY(-100px) translateX(-150%) rotate(25deg);
+    transform: translateY(-100px) translateX(-150%) rotate(-25deg);
     opacity: 0;
   }
 }
