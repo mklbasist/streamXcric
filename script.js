@@ -1119,9 +1119,28 @@ async function loadInsiderNews() {
 
               pubDate: new Date(item.pubDate),
 
-              source: feed.includes('espncricinfo')
-                ? 'ESPN'
-                : 'Sky Sports',
+              source:
+  feed.includes('espncricinfo')
+    ? 'ESPN Cricinfo'
+  : feed.includes('skysports')
+    ? 'Sky Sports'
+  : feed.includes('cricketmood')
+    ? 'Cricket Mood'
+  : feed.includes('bbc')
+    ? 'BBC Sport'
+  : feed.includes('thecricketpaper')
+    ? 'The Cricket Paper'
+  : feed.includes('abc.net.au')
+    ? 'ABC Sport'
+  : feed.includes('kingcricket')
+    ? 'King Cricket'
+  : feed.includes('icc-cricket')
+    ? 'ICC'
+  : feed.includes('ecb')
+    ? 'ECB'
+  : feed.includes('yorkshireccc')
+    ? 'Yorkshire CCC'
+  : 'Cricket News',
 
               isBold: Math.random() > 0.7,
 
