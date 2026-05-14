@@ -2690,6 +2690,7 @@ body {
 @media (min-width: 768px) {
   .card-container {
     max-width: 600px;
+    height: 500px;
   }
 
   .news-card {
