@@ -2232,7 +2232,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
-  height: 100%;
+  height: auto;
 }
 
 .card-header {
@@ -2368,9 +2368,11 @@ body {
 
 /* Stacking Effect */
 .news-card:nth-child(1) {
+  position: relative;  /* ← ADD THIS */
   transform: translateY(0) scale(1);
   opacity: 1;
   z-index: 3;
+  height: auto;  /* ← ADD THIS */
 }
 
 .news-card:nth-child(2) {
