@@ -987,7 +987,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // YouTube Shorts Logic
 // ====================
 
-const API_KEY = "AIzaSyDE0EDFla4HKtNrceiw5CzdEivygaal9YI";
+const API_KEY = "AIzaSyDE0EDFla9HKtNrceiw5CzdEivygaal4YI";
 
 const CHANNELS = [
   "UCz1D0n02BR3t51KuBOPmfTQ",
@@ -1069,7 +1069,7 @@ document.addEventListener("click", () => {
 
 const RSS_FEEDS = [
   'https://www.espncricinfo.com/rss/content/story/feeds/0.xml',
-  'http://www.skysports.com/rss/0,20514,12123,00.xml'
+  'https://www.skysports.com/rss/0,20514,12123,00.xml'
 ];
 
 let newsCards = [];
