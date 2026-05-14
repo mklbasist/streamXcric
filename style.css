@@ -2160,7 +2160,7 @@ body {
 .card-container {
   position: relative;
   width: 100%;
-  max-width: 380px;
+  max-width: 600px;
   margin: 0 auto;
   height: 420px;
   perspective: 1200px;
@@ -2684,5 +2684,23 @@ body {
   .card-description {
     font-size: 0.8rem;
     -webkit-line-clamp: 2;
+  }
+}
+
+@media (min-width: 768px) {
+  .card-container {
+    max-width: 600px;
+  }
+
+  .news-card {
+    padding: 2rem;
+  }
+
+  .card-title {
+    font-size: 1.5rem;
+  }
+
+  .card-description {
+    font-size: 1rem;
   }
 }
