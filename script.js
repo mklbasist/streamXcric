@@ -1106,54 +1106,50 @@ async function loadInsiderNews() {
         const response = await fetch(
           corsProxy + encodeURIComponent(feed)
         );
-
-        const data = await response.json();
-
-        if (data.items) {
-          data.items.forEach(item => {
-            allNews.push({
-              title: item.title || 'No title',
-              description: (item.description || '')
-                .replace(/<[^>]+>/g, '')
-                .substring(0, 180),
-
-              pubDate: new Date(item.pubDate),
-
-              source:
-  feed.includes('espncricinfo')
-    ? 'ESPN Cricinfo'
-  : feed.includes('skysports')
-    ? 'Sky Sports'
-  : feed.includes('cricketmood')
-    ? 'Cricket Mood'
-  : feed.includes('bbc')
-    ? 'BBC Sport'
-  : feed.includes('thecricketpaper')
-    ? 'The Cricket Paper'
-  : feed.includes('abc.net.au')
-    ? 'ABC Sport'
-  : feed.includes('kingcricket')
-    ? 'King Cricket'
-  : feed.includes('icc-cricket')
-    ? 'ICC'
-  : feed.includes('ecb')
-    ? 'ECB'
-  : feed.includes('yorkshireccc')
-    ? 'Yorkshire CCC'
-  : 'Cricket News',
-
-              isBold: Math.random() > 0.7,
-
-              link: item.link || '#',
-
-              image:
-                item.enclosure?.link ||
-                item.thumbnail ||
-                ''
-            });
-          });
-        }
-
+const data = await response.json();
+if (data.items) {
+  for (const item of data.items) {
+    let image = item.enclosure?.link || item.thumbnail || '';
+    
+    // If Cricket Paper and no image, fetch from article
+    if (!image && feed.includes('thecricketpaper') && item.link) {
+      image = await fetchArticleImage(item.link);
+    }
+    
+    allNews.push({
+      title: item.title || 'No title',
+      description: (item.description || '')
+        .replace(/<[^>]+>/g, '')
+        .substring(0, 180),
+      pubDate: new Date(item.pubDate),
+      source:
+        feed.includes('espncricinfo')
+          ? 'ESPN Cricinfo'
+        : feed.includes('skysports')
+          ? 'Sky Sports'
+        : feed.includes('cricketmood')
+          ? 'Cricket Mood'
+        : feed.includes('bbc')
+          ? 'BBC Sport'
+        : feed.includes('thecricketpaper')
+          ? 'The Cricket Paper'
+        : feed.includes('abc.net.au')
+          ? 'ABC Sport'
+        : feed.includes('kingcricket')
+          ? 'King Cricket'
+        : feed.includes('icc-cricket')
+          ? 'ICC'
+        : feed.includes('ecb')
+          ? 'ECB'
+        : feed.includes('yorkshireccc')
+          ? 'Yorkshire CCC'
+        : 'Cricket News',
+      isBold: Math.random() > 0.7,
+      link: item.link || '#',
+      image: image
+    });
+  }
+}
       } catch (err) {
         console.log('Feed failed:', feed);
       }
@@ -1449,3 +1445,23 @@ window.showInsider = function () {
 
   }, 200);
 };
+
+async function fetchArticleImage(url) {
+  try {
+    const response = await fetch(url);
+    const html = await response.text();
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+    
+    // Try different selectors for Cricket Paper
+    let img = doc.querySelector('img[class*="featured"]') ||
+              doc.querySelector('img[class*="main"]') ||
+              doc.querySelector('article img') ||
+              doc.querySelector('img[alt]');
+    
+    return img ? img.getAttribute('src') : null;
+  } catch (error) {
+    console.error('Error fetching image:', error);
+    return null;
+  }
+}
