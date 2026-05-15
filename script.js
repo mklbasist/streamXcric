@@ -1273,9 +1273,9 @@ ${
   card.onclick = (e) => {
     // Open link only if it wasn't a swipe (mobile & PC)
     if (!wasSwipe && newsItem.link) {
+      e.stopPropagation();
       window.open(newsItem.link, '_blank');
     }
-    wasSwipe = false;
   };
 
   return card;
@@ -1298,8 +1298,8 @@ function formatTime(date) {
 // TOUCH EVENTS
 function handleTouchStart(e) {
   if (isAnimating) return;
-  touchStartX = e.touches[0].clientX;
   wasSwipe = false;
+  touchStartX = e.touches[0].clientX;
 }
 
 function handleTouchMove(e) {
@@ -1326,7 +1326,6 @@ function handleTouchEnd(e) {
       renderCards();
       updateCounter();
       isAnimating = false;
-      wasSwipe = false;
     }, 600);
   } else {
     e.currentTarget.style.transform = '';
@@ -1338,9 +1337,9 @@ let mouseDown = false;
 
 function handleMouseDown(e) {
   if (isAnimating) return;
+  wasSwipe = false;
   mouseDown = true;
   touchStartX = e.clientX;
-  wasSwipe = false;
 }
 
 function handleMouseMove(e) {
@@ -1380,7 +1379,6 @@ function handleMouseUp(e) {
       renderCards();
       updateCounter();
       isAnimating = false;
-      wasSwipe = false;
     }, 600);
   } else if (topCard) {
     topCard.style.transform = '';
