@@ -2245,3 +2245,71 @@ body:not(.dark-mode) {
     font-size: 1rem;
   }
 }
+
+.site-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 0;  
+  background-color: #0b0f1a;
+}
+
+.logo {
+  height: 85px;
+  width: auto;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.6));
+}
+
+body {
+  padding-bottom: 100px;
+}
+
+#mainFooter {
+  position: relative;
+  margin-top: 80px;
+  margin-bottom: 80px;
+  padding: 30px 20px;
+  text-align: center;
+}
+
+.welcome {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Mobile Footer */
+@media (max-width: 600px) {
+  #mainFooter {
+    padding: 40px 20px;
+    margin-top: 60px;
+    margin-bottom: 80px;
+    position: relative;
+    z-index: 40;
+  }
+  
+  .yt-bottom-nav {
+    z-index: 100;
+  }
+}
+
+/* FIX iOS VIDEO PLAYER */
+.series-watch-page .watch-player iframe {
+  playsinline: true;
+  aspect-ratio: 16/9;
+}
+
+@media (max-width: 768px) {
+  .series-watch-page .watch-player iframe {
+    height: auto;
+    aspect-ratio: 16/9;
+  }
+}
+
+@media (max-width: 768px) {
+  .series-watch-page .watch-player div[style*="background-image"] {
+    height: 200px !important;
+  }
+}
