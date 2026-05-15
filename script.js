@@ -1373,7 +1373,7 @@ function handleMouseDown(e) {
 
 function handleMouseMove(e) {
 
-  if (!mouseDown) return;
+  if (!mouseDown || isAnimating) return;
 
   touchCurrentX = e.clientX;
 
@@ -1384,12 +1384,27 @@ function handleMouseMove(e) {
 }
 
 function handleMouseUp(e) {
-
+  if (!mouseDown) return;
   mouseDown = false;
 
-  handleTouchEnd({
-    currentTarget: e.currentTarget
-  });
+  const deltaX = touchCurrentX - touchStartX;
+
+  if (Math.abs(deltaX) > SWIPE_THRESHOLD) {
+    isAnimating = true;
+
+    e.currentTarget.classList.add(
+      deltaX > 0 ? 'swipe-right' : 'swipe-left'
+    );
+
+    setTimeout(() => {
+      currentCardIndex++;
+      renderCards();
+      updateCounter();
+      isAnimating = false;
+    }, 600);
+  } else {
+    e.currentTarget.style.transform = '';
+  }
 }
 
 // COUNTER
