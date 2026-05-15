@@ -2108,7 +2108,10 @@ body {
   font-weight: 800;
   margin: 0;
   letter-spacing: -0.5px;
-  color: white;  /* ← WHITE */
+  background: linear-gradient(135deg, var(--accent-red) 0%, var(--accent-orange) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .header-title p {
@@ -2262,7 +2265,7 @@ body {
   font-size: 1.35rem;
   font-weight: 800;
   line-height: 1.25;
-  color: var(--text-primary);
+  color: white;
   letter-spacing: -0.5px;
   margin: 0;
 }
