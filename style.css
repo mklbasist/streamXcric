@@ -1970,8 +1970,9 @@ body:not(.dark-mode) {
   justify-content: center;
   gap: 1.5rem;
   color: var(--text-secondary);
-  width: 100%;  /* ← ADD THIS */
-  max-width: 100%;  /* ← ADD THIS */
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .loading-state.hidden {
@@ -2126,22 +2127,24 @@ body:not(.dark-mode) {
 /* Responsive Design */
 @media (max-width: 600px) {
   .insider-header-bar {
-    padding: 0.8rem 1rem;
-    gap: 0.5rem;
+    padding: 0.6rem 0.8rem;
+    gap: 0.3rem;
   }
 
   .header-title h2 {
-    font-size: 1.1rem;
+    font-size: 0.95rem;
   }
 
   .header-title p {
-    font-size: 0.65rem;
+    font-size: 0.6rem;
   }
 
   .news-counter {
-    font-size: 0.75rem;
-    padding: 0.3rem 0.6rem;
+    font-size: 0.7rem;
+    padding: 0.3rem 0.5rem;
+    white-space: nowrap;
   }
+}
 
   .insider-wrapper {
     padding: 0.5rem 1rem;
