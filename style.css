@@ -2052,7 +2052,6 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background: linear-gradient(135deg, var(--primary-dark) 0%, #1a1f3a 100%);
   color: var(--text-primary);
   position: relative;
   overflow: hidden;
