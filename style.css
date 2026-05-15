@@ -2213,20 +2213,27 @@ body:not(.dark-mode) {
   .news-counter {
     display: none;
   }
-
   .card-container {
     width: 95%;
     max-width: 380px;
     height: 380px;
   }
-
   .card-title {
     font-size: 1rem;
   }
-
   .card-description {
     font-size: 0.8rem;
     -webkit-line-clamp: 2;
+  }
+  .loading-state {
+    width: 95%;
+    max-width: 380px;
+    margin: 0 auto;
+  }
+  .empty-state {
+    width: 95%;
+    max-width: 380px;
+    margin: 0 auto;
   }
 }
 
@@ -2236,19 +2243,24 @@ body:not(.dark-mode) {
     height: auto;
     min-height: 500px;
   }
-
   .news-card {
     height: auto;  
     min-height: 500px;
     overflow: visible;
   }
-
   .card-title {
     font-size: 1.5rem;
   }
-
   .card-description {
     font-size: 1rem;
+  }
+  .loading-state {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .empty-state {
+    max-width: 600px;
+    margin: 0 auto;
   }
 }
 
