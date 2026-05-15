@@ -1969,6 +1969,8 @@ body:not(.dark-mode) {
   justify-content: center;
   gap: 1.5rem;
   color: var(--text-secondary);
+  width: 100%;  /* ← ADD THIS */
+  max-width: 100%;  /* ← ADD THIS */
 }
 
 .loading-state.hidden {
