@@ -1682,6 +1682,7 @@ body:not(.dark-mode) {
   overflow: visible;
   min-height: 0;
   margin-top: 0;
+  width: 100%;
 }
 
 .card-stack-view {
