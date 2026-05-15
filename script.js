@@ -1178,6 +1178,8 @@ function initializeCardStack(newsData) {
 }
 
 // RENDER CARDS
+let wasSwipe = false;
+
 function renderCards() {
   const deck = document.getElementById('cardsDeck');
 
@@ -1269,10 +1271,12 @@ ${
   `;
 
   card.onclick = (e) => {
-  if (Math.abs(touchCurrentX - touchStartX) < 10 && newsItem.link) {
-    window.open(newsItem.link, '_blank');
-  }
-};
+    // Open link only if it wasn't a swipe (mobile & PC)
+    if (!wasSwipe && newsItem.link) {
+      window.open(newsItem.link, '_blank');
+    }
+    wasSwipe = false;
+  };
 
   return card;
 }
@@ -1295,6 +1299,7 @@ function formatTime(date) {
 function handleTouchStart(e) {
   if (isAnimating) return;
   touchStartX = e.touches[0].clientX;
+  wasSwipe = false;
 }
 
 function handleTouchMove(e) {
@@ -1310,6 +1315,7 @@ function handleTouchEnd(e) {
   const deltaX = touchCurrentX - touchStartX;
 
   if (Math.abs(deltaX) > SWIPE_THRESHOLD) {
+    wasSwipe = true;
     isAnimating = true;
     e.currentTarget.classList.add(
       deltaX > 0 ? 'swipe-right' : 'swipe-left'
@@ -1320,6 +1326,7 @@ function handleTouchEnd(e) {
       renderCards();
       updateCounter();
       isAnimating = false;
+      wasSwipe = false;
     }, 600);
   } else {
     e.currentTarget.style.transform = '';
@@ -1333,6 +1340,7 @@ function handleMouseDown(e) {
   if (isAnimating) return;
   mouseDown = true;
   touchStartX = e.clientX;
+  wasSwipe = false;
 }
 
 function handleMouseMove(e) {
@@ -1357,17 +1365,22 @@ function handleMouseUp(e) {
   const deltaX = touchCurrentX - touchStartX;
   const topCard = document.querySelector('.news-card:nth-child(1)');
 
-  if (Math.abs(deltaX) > SWIPE_THRESHOLD && topCard) {
+  // Mark as swipe if delta is large enough
+  if (Math.abs(deltaX) > SWIPE_THRESHOLD) {
+    wasSwipe = true;
     isAnimating = true;
-    topCard.classList.add(
-      deltaX > 0 ? 'swipe-right' : 'swipe-left'
-    );
+    if (topCard) {
+      topCard.classList.add(
+        deltaX > 0 ? 'swipe-right' : 'swipe-left'
+      );
+    }
 
     setTimeout(() => {
       currentCardIndex++;
       renderCards();
       updateCounter();
       isAnimating = false;
+      wasSwipe = false;
     }, 600);
   } else if (topCard) {
     topCard.style.transform = '';
@@ -1414,6 +1427,15 @@ window.showInsider = function () {
 
   setTimeout(() => {
     loadInsiderNews();
+    
+    // Re-attach listeners to top card
+    const deck = document.getElementById('cardsDeck');
+    const topCard = deck ? deck.querySelector('.news-card:nth-child(1)') : null;
+    if (topCard) {
+      topCard.addEventListener('mousedown', handleMouseDown, false);
+      document.addEventListener('mousemove', handleMouseMove, false);
+      document.addEventListener('mouseup', handleMouseUp, false);
+    }
   }, 200);
 };
 
