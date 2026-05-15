@@ -1113,7 +1113,7 @@ if (data.items) {
     
 // If Cricket Paper and no image, use Unsplash cricket image
 if (!image && feed.includes('thecricketpaper')) {
-  image = 'https://via.placeholder.com/400x200/1e293b/ef4444?text=Cricket+Paper';
+  image = "static/IMG_8402.png";
 }
     
     allNews.push({
