@@ -1111,10 +1111,10 @@ if (data.items) {
   for (const item of data.items) {
     let image = item.enclosure?.link || item.thumbnail || '';
     
-    // If Cricket Paper and no image, fetch from article
-    if (!image && feed.includes('thecricketpaper') && item.link) {
-      image = await fetchArticleImage(item.link);
-    }
+// If Cricket Paper and no image, use Unsplash cricket image
+if (!image && feed.includes('thecricketpaper')) {
+  image = 'https://images.unsplash.com/photo-1540747913ee8f5eec3a6f64e9c51d616?w=400&h=200&fit=crop';
+}
     
     allNews.push({
       title: item.title || 'No title',
