@@ -1271,9 +1271,7 @@ ${
   `;
 
   card.onclick = (e) => {
-    // Open link only if it wasn't a swipe (mobile & PC)
     if (!wasSwipe && newsItem.link) {
-      e.stopPropagation();
       window.open(newsItem.link, '_blank');
     }
   };
@@ -1298,7 +1296,6 @@ function formatTime(date) {
 // TOUCH EVENTS
 function handleTouchStart(e) {
   if (isAnimating) return;
-  wasSwipe = false;
   touchStartX = e.touches[0].clientX;
 }
 
@@ -1323,11 +1320,13 @@ function handleTouchEnd(e) {
 
     setTimeout(() => {
       currentCardIndex++;
+      wasSwipe = false;
       renderCards();
       updateCounter();
       isAnimating = false;
     }, 600);
   } else {
+    wasSwipe = false;
     e.currentTarget.style.transform = '';
   }
 }
@@ -1337,7 +1336,6 @@ let mouseDown = false;
 
 function handleMouseDown(e) {
   if (isAnimating) return;
-  wasSwipe = false;
   mouseDown = true;
   touchStartX = e.clientX;
 }
@@ -1364,7 +1362,6 @@ function handleMouseUp(e) {
   const deltaX = touchCurrentX - touchStartX;
   const topCard = document.querySelector('.news-card:nth-child(1)');
 
-  // Mark as swipe if delta is large enough
   if (Math.abs(deltaX) > SWIPE_THRESHOLD) {
     wasSwipe = true;
     isAnimating = true;
@@ -1376,11 +1373,13 @@ function handleMouseUp(e) {
 
     setTimeout(() => {
       currentCardIndex++;
+      wasSwipe = false;
       renderCards();
       updateCounter();
       isAnimating = false;
     }, 600);
   } else if (topCard) {
+    wasSwipe = false;
     topCard.style.transform = '';
   }
 }
