@@ -1178,7 +1178,9 @@ function initializeCardStack(newsData) {
 }
 
 // RENDER CARDS
-let wasSwipe = false;
+let startX = 0;
+let startY = 0;
+let hasMoved = false;
 
 function renderCards() {
   const deck = document.getElementById('cardsDeck');
@@ -1271,9 +1273,10 @@ ${
   `;
 
   card.onclick = (e) => {
-    if (!wasSwipe && newsItem.link) {
+    if (!hasMoved && newsItem.link) {
       window.open(newsItem.link, '_blank');
     }
+    hasMoved = false;
   };
 
   return card;
@@ -1296,13 +1299,21 @@ function formatTime(date) {
 // TOUCH EVENTS
 function handleTouchStart(e) {
   if (isAnimating) return;
-  touchStartX = e.touches[0].clientX;
+  hasMoved = false;
+  startX = e.touches[0].clientX;
+  startY = e.touches[0].clientY;
+  touchStartX = startX;
 }
 
 function handleTouchMove(e) {
   if (isAnimating) return;
   touchCurrentX = e.touches[0].clientX;
   const deltaX = touchCurrentX - touchStartX;
+  
+  if (Math.abs(deltaX) > 5) {
+    hasMoved = true;
+  }
+  
   e.currentTarget.style.transform =
     `translateX(${deltaX}px) rotate(${deltaX / 20}deg)`;
 }
@@ -1312,7 +1323,6 @@ function handleTouchEnd(e) {
   const deltaX = touchCurrentX - touchStartX;
 
   if (Math.abs(deltaX) > SWIPE_THRESHOLD) {
-    wasSwipe = true;
     isAnimating = true;
     e.currentTarget.classList.add(
       deltaX > 0 ? 'swipe-right' : 'swipe-left'
@@ -1320,13 +1330,11 @@ function handleTouchEnd(e) {
 
     setTimeout(() => {
       currentCardIndex++;
-      wasSwipe = false;
       renderCards();
       updateCounter();
       isAnimating = false;
     }, 600);
   } else {
-    wasSwipe = false;
     e.currentTarget.style.transform = '';
   }
 }
@@ -1336,14 +1344,21 @@ let mouseDown = false;
 
 function handleMouseDown(e) {
   if (isAnimating) return;
+  hasMoved = false;
   mouseDown = true;
-  touchStartX = e.clientX;
+  startX = e.clientX;
+  startY = e.clientY;
+  touchStartX = startX;
 }
 
 function handleMouseMove(e) {
   if (!mouseDown || isAnimating) return;
   touchCurrentX = e.clientX;
   const deltaX = touchCurrentX - touchStartX;
+  
+  if (Math.abs(deltaX) > 5) {
+    hasMoved = true;
+  }
   
   const topCard = document.querySelector('.news-card:nth-child(1)');
   if (topCard) {
@@ -1363,7 +1378,6 @@ function handleMouseUp(e) {
   const topCard = document.querySelector('.news-card:nth-child(1)');
 
   if (Math.abs(deltaX) > SWIPE_THRESHOLD) {
-    wasSwipe = true;
     isAnimating = true;
     if (topCard) {
       topCard.classList.add(
@@ -1373,13 +1387,11 @@ function handleMouseUp(e) {
 
     setTimeout(() => {
       currentCardIndex++;
-      wasSwipe = false;
       renderCards();
       updateCounter();
       isAnimating = false;
     }, 600);
   } else if (topCard) {
-    wasSwipe = false;
     topCard.style.transform = '';
   }
 }
