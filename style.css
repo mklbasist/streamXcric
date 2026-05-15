@@ -2221,9 +2221,18 @@ body:not(.dark-mode) {
   }
 }
 
-@media (max-width: 400px) {
+@@media (max-width: 400px) {
+
   .news-counter {
-    display: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.62rem;
+    padding: 0.22rem 0.42rem;
+    min-width: 48px;
+    white-space: nowrap;
+    transform: scale(0.9);
+    transform-origin: right center;
   }
 
   .card-container {
