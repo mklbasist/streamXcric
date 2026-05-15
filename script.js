@@ -1188,28 +1188,27 @@ function renderCards() {
   newsCards
     .slice(currentCardIndex, currentCardIndex + 3)
     .forEach((news, index) => {
-
       const card = createCard(news);
-
       deck.appendChild(card);
-
-      card.addEventListener('touchstart', handleTouchStart);
-      card.addEventListener('touchmove', handleTouchMove);
-      card.addEventListener('touchend', handleTouchEnd);
-
-      card.addEventListener('mousedown', handleMouseDown);
-      card.addEventListener('mousemove', handleMouseMove);
-      card.addEventListener('mouseup', handleMouseUp);
     });
+
+  // Attach listeners ONLY to the TOP card
+  const topCard = deck.querySelector('.news-card:nth-child(1)');
+  if (topCard) {
+    topCard.addEventListener('touchstart', handleTouchStart, false);
+    topCard.addEventListener('touchmove', handleTouchMove, false);
+    topCard.addEventListener('touchend', handleTouchEnd, false);
+    topCard.addEventListener('mousedown', handleMouseDown, false);
+    document.addEventListener('mousemove', handleMouseMove, false);
+    document.addEventListener('mouseup', handleMouseUp, false);
+  }
 
   updateEmptyState();
 }
 
 // CREATE CARD
 function createCard(newsItem) {
-
   const card = document.createElement('div');
-
   card.className = 'news-card';
 
   const sourceClass =
@@ -1222,19 +1221,15 @@ function createCard(newsItem) {
     <div class="card-decoration accent-cyan"></div>
 
     <div class="card-inner">
-
       <div class="card-header">
-
         ${
           newsItem.isBold
             ? '<div class="card-badge breaking">⚡ Breaking</div>'
             : '<div class="card-badge">📰 News</div>'
         }
-
         <h3 class="card-title">
           ${newsItem.title}
         </h3>
-
       </div>
 
 ${
@@ -1261,21 +1256,15 @@ ${
       </p>
 
       <div class="card-footer">
-
         <div class="card-meta">
-
           <span class="card-time">
             ${formatTime(newsItem.pubDate)}
           </span>
-
           <span class="card-source ${sourceClass}">
             ${newsItem.source}
           </span>
-
         </div>
-
       </div>
-
     </div>
   `;
 
@@ -1290,108 +1279,38 @@ ${
 
 // FORMAT TIME
 function formatTime(date) {
-
   const now = new Date();
-
   const diff = now - new Date(date);
-
   const minutes = Math.floor(diff / 60000);
   const hours = Math.floor(diff / 3600000);
   const days = Math.floor(diff / 86400000);
 
   if (minutes < 60) return `${minutes}m ago`;
-
   if (hours < 24) return `${hours}h ago`;
-
   if (days < 7) return `${days}d ago`;
-
   return new Date(date).toLocaleDateString();
 }
 
 // TOUCH EVENTS
 function handleTouchStart(e) {
-
   if (isAnimating) return;
-
   touchStartX = e.touches[0].clientX;
 }
 
 function handleTouchMove(e) {
-
   if (isAnimating) return;
-
   touchCurrentX = e.touches[0].clientX;
-
   const deltaX = touchCurrentX - touchStartX;
-
   e.currentTarget.style.transform =
     `translateX(${deltaX}px) rotate(${deltaX / 20}deg)`;
 }
 
 function handleTouchEnd(e) {
-
   if (isAnimating) return;
-
-  const deltaX = touchCurrentX - touchStartX;
-
-  if (Math.abs(deltaX) > SWIPE_THRESHOLD) {
-
-    isAnimating = true;
-
-    e.currentTarget.classList.add(
-      deltaX > 0 ? 'swipe-right' : 'swipe-left'
-    );
-
-    setTimeout(() => {
-
-      currentCardIndex++;
-
-      renderCards();
-
-      updateCounter();
-
-      isAnimating = false;
-
-    }, 500);
-
-  } else {
-
-    e.currentTarget.style.transform = '';
-
-  }
-}
-
-// MOUSE EVENTS
-let mouseDown = false;
-
-function handleMouseDown(e) {
-
-  mouseDown = true;
-
-  touchStartX = e.clientX;
-}
-
-function handleMouseMove(e) {
-
-  if (!mouseDown || isAnimating) return;
-
-  touchCurrentX = e.clientX;
-
-  const deltaX = touchCurrentX - touchStartX;
-
-  e.currentTarget.style.transform =
-    `translateX(${deltaX}px) rotate(${deltaX / 20}deg)`;
-}
-
-function handleMouseUp(e) {
-  if (!mouseDown) return;
-  mouseDown = false;
-
   const deltaX = touchCurrentX - touchStartX;
 
   if (Math.abs(deltaX) > SWIPE_THRESHOLD) {
     isAnimating = true;
-
     e.currentTarget.classList.add(
       deltaX > 0 ? 'swipe-right' : 'swipe-left'
     );
@@ -1407,11 +1326,57 @@ function handleMouseUp(e) {
   }
 }
 
+// MOUSE EVENTS
+let mouseDown = false;
+
+function handleMouseDown(e) {
+  if (isAnimating) return;
+  mouseDown = true;
+  touchStartX = e.clientX;
+}
+
+function handleMouseMove(e) {
+  if (!mouseDown || isAnimating) return;
+  touchCurrentX = e.clientX;
+  const deltaX = touchCurrentX - touchStartX;
+  
+  const topCard = document.querySelector('.news-card:nth-child(1)');
+  if (topCard) {
+    topCard.style.transform =
+      `translateX(${deltaX}px) rotate(${deltaX / 20}deg)`;
+  }
+}
+
+function handleMouseUp(e) {
+  if (!mouseDown) return;
+  mouseDown = false;
+
+  document.removeEventListener('mousemove', handleMouseMove);
+  document.removeEventListener('mouseup', handleMouseUp);
+
+  const deltaX = touchCurrentX - touchStartX;
+  const topCard = document.querySelector('.news-card:nth-child(1)');
+
+  if (Math.abs(deltaX) > SWIPE_THRESHOLD && topCard) {
+    isAnimating = true;
+    topCard.classList.add(
+      deltaX > 0 ? 'swipe-right' : 'swipe-left'
+    );
+
+    setTimeout(() => {
+      currentCardIndex++;
+      renderCards();
+      updateCounter();
+      isAnimating = false;
+    }, 600);
+  } else if (topCard) {
+    topCard.style.transform = '';
+  }
+}
+
 // COUNTER
 function updateCounter() {
-
   const count = document.getElementById('newsCount');
-
   const total = document.getElementById('newsTotalCount');
 
   if (count) {
@@ -1426,38 +1391,29 @@ function updateCounter() {
 
 // EMPTY STATE
 function updateEmptyState() {
-
   const empty = document.getElementById('emptyState');
 
   if (!empty) return;
 
   if (currentCardIndex >= newsCards.length) {
-
     empty.classList.remove('hidden');
-
   } else {
-
     empty.classList.add('hidden');
   }
 }
 
 // REFRESH
 function reloadInsider() {
-
   currentCardIndex = 0;
-
   loadInsiderNews();
 }
 
 // OPEN INSIDER
 window.showInsider = function () {
-
   showPage('insider');
 
   setTimeout(() => {
-
     loadInsiderNews();
-
   }, 200);
 };
 
@@ -1468,7 +1424,6 @@ async function fetchArticleImage(url) {
     const parser = new DOMParser();
     const doc = parser.parseFromString(html, 'text/html');
     
-    // Try different selectors for Cricket Paper
     let img = doc.querySelector('img[class*="featured"]') ||
               doc.querySelector('img[class*="main"]') ||
               doc.querySelector('article img') ||
