@@ -1675,7 +1675,7 @@ body:not(.dark-mode) {
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   padding: 0.5rem 1rem;
   padding-bottom: 100px;
@@ -2353,5 +2353,38 @@ body {
 @media (max-width: 768px) {
   .series-watch-page .watch-player div[style*="background-image"] {
     height: 200px !important;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .insider-wrapper {
+    align-items: center !important;
+    justify-content: center;
+    padding-left: 12px;
+    padding-right: 12px;
+    box-sizing: border-box;
+  }
+
+  .card-stack-view {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .card-container {
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
+    left: auto;
+    right: auto;
+  }
+
+  .news-card {
+    width: 100%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    box-sizing: border-box;
   }
 }
