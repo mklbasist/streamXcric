@@ -1268,11 +1268,11 @@ ${
     </div>
   `;
 
-  card.onclick = () => {
-    if (newsItem.link) {
-      window.open(newsItem.link, '_blank');
-    }
-  };
+  card.onclick = (e) => {
+  if (Math.abs(touchCurrentX - touchStartX) < 10 && newsItem.link) {
+    window.open(newsItem.link, '_blank');
+  }
+};
 
   return card;
 }
