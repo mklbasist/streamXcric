@@ -146,7 +146,7 @@ body:not(.dark-mode) {
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: clip;
+  overflow: hidden;
   overflow-clip-margin: 4px;
 
   border: 2px solid var(--color-wrapper-border);
