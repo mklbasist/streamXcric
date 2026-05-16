@@ -146,8 +146,7 @@ body:not(.dark-mode) {
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  overflow-clip-margin: 4px;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
 
   border: 2px solid var(--color-wrapper-border);
   border-radius: var(--rad);
