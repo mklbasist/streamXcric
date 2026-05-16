@@ -1073,11 +1073,13 @@ const RSS_FEEDS = [
   'https://cricketmood.com/rss.xml',
   'https://feeds.bbci.co.uk/sport/cricket/rss.xml',
   'https://www.thecricketpaper.com/feed/',
-  'https://www.abc.net.au/news/sport/cricket',
+  'https://www.abc.net.au/news/sport/cricket/',
   'https://www.kingcricket.co.uk/feed/',
-  'https://www.icc-cricket.com/news',
-  'https://www.ecb.co.uk/about/news/blogs/',
-  'https://yorkshireccc.com/news/feed/'
+  'https://www.icc-cricket.com/news/',
+  'https://yorkshireccc.com/news/feed/',
+  'https://www.thecricketer.com/latestnews/',
+  'https://www.wisden.com/cricket-news/',
+  'https://www.ecb.co.uk/news/'
 ];
 
 let newsCards = [];
