@@ -1335,10 +1335,13 @@ function handleTouchEnd(e) {
       isAnimating = false;
     }, 600);
   } else {
-    e.currentTarget.style.transform = '';
+    // Reset all cards
+    const allCards = document.querySelectorAll('.news-card');
+    allCards.forEach(card => {
+      card.style.transform = '';
+    });
   }
 }
-
 // MOUSE EVENTS
 let mouseDown = false;
 
@@ -1391,8 +1394,12 @@ function handleMouseUp(e) {
       updateCounter();
       isAnimating = false;
     }, 600);
-  } else if (topCard) {
-    topCard.style.transform = '';
+  } else {
+    // Reset all cards to original position
+    const allCards = document.querySelectorAll('.news-card');
+    allCards.forEach(card => {
+      card.style.transform = '';
+    });
   }
 }
 
@@ -1410,7 +1417,6 @@ function updateCounter() {
     total.textContent = newsCards.length;
   }
 }
-
 // EMPTY STATE
 function updateEmptyState() {
   const empty = document.getElementById('emptyState');
