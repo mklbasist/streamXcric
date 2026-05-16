@@ -141,7 +141,6 @@ body:not(.dark-mode) {
   --color-overlay-glow: #fff;
   --color-overlay-shadow: #0004;
   --color-overlay-highlight: #fff5;
-}
 
   position: relative;
   display: flex;
@@ -267,22 +266,26 @@ body:not(.dark-mode) {
   animation: opacityPulse 5s ease infinite;
 }
 
-.btn-wrapper:hover .text-overlay {
-  transform: scale(1.1);
+.btn-wrapper:hover {
+  .text-overlay {
+    transform: scale(1.1);
+  }
+
+  .gradient-btn {
+    color: #0000;
+    text-shadow: 0 0 0 #0000;
+  }
 }
 
-.btn-wrapper:hover .gradient-btn {
-  color: #0000;
-  text-shadow: 0 0 0 #0000;
-}
+.btn-wrapper:active {
+  .text-overlay {
+    transform: scale(0.95);
+  }
 
-.btn-wrapper:active .text-overlay {
-  transform: scale(0.95);
-}
-
-.btn-wrapper:active .gradient-btn {
-  color: #0000;
-  text-shadow: 0 0 0 #0000;
+  .gradient-btn {
+    color: #0000;
+    text-shadow: 0 0 0 #0000;
+  }
 }
 
 .light {
@@ -318,8 +321,6 @@ body:not(.dark-mode) {
     opacity: 0.5;
   }
 }
-
-.hidden { display: none; }
 
 .boton-elegante {
   padding: 15px 30px;
