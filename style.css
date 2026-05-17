@@ -1888,7 +1888,7 @@ body:not(.dark-mode) {
   align-items: center;
   justify-content: center;
   padding: 0.5rem 1rem;
-  padding-bottom: 100px;
+  padding-bottom: 0;
   position: relative;
   overflow: visible;
   min-height: 100%;
