@@ -653,6 +653,7 @@ body:not(.dark-mode) .yt-tab.active .icon {
   border: none;
   border-radius: 12px;
   display: none;  /* hidden until play button clicked */
+  min-height: 100%;
 }
 
 .highlight-title {
