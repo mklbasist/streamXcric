@@ -2514,7 +2514,7 @@ body:not(.dark-mode) {
   color: var(--text-secondary);
   width: 100%;
   max-width: 600px;
-  margin: 0 auto;
+  margin: auto;
   padding-bottom: 100px;
 }
 
