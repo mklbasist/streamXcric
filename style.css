@@ -622,6 +622,7 @@ body:not(.dark-mode) .yt-tab.active .icon {
 }
 
 .highlight-card.center {
+  position: relative;
   z-index: 3;
   opacity: 1;
   transform: scale(1);
