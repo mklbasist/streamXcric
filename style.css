@@ -2505,6 +2505,45 @@ body:not(.dark-mode) {
   }
 }
 
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  color: var(--text-secondary);
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.loading-state.hidden {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .loading-state {
+    width: 90%;
+    max-width: 380px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 400px) {
+  .loading-state {
+    width: 95%;
+    max-width: 380px;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 768px) {
+  .loading-state {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
 /* Bottom Navigation */
 .bottom-nav {
   position: fixed;
