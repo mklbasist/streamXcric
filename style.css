@@ -387,11 +387,10 @@ body:not(.dark-mode) {
 }
 
 .play-button .play {
-  position: absolute;
   animation: keyframes-fill 0.3s;
 }
 
-.play-button:hover { opacity: 1; }
+.play-button:hover { opacity: 4; }
 
 @keyframes keyframes-fill {
   0% {
