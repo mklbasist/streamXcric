@@ -1806,7 +1806,7 @@ body:not(.dark-mode) {
 
 /* Back Button - From Uiverse.io */
 .back-btn {
-  font-size: 17px;
+  font-size: 14px;
   border-radius: 12px;
   background: linear-gradient(180deg, rgb(56, 56, 56) 0%, rgb(36, 36, 36) 66%, rgb(41, 41, 41) 100%);
   color: rgb(218, 218, 218);
@@ -1820,7 +1820,7 @@ body:not(.dark-mode) {
 
 .back-btn span {
   border-radius: 10px;
-  padding: 0.8em 1.3em;
+  padding: 0.4em 0.8em;
   text-shadow: 0px 0px 20px #4b4b4b;
   display: flex;
   align-items: center;
