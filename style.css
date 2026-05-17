@@ -1820,7 +1820,7 @@ body:not(.dark-mode) {
 
 .back-btn span {
   border-radius: 10px;
-  padding: 0.4em 0.8em;
+  padding: 0.8em 1.2em;
   text-shadow: 0px 0px 20px #4b4b4b;
   display: flex;
   align-items: center;
