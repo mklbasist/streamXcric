@@ -2515,6 +2515,7 @@ body:not(.dark-mode) {
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
+  padding-bottom: 180px;
 }
 
 .loading-state.hidden {
