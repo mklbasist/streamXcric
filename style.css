@@ -664,11 +664,9 @@ body:not(.dark-mode) .yt-tab.active .icon {
 @media (max-width: 768px) {
   .highlight-card.center iframe {
     width: 100% !important;
-    height: auto !important;
-    min-height: 300px !important;
-    aspect-ratio: unset !important;
-    object-fit: contain !important;
-    transform: scale(0.95);
+    height: 100% !important;
+    aspect-ratio: auto !important;
+    object-fit: cover !important;
   }
 }
 
