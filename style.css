@@ -654,22 +654,21 @@ body:not(.dark-mode) .yt-tab.active .icon {
   border: none;
   border-radius: 12px;
   display: none;  /* hidden until play button clicked */
-  aspect-ratio: 16 / 9;  /* ← ADDED */
-  object-fit: contain;   /* ← CHANGED from removed min-height */
+  min-height: 100%;
 }
 
-/* ← REMOVED old .highlight-title block entirely */
+.highlight-title {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  color: white;
+  font-size: 1.5rem;   /* desktop default */
+  font-weight: bold;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+}
 
 /* Mobile adjustment */
 @media (max-width: 768px) {
-  .highlight-card.center iframe {
-    width: 100% !important;
-    height: 100% !important;
-    aspect-ratio: auto !important;
-    object-fit: cover !important;
-  }
-}
-
   .highlight-title,
   .highlight-card.center .highlight-title {
     font-size: 0.5rem !important;
