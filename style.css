@@ -662,13 +662,15 @@ body:not(.dark-mode) .yt-tab.active .icon {
 
 /* Mobile adjustment */
 @media (max-width: 768px) {
-  /* ← UPDATED: Added iframe mobile fix */
   .highlight-card.center iframe {
     width: 100% !important;
-    height: 100% !important;
-    aspect-ratio: auto !important;
-    object-fit: cover !important;
+    height: auto !important;
+    min-height: 300px !important;
+    aspect-ratio: unset !important;
+    object-fit: contain !important;
+    transform: scale(0.95);
   }
+}
 
   .highlight-title,
   .highlight-card.center .highlight-title {
