@@ -382,7 +382,7 @@ body:not(.dark-mode) {
   align-items: center;
   cursor: pointer;
   fill: var(--color);
-  opacity: 0.8;
+  opacity: 1.8;
   transition: opacity 0.3s;
 }
 
