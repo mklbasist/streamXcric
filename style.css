@@ -644,22 +644,6 @@ body:not(.dark-mode) .yt-tab.active .icon {
   display: block;
 }
 
-.highlight-frame {
-  width: 100% !important;
-  height: auto !important;
-  aspect-ratio: 16 / 9 !important;
-  max-width: 100% !important;
-}
-
-@media (max-width: 768px) {
-  .highlight-frame {
-    width: 100% !important;
-    height: auto !important;
-    aspect-ratio: 16 / 9 !important;
-    display: block !important;
-  }
-}
-
 /* Force iframe to cover the center card fully */
 .highlight-card.center iframe {
   position: absolute;
