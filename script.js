@@ -741,10 +741,10 @@ playBtn.addEventListener("click", () => {
   frame.src = highlight.video;
   
   // Mobile fix for Google Drive embeds
-  if (window.innerWidth <= 768) {
+  if (window.innerWidth <= 768 && highlight.video.includes('drive.google.com')) {
     frame.style.width = "100%";
-    frame.style.height = "100%";
-    frame.style.zoom = "0.9";  // ← fits without magnification
+    frame.style.height = 100%";
+    frame.style.minHeight = "300px";
   }
 });
 
