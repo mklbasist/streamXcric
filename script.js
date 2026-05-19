@@ -732,7 +732,6 @@ function rotateCarousel() {
 }
 
 // Play video
-// Play video
 playBtn.addEventListener("click", () => {
   userSelected = true;
   thumb.style.display = "none";
@@ -742,10 +741,10 @@ playBtn.addEventListener("click", () => {
   frame.src = highlight.video;
   
   // Mobile fix for Google Drive embeds
-  if (window.innerWidth <= 768 && highlight.video.includes('drive.google.com')) {
+  if (window.innerWidth <= 768) {
     frame.style.width = "100%";
-    frame.style.height = "auto";
-    frame.style.minHeight = "300px";
+    frame.style.height = "100%";
+    frame.style.zoom = "0.9";  // ← fits without magnification
   }
 });
 
