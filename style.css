@@ -712,10 +712,13 @@ body:not(.dark-mode) .yt-tab.active .icon {
 /* Mobile fix for Google Drive embeds only */
 @media (max-width: 768px) {
   .highlight-card.center iframe {
-    max-height: 300px;
-    width: auto;
-    left: 50%;
-    transform: translateX(-50%);
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100% !important;
+    aspect-ratio: auto !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
   }
 }
 
