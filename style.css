@@ -697,6 +697,28 @@ body:not(.dark-mode) .yt-tab.active .icon {
   z-index: 4;  /* keep above iframe */
 }
 
+/* Force iframe to cover the center card fully */
+.highlight-card.center iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 12px;
+  display: none;  /* hidden until play button clicked */
+}
+
+/* Mobile fix for Google Drive embeds only */
+@media (max-width: 768px) {
+  .highlight-card.center iframe {
+    max-height: 300px;
+    width: auto;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
 /* Chat Page */
 #chat-box {
   width: 100%;
