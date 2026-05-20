@@ -739,13 +739,6 @@ playBtn.addEventListener("click", () => {
   frame.style.display = "block";
   const highlight = allHighlights[index];
   frame.src = highlight.video;
-  
-  // Fix for Google Drive only
-  if (highlight.video.includes('drive.google.com')) {
-    frame.style.maxHeight = "400px";
-    frame.style.width = "auto";
-    frame.style.margin = "0 auto";
-  }
 });
 
 // Init
