@@ -2915,14 +2915,7 @@ body {
 
 @media (max-width: 768px) {
   .highlight-card.center iframe {
-    position: fixed !important;
-    top: 50% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    width: 95vw !important;
-    height: 60vh !important;
-    max-width: 100% !important;
-    max-height: 100% !important;
-    z-index: 1000 !important;
+    width: 100% !important;
+    height: 100% !important;
   }
 }
