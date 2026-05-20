@@ -740,11 +740,11 @@ playBtn.addEventListener("click", () => {
   const highlight = allHighlights[index];
   frame.src = highlight.video;
   
-  // Mobile fix for Google Drive embeds
-  if (window.innerWidth <= 768 && highlight.video.includes('drive.google.com')) {
-    frame.style.width = "100%";
-    frame.style.height = "100%";
-    frame.style.minHeight = "300px";
+  // Fix for Google Drive only
+  if (highlight.video.includes('drive.google.com')) {
+    frame.style.maxHeight = "400px";
+    frame.style.width = "auto";
+    frame.style.margin = "0 auto";
   }
 });
 
