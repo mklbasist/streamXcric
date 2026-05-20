@@ -739,6 +739,13 @@ playBtn.addEventListener("click", () => {
   frame.style.display = "block";
   const highlight = allHighlights[index];
   frame.src = highlight.video;
+  
+  // Force proper sizing for mobile Google Drive
+  if (window.innerWidth <= 768) {
+    frame.style.width = "100%";
+    frame.style.height = "100%";
+    frame.style.objectFit = "contain";
+  }
 });
 
 // Init
