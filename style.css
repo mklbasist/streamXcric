@@ -663,11 +663,40 @@ body:not(.dark-mode) .yt-tab.active .icon {
 }
 
 @media (max-width: 768px) {
-  .video-frame { height: auto; padding: 0; border-width: 6px; max-width: 100%; }
-  .video-frame iframe { width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: 10px; }
-  .video-frame::before, .video-frame::after { display: none; }
-  #mainFooter { display: none; }
-  .play-btn { font-size: 16px; padding: 12px 20px; }
+
+  .video-frame {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    height: auto;
+    padding: 0;
+    border-width: 6px;
+    box-sizing: border-box;
+  }
+
+  .video-frame iframe,
+  .video-frame img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    border-radius: 10px;
+    display: block;
+    box-sizing: border-box;
+  }
+
+  .video-frame::before,
+  .video-frame::after {
+    display: none;
+  }
+
+  #mainFooter {
+    display: none;
+  }
+
+  .play-btn {
+    font-size: 16px;
+    padding: 12px 20px;
+  }
 }
 
 /* Highlight Carousel */
