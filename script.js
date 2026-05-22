@@ -585,11 +585,7 @@ function toggleVideo(url, containerId) {
       <img src="${thumb}" alt="Video Thumbnail" style="width:100%;border-radius:12px;">
       <button onclick="toggleVideo('${url}', '${containerId}')" class="play-btn">▶ Play Video</button>`;
   } else {
-  if (window.innerWidth <= 768) {
-    container.innerHTML = `<iframe src="${url}" allowfullscreen style="width:100%; height:auto; min-height:300px; aspect-ratio: auto;"></iframe>`;
-  } else {
-    container.innerHTML = `<iframe src="${url}" allowfullscreen style="width:100%; height:100%; aspect-ratio: auto;"></iframe>`;
-  }
+  container.innerHTML = `<iframe src="${url}" allowfullscreen style="width:100%; height:100%;"></iframe>`;
 }
 
 function resetExploreState() {
