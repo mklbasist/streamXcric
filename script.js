@@ -108,7 +108,7 @@ function backToPlayers() {
       { title: "66. 53* vs IND, 2025", video: "https://www.dailymotion.com/embed/video/x9pku1m" }
     ],
         centuries: [
-          { title: "1. 104 vs NZ, 2013", video: "https://drive.google.com/file/d/1eqqYjtFZ5Aj8Y2f6irm2EvckLHJ5fSi3/view?usp=drivesdk" },
+          { title: "1. 104 vs NZ, 2013", video: "https://drive.google.com/file/d/1eqqYjtFZ5Aj8Y2f6irm2EvckLHJ5fSi3/preview" },
           { title: "2. 180 vs AUS, 2013", video: "https://drive.google.com/file/d/13RRP5LPIjo54ysPIqYD1ox_sdgfsv144/preview" },
           { title: "3. 200 vs SL, 2014", video: "https://drive.google.com/file/d/1Yj0mY1iG5dsJrM76saK6bdV60S1Tizyi/preview" },
           { title: "4. 154 vs IND, 2014", video: "https://drive.google.com/file/d/1FwPXgIYgPo8fwLhyCDfHwtOt3fPdEr10/preview" },
