@@ -768,7 +768,7 @@ body:not(.dark-mode) .yt-tab.active .icon {
   color: #fff;
   padding: 6px 12px;
   border-radius: 6px;
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 500;
   max-width: 85%;
   overflow: hidden;
