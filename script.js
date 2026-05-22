@@ -736,16 +736,17 @@ playBtn.addEventListener("click", () => {
   userSelected = true;
   thumb.style.display = "none";
   playBtn.style.display = "none";
-  frame.style.display = "block";
   const highlight = allHighlights[index];
-  frame.src = highlight.video;
   
-  // Force proper sizing for mobile Google Drive
-  if (window.innerWidth <= 768) {
-    frame.style.width = "100%";
-    frame.style.height = "100%";
-    frame.style.objectFit = "contain";
+  // Google Drive - open in new tab
+  if (highlight.video.includes('drive.google.com')) {
+    window.open(highlight.video, '_blank');
+    return;
   }
+  
+  // YouTube/Dailymotion - play in iframe
+  frame.style.display = "block";
+  frame.src = highlight.video;
 });
 
 // Init
