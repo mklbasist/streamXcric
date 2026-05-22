@@ -585,10 +585,16 @@ function toggleVideo(url, containerId) {
       <img src="${thumb}" alt="Video Thumbnail" style="width:100%;border-radius:12px;">
       <button onclick="toggleVideo('${url}', '${containerId}')" class="play-btn">▶ Play Video</button>`;
   } else {
+    // Google Drive on mobile only - open in new tab
+    if (window.innerWidth <= 768 && url.includes('drive.google.com')) {
+      window.open(url, '_blank');
+      return;
+    }
+    
+    // All others play in iframe
     container.innerHTML = `<iframe src="${url}" allowfullscreen style="width:100%; height:100%;"></iframe>`;
   }
 }
-
 function resetExploreState() {
   const playerBox = document.getElementById("playersCarousel");
   const matchBox = document.getElementById("matchHighlights");
@@ -738,13 +744,13 @@ playBtn.addEventListener("click", () => {
   playBtn.style.display = "none";
   const highlight = allHighlights[index];
   
-  // Google Drive - open in new tab
-  if (highlight.video.includes('drive.google.com')) {
+  // Google Drive on mobile only - open in new tab
+  if (window.innerWidth <= 768 && highlight.video.includes('drive.google.com')) {
     window.open(highlight.video, '_blank');
     return;
   }
   
-  // YouTube/Dailymotion - play in iframe
+  // Everything else plays in iframe (including Drive on PC)
   frame.style.display = "block";
   frame.src = highlight.video;
 });
