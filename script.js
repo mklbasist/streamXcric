@@ -585,7 +585,7 @@ function toggleVideo(url, containerId) {
       <img src="${thumb}" alt="Video Thumbnail" style="width:100%;border-radius:12px;">
       <button onclick="toggleVideo('${url}', '${containerId}')" class="play-btn">▶ Play Video</button>`;
   } else {
-    container.innerHTML = `<iframe src="${url}" allowfullscreen></iframe>`;
+    container.innerHTML = `<iframe src="${url}" allowfullscreen style="width:100%; height:100%;"></iframe>`;
   }
 }
 
