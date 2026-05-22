@@ -1467,13 +1467,13 @@ async function fetchArticleImage(url) {
     const doc = parser.parseFromString(html, 'text/html');
     
     let img = doc.querySelector('img[class*="featured"]') ||
-              doc.querySelector('img[class*="main"]') ||
-              doc.querySelector('article img') ||
-              doc.querySelector('img[alt]');
-    
-    return img ? img.getAttribute('src') : null;
-  } catch (error) {
-    console.error('Error fetching image:', error);
-    return null;
-  }
+          doc.querySelector('img[class*="main"]') ||
+          doc.querySelector('article img') ||
+          doc.querySelector('img[alt]');
+
+return img ? img.getAttribute('src') : null;
+} catch (error) {
+console.error('Error fetching image:', error);
+return null;
+}
 }
