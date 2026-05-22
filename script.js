@@ -108,7 +108,7 @@ function backToPlayers() {
       { title: "66. 53* vs IND, 2025", video: "https://www.dailymotion.com/embed/video/x9pku1m" }
     ],
         centuries: [
-          { title: "1. 104 vs NZ, 2013", video: "https://drive.google.com/file/d/1eqqYjtFZ5Aj8Y2f6irm2EvckLHJ5fSi3/view?usp=drivesdk" },
+          { title: "1. 104 vs NZ, 2013", video: "https://drive.google.com/file/d/1eqqYjtFZ5Aj8Y2f6irm2EvckLHJ5fSi3/preview" },
           { title: "2. 180 vs AUS, 2013", video: "https://drive.google.com/file/d/13RRP5LPIjo54ysPIqYD1ox_sdgfsv144/preview" },
           { title: "3. 200 vs SL, 2014", video: "https://drive.google.com/file/d/1Yj0mY1iG5dsJrM76saK6bdV60S1Tizyi/preview" },
           { title: "4. 154 vs IND, 2014", video: "https://drive.google.com/file/d/1FwPXgIYgPo8fwLhyCDfHwtOt3fPdEr10/preview" },
@@ -585,10 +585,7 @@ function toggleVideo(url, containerId) {
       <img src="${thumb}" alt="Video Thumbnail" style="width:100%;border-radius:12px;">
       <button onclick="toggleVideo('${url}', '${containerId}')" class="play-btn">▶ Play Video</button>`;
   } else {
-  if (window.innerWidth <= 768) {
-    container.innerHTML = `<iframe src="${url}" allowfullscreen style="width:100%; height:auto; min-height:300px; aspect-ratio: auto;"></iframe>`;
-  } else {
-    container.innerHTML = `<iframe src="${url}" allowfullscreen style="width:100%; height:100%; aspect-ratio: auto;"></iframe>`;
+    container.innerHTML = `<iframe src="${url}" allowfullscreen></iframe>`;
   }
 }
 
@@ -739,8 +736,16 @@ playBtn.addEventListener("click", () => {
   userSelected = true;
   thumb.style.display = "none";
   playBtn.style.display = "none";
-  frame.style.display = "block";
   const highlight = allHighlights[index];
+  
+  // Google Drive - open in new tab
+  if (highlight.video.includes('drive.google.com')) {
+    window.open(highlight.video, '_blank');
+    return;
+  }
+  
+  // YouTube/Dailymotion - play in iframe
+  frame.style.display = "block";
   frame.src = highlight.video;
 });
 
@@ -1467,13 +1472,13 @@ async function fetchArticleImage(url) {
     const doc = parser.parseFromString(html, 'text/html');
     
     let img = doc.querySelector('img[class*="featured"]') ||
-          doc.querySelector('img[class*="main"]') ||
-          doc.querySelector('article img') ||
-          doc.querySelector('img[alt]');
-
-return img ? img.getAttribute('src') : null;
-} catch (error) {
-console.error('Error fetching image:', error);
-return null;
-}
+              doc.querySelector('img[class*="main"]') ||
+              doc.querySelector('article img') ||
+              doc.querySelector('img[alt]');
+    
+    return img ? img.getAttribute('src') : null;
+  } catch (error) {
+    console.error('Error fetching image:', error);
+    return null;
+  }
 }
