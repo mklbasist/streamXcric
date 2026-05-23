@@ -907,8 +907,8 @@ async function fetchStats() {
     alert("Please enter both batter and bowler names.");
     return;
   }
-  resultDiv.classList.add("hidden");
-  resultDiv.innerHTML = "Loading stats...";
+  resultDiv.classList.remove("hidden");
+  
   try {
     const res = await fetch("https://cric-matchup.onrender.com/get_stats", {
       method: "POST",
