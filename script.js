@@ -910,7 +910,7 @@ async function fetchStats() {
   resultDiv.classList.add("hidden");
   resultDiv.innerHTML = "Loading stats...";
   try {
-    const res = await fetch("https://cric-matchup.onrender.com/get_stats", {
+    const res = await fetch(`https://cric-matchup.onrender.com/matchup/${batter}/${bowler}`);
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ format: "Tests", batter, bowler })
