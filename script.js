@@ -1222,7 +1222,7 @@ function renderCards() {
   
   // Initialize Swiper after DOM is ready
   setTimeout(() => {
-    new Swiper('#cardsDeck', {
+    new window.Swiper('#cardsDeck', {
       effect: 'cards',
       grabCursor: true,
       loop: true,
