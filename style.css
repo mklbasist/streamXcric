@@ -3020,3 +3020,12 @@ body {
   }
 }
 
+.insiderSwiper {
+  width: 300px;
+  height: 420px;
+  overflow: visible;
+}
+
+.insiderSwiper .swiper-slide {
+  border-radius: 24px;
+}
