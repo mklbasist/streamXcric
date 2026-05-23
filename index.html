@@ -9,177 +9,209 @@
   <link rel="icon" type="image/jpeg" href="static/fab4.jpg">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Cal+Sans&family=VT323&display=swap" rel="stylesheet">
-  <!-- Swiper CSS & JS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-  <!-- External CSS -->
-  <link rel="stylesheet" href="style.css">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Cal+Sans&family=VT323&display=swap" rel="stylesheet">
+<!-- External CSS -->
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
   
 <!-- Welcome Page -->
 <section id="welcome" class="welcome">
+  <!-- Transparent header only for welcome -->
   <header class="welcome-header">
     <h1>streamXcric</h1>
   </header>
+
   <h2>Welcome to streamXcric</h2>
   <div class="btn-wrapper">
-    <div class="light"></div>
-    <div class="gradient-layer" style="animation-delay: 0s; animation-duration: 25s;"></div>
-    <div class="gradient-layer" style="animation-delay: 0.15s; animation-duration: 15.9s;"></div>
-    <div class="gradient-layer" style="animation-delay: 0.53s; animation-duration: 26.4s;"></div>
-    <div class="gradient-layer" style="animation-delay: 0.45s; animation-duration: 17.8s;"></div>
-    <div class="gradient-layer" style="animation-delay: 1.6s; animation-duration: 19.2s;"></div>
-    <div class="gradient-layer" style="animation-delay: 1.6s; animation-duration: 29.2s;"></div>
-    <div class="gradient-layer" style="animation-delay: 1.6s; animation-duration: 20.2s;"></div>
-    <button class="gradient-btn" onclick="enterSite()">Enter</button>
-    <div class="text-overlay">Enter</div>
+  <div class="light"></div>
+  <div class="gradient-layer" style="animation-delay: 0s; animation-duration: 25s;"></div>
+  <div class="gradient-layer" style="animation-delay: 0.15s; animation-duration: 15.9s;"></div>
+  <div class="gradient-layer" style="animation-delay: 0.53s; animation-duration: 26.4s;"></div>
+  <div class="gradient-layer" style="animation-delay: 0.45s; animation-duration: 17.8s;"></div>
+  <div class="gradient-layer" style="animation-delay: 1.6s; animation-duration: 19.2s;"></div>
+  <div class="gradient-layer" style="animation-delay: 1.6s; animation-duration: 29.2s;"></div>
+  <div class="gradient-layer" style="animation-delay: 1.6s; animation-duration: 20.2s;"></div>
+  <button class="gradient-btn" onclick="enterSite()">Enter</button>
+  <div class="text-overlay">Enter</div>
   </div>
+
 </section>
 
 <!-- Main Page -->
 <section id="main" class="hidden">
-  <header class="main-header">
-    <div class="hamburger" id="hamburgerBtn">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-    <header class="site-header">
-      <img src="/static/IMG_8255.png" alt="streamXcric logo" class="logo">
-    </header>
-    <button id="themeToggle" class="theme-btn">🔆</button>
+
+<header class="main-header">
+
+  <!-- Left: Hamburger -->
+  <div class="hamburger" id="hamburgerBtn">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <header class="site-header">
+  <img src="/static/IMG_8255.png" alt="streamXcric logo" class="logo">
   </header>
 
-  <nav id="sideMenu" class="side-menu">
-    <div class="close-btn" id="closeMenuBtn">✖</div>
-    <ul>
-      <li><a id="menuHome" href="#">🏠 Home</a></li>
-      <li><a id="menuSearch" href="#" onclick="focusSearch(event)">🔍 Search</a></li>
-      <li><a href="about.html">ℹ️ About Us</a></li>
-      <li><a href="dmca.html">⚖️ DMCA</a></li>
-      <li><a href="privacy.html">🔒 Privacy Policy</a></li>
-      <li><a href="contact.html">📞 Contact</a></li>
-      <li><a href="submit.html">📤 Submit Highlights</a></li>
-    </ul>
-  </nav>
+  <!-- Right: Dark Mode Toggle -->
+  <button id="themeToggle" class="theme-btn">🔆</button>
 
+</header>
+
+  <!-- Side Menu Panel -->
+<nav id="sideMenu" class="side-menu">
+
+    <!-- Close Button -->
+  <div class="close-btn" id="closeMenuBtn">✖</div>
+  
+  <ul>
+    <li><a id="menuHome" href="#">🏠 Home</a></li>
+    <li><a id="menuSearch" href="#" onclick="focusSearch(event)">🔍 Search</a></li>
+    <li><a href="about.html">ℹ️ About Us</a></li>
+    <li><a href="dmca.html">⚖️ DMCA</a></li>
+    <li><a href="privacy.html">🔒 Privacy Policy</a></li>
+    <li><a href="contact.html">📞 Contact</a></li>
+    <li><a href="submit.html">📤 Submit Highlights</a></li>
+  </ul>
+</nav>
+
+  <!-- 🔥 CLICK OUTSIDE OVERLAY -->
   <div id="menuOverlay" class="menu-overlay"></div>
   
   <h2 style="text-align:center; margin-top:20px;">🏏 Welcome to streamXcric</h2>
 
+  <!-- Search Bar -->
   <div style="text-align:center; margin: 20px;">
     <input type="text" id="playerSearch" placeholder="Search player..." 
            style="padding:10px; width:250px; border:1px solid #ccc; border-radius:8px;">
   </div>
 
-  <div id="main-players" class="players-list"></div>
+    <div id="main-players" class="players-list"></div>
 
-  <div class="highlight-carousel">
+    <div class="highlight-carousel">
     <div class="highlight-card left"></div>
-    <div class="highlight-card center">
-      <img class="highlight-thumb" id="highlight-thumb" src="" alt="Highlight Thumbnail">
-      <div class="play-button" id="play-button">
-        <svg class="play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="40" height="40">
-          <path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9S58.2 482 73 473l288-176c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/>
-        </svg>
-      </div>
-      <iframe class="highlight-frame" id="highlight-frame" src="" frameborder="0" allowfullscreen style="display:none;" allow="autoplay"></iframe>
-      <div class="highlight-title" id="highlight-title">Highlight Title</div>
+
+  <div class="highlight-card center">
+  <img class="highlight-thumb" id="highlight-thumb" src="" alt="Highlight Thumbnail">
+  <div class="play-button" id="play-button">
+    <svg class="play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="40" height="40">
+      <path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9S58.2 482 73 473l288-176c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/>
+    </svg>
+  </div>
+  <iframe class="highlight-frame" id="highlight-frame" src="" frameborder="0" allowfullscreen style="display:none;" allow="autoplay"></iframe>
+  <div class="highlight-title" id="highlight-title">Highlight Title</div>
+</div>
+
+  <div class="highlight-card right"></div>
+</div>
+  </section>
+
+  <!-- Root Options -->
+  <section id="rootOptions" class="hidden">
+    <div style="text-align: center; margin-bottom: 20px;">
+  <button class="back-btn" onclick="backToPlayers()">
+    <span>← Back</span>
+    <div class="back-btn-overlay"></div>
+  </button>
+</div>
+    <h2 style="text-align:center;">Joe Root</h2>
+    <div style="display:flex; justify-content:center; gap:20px; margin-top:20px;">
+      <button class="boton-elegante" onclick="openRootStat('fifties')">Test 50s</button>
+      <button class="boton-elegante" onclick="openRootStat('centuries')">Test 100s</button>
     </div>
-    <div class="highlight-card right"></div>
-  </div>
-</section>
+  </section>
 
-<!-- Root Options -->
-<section id="rootOptions" class="hidden">
-  <div style="text-align: center; margin-bottom: 20px;">
-    <button class="back-btn" onclick="backToPlayers()">
-      <span>← Back</span>
-      <div class="back-btn-overlay"></div>
-    </button>
-  </div>
-  <h2 style="text-align:center;">Joe Root</h2>
-  <div style="display:flex; justify-content:center; gap:20px; margin-top:20px;">
-    <button class="boton-elegante" onclick="openRootStat('fifties')">Test 50s</button>
-    <button class="boton-elegante" onclick="openRootStat('centuries')">Test 100s</button>
-  </div>
-</section>
-
-<!-- Player Centuries -->
-<section id="playerPage" class="hidden">
-  <div style="text-align: center; margin-bottom: 20px;">
-    <button class="back-btn" onclick="backToPlayers()">
-      <span>← Back</span>
-      <div class="back-btn-overlay"></div>
-    </button>
-  </div>
-  <h2 id="playerName" style="text-align:center;"></h2>
-  <div class="centuries" id="centuriesList"></div>
-</section>
+  <!-- Player Centuries -->
+  <section id="playerPage" class="hidden">
+    <div style="text-align: center; margin-bottom: 20px;">
+  <button class="back-btn" onclick="backToPlayers()">
+    <span>← Back</span>
+    <div class="back-btn-overlay"></div>
+  </button>
+</div>
+    <h2 id="playerName" style="text-align:center;"></h2>
+    <div class="centuries" id="centuriesList"></div>
+  </section>
 
 <!-- Players Page -->
 <section id="players" class="hidden">
+
+  <!-- Player Highlights -->
   <div class="toggle-block">
     <div id="playerToggleTab" class="player-toggle-tab">
       🏏 Player Highlights
     </div>
+
     <div id="playersCarousel" class="players-carousel hidden">
       <div class="players-track players-list">
+
         <div class="player-card" onclick="openPlayer('root')">
           <img src="static/root.png" alt="Joe Root">
           <span>Joe Root</span>
         </div>
+
         <div class="player-card" onclick="openPlayer('kohli')">
           <img src="static/kohli.PNG" alt="Virat Kohli">
           <span>Virat Kohli</span>
         </div>
+
         <div class="player-card" onclick="openPlayer('smith')">
           <img src="static/spdsmith.PNG" alt="Steve Smith">
           <span>Steve Smith</span>
         </div>
+
         <div class="player-card" onclick="openPlayer('pujara')">
           <img src="static/pujara.png" alt="Cheteshwar Pujara">
           <span>Cheteshwar Pujara</span>
         </div>
+
         <div class="player-card" onclick="openPlayer('sachin')">
           <img src="static/sachin.png" alt="Sachin Tendulkar">
           <span>Sachin Tendulkar</span>
         </div>
+        
         <div class="player-card" onclick="openPlayer('kane')">
           <img src="static/kane.PNG" alt="Kane Williamson">
           <span>Kane Williamson</span>
         </div>
+
         <div class="player-card" onclick="openPlayer('villiers')">
           <img src="static/villiers.png" alt="AB de Villiers">
           <span>AB de Villiers</span>
         </div>
+        
         <div class="player-card" onclick="openPlayer('brook')">
           <img src="static/brook.PNG" alt="Harry Brook">
           <span>Harry Brook</span>
         </div>
+
         <div class="player-card" onclick="openPlayer('head')">
           <img src="static/head.PNG" alt="Travis Head">
           <span>Travis Head</span>
         </div>
+                
         <div class="player-card" onclick="openPlayer('stokes')">
           <img src="static/stokes1.png" alt="Ben Stokes">
           <span>Ben Stokes</span>
         </div>
+
         <div class="player-card" onclick="openPlayer('kallis')">
           <img src="static/kallis.png" alt="Jacques Kallis">
           <span>Jacques Kallis</span>
         </div>
+
       </div>
     </div>
   </div>
 
+  <!-- Match Highlights -->
   <div class="toggle-block">
     <div id="matchToggleTab" class="player-toggle-tab">
       🎥 Match Highlights
     </div>
+
     <div id="matchHighlights" class="players-carousel hidden">
       <div class="players-track">
         <div class="match-placeholder" onclick="showPage('testArchive')">
@@ -190,40 +222,50 @@
   </div>
 </section>
 
-<!-- Test Archive -->
 <section id="testArchive" class="hidden">
+
   <h2 class="archive-title">📅 Browse Test Matches</h2>
-  <div class="year-bar">
-    <button class="year-btn" data-year="2026">2026</button>
-    <button class="year-btn" data-year="2025">2025</button>
-    <button class="year-btn" data-year="2024">2024</button>
-    <button class="year-btn" data-year="2023">2023</button>
-    <button class="year-btn" data-year="2022">2022</button>
-    <button class="year-btn" data-year="2021">2021</button>
-    <button class="year-btn" data-year="2020">2020</button>
-    <button class="year-btn" data-year="2019">2019</button>
-    <button class="year-btn" data-year="2018">2018</button>
-    <button class="year-btn" data-year="2017">2017</button>
-    <button class="year-btn" data-year="2016">2016</button>
-  </div>
-  <div class="divider"></div>
-  <div class="team-bar">
-    <button class="team-btn" data-team="australia">🇦🇺 Australia</button>
-    <button class="team-btn" data-team="bangladesh">🇧🇩 Bangladesh</button>
-    <button class="team-btn" data-team="england">🇬🇧 England</button>
-    <button class="team-btn" data-team="india">🇮🇳 India</button>
-    <button class="team-btn" data-team="ireland">🇮🇪 Ireland</button>
-    <button class="team-btn" data-team="new-zealand">🇳🇿 New-Zealand</button>
-    <button class="team-btn" data-team="pakistan">🇵🇰 Pakistan</button>
-    <button class="team-btn" data-team="south-africa">🇿🇦 South-Africa</button>
-    <button class="team-btn" data-team="sri-lanka">🇱🇰 Sri-Lanka</button>
-    <button class="team-btn" data-team="west-indies">🌴 West-Indies</button>
-    <button class="team-btn" data-team="zimbabwe">🇿🇼 Zimbabwe</button>
-  </div>
-  <div class="divider"></div>
-  <div id="matchesContainer" class="matches-grid">
-    <p class="archive-placeholder">Select a year to view matches</p>
-  </div>
+
+<!-- YEAR BAR -->
+<div class="year-bar">
+  <button class="year-btn" data-year="2026">2026</button>
+  <button class="year-btn" data-year="2025">2025</button>
+  <button class="year-btn" data-year="2024">2024</button>
+  <button class="year-btn" data-year="2023">2023</button>
+  <button class="year-btn" data-year="2022">2022</button>
+  <button class="year-btn" data-year="2021">2021</button>
+  <button class="year-btn" data-year="2020">2020</button>
+  <button class="year-btn" data-year="2019">2019</button>
+  <button class="year-btn" data-year="2018">2018</button>
+  <button class="year-btn" data-year="2017">2017</button>
+  <button class="year-btn" data-year="2016">2016</button>
+</div>
+
+<div class="divider"></div>
+
+<!-- TEAM BAR -->
+<div class="team-bar">
+<button class="team-btn" data-team="australia">🇦🇺 Australia</button>
+<button class="team-btn" data-team="bangladesh">🇧🇩 Bangladesh</button>
+<button class="team-btn" data-team="england">🇬🇧 England</button>
+<button class="team-btn" data-team="india">🇮🇳 India</button>
+<button class="team-btn" data-team="ireland">🇮🇪 Ireland</button>
+<button class="team-btn" data-team="new-zealand">🇳🇿 New-Zealand</button>
+<button class="team-btn" data-team="pakistan">🇵🇰 Pakistan</button>
+<button class="team-btn" data-team="south-africa">🇿🇦 South-Africa</button>
+<button class="team-btn" data-team="sri-lanka">🇱🇰 Sri-Lanka</button>
+<button class="team-btn" data-team="west-indies">🌴 West-Indies</button>
+<button class="team-btn" data-team="zimbabwe">🇿🇼 Zimbabwe</button>
+</div>
+
+<div class="divider"></div>
+
+<div id="matchesContainer" class="matches-grid">
+  <p class="archive-placeholder">
+    Select a year to view matches
+  </p>
+</div>
+
 </section>
 
 <!-- Quicks Page -->
@@ -231,12 +273,12 @@
   <div id="shorts-container" class="reels-feed"></div>
 </section>
 
-<!-- INSIDER SECTION -->
+<!-- INSIDER SECTION - REDESIGNED CARD STACK -->
 <section id="insider" class="hidden insider-page">
   <div class="insider-header-bar">
     <button class="back-btn" onclick="backToMain()">
-      <span>← Back</span>
-      <div class="back-btn-overlay"></div>
+  <span>← Back</span>
+  <div class="back-btn-overlay"></div>
     </button>
     <div class="header-title">
       <h2>INSIDER</h2>
@@ -248,48 +290,59 @@
   </div>
  
   <div class="insider-wrapper">
+    <!-- Card Stack Container -->
     <div class="card-container">
-      <div class="cards-deck swiper" id="cardsDeck"></div>
+      <div class="cards-deck" id="cardsDeck">
+        <!-- Cards will be dynamically inserted here -->
+      </div>
     </div>
+ 
+    <!-- Empty State -->
     <div id="emptyState" class="empty-state hidden">
       <div class="empty-icon">📭</div>
       <h3>No More News</h3>
       <p>You've seen all available updates</p>
       <button class="refresh-btn" onclick="reloadInsider()">↻ Refresh News</button>
     </div>
-    <div id="loadingState" class="loading-state">
-      <div class="loader">
-        <div class="text"><span>Loading</span></div>
-        <div class="text"><span>Loading</span></div>
-        <div class="text"><span>Loading</span></div>
-        <div class="text"><span>Loading</span></div>
-        <div class="text"><span>Loading</span></div>
-        <div class="text"><span>Loading</span></div>
-        <div class="text"><span>Loading</span></div>
-        <div class="text"><span>Loading</span></div>
-        <div class="text"><span>Loading</span></div>
-        <div class="line"></div>
-      </div>
-    </div>
-    <div class="swipe-hint" id="swipeHint">
-      <span>← Swipe to explore →</span>
-    </div>
+ 
+<!-- Loading State -->
+<div id="loadingState" class="loading-state">
+  <!-- From Uiverse.io by andrew-manzyk -->
+  <div class="loader">
+    <div class="text"><span>Loading</span></div>
+    <div class="text"><span>Loading</span></div>
+    <div class="text"><span>Loading</span></div>
+    <div class="text"><span>Loading</span></div>
+    <div class="text"><span>Loading</span></div>
+    <div class="text"><span>Loading</span></div>
+    <div class="text"><span>Loading</span></div>
+    <div class="text"><span>Loading</span></div>
+    <div class="text"><span>Loading</span></div>
+    <div class="line"></div>
+  </div>
+</div>
+ 
+  <!-- Bottom Hint -->
+  <div class="swipe-hint" id="swipeHint">
+    <span>← Swipe to explore →</span>
   </div>
 </section>
   
 <!-- Ask Section -->
 <section id="askSection" class="hidden">
   <div style="text-align: center; margin-bottom: 20px;">
-    <button class="back-btn" onclick="backToMain()">
-      <span>← Back</span>
-      <div class="back-btn-overlay"></div>
-    </button>
-  </div>
+  <button class="back-btn" onclick="backToMain()">
+    <span>← Back</span>
+    <div class="back-btn-overlay"></div>
+  </button>
+</div>
 
+  <!-- Header with toggle -->
   <div class="ask-header">
     <button id="askToggleBtn" onclick="toggleAsk()">🤖 Ask AI</button>
   </div>
 
+  <!-- Dropdown menu (hidden by default) -->
   <div id="askMenu" class="ask-menu hidden">
     <div class="ask-option" onclick="showAsk('ai')">🤖 Ask AI</div>
     <div class="ask-option" onclick="showAsk('stats')">📊 Ask Stats</div>
@@ -304,65 +357,22 @@
     </div>
   </div>
 
-  <!-- Ask Stats content -->
-  <div id="askStats" class="hidden">
-    <div style="text-align:center; margin-bottom:30px;">
-      <button class="back-btn" onclick="backToMain()">
-        <span>← Back</span>
-        <div class="back-btn-overlay"></div>
-      </button>
-    </div>
+<!-- Ask Stats content -->
+<div id="askStats" class="hidden">
+  <h2 style="text-align:center;">📊 Player Matchup Stats</h2>
 
-    <h2 style="text-align:center; font-size:1.8rem; margin-bottom:30px; background: linear-gradient(135deg, #ef4444 0%, #f97316 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
-      🏏 Player Matchup Stats
-    </h2>
+  <div class="ask-stats" style="text-align:center; margin-top:10px; display:flex; flex-direction:column; align-items:center; gap:10px;">
+  <input id="batterInput" placeholder="Enter Batter Name" style="padding:8px 12px; width:220px; border-radius:20px; border:1px solid #ccc; outline:none;">
+  <input id="bowlerInput" placeholder="Enter Bowler Name" style="padding:8px 12px; width:220px; border-radius:20px; border:1px solid #ccc; outline:none;">
+  <button onclick="fetchStats()" style="padding:8px 16px; border-radius:20px; border:none; background-color:#007BFF; color:white; cursor:pointer;">Get Stats</button>
+</div>
 
-    <div class="stats-input-container">
-      <input id="batterInput" placeholder="Enter Batter Name" class="stats-input">
-      <input id="bowlerInput" placeholder="Enter Bowler Name" class="stats-input">
-      <button onclick="fetchStats()" class="stats-fetch-btn">⚡ Get Stats</button>
-    </div>
-
-    <div id="statsResult" class="stats-dashboard hidden">
-      <div class="stats-bar-container">
-        <div class="stats-bar-item">
-          <div class="stats-bar-label">Matches</div>
-          <div class="stats-bar-value" id="stat-matches">0</div>
-        </div>
-        <div class="stats-bar-item">
-          <div class="stats-bar-label">Runs</div>
-          <div class="stats-bar-value" id="stat-runs">0</div>
-        </div>
-        <div class="stats-bar-item">
-          <div class="stats-bar-label">Dismissals</div>
-          <div class="stats-bar-value" id="stat-dismissals">0</div>
-        </div>
-        <div class="stats-bar-item">
-          <div class="stats-bar-label">Average</div>
-          <div class="stats-bar-value" id="stat-average">0.0</div>
-        </div>
-        <div class="stats-bar-item">
-          <div class="stats-bar-label">Strike Rate</div>
-          <div class="stats-bar-value" id="stat-strikeRate">0.0</div>
-        </div>
-        <div class="stats-bar-item">
-          <div class="stats-bar-label">Highest</div>
-          <div class="stats-bar-value" id="stat-highest">0</div>
-        </div>
-        <div class="stats-bar-item">
-          <div class="stats-bar-label">Vs Bowler</div>
-          <div class="stats-bar-value" id="stat-vsBowler">0</div>
-        </div>
-        <div class="stats-bar-item">
-          <div class="stats-bar-label">H2H</div>
-          <div class="stats-bar-value" id="stat-h2h">0</div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <!-- Stats results will appear here -->
+  <div id="statsResult" class="stats-box hidden"></div>
+</div>
 </section>
 
-<!-- Bottom Navigation - OUTSIDE ALL SECTIONS -->
+<!-- Bottom Navigation -->
 <nav class="yt-bottom-nav">
   <div class="yt-tab" onclick="showPage('main')">
     <img src="static/home.svg" class="icon">
@@ -388,6 +398,7 @@
 
 <footer id="mainFooter">
   <p style="text-align: center;">⚡ streamXcric ⚡ <br> ©2026 LLTC. Made with ❤️ in 🇮🇳</p>
+  
   <div style="margin-top:15px; text-align:center; font-size:0.85em;">
     <a href="dmca.html" style="color:#3df2e0; text-decoration:none; margin:0 10px;">⚖️ DMCA</a> | 
     <a href="privacy.html" style="color:#3df2e0; text-decoration:none; margin:0 10px;">🔒 Privacy</a> | 
@@ -404,6 +415,7 @@ function showPage(pageId) {
   window.scrollTo(0, 0);
 }
 
+// TEST
 console.log('✅ showPage defined');
 window.showInsider = function() {
   console.log('📰 showInsider called');
@@ -419,72 +431,87 @@ console.log('✅ showInsider defined');
 <script src="matches.js"></script>
 
 <script>
+// 🌙 Dark Mode Toggle
 const themeBtn = document.getElementById("themeToggle");
+
+// Set dark mode as default on page load
 document.body.classList.add("dark-mode");
 themeBtn.textContent = "🔆";
 
 if (themeBtn) {
   themeBtn.addEventListener("click", () => {
     document.body.classList.toggle("dark-mode");
-    themeBtn.textContent = document.body.classList.contains("dark-mode") ? "🔆" : "🌙";
+    themeBtn.textContent =
+      document.body.classList.contains("dark-mode") ? "🔆" : "🌙";
   });
 }
 
-const hamBtn = document.getElementById("hamburgerBtn");
-const sideMenu = document.getElementById("sideMenu");
-const closeBtn = document.getElementById("closeMenuBtn");
+  // 🍔 Hamburger Menu
+  const hamBtn = document.getElementById("hamburgerBtn");
+  const sideMenu = document.getElementById("sideMenu");
+  const closeBtn = document.getElementById("closeMenuBtn");
 
-if (hamBtn) {
-  hamBtn.addEventListener("click", () => {
-    sideMenu.classList.add("open");
-  });
-}
-
-if (closeBtn) {
-  closeBtn.addEventListener("click", () => {
-    sideMenu.classList.remove("open");
-  });
-}
-
-const homeBtn = document.getElementById("menuHome");
-if (homeBtn) {
-  homeBtn.addEventListener("click", () => {
-    window.location.href = "index.html#main";
-  });
-}
-
-const searchBtn = document.getElementById("menuSearch");
-if (searchBtn) {
-  searchBtn.addEventListener("click", () => {
-    window.location.href = "index.html#search";
-  });
-}
-
-document.addEventListener("click", (event) => {
-  const clickedInsideMenu = sideMenu.contains(event.target);
-  const clickedHamburger = hamBtn.contains(event.target);
-
-  if (sideMenu.classList.contains("open") && !clickedInsideMenu && !clickedHamburger) {
-    sideMenu.classList.remove("open");
+  if (hamBtn) {
+    hamBtn.addEventListener("click", () => {
+      sideMenu.classList.add("open");
+    });
   }
-});
 
-window.addEventListener("load", () => {
-  if (window.location.hash === "#search") {
-    const searchInput = document.getElementById("playerSearch");
-    if (searchInput) {
-      setTimeout(() => searchInput.focus(), 150);
+  // ❌ Close Menu Button
+  if (closeBtn) {
+    closeBtn.addEventListener("click", () => {
+      sideMenu.classList.remove("open");
+    });
+  }
+
+  // 🏠 HOME BUTTON (Menu)
+  const homeBtn = document.getElementById("menuHome");
+  if (homeBtn) {
+    homeBtn.addEventListener("click", () => {
+      window.location.href = "index.html#main";
+    });
+  }
+
+  // 🔍 SEARCH BUTTON (Menu)
+  const searchBtn = document.getElementById("menuSearch");
+  if (searchBtn) {
+    searchBtn.addEventListener("click", () => {
+      window.location.href = "index.html#search";
+    });
+  }
+
+  // 🖱️ Close menu when clicking outside
+  document.addEventListener("click", (event) => {
+    const clickedInsideMenu = sideMenu.contains(event.target);
+    const clickedHamburger = hamBtn.contains(event.target);
+
+    if (sideMenu.classList.contains("open") &&
+        !clickedInsideMenu &&
+        !clickedHamburger) {
+      sideMenu.classList.remove("open");
     }
-  }
-});
+  });
+
+  // 🎯 Auto-focus search bar when page loads with #search
+  window.addEventListener("load", () => {
+    if (window.location.hash === "#search") {
+      const searchInput = document.getElementById("playerSearch");
+      if (searchInput) {
+        setTimeout(() => searchInput.focus(), 150);
+      }
+    }
+  });
 </script>
 
+<!-- Existing Backend Ping Script -->
 <script>
+  // Ping your Render backend when the site loads
   window.addEventListener("load", () => {
     fetch("https://cric-matchup.onrender.com/")
       .then(() => console.log("Render pinged"))
       .catch(() => console.log("Render ping failed"));
 
+    // StatPulse backend
     fetch("https://statpulse-v1-0.onrender.com/")
       .then(() => console.log("StatPulse backend pinged"))
       .catch(() => console.log("StatPulse ping failed"));
