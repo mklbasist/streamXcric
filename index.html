@@ -277,8 +277,8 @@
 <section id="insider" class="hidden insider-page">
   <div class="insider-header-bar">
     <button class="back-btn" onclick="backToMain()">
-  <span>← Back</span>
-  <div class="back-btn-overlay"></div>
+      <span>← Back</span>
+      <div class="back-btn-overlay"></div>
     </button>
     <div class="header-title">
       <h2>INSIDER</h2>
@@ -288,15 +288,15 @@
       <span id="newsCount">0</span> / <span id="newsTotalCount">0</span>
     </div>
   </div>
- 
+
   <div class="insider-wrapper">
-    <!-- Card Stack Container -->
+    <!-- Swiper Card Container -->
     <div class="card-container">
-      <div class="cards-deck" id="cardsDeck">
-        <!-- Cards will be dynamically inserted here -->
+      <div class="cards-deck swiper" id="cardsDeck">
+        <!-- Swiper will render animated cards here -->
       </div>
     </div>
- 
+
     <!-- Empty State -->
     <div id="emptyState" class="empty-state hidden">
       <div class="empty-icon">📭</div>
@@ -304,27 +304,27 @@
       <p>You've seen all available updates</p>
       <button class="refresh-btn" onclick="reloadInsider()">↻ Refresh News</button>
     </div>
- 
-<!-- Loading State -->
-<div id="loadingState" class="loading-state">
-  <!-- From Uiverse.io by andrew-manzyk -->
-  <div class="loader">
-    <div class="text"><span>Loading</span></div>
-    <div class="text"><span>Loading</span></div>
-    <div class="text"><span>Loading</span></div>
-    <div class="text"><span>Loading</span></div>
-    <div class="text"><span>Loading</span></div>
-    <div class="text"><span>Loading</span></div>
-    <div class="text"><span>Loading</span></div>
-    <div class="text"><span>Loading</span></div>
-    <div class="text"><span>Loading</span></div>
-    <div class="line"></div>
-  </div>
-</div>
- 
-  <!-- Bottom Hint -->
-  <div class="swipe-hint" id="swipeHint">
-    <span>← Swipe to explore →</span>
+
+    <!-- Loading State -->
+    <div id="loadingState" class="loading-state">
+      <div class="loader">
+        <div class="text"><span>Loading</span></div>
+        <div class="text"><span>Loading</span></div>
+        <div class="text"><span>Loading</span></div>
+        <div class="text"><span>Loading</span></div>
+        <div class="text"><span>Loading</span></div>
+        <div class="text"><span>Loading</span></div>
+        <div class="text"><span>Loading</span></div>
+        <div class="text"><span>Loading</span></div>
+        <div class="text"><span>Loading</span></div>
+        <div class="line"></div>
+      </div>
+    </div>
+
+    <!-- Swipe Hint -->
+    <div class="swipe-hint" id="swipeHint">
+      <span>← Swipe to explore →</span>
+    </div>
   </div>
 </section>
   
