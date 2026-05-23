@@ -909,9 +909,11 @@ async function fetchStats() {
   }
   resultDiv.classList.remove("hidden");
   try {
-    const res = await fetch(`https://cric-matchup.onrender.com/matchup/${batter}/${bowler}`);
-    const data = await res.json();
-    console.log("Stats response:", data);
+    const res = await fetch(`https://cric-matchup.onrender.com/get_stats`, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ format: "Tests", batter, bowler })
+});
     
     // Update horizontal stats bar with data
     document.getElementById('stat-matches').textContent = "Tests";
