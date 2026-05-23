@@ -3098,7 +3098,7 @@ body {
 
 @media (max-width: 480px) {
   .stats-bar-item {
-    min-width: 60px;
+    min-width: 70px;
     padding: 0 6px;
   }
 
