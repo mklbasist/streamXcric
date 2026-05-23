@@ -910,7 +910,6 @@ async function fetchStats() {
   resultDiv.classList.remove("hidden");
   try {
     const res = await fetch(`https://cric-matchup.onrender.com/matchup/${batter}/${bowler}`);
-    if (!res.ok) throw new Error("Failed to fetch stats");
     const data = await res.json();
     console.log("Stats response:", data);
     
