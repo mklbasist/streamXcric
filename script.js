@@ -1,6 +1,3 @@
-import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs';
-const { EffectCards } = Swiper.modules;
-
 function getThumbnail(url) {
   if (url.includes("youtube.com")) {
     let id = url.split("/embed/")[1];
