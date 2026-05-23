@@ -933,6 +933,77 @@ async function fetchStats() {
     console.error(err);
   }
 }
+
+function drawRadarChart(data) {
+  const ctx = document.getElementById('radarChart');
+  if (!ctx) return;
+  
+  new Chart(ctx, {
+    type: 'radar',
+    data: {
+      labels: ['Runs', 'Average', 'Strike Rate', 'Consistency', 'Form'],
+      datasets: [{
+        label: 'Performance',
+        data: [
+          Math.min(data.runs / 10, 100),
+          data.average || 0,
+          data.strike_rate || 0,
+          (data.matches * 10) % 100,
+          Math.random() * 100
+        ],
+        borderColor: '#06b6d4',
+        backgroundColor: 'rgba(6, 182, 212, 0.1)',
+        pointBackgroundColor: '#ef4444',
+        pointBorderColor: '#fff',
+        pointRadius: 6,
+        borderWidth: 2
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        r: {
+          max: 100,
+          ticks: { color: '#94a3b8' },
+          grid: { color: 'rgba(71, 85, 105, 0.2)' }
+        }
+      }
+    }
+  });
+}
+
+function drawLineChart(data) {
+  const ctx = document.getElementById('lineChart');
+  if (!ctx) return;
+  
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['2020', '2021', '2022', '2023', '2024'],
+      datasets: [{
+        label: 'Runs per Year',
+        data: [data.runs * 0.7, data.runs * 0.8, data.runs, data.runs * 0.9, data.runs * 0.95],
+        borderColor: '#06b6d4',
+        backgroundColor: 'rgba(6, 182, 212, 0.1)',
+        borderWidth: 2,
+        fill: true,
+        tension: 0.4,
+        pointRadius: 5,
+        pointBackgroundColor: '#0ea5e9'
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { labels: { color: '#f8fafc' } } },
+      scales: {
+        x: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(71, 85, 105, 0.2)' } },
+        y: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(71, 85, 105, 0.2)' } }
+      }
+    }
+  });
+}
+
 // ====================
 // Unified Toggle Logic (CLEAN)
 // ====================
