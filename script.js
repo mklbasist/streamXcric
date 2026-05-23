@@ -1220,19 +1220,17 @@ function renderCards() {
     deck.appendChild(slide);
   });
   
-  // Initialize Swiper after DOM is ready
-  setTimeout(() => {
-    new window.Swiper('#cardsDeck', {
-      effect: 'cards',
-      grabCursor: true,
-      loop: true,
-      modules: [EffectCards],
-      allowTouchMove: true,
-      autoplay: false
-    });
-  }, 100);
-  
-  updateEmptyState();
+// Initialize Swiper after DOM is ready
+setTimeout(() => {
+  new Swiper('.insiderSwiper', {
+    effect: 'cards',
+    grabCursor: true,
+    loop: true,
+    allowTouchMove: true
+  });
+}, 100);
+
+updateEmptyState();
 }
 
 // FORMAT TIME
