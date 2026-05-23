@@ -934,11 +934,22 @@ async function fetchStats() {
   }
 }
 
-function drawRadarChart(data) {
-  const ctx = document.getElementById('radarChart');
-  if (!ctx) return;
+let radarChartInstance = null;
+let lineChartInstance = null;
 
-  new Chart(ctx, {
+function drawRadarChart(data) {
+  const canvas = document.getElementById('radarChart');
+  if (!canvas) return;
+
+  // Give canvas proper height
+  canvas.height = 300;
+
+  // Destroy old chart
+  if (radarChartInstance) {
+    radarChartInstance.destroy();
+  }
+
+  radarChartInstance = new Chart(canvas, {
     type: 'radar',
     data: {
       labels: ['Runs', 'Average', 'Strike Rate', 'Consistency', 'Form'],
@@ -948,14 +959,14 @@ function drawRadarChart(data) {
           Math.min((data.runs || 0) / 10, 100),
           data.average || 0,
           data.strike_rate || 0,
-          Math.min((data.runs || 0) / 2, 100),
-          Math.min((data.strike_rate || 0), 100)
+          50,
+          70
         ],
         borderColor: '#06b6d4',
-        backgroundColor: 'rgba(6, 182, 212, 0.1)',
+        backgroundColor: 'rgba(6, 182, 212, 0.2)',
         pointBackgroundColor: '#ef4444',
         pointBorderColor: '#fff',
-        pointRadius: 6,
+        pointRadius: 4,
         borderWidth: 2
       }]
     },
@@ -964,17 +975,24 @@ function drawRadarChart(data) {
       maintainAspectRatio: false,
       plugins: {
         legend: {
-          display: false
+          labels: {
+            color: '#f8fafc'
+          }
         }
       },
       scales: {
         r: {
-          max: 100,
+          suggestedMin: 0,
+          suggestedMax: 100,
           ticks: {
-            color: '#94a3b8'
+            color: '#94a3b8',
+            backdropColor: 'transparent'
           },
           grid: {
-            color: 'rgba(71, 85, 105, 0.2)'
+            color: 'rgba(71,85,105,0.3)'
+          },
+          angleLines: {
+            color: 'rgba(71,85,105,0.3)'
           },
           pointLabels: {
             color: '#f8fafc'
@@ -986,15 +1004,22 @@ function drawRadarChart(data) {
 }
 
 function drawLineChart(data) {
-  const ctx = document.getElementById('lineChart');
-  if (!ctx) return;
+  const canvas = document.getElementById('lineChart');
+  if (!canvas) return;
 
-  new Chart(ctx, {
+  canvas.height = 300;
+
+  // Destroy old chart
+  if (lineChartInstance) {
+    lineChartInstance.destroy();
+  }
+
+  lineChartInstance = new Chart(canvas, {
     type: 'line',
     data: {
       labels: ['2020', '2021', '2022', '2023', '2024'],
       datasets: [{
-        label: 'Runs per Year',
+        label: 'Runs Trend',
         data: [
           (data.runs || 0) * 0.7,
           (data.runs || 0) * 0.8,
@@ -1003,11 +1028,11 @@ function drawLineChart(data) {
           (data.runs || 0) * 0.95
         ],
         borderColor: '#06b6d4',
-        backgroundColor: 'rgba(6, 182, 212, 0.1)',
-        borderWidth: 2,
+        backgroundColor: 'rgba(6,182,212,0.15)',
         fill: true,
         tension: 0.4,
-        pointRadius: 5,
+        borderWidth: 3,
+        pointRadius: 4,
         pointBackgroundColor: '#0ea5e9'
       }]
     },
@@ -1027,7 +1052,7 @@ function drawLineChart(data) {
             color: '#94a3b8'
           },
           grid: {
-            color: 'rgba(71, 85, 105, 0.2)'
+            color: 'rgba(71,85,105,0.2)'
           }
         },
         y: {
@@ -1035,14 +1060,13 @@ function drawLineChart(data) {
             color: '#94a3b8'
           },
           grid: {
-            color: 'rgba(71, 85, 105, 0.2)'
+            color: 'rgba(71,85,105,0.2)'
           }
         }
       }
     }
   });
 }
-
 // ====================
 // Unified Toggle Logic (CLEAN)
 // ====================
