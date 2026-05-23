@@ -925,7 +925,6 @@ async function fetchStats() {
     document.getElementById('stat-dismissals').textContent = data.outs || 0;
     document.getElementById('stat-average').textContent = (data.average || 0).toFixed(2);
     document.getElementById('stat-strikeRate').textContent = (data.strike_rate || 0).toFixed(2);
-    document.getElementById('stat-h2h').textContent = data.balls || 0;
     
     resultDiv.classList.remove("hidden");
   } catch (err) {
