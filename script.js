@@ -910,16 +910,16 @@ async function fetchStats() {
   resultDiv.classList.add("hidden");
   resultDiv.innerHTML = "Loading stats...";
   try {
-    const res = await fetch(`https://cric-matchup.onrender.com/matchup/${batter}/${bowler}`);
+    const res = await fetch("https://cric-matchup.onrender.com/get_stats", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ format: "Tests", batter, bowler })
+    });
     if (!res.ok) throw new Error("Failed to fetch stats");
     const data = await res.json();
     console.log("Stats response:", data);
     
-    // Log full names (if backend sends them)
-    if (data.batterName) console.log("Batter:", data.batterName);
-    if (data.bowlerName) console.log("Bowler:", data.bowlerName);
-
-    // Show horizontal stats bar instead of table
+    // Update horizontal stats bar with data
     document.getElementById('stat-matches').textContent = data.matches || 0;
     document.getElementById('stat-runs').textContent = data.runs || 0;
     document.getElementById('stat-dismissals').textContent = data.outs || 0;
