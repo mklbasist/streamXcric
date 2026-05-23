@@ -937,7 +937,7 @@ async function fetchStats() {
 function drawRadarChart(data) {
   const ctx = document.getElementById('radarChart');
   if (!ctx) return;
-  
+
   new Chart(ctx, {
     type: 'radar',
     data: {
@@ -945,11 +945,11 @@ function drawRadarChart(data) {
       datasets: [{
         label: 'Performance',
         data: [
-          Math.min(data.runs / 10, 100),
+          Math.min((data.runs || 0) / 10, 100),
           data.average || 0,
           data.strike_rate || 0,
-          (data.matches * 10) % 100,
-          Math.random() * 100
+          Math.min((data.runs || 0) / 2, 100),
+          Math.min((data.strike_rate || 0), 100)
         ],
         borderColor: '#06b6d4',
         backgroundColor: 'rgba(6, 182, 212, 0.1)',
@@ -961,12 +961,24 @@ function drawRadarChart(data) {
     },
     options: {
       responsive: true,
-      plugins: { legend: { display: false } },
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: false
+        }
+      },
       scales: {
         r: {
           max: 100,
-          ticks: { color: '#94a3b8' },
-          grid: { color: 'rgba(71, 85, 105, 0.2)' }
+          ticks: {
+            color: '#94a3b8'
+          },
+          grid: {
+            color: 'rgba(71, 85, 105, 0.2)'
+          },
+          pointLabels: {
+            color: '#f8fafc'
+          }
         }
       }
     }
@@ -976,14 +988,20 @@ function drawRadarChart(data) {
 function drawLineChart(data) {
   const ctx = document.getElementById('lineChart');
   if (!ctx) return;
-  
+
   new Chart(ctx, {
     type: 'line',
     data: {
       labels: ['2020', '2021', '2022', '2023', '2024'],
       datasets: [{
         label: 'Runs per Year',
-        data: [data.runs * 0.7, data.runs * 0.8, data.runs, data.runs * 0.9, data.runs * 0.95],
+        data: [
+          (data.runs || 0) * 0.7,
+          (data.runs || 0) * 0.8,
+          data.runs || 0,
+          (data.runs || 0) * 0.9,
+          (data.runs || 0) * 0.95
+        ],
         borderColor: '#06b6d4',
         backgroundColor: 'rgba(6, 182, 212, 0.1)',
         borderWidth: 2,
@@ -995,10 +1013,31 @@ function drawLineChart(data) {
     },
     options: {
       responsive: true,
-      plugins: { legend: { labels: { color: '#f8fafc' } } },
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          labels: {
+            color: '#f8fafc'
+          }
+        }
+      },
       scales: {
-        x: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(71, 85, 105, 0.2)' } },
-        y: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(71, 85, 105, 0.2)' } }
+        x: {
+          ticks: {
+            color: '#94a3b8'
+          },
+          grid: {
+            color: 'rgba(71, 85, 105, 0.2)'
+          }
+        },
+        y: {
+          ticks: {
+            color: '#94a3b8'
+          },
+          grid: {
+            color: 'rgba(71, 85, 105, 0.2)'
+          }
+        }
       }
     }
   });
