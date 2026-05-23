@@ -12,9 +12,12 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Cal+Sans&family=VT323&display=swap" rel="stylesheet">
   
-  <!-- Swiper CSS & JS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<!-- Swiper CSS & JS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/modules/effect-cards.min.css" />
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   
   <!-- External CSS -->
   <link rel="stylesheet" href="style.css">
@@ -297,10 +300,12 @@
   <div class="insider-wrapper">
     <!-- Swiper Card Container -->
     <div class="card-container">
-      <div class="cards-deck swiper" id="cardsDeck">
-        <!-- Swiper will render animated cards here -->
-      </div>
+  <div class="swiper insiderSwiper">
+    <div class="swiper-wrapper" id="cardsDeck">
+      <!-- Swiper slides inserted here -->
     </div>
+  </div>
+</div>
 
     <!-- Empty State -->
     <div id="emptyState" class="empty-state hidden">
