@@ -908,7 +908,6 @@ async function fetchStats() {
     return;
   }
   resultDiv.classList.add("hidden");
-  resultDiv.innerHTML = "Loading stats...";
   try {
     const res = await fetch("https://cric-matchup.onrender.com/get_stats", {
       method: "POST",
