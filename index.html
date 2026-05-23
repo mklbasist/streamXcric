@@ -360,43 +360,38 @@
 <!-- Ask Stats content -->
 <div id="askStats" class="hidden">
   <h2 style="text-align:center;">📊 Player Matchup Stats</h2>
-
   <div class="ask-stats" style="text-align:center; margin-top:10px; display:flex; flex-direction:column; align-items:center; gap:10px;">
-  <input id="batterInput" placeholder="Enter Batter Name" style="padding:8px 12px; width:220px; border-radius:20px; border:1px solid #ccc; outline:none;">
-  <input id="bowlerInput" placeholder="Enter Bowler Name" style="padding:8px 12px; width:220px; border-radius:20px; border:1px solid #ccc; outline:none;">
-  <button onclick="fetchStats()" style="padding:8px 16px; border-radius:20px; border:none; background-color:#007BFF; color:white; cursor:pointer;">Get Stats</button>
-</div>
-
+    <input id="batterInput" placeholder="Enter Batter Name" style="padding:8px 12px; width:220px; border-radius:20px; border:1px solid #ccc; outline:none;">
+    <input id="bowlerInput" placeholder="Enter Bowler Name" style="padding:8px 12px; width:220px; border-radius:20px; border:1px solid #ccc; outline:none;">
+    <button onclick="fetchStats()" style="padding:8px 16px; border-radius:20px; border:none; background-color:#007BFF; color:white; cursor:pointer;">Get Stats</button>
+  </div>
+  
   <!-- Stats results will appear here -->
-<div id="statsResult" class="stats-dashboard hidden">
-  <div class="stats-bar-container">
-    <div class="stats-bar-item">
-      <div class="stats-bar-label">Format</div>
-      <div class="stats-bar-value" id="stat-matches">Tests</div>
-    </div>
-    <div class="stats-bar-item">
-      <div class="stats-bar-label">Runs</div>
-      <div class="stats-bar-value" id="stat-runs">0</div>
-    </div>
-    <div class="stats-bar-item">
-      <div class="stats-bar-label">Dismissals</div>
-      <div class="stats-bar-value" id="stat-dismissals">0</div>
-    </div>
-    <div class="stats-bar-item">
-      <div class="stats-bar-label">Average</div>
-      <div class="stats-bar-value" id="stat-average">0.0</div>
-    </div>
-    <div class="stats-bar-item">
-      <div class="stats-bar-label">Strike Rate</div>
-      <div class="stats-bar-value" id="stat-strikeRate">0.0</div>
-    </div>
-    <div class="stats-bar-item">
-      <div class="stats-bar-label">Balls</div>
-      <div class="stats-bar-value" id="stat-h2h">0</div>
+  <div id="statsResult" class="stats-dashboard hidden">
+    <div class="stats-bar-container">
+      <div class="stats-bar-item">
+        <div class="stats-bar-label">Format</div>
+        <div class="stats-bar-value" id="stat-matches">Tests</div>
+      </div>
+      <div class="stats-bar-item">
+        <div class="stats-bar-label">Runs</div>
+        <div class="stats-bar-value" id="stat-runs">0</div>
+      </div>
+      <div class="stats-bar-item">
+        <div class="stats-bar-label">Dismissals</div>
+        <div class="stats-bar-value" id="stat-dismissals">0</div>
+      </div>
+      <div class="stats-bar-item">
+        <div class="stats-bar-label">Average</div>
+        <div class="stats-bar-value" id="stat-average">0.0</div>
+      </div>
+      <div class="stats-bar-item">
+        <div class="stats-bar-label">Strike Rate</div>
+        <div class="stats-bar-value" id="stat-strikeRate">0.0</div>
+      </div>
     </div>
   </div>
 </div>
-</section>
 
 <!-- Bottom Navigation -->
 <nav class="yt-bottom-nav">
