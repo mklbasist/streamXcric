@@ -903,49 +903,37 @@ async function fetchStats() {
   const batter = document.getElementById("batterInput").value.trim();
   const bowler = document.getElementById("bowlerInput").value.trim();
   const resultDiv = document.getElementById("statsResult");
-
   if (!batter || !bowler) {
     alert("Please enter both batter and bowler names.");
     return;
   }
-
   resultDiv.classList.add("hidden");
   resultDiv.innerHTML = "Loading stats...";
-
   try {
     const res = await fetch("https://cric-matchup.onrender.com/get_stats", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ format: "Tests", batter, bowler })
     });
-
     if (!res.ok) throw new Error("Failed to fetch stats");
-
     const data = await res.json();
-    console.log("Stats response:", data); // 👈 check keys coming from backend
+    console.log("Stats response:", data);
+    
+    // Log full names (if backend sends them)
+    if (data.batterName) console.log("Batter:", data.batterName);
+    if (data.bowlerName) console.log("Bowler:", data.bowlerName);
 
-    // Build clean stat card
-    let html = `<table>`;
-
-    // Format row
-    html += `<tr><td>Format</td><td>Tests</td></tr>`;
-
-    // Full names (if backend sends them)
-    if (data.batterName) html += `<tr><td>Batter</td><td>${data.batterName}</td></tr>`;
-    if (data.bowlerName) html += `<tr><td>Bowler</td><td>${data.bowlerName}</td></tr>`;
-
-    // Stats rows
-    if (data.runs !== undefined) html += `<tr><td>Runs</td><td>${data.runs}</td></tr>`;
-    if (data.balls !== undefined) html += `<tr><td>Balls</td><td>${data.balls}</td></tr>`;
-    if (data.outs !== undefined) html += `<tr><td>Outs</td><td>${data.outs}</td></tr>`;
-    if (data.average !== undefined) html += `<tr><td>Average</td><td>${data.average}</td></tr>`;
-    if (data.strike_rate !== undefined) html += `<tr><td>Strike Rate</td><td>${data.strike_rate}</td></tr>`;
-
-    html += `</table>`;
-
-    resultDiv.innerHTML = html;
+    // Show horizontal stats bar instead of table
+    document.getElementById('stat-matches').textContent = data.matches || 0;
+    document.getElementById('stat-runs').textContent = data.runs || 0;
+    document.getElementById('stat-dismissals').textContent = data.outs || 0;
+    document.getElementById('stat-average').textContent = (data.average || 0).toFixed(2);
+    document.getElementById('stat-strikeRate').textContent = (data.strike_rate || 0).toFixed(2);
+    document.getElementById('stat-highest').textContent = data.highest || 0;
+    document.getElementById('stat-vsBowler').textContent = data.matches || 0;
+    document.getElementById('stat-h2h').textContent = (data.outs || 0);
+    
     resultDiv.classList.remove("hidden");
-
   } catch (err) {
     resultDiv.innerHTML = "<p style='color:red;'>Error fetching stats. Try again!</p>";
     resultDiv.classList.remove("hidden");
