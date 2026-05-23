@@ -907,26 +907,20 @@ async function fetchStats() {
     alert("Please enter both batter and bowler names.");
     return;
   }
-  resultDiv.classList.add("hidden");
+  resultDiv.classList.remove("hidden");
   try {
-    const res = await fetch("https://cric-matchup.onrender.com/get_stats", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ format: "Tests", batter, bowler })
-    });
+    const res = await fetch(`https://cric-matchup.onrender.com/matchup/${batter}/${bowler}`);
     if (!res.ok) throw new Error("Failed to fetch stats");
     const data = await res.json();
     console.log("Stats response:", data);
     
     // Update horizontal stats bar with data
-    document.getElementById('stat-matches').textContent = data.matches || 0;
+    document.getElementById('stat-matches').textContent = "Tests";
     document.getElementById('stat-runs').textContent = data.runs || 0;
     document.getElementById('stat-dismissals').textContent = data.outs || 0;
     document.getElementById('stat-average').textContent = (data.average || 0).toFixed(2);
     document.getElementById('stat-strikeRate').textContent = (data.strike_rate || 0).toFixed(2);
-    document.getElementById('stat-highest').textContent = data.highest || 0;
-    document.getElementById('stat-vsBowler').textContent = data.matches || 0;
-    document.getElementById('stat-h2h').textContent = (data.outs || 0);
+    document.getElementById('stat-h2h').textContent = data.balls || 0;
     
     resultDiv.classList.remove("hidden");
   } catch (err) {
