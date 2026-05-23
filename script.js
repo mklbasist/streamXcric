@@ -1,3 +1,6 @@
+import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs';
+const { EffectCards } = Swiper.modules;
+
 function getThumbnail(url) {
   if (url.includes("youtube.com")) {
     let id = url.split("/embed/")[1];
@@ -1098,11 +1101,7 @@ const RSS_FEEDS = [
 
 let newsCards = [];
 let currentCardIndex = 0;
-let touchStartX = 0;
-let touchCurrentX = 0;
 let isAnimating = false;
-
-const SWIPE_THRESHOLD = 50;
 
 // LOAD NEWS
 async function loadInsiderNews() {
@@ -1122,50 +1121,50 @@ async function loadInsiderNews() {
         const response = await fetch(
           corsProxy + encodeURIComponent(feed)
         );
-const data = await response.json();
-if (data.items) {
-  for (const item of data.items) {
-    let image = item.enclosure?.link || item.thumbnail || '';
-    
-// If Cricket Paper and no image, use Unsplash cricket image
-if (!image && feed.includes('thecricketpaper')) {
-  image = "static/IMG_8402.png";
-}
-    
-    allNews.push({
-      title: item.title || 'No title',
-      description: (item.description || '')
-        .replace(/<[^>]+>/g, '')
-        .substring(0, 180),
-      pubDate: new Date(item.pubDate),
-      source:
-        feed.includes('espncricinfo')
-          ? 'ESPN Cricinfo'
-        : feed.includes('skysports')
-          ? 'Sky Sports'
-        : feed.includes('cricketmood')
-          ? 'Cricket Mood'
-        : feed.includes('bbc')
-          ? 'BBC Sport'
-        : feed.includes('thecricketpaper')
-          ? 'The Cricket Paper'
-        : feed.includes('abc.net.au')
-          ? 'ABC Sport'
-        : feed.includes('kingcricket')
-          ? 'King Cricket'
-        : feed.includes('icc-cricket')
-          ? 'ICC'
-        : feed.includes('ecb')
-          ? 'ECB'
-        : feed.includes('yorkshireccc')
-          ? 'Yorkshire CCC'
-        : 'Cricket News',
-      isBold: Math.random() > 0.7,
-      link: item.link || '#',
-      image: image
-    });
-  }
-}
+        const data = await response.json();
+        if (data.items) {
+          for (const item of data.items) {
+            let image = item.enclosure?.link || item.thumbnail || '';
+            
+            // If Cricket Paper and no image, use Unsplash cricket image
+            if (!image && feed.includes('thecricketpaper')) {
+              image = "static/IMG_8402.png";
+            }
+            
+            allNews.push({
+              title: item.title || 'No title',
+              description: (item.description || '')
+                .replace(/<[^>]+>/g, '')
+                .substring(0, 180),
+              pubDate: new Date(item.pubDate),
+              source:
+                feed.includes('espncricinfo')
+                  ? 'ESPN Cricinfo'
+                : feed.includes('skysports')
+                  ? 'Sky Sports'
+                : feed.includes('cricketmood')
+                  ? 'Cricket Mood'
+                : feed.includes('bbc')
+                  ? 'BBC Sport'
+                : feed.includes('thecricketpaper')
+                  ? 'The Cricket Paper'
+                : feed.includes('abc.net.au')
+                  ? 'ABC Sport'
+                : feed.includes('kingcricket')
+                  ? 'King Cricket'
+                : feed.includes('icc-cricket')
+                  ? 'ICC'
+                : feed.includes('ecb')
+                  ? 'ECB'
+                : feed.includes('yorkshireccc')
+                  ? 'Yorkshire CCC'
+                : 'Cricket News',
+              isBold: Math.random() > 0.7,
+              link: item.link || '#',
+              image: image
+            });
+          }
+        }
       } catch (err) {
         console.log('Feed failed:', feed);
       }
@@ -1193,11 +1192,7 @@ function initializeCardStack(newsData) {
   updateCounter();
 }
 
-// RENDER CARDS
-let startX = 0;
-let startY = 0;
-let hasMoved = false;
-
+// RENDER CARDS WITH SWIPER
 function renderCards() {
   const deck = document.getElementById('cardsDeck');
 
@@ -1205,97 +1200,42 @@ function renderCards() {
 
   deck.innerHTML = '';
 
-  newsCards
-    .slice(currentCardIndex, currentCardIndex + 3)
-    .forEach((news, index) => {
-      const card = createCard(news);
-      deck.appendChild(card);
-    });
-
-  // Attach listeners ONLY to the TOP card
-  const topCard = deck.querySelector('.news-card:nth-child(1)');
-  if (topCard) {
-    topCard.addEventListener('touchstart', handleTouchStart, false);
-    topCard.addEventListener('touchmove', handleTouchMove, false);
-    topCard.addEventListener('touchend', handleTouchEnd, false);
-    topCard.addEventListener('mousedown', handleMouseDown, false);
-    document.addEventListener('mousemove', handleMouseMove, false);
-    document.addEventListener('mouseup', handleMouseUp, false);
-  }
-
-  updateEmptyState();
-}
-
-// CREATE CARD
-function createCard(newsItem) {
-  const card = document.createElement('div');
-  card.className = 'news-card';
-
-  const sourceClass =
-    newsItem.source.includes('ESPN')
-      ? 'espn'
-      : 'sky';
-
-  card.innerHTML = `
-    <div class="card-decoration accent-red"></div>
-    <div class="card-decoration accent-cyan"></div>
-
-    <div class="card-inner">
-      <div class="card-header">
-        ${
-          newsItem.isBold
-            ? '<div class="card-badge breaking">⚡ Breaking</div>'
-            : '<div class="card-badge">📰 News</div>'
-        }
-        <h3 class="card-title">
-          ${newsItem.title}
-        </h3>
-      </div>
-
-${
-  newsItem.image
-    ? `
-      <img
-        src="${newsItem.image}"
-        style="
-          width:100%;
-          height:120px;
-          border-radius:14px;
-          object-fit:cover;
-          object-position:center;
-          margin:0.5rem 0 0.8rem 0;
-          display:block;
-        "
-      >
-    `
-    : ''
-}
-
-      <p class="card-description">
-        ${newsItem.description}
-      </p>
-
-      <div class="card-footer">
-        <div class="card-meta">
-          <span class="card-time">
-            ${formatTime(newsItem.pubDate)}
-          </span>
-          <span class="card-source ${sourceClass}">
-            ${newsItem.source}
-          </span>
+  newsCards.forEach((news) => {
+    const slide = document.createElement('div');
+    slide.className = 'swiper-slide news-swiper-slide';
+    slide.innerHTML = `
+      <div class="news-card-content">
+        <div class="news-card-header">
+          <div class="news-card-badge">${news.isBold ? '⚡ Breaking' : '📰 News'}</div>
+          <h3 class="news-card-title">${news.title}</h3>
+        </div>
+        ${news.image ? `<img src="${news.image}" class="news-card-image" alt="${news.title}" onerror="this.style.display='none'">` : ''}
+        <p class="news-card-description">${news.description}</p>
+        <div class="news-card-footer">
+          <div class="news-card-meta">
+            <span class="news-card-time">🕐 ${formatTime(news.pubDate)}</span>
+            <span class="news-card-source">${news.source}</span>
+          </div>
         </div>
       </div>
-    </div>
-  `;
-
-  card.onclick = (e) => {
-    if (!hasMoved && newsItem.link) {
-      window.open(newsItem.link, '_blank');
-    }
-    hasMoved = false;
-  };
-
-  return card;
+    `;
+    slide.onclick = () => news.link && window.open(news.link, '_blank');
+    deck.appendChild(slide);
+  });
+  
+  // Initialize Swiper after DOM is ready
+  setTimeout(() => {
+    new Swiper('#cardsDeck', {
+      effect: 'cards',
+      grabCursor: true,
+      loop: true,
+      modules: [EffectCards],
+      allowTouchMove: true,
+      autoplay: false
+    });
+  }, 100);
+  
+  updateEmptyState();
 }
 
 // FORMAT TIME
@@ -1312,127 +1252,20 @@ function formatTime(date) {
   return new Date(date).toLocaleDateString();
 }
 
-// TOUCH EVENTS
-function handleTouchStart(e) {
-  if (isAnimating) return;
-  hasMoved = false;
-  startX = e.touches[0].clientX;
-  startY = e.touches[0].clientY;
-  touchStartX = startX;
-}
-
-function handleTouchMove(e) {
-  if (isAnimating) return;
-  touchCurrentX = e.touches[0].clientX;
-  const deltaX = touchCurrentX - touchStartX;
-  
-  if (Math.abs(deltaX) > 5) {
-    hasMoved = true;
-  }
-  
-  e.currentTarget.style.transform =
-    `translateX(${deltaX}px) rotate(${deltaX / 20}deg)`;
-}
-
-function handleTouchEnd(e) {
-  if (isAnimating) return;
-  const deltaX = touchCurrentX - touchStartX;
-
-  if (Math.abs(deltaX) > SWIPE_THRESHOLD) {
-    isAnimating = true;
-    e.currentTarget.classList.add(
-      deltaX > 0 ? 'swipe-right' : 'swipe-left'
-    );
-
-    setTimeout(() => {
-      currentCardIndex++;
-      renderCards();
-      updateCounter();
-      isAnimating = false;
-    }, 600);
-  } else {
-    // Reset all cards
-    const allCards = document.querySelectorAll('.news-card');
-    allCards.forEach(card => {
-      card.style.transform = '';
-    });
-  }
-}
-// MOUSE EVENTS
-let mouseDown = false;
-
-function handleMouseDown(e) {
-  if (isAnimating) return;
-  hasMoved = false;
-  mouseDown = true;
-  startX = e.clientX;
-  startY = e.clientY;
-  touchStartX = startX;
-}
-
-function handleMouseMove(e) {
-  if (!mouseDown || isAnimating) return;
-  touchCurrentX = e.clientX;
-  const deltaX = touchCurrentX - touchStartX;
-  
-  if (Math.abs(deltaX) > 5) {
-    hasMoved = true;
-  }
-  
-  const topCard = document.querySelector('.news-card:nth-child(1)');
-  if (topCard) {
-    topCard.style.transform =
-      `translateX(${deltaX}px) rotate(${deltaX / 20}deg)`;
-  }
-}
-
-function handleMouseUp(e) {
-  if (!mouseDown) return;
-  mouseDown = false;
-
-  document.removeEventListener('mousemove', handleMouseMove);
-  document.removeEventListener('mouseup', handleMouseUp);
-
-  const deltaX = touchCurrentX - touchStartX;
-  const topCard = document.querySelector('.news-card:nth-child(1)');
-
-  if (Math.abs(deltaX) > SWIPE_THRESHOLD) {
-    isAnimating = true;
-    if (topCard) {
-      topCard.classList.add(
-        deltaX > 0 ? 'swipe-right' : 'swipe-left'
-      );
-    }
-
-    setTimeout(() => {
-      currentCardIndex++;
-      renderCards();
-      updateCounter();
-      isAnimating = false;
-    }, 600);
-  } else {
-    // Reset all cards to original position
-    const allCards = document.querySelectorAll('.news-card');
-    allCards.forEach(card => {
-      card.style.transform = '';
-    });
-  }
-}
-
 // COUNTER
 function updateCounter() {
   const count = document.getElementById('newsCount');
   const total = document.getElementById('newsTotalCount');
 
   if (count) {
-    count.textContent =
-      Math.min(currentCardIndex + 1, newsCards.length);
+    count.textContent = Math.min(currentCardIndex + 1, newsCards.length);
   }
 
   if (total) {
     total.textContent = newsCards.length;
   }
 }
+
 // EMPTY STATE
 function updateEmptyState() {
   const empty = document.getElementById('emptyState');
@@ -1458,15 +1291,6 @@ window.showInsider = function () {
 
   setTimeout(() => {
     loadInsiderNews();
-    
-    // Re-attach listeners to top card
-    const deck = document.getElementById('cardsDeck');
-    const topCard = deck ? deck.querySelector('.news-card:nth-child(1)') : null;
-    if (topCard) {
-      topCard.addEventListener('mousedown', handleMouseDown, false);
-      document.addEventListener('mousemove', handleMouseMove, false);
-      document.addEventListener('mouseup', handleMouseUp, false);
-    }
   }, 200);
 };
 
