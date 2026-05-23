@@ -907,15 +907,19 @@ async function fetchStats() {
     alert("Please enter both batter and bowler names.");
     return;
   }
-  resultDiv.classList.remove("hidden");
+  resultDiv.classList.add("hidden");
+  resultDiv.innerHTML = "Loading stats...";
   try {
-    const res = await fetch(`https://cric-matchup.onrender.com/get_stats`, {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ format: "Tests", batter, bowler })
-});
+    const res = await fetch("https://cric-matchup.onrender.com/get_stats", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ format: "Tests", batter, bowler })
+    });
+    if (!res.ok) throw new Error("Failed to fetch stats");
+    const data = await res.json();
+    console.log("Stats response:", data);
     
-    // Update horizontal stats bar with data
+    // Update horizontal stats bar
     document.getElementById('stat-matches').textContent = "Tests";
     document.getElementById('stat-runs').textContent = data.runs || 0;
     document.getElementById('stat-dismissals').textContent = data.outs || 0;
@@ -930,7 +934,6 @@ async function fetchStats() {
     console.error(err);
   }
 }
-
 // ====================
 // Unified Toggle Logic (CLEAN)
 // ====================
