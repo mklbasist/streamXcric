@@ -1010,41 +1010,53 @@ function drawLineChart(batter, bowler) {
       const runs = years.map(y => runsByYear[y]);
       
       lineChartInstance = new Chart(canvas, {
-        type: 'line',
-        data: {
-          labels: years.length > 0 ? years : ['No Data'],
-          datasets: [{
-            label: `${batter} vs ${bowler}`,
-            data: runs.length > 0 ? runs : [0],
-            borderColor: '#84cc16',
-            backgroundColor: 'rgba(132, 204, 22, 0.15)',
-            fill: true,
-            tension: 0.4,
-            borderWidth: 3,
-            pointRadius: 5,
-            pointBackgroundColor: '#84cc16'
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: true,
-          plugins: { legend: { labels: { color: '#f8fafc' } } },
-          scales: {
-            x: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(71,85,105,0.2)' } },
-            y: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(71,85,105,0.2)' } }
-          },
-          onClick: (e) => {
-            const points = lineChartInstance.getElementsAtEventForMode(e, 'nearest', { intersect: true }, true);
-            if (points.length > 0) {
-              const dataIndex = points[0].index;
-              const year = years[dataIndex];
-              const runsData = runsByYear[year];
-              const dismissalsData = dismissalsByYear[year] || 0;
-              showYearModal(year, runsData, dismissalsData);
-            }
-          }
-        }
-      });
+  type: 'line',
+  data: {
+    labels: years.length > 0 ? years : ['No Data'],
+    datasets: [{
+      label: `${batter} vs ${bowler}`,
+      data: runs.length > 0 ? runs : [0],
+      borderColor: '#84cc16',
+      backgroundColor: 'rgba(132, 204, 22, 0.15)',
+      fill: true,
+      tension: 0.4,
+      borderWidth: 3,
+      pointRadius: 5,
+      pointBackgroundColor: '#84cc16'
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: true,
+    plugins: { legend: { labels: { color: '#f8fafc' } } },
+    scales: {
+      x: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(71,85,105,0.2)' } },
+      y: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(71,85,105,0.2)' } }
+    }
+  }
+});
+
+// Click handler - responsive
+canvas.onclick = (e) => {
+  const rect = canvas.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+  
+  const points = lineChartInstance.getElementsAtEventForMode(
+    { x, y },
+    'nearest',
+    { intersect: true },
+    true
+  );
+  
+  if (points.length > 0) {
+    const dataIndex = points[0].index;
+    const year = years[dataIndex];
+    const runsData = runsByYear[year];
+    const dismissalsData = dismissalsByYear[year] || 0;
+    showYearModal(year, runsData, dismissalsData);
+  }
+};
     })
     .catch(err => console.error(err));
 }
