@@ -964,11 +964,11 @@ function drawRadarChart(data) {
           50,
           70
         ],
-        borderColor: '#06b6d4',
-        backgroundColor: 'rgba(6, 182, 212, 0.2)',
-        pointBackgroundColor: '#ef4444',
+        borderColor: '#84cc16',
+        backgroundColor: 'rgba(132, 204, 22, 0.2)',
+        pointBackgroundColor: '#fbbf24',
         pointBorderColor: '#fff',
-        pointRadius: 4,
+        pointRadius: 5,
         borderWidth: 2
       }]
     },
@@ -1015,13 +1015,13 @@ function drawLineChart(batter, bowler) {
           datasets: [{
             label: `${batter} vs ${bowler}`,
             data: runs.length > 0 ? runs : [0],
-            borderColor: '#06b6d4',
-            backgroundColor: 'rgba(6,182,212,0.15)',
+            borderColor: '#84cc16',
+            backgroundColor: 'rgba(132, 204, 22, 0.15)',
             fill: true,
             tension: 0.4,
             borderWidth: 3,
             pointRadius: 5,
-            pointBackgroundColor: '#0ea5e9'
+            pointBackgroundColor: '#84cc16'
           }]
         },
         options: {
