@@ -1005,6 +1005,7 @@ function drawLineChart(batter, bowler) {
     .then(res => res.json())
     .then(response => {
       const runsByYear = extractRunsByYear(response.matches, batter, bowler);
+      const dismissalsByYear = extractDismissalsByYear(response.matches, batter, bowler);
       const years = Object.keys(runsByYear).sort();
       const runs = years.map(y => runsByYear[y]);
       
@@ -1031,6 +1032,16 @@ function drawLineChart(batter, bowler) {
           scales: {
             x: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(71,85,105,0.2)' } },
             y: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(71,85,105,0.2)' } }
+          },
+          onClick: (e) => {
+            const points = lineChartInstance.getElementsAtEventForMode(e, 'nearest', { intersect: true }, true);
+            if (points.length > 0) {
+              const dataIndex = points[0].index;
+              const year = years[dataIndex];
+              const runsData = runsByYear[year];
+              const dismissalsData = dismissalsByYear[year] || 0;
+              showYearModal(year, runsData, dismissalsData);
+            }
           }
         }
       });
@@ -1038,8 +1049,8 @@ function drawLineChart(batter, bowler) {
     .catch(err => console.error(err));
 }
 
-function extractRunsByYear(matches, batter, bowler) {
-  const runsByYear = {};
+function extractDismissalsByYear(matches, batter, bowler) {
+  const dismissalsByYear = {};
   
   matches.forEach(match => {
     const matchDate = match.info.dates[0];
@@ -1048,16 +1059,41 @@ function extractRunsByYear(matches, batter, bowler) {
     match.innings.forEach(inning => {
       inning.overs.forEach(over => {
         over.deliveries.forEach(delivery => {
-          if (delivery.batter === batter && delivery.bowler === bowler) {
-            if (!runsByYear[year]) runsByYear[year] = 0;
-            runsByYear[year] += delivery.runs.batter;
+          if (delivery.batter === batter && delivery.bowler === bowler && delivery.wickets) {
+            if (!dismissalsByYear[year]) dismissalsByYear[year] = 0;
+            dismissalsByYear[year]++;
           }
         });
       });
     });
   });
   
-  return runsByYear;
+  return dismissalsByYear;
+}
+
+function showYearModal(year, runs, dismissals) {
+  const modal = document.createElement('div');
+  modal.style.cssText = `
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    background: rgba(30, 41, 59, 0.95); padding: 30px; border-radius: 16px;
+    border: 1px solid rgba(71, 85, 105, 0.3); z-index: 1000;
+    color: #f8fafc; text-align: center; min-width: 300px;
+  `;
+  modal.innerHTML = `
+    <h3 style="margin: 0 0 20px; font-size: 18px;">${year}</h3>
+    <div style="display: flex; gap: 30px; justify-content: center; margin-bottom: 20px;">
+      <div>
+        <div style="color: #84cc16; font-size: 24px; font-weight: 700;">${runs}</div>
+        <div style="color: #94a3b8; font-size: 12px;">Runs</div>
+      </div>
+      <div>
+        <div style="color: #ef4444; font-size: 24px; font-weight: 700;">${dismissals}</div>
+        <div style="color: #94a3b8; font-size: 12px;">Dismissals</div>
+      </div>
+    </div>
+    <button onclick="this.parentElement.remove()" style="background: #84cc16; color: #000; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-weight: 600;">Close</button>
+  `;
+  document.body.appendChild(modal);
 }
 
 // ====================
