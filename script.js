@@ -926,10 +926,10 @@ async function fetchStats() {
     document.getElementById('stat-average').textContent = (data.average || 0).toFixed(2);
     document.getElementById('stat-strikeRate').textContent = (data.strike_rate || 0).toFixed(2);
 
-    // Draw charts
+// Draw charts
     setTimeout(() => {
       drawRadarChart(data);
-      drawLineChart(data);
+      drawLineChart(data.batterName, data.bowlerName);
     }, 100);
     
     resultDiv.classList.remove("hidden");
@@ -992,7 +992,7 @@ function drawRadarChart(data) {
   });
 }
 
-function drawLineChart(data) {
+function drawLineChart(batter, bowler) {
   const canvas = document.getElementById('lineChart');
   if (!canvas) return;
   
@@ -1000,40 +1000,66 @@ function drawLineChart(data) {
     lineChartInstance.destroy();
   }
   
-  lineChartInstance = new Chart(canvas, {
-    type: 'line',
-    data: {
-      labels: ['2020', '2021', '2022', '2023', '2024'],
-      datasets: [{
-        label: 'Runs Trend',
-        data: [
-          (data.runs || 0) * 0.7,
-          (data.runs || 0) * 0.8,
-          data.runs || 0,
-          (data.runs || 0) * 0.9,
-          (data.runs || 0) * 0.95
-        ],
-        borderColor: '#06b6d4',
-        backgroundColor: 'rgba(6,182,212,0.15)',
-        fill: true,
-        tension: 0.4,
-        borderWidth: 3,
-        pointRadius: 4,
-        pointBackgroundColor: '#0ea5e9'
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: true,
-      plugins: {
-        legend: { labels: { color: '#f8fafc' } }
-      },
-      scales: {
-        x: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(71,85,105,0.2)' } },
-        y: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(71,85,105,0.2)' } }
-      }
-    }
+  // Fetch from your backend
+  fetch(`https://cric-matchup.onrender.com/matchup_graph/${batter}/${bowler}`)
+    .then(res => res.json())
+    .then(response => {
+      const runsByYear = extractRunsByYear(response.matches, batter, bowler);
+      const years = Object.keys(runsByYear).sort();
+      const runs = years.map(y => runsByYear[y]);
+      
+      lineChartInstance = new Chart(canvas, {
+        type: 'line',
+        data: {
+          labels: years.length > 0 ? years : ['No Data'],
+          datasets: [{
+            label: `${batter} vs ${bowler}`,
+            data: runs.length > 0 ? runs : [0],
+            borderColor: '#06b6d4',
+            backgroundColor: 'rgba(6,182,212,0.15)',
+            fill: true,
+            tension: 0.4,
+            borderWidth: 3,
+            pointRadius: 5,
+            pointBackgroundColor: '#0ea5e9'
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          plugins: { legend: { labels: { color: '#f8fafc' } } },
+          scales: {
+            x: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(71,85,105,0.2)' } },
+            y: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(71,85,105,0.2)' } }
+          }
+        }
+      });
+    })
+    .catch(err => console.error(err));
+}
+
+function extractRunsByYear(matches, batter, bowler) {
+  const runsByYear = {};
+  
+  matches.forEach(match => {
+    const matchDate = match.info.dates[0];
+    const year = new Date(matchDate).getFullYear();
+    
+    match.innings.forEach(inning => {
+      if (inning.team !== batter) return;
+      
+      inning.overs.forEach(over => {
+        over.deliveries.forEach(delivery => {
+          if (delivery.batter === batter && delivery.bowler === bowler) {
+            if (!runsByYear[year]) runsByYear[year] = 0;
+            runsByYear[year] += delivery.runs.batter;
+          }
+        });
+      });
+    });
   });
+  
+  return runsByYear;
 }
 
 // ====================
