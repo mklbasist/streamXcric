@@ -3132,10 +3132,14 @@ body {
     gap: 15px;
     padding: 0 12px;
     margin-top: 30px;
+    margin-bottom: 100px;
   }
 
   .chart-box {
     padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .chart-box h3 {
@@ -3143,8 +3147,14 @@ body {
     margin-bottom: 10px;
   }
 
+  .chart-box canvas {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
   .chart-canvas {
     height: 250px !important;
+    width: 100% !important;
   }
 }
 
