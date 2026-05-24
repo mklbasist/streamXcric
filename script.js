@@ -1037,22 +1037,15 @@ function drawLineChart(batter, bowler) {
 });
 
 // Click handler - responsive
-canvas.onclick = (e) => {
-  const rect = canvas.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
+canvas.parentElement.onclick = (e) => {
+  if (e.target !== canvas) return;
   
-  const points = lineChartInstance.getElementsAtEventForMode(
-    { x, y },
-    'nearest',
-    { intersect: true },
-    true
-  );
+  const points = lineChartInstance.getElementsAtEventForMode(e, 'nearest', { intersect: true }, true);
   
   if (points.length > 0) {
     const dataIndex = points[0].index;
     const year = years[dataIndex];
-    const runsData = runsByYear[year];
+    const runsData = runsByYear[year] || 0;
     const dismissalsData = dismissalsByYear[year] || 0;
     showYearModal(year, runsData, dismissalsData);
   }
