@@ -1046,8 +1046,6 @@ function extractRunsByYear(matches, batter, bowler) {
     const year = new Date(matchDate).getFullYear();
     
     match.innings.forEach(inning => {
-      if (inning.team !== batter) return;
-      
       inning.overs.forEach(over => {
         over.deliveries.forEach(delivery => {
           if (delivery.batter === batter && delivery.bowler === bowler) {
