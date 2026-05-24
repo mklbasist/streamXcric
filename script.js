@@ -946,78 +946,10 @@ let lineChartInstance = null;
 function drawRadarChart(data) {
   const canvas = document.getElementById('radarChart');
   if (!canvas) return;
-
-  // Give canvas proper height
-  canvas.height = 300;
-
-  // Destroy old chart
-  if (radarChartInstance) {
-    radarChartInstance.destroy();
-  }
-
-  radarChartInstance = new Chart(canvas, {
-    type: 'radar',
-    data: {
-      labels: ['Runs', 'Average', 'Strike Rate', 'Consistency', 'Form'],
-      datasets: [{
-        label: 'Performance',
-        data: [
-          Math.min((data.runs || 0) / 10, 100),
-          data.average || 0,
-          data.strike_rate || 0,
-          50,
-          70
-        ],
-        borderColor: '#06b6d4',
-        backgroundColor: 'rgba(6, 182, 212, 0.2)',
-        pointBackgroundColor: '#ef4444',
-        pointBorderColor: '#fff',
-        pointRadius: 4,
-        borderWidth: 2
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: {
-          labels: {
-            color: '#f8fafc'
-          }
-        }
-      },
-      scales: {
-        r: {
-          suggestedMin: 0,
-          suggestedMax: 100,
-          ticks: {
-            color: '#94a3b8',
-            backdropColor: 'transparent'
-          },
-          grid: {
-            color: 'rgba(71,85,105,0.3)'
-          },
-          angleLines: {
-            color: 'rgba(71,85,105,0.3)'
-          },
-          pointLabels: {
-            color: '#f8fafc'
-          }
-        }
-      }
-    }
-  });
-}
-
-function drawRadarChart(data) {
-  const canvas = document.getElementById('radarChart');
-  if (!canvas) return;
   
   if (radarChartInstance) {
     radarChartInstance.destroy();
   }
-  
-  canvas.height = 300;
   
   radarChartInstance = new Chart(canvas, {
     type: 'radar',
@@ -1042,7 +974,7 @@ function drawRadarChart(data) {
     },
     options: {
       responsive: true,
-      maintainAspectRatio: false,
+      maintainAspectRatio: true,
       plugins: {
         legend: { labels: { color: '#f8fafc' } }
       },
@@ -1068,8 +1000,6 @@ function drawLineChart(data) {
     lineChartInstance.destroy();
   }
   
-  canvas.height = 300;
-  
   lineChartInstance = new Chart(canvas, {
     type: 'line',
     data: {
@@ -1094,7 +1024,7 @@ function drawLineChart(data) {
     },
     options: {
       responsive: true,
-      maintainAspectRatio: false,
+      maintainAspectRatio: true,
       plugins: {
         legend: { labels: { color: '#f8fafc' } }
       },
