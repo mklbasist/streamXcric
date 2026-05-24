@@ -1049,6 +1049,28 @@ function drawLineChart(batter, bowler) {
     .catch(err => console.error(err));
 }
 
+function extractRunsByYear(matches, batter, bowler) {
+  const runsByYear = {};
+  
+  matches.forEach(match => {
+    const matchDate = match.info.dates[0];
+    const year = new Date(matchDate).getFullYear();
+    
+    match.innings.forEach(inning => {
+      inning.overs.forEach(over => {
+        over.deliveries.forEach(delivery => {
+          if (delivery.batter === batter && delivery.bowler === bowler) {
+            if (!runsByYear[year]) runsByYear[year] = 0;
+            runsByYear[year] += delivery.runs.batter;
+          }
+        });
+      });
+    });
+  });
+  
+  return runsByYear;
+}
+
 function extractDismissalsByYear(matches, batter, bowler) {
   const dismissalsByYear = {};
   
