@@ -3090,6 +3090,7 @@ body {
   padding: 20px;
   background: rgba(30, 41, 59, 0.8);
   border-radius: 20px;
+  text-align: center;
 }
 
 .chart-box h3 {
