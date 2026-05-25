@@ -958,7 +958,8 @@ if (error) error.innerText = "";
     resultDiv.parentNode.appendChild(error);
   }
 
-  error.innerText = "Error fetching stats. Try again!";
+    error.innerText = "Error fetching stats. Try again!";
+  }
 }
 
 let radarChartInstance = null;
