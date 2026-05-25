@@ -912,8 +912,6 @@ async function fetchStats() {
     return;
   }
   
-  resultDiv.classList.remove("hidden");
-  
   try {
     const res = await fetch("https://cric-matchup.onrender.com/get_stats", {
       method: "POST",
@@ -942,6 +940,8 @@ async function fetchStats() {
 
     console.error(err);
 
+    resultDiv.classList.add("hidden");
+    
     const error = document.createElement("p");
     error.id = "statsError";
     error.style.color = "red";
