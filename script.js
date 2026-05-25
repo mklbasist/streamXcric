@@ -955,7 +955,7 @@ if (error) error.innerText = "";
     error.style.marginTop = "15px";
 
     // put error BELOW stats section
-    resultDiv.parentNode.appendChild(error);
+    document.body.appendChild(error);
   }
 
     error.innerText = "Error fetching stats. Try again!";
