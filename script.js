@@ -907,7 +907,6 @@ async function fetchStats() {
     alert("Please enter both batter and bowler names.");
     return;
   }
-  resultDiv.innerHTML = "";
   resultDiv.classList.remove("hidden");
   
   try {
