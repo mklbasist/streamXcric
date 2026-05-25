@@ -903,6 +903,10 @@ async function fetchStats() {
   const batter = document.getElementById("batterInput").value.trim();
   const bowler = document.getElementById("bowlerInput").value.trim();
   const resultDiv = document.getElementById("statsResult");
+
+  // remove old error if exists
+  const oldError = document.getElementById("statsError");
+  if (oldError) oldError.remove();
   if (!batter || !bowler) {
     alert("Please enter both batter and bowler names.");
     return;
@@ -935,10 +939,19 @@ async function fetchStats() {
     
     resultDiv.classList.remove("hidden");
   } catch (err) {
-    resultDiv.innerHTML = "<p style='color:red;'>Error fetching stats. Try again!</p>";
-    resultDiv.classList.remove("hidden");
+
     console.error(err);
-  }
+
+    const error = document.createElement("p");
+    error.id = "statsError";
+    error.style.color = "red";
+    error.style.marginTop = "15px";
+    error.innerText = "Error fetching stats. Try again!";
+
+    resultDiv.appendChild(error);
+
+    resultDiv.classList.remove("hidden");
+ }
 }
 
 let radarChartInstance = null;
