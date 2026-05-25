@@ -936,22 +936,29 @@ async function fetchStats() {
     }, 100);
     
     resultDiv.classList.remove("hidden");
-  } catch (err) {
 
-    console.error(err);
-
-    resultDiv.classList.add("hidden");
+    const error = document.getElementById("statsError");
+    if (error) error.innerText = "";
     
-    const error = document.createElement("p");
+} catch (err) {
+
+  console.error(err);
+
+  resultDiv.classList.add("hidden");
+
+  let error = document.getElementById("statsError");
+
+  if (!error) {
+    error = document.createElement("p");
     error.id = "statsError";
     error.style.color = "red";
     error.style.marginTop = "15px";
-    error.innerText = "Error fetching stats. Try again!";
 
-    resultDiv.appendChild(error);
+    // put error BELOW stats section
+    resultDiv.parentNode.appendChild(error);
+  }
 
-    resultDiv.classList.remove("hidden");
- }
+  error.innerText = "Error fetching stats. Try again!";
 }
 
 let radarChartInstance = null;
