@@ -930,16 +930,16 @@ async function fetchStats() {
     document.getElementById('stat-strikeRate').textContent = (data.strike_rate || 0).toFixed(2);
 
 // Draw charts
-    setTimeout(() => {
-      drawRadarChart(data);
-      drawLineChart(data.batterName, data.bowlerName);
-    }, 100);
-    
-    resultDiv.classList.remove("hidden");
+setTimeout(() => {
+  drawRadarChart(data);
+  drawLineChart(data.batterName, data.bowlerName);
+}, 100);
 
-    const error = document.getElementById("statsError");
-    if (error) error.innerText = "";
-    
+resultDiv.classList.remove("hidden");
+
+const error = document.getElementById("statsError");
+if (error) error.innerText = "";
+
 } catch (err) {
 
   console.error(err);
