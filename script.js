@@ -908,7 +908,6 @@ async function fetchStats() {
     return;
   }
   
-  resultDiv.innerHTML = "";
   resultDiv.classList.remove("hidden");
   
   try {
