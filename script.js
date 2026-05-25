@@ -957,9 +957,7 @@ if (error) error.innerText = "";
     error.style.marginTop = "20px";
     error.style.fontWeight = "600";
 
-    // ADD BELOW SEARCH BUTTON
-    const searchBtn = document.querySelector(".matchup-btn");
-    searchBtn.parentNode.insertBefore(error, searchBtn.nextSibling);
+    document.getElementById("statsResult").before(error);
   }
 
   error.innerText = "Error fetching stats. Try again!";
