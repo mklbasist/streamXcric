@@ -951,15 +951,19 @@ if (error) error.innerText = "";
   if (!error) {
     error = document.createElement("p");
     error.id = "statsError";
+
     error.style.color = "red";
-    error.style.marginTop = "15px";
+    error.style.textAlign = "center";
+    error.style.marginTop = "20px";
+    error.style.fontWeight = "600";
 
-    // put error BELOW stats section
-    document.body.appendChild(error);
+    // ADD BELOW SEARCH BUTTON
+    const searchBtn = document.querySelector(".matchup-btn");
+    searchBtn.parentNode.insertBefore(error, searchBtn.nextSibling);
   }
 
-    error.innerText = "Error fetching stats. Try again!";
-  }
+  error.innerText = "Error fetching stats. Try again!";
+ }
 }
 
 let radarChartInstance = null;
