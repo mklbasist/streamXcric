@@ -1019,42 +1019,55 @@ function drawRadarChart(data) {
 function drawLineChart(batter, bowler) {
   const canvas = document.getElementById('lineChart');
   if (!canvas) return;
-  
-  // Show loader
-  const loaderHTML = `
-    <div class="loader">
-      <div class="loader-wrapper">
-        <div class="loader-circle"></div>
-        <span class="loader-letter">L</span>
-        <span class="loader-letter">o</span>
-        <span class="loader-letter">a</span>
-        <span class="loader-letter">d</span>
-        <span class="loader-letter">i</span>
-        <span class="loader-letter">n</span>
-        <span class="loader-letter">g</span>
-      </div>
+
+  const chartContainer = canvas.parentElement;
+
+  // Remove old loader if exists
+  const oldLoader = chartContainer.querySelector('.loader');
+  if (oldLoader) oldLoader.remove();
+
+  // Create loader
+  const loader = document.createElement('div');
+  loader.className = 'loader';
+  loader.innerHTML = `
+    <div class="loader-wrapper">
+      <div class="loader-circle"></div>
+      <span class="loader-letter">L</span>
+      <span class="loader-letter">o</span>
+      <span class="loader-letter">a</span>
+      <span class="loader-letter">d</span>
+      <span class="loader-letter">i</span>
+      <span class="loader-letter">n</span>
+      <span class="loader-letter">g</span>
     </div>
   `;
-  canvas.parentElement.innerHTML = loaderHTML;
-  
+
+  chartContainer.appendChild(loader);
+
+  // Hide canvas while loading
+  canvas.style.display = 'none';
+
   if (lineChartInstance) {
     lineChartInstance.destroy();
   }
-  
-  // Fetch from your backend
+
   fetch(`https://cric-matchup.onrender.com/matchup_graph/${batter}/${bowler}`)
     .then(res => res.json())
     .then(response => {
-      // Remove loader - restore canvas
-      canvas.parentElement.innerHTML = '<canvas id="lineChart"></canvas>';
-      const newCanvas = document.getElementById('lineChart');
-      
+
+      // Remove loader
+      loader.remove();
+
+      // Show canvas again
+      canvas.style.display = 'block';
+
       const runsByYear = extractRunsByYear(response.matches, batter, bowler);
       const dismissalsByYear = extractDismissalsByYear(response.matches, batter, bowler);
+
       const years = Object.keys(runsByYear).sort();
       const runs = years.map(y => runsByYear[y]);
-      
-      lineChartInstance = new Chart(newCanvas, {
+
+      lineChartInstance = new Chart(canvas, {
         type: 'line',
         data: {
           labels: years.length > 0 ? years : ['No Data'],
@@ -1073,29 +1086,48 @@ function drawLineChart(batter, bowler) {
         options: {
           responsive: true,
           maintainAspectRatio: true,
-          plugins: { legend: { labels: { color: '#f8fafc' } } },
+          plugins: {
+            legend: {
+              labels: { color: '#f8fafc' }
+            }
+          },
           scales: {
-            x: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(71,85,105,0.2)' } },
-            y: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(71,85,105,0.2)' } }
+            x: {
+              ticks: { color: '#94a3b8' },
+              grid: { color: 'rgba(71,85,105,0.2)' }
+            },
+            y: {
+              ticks: { color: '#94a3b8' },
+              grid: { color: 'rgba(71,85,105,0.2)' }
+            }
           }
         }
       });
 
-      newCanvas.parentElement.onclick = (e) => {
-        if (e.target !== newCanvas) return;
-        const points = lineChartInstance.getElementsAtEventForMode(e, 'nearest', { intersect: true }, true);
+      canvas.onclick = (e) => {
+        const points = lineChartInstance.getElementsAtEventForMode(
+          e,
+          'nearest',
+          { intersect: true },
+          true
+        );
+
         if (points.length > 0) {
           const dataIndex = points[0].index;
           const year = years[dataIndex];
           const runsData = runsByYear[year] || 0;
           const dismissalsData = dismissalsByYear[year] || 0;
+
           showYearModal(year, runsData, dismissalsData);
         }
       };
     })
-    .catch(err => console.error(err));
+    .catch(err => {
+      loader.remove();
+      canvas.style.display = 'block';
+      console.error(err);
+    });
 }
-
 function extractRunsByYear(matches, batter, bowler) {
   const runsByYear = {};
   
