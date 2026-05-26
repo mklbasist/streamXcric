@@ -3208,13 +3208,15 @@ body {
 
 .loader {
   position: absolute;
-  inset: 0;
+  top: 50%;
+  left: 50%;
+  width: 240px;
+  height: 240px;
+  transform: translate(-50%, -50%);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 5;
-  background: linear-gradient(0deg, #1a3379, #0f172a, #000);
-  border-radius: 20px;
   pointer-events: none;
 }
 
@@ -3227,6 +3229,7 @@ body {
   justify-content: center;
   align-items: center;
   font-family: "Inter", sans-serif;
+  background: linear-gradient(0deg, #1a3379, #0f172a, #000);
 }
 
 .loader-circle {
