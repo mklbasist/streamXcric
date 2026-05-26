@@ -3088,6 +3088,7 @@ body {
 
 .chart-box {
   position: relative;
+  overflow: hidden;
   padding: 20px;
   background: rgba(20, 20, 20, 0.88);
   border-radius: 20px;
@@ -3212,9 +3213,9 @@ body {
   justify-content: center;
   align-items: center;
   z-index: 5;
-  background: rgba(15, 23, 42, 0.78);
-  backdrop-filter: blur(6px);
+  background: transparent;
   border-radius: 20px;
+  pointer-events: none;
 }
 
 .loader-wrapper {
