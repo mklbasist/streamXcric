@@ -1030,17 +1030,11 @@ function drawLineChart(batter, bowler) {
   const loader = document.createElement('div');
   loader.className = 'loader';
   loader.innerHTML = `
-    <div class="loader-wrapper">
-      <div class="loader-circle"></div>
-      <span class="loader-letter">L</span>
-      <span class="loader-letter">o</span>
-      <span class="loader-letter">a</span>
-      <span class="loader-letter">d</span>
-      <span class="loader-letter">i</span>
-      <span class="loader-letter">n</span>
-      <span class="loader-letter">g</span>
-    </div>
-  `;
+  <div class="loader-wrapper">
+    <div class="loader-circle"></div>
+    <span class="loader-letter">LOADING</span>
+  </div>
+`;
 
   chartContainer.appendChild(loader);
 
