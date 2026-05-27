@@ -743,5 +743,36 @@ if (themeBtn) {
       .catch(() => console.log("StatPulse ping failed"));
   });
 </script>
+
+<script>
+function checkCombination() {
+
+  const wheel1 = document.querySelector('input[name="wheel-1"]:checked')?.classList[1];
+  const wheel2 = document.querySelector('input[name="wheel-2"]:checked')?.classList[1];
+  const wheel3 = document.querySelector('input[name="wheel-3"]:checked')?.classList[1];
+  const wheel4 = document.querySelector('input[name="wheel-4"]:checked')?.classList[1];
+
+  const code =
+    wheel1?.replace('radio-', '') +
+    wheel2?.replace('radio-', '') +
+    wheel3?.replace('radio-', '') +
+    wheel4?.replace('radio-', '');
+
+  const enterBtn = document.querySelector('.locked-enter');
+
+  if (code === "3562") {
+    enterBtn.classList.add("show-enter");
+  } else {
+    enterBtn.classList.remove("show-enter");
+  }
+}
+
+document.querySelectorAll('.radio').forEach(radio => {
+  radio.addEventListener('change', checkCombination);
+});
+
+checkCombination();
+</script>
+
 </body>
 </html>
