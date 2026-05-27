@@ -3635,36 +3635,36 @@ body {
 }
 
 /* ===== CONTROL METER ===== */
-
-.control-meter{
+.control-meter {
   position: relative;
-  width: 250px;
-  height: 250px;
+  width: 100%;
+  max-width: 200px;
+  aspect-ratio: 1 / 1;
   margin: auto;
 }
 
-.control-fill{
+.control-fill {
   position: absolute;
   inset: 0;
   border-radius: 50%;
 }
 
-.control-fill::after{
-  content:'';
-  position:absolute;
-  inset:18px;
-  border-radius:50%;
-  background:#141414;
+.control-fill::after {
+  content: '';
+  position: absolute;
+  inset: 18%;
+  border-radius: 50%;
+  background: #141414;
 }
 
-.control-text{
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#fff;
-  font-size:2rem;
-  font-weight:700;
-  z-index:2;
+.control-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 700;
+  z-index: 2;
 }
