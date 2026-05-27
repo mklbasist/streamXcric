@@ -3638,9 +3638,8 @@ body {
 
 .control-meter{
   position: relative;
-  width: 100%;
-  max-width: 240px;
-  aspect-ratio: 1 / 1;
+  width: 250px;
+  height: 250px;
   margin: auto;
 }
 
@@ -3651,21 +3650,21 @@ body {
 }
 
 .control-fill::after{
-  content: '';
-  position: absolute;
-  inset: 18px;
-  border-radius: 50%;
-  background: #141414;
+  content:'';
+  position:absolute;
+  inset:18px;
+  border-radius:50%;
+  background:#141414;
 }
 
 .control-text{
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-size: 2rem;
-  font-weight: 700;
-  z-index: 2;
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-size:2rem;
+  font-weight:700;
+  z-index:2;
 }
