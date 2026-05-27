@@ -931,11 +931,51 @@ async function fetchStats() {
 
 // Draw charts
 setTimeout(() => {
-  drawRadarChart(data);
   drawLineChart(data.batterName, data.bowlerName);
 }, 100);
 
 resultDiv.classList.remove("hidden");
+
+const controlFill = document.getElementById("controlFill");
+const controlText = document.getElementById("controlText");
+const controlLabel = document.getElementById("controlLabel");
+
+if (controlFill && controlText && controlLabel) {
+
+  const sr = data.strike_rate || 0;
+  const avg = data.average || 0;
+  const dismissals = data.dismissals || 0;
+
+  let control =
+    (sr * 0.45) +
+    (avg * 1.1) -
+    (dismissals * 12);
+
+  control = Math.max(5, Math.min(control, 100));
+
+  const degrees = (control / 100) * 360;
+
+  controlFill.style.background = `
+    conic-gradient(
+      #84cc16 ${degrees}deg,
+      rgba(255,255,255,0.08) ${degrees}deg
+    )
+  `;
+
+  controlText.innerText = `${Math.round(control)}%`;
+
+  if (control >= 70) {
+    controlLabel.innerText = "Batter in strong control";
+  }
+
+  else if (control >= 45) {
+    controlLabel.innerText = "Balanced matchup";
+  }
+
+  else {
+    controlLabel.innerText = "Bowler applying pressure";
+  }
+}    
 
 const error = document.getElementById("statsError");
 if (error) error.innerText = "";
@@ -964,91 +1004,7 @@ if (error) error.innerText = "";
  }
 }
 
-let radarChartInstance = null;
 let lineChartInstance = null;
-
-function drawRadarChart(data) {
-  const canvas = document.getElementById('radarChart');
-  if (!canvas) return;
-  
-  if (radarChartInstance) {
-    radarChartInstance.destroy();
-  }
-  
-  radarChartInstance = new Chart(canvas, {
-    type: 'radar',
-    data: {
-labels: ['Runs', 'Average', 'Strike Rate', 'Control', 'Dominance'],
-
-datasets: [{
-  label: 'Matchup',
-
-  data: [
-    Math.min((data.runs || 0) / 2, 100),
-
-    Math.min((data.average || 0) * 2, 100),
-
-    Math.min((data.strike_rate || 0), 100),
-
-    Math.max(10, 100 - ((data.dismissals || 0) * 15)),
-
-    Math.min(
-      ((data.runs || 0) / Math.max(data.dismissals || 1, 1)) * 8,
-      100
-    )
-  ],
-        borderColor: '#84cc16',
-        backgroundColor: 'rgba(132, 204, 22, 0.2)',
-        pointBackgroundColor: '#fbbf24',
-        pointBorderColor: '#fff',
-        pointRadius: 5,
-        borderWidth: 2,
-        fill: true,
-        tension: 0.35,
-        pointHoverRadius: 7,
-        pointHoverBackgroundColor: '#fff',
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: { labels: { color: '#f8fafc' } }
-      },
-      scales: {
-r: {
-  min: 0,
-  max: 100,
-
-  ticks: {
-    stepSize: 20,
-    color: '#64748b',
-    backdropColor: 'transparent',
-    font: {
-      size: 9
-    }
-  },
-
-  grid: {
-    color: 'rgba(148,163,184,0.15)'
-  },
-
-  angleLines: {
-    color: 'rgba(148,163,184,0.12)'
-  },
-
-  pointLabels: {
-    color: '#f8fafc',
-    font: {
-      size: 11,
-      weight: '600'
-    }
-  }
-}
-      }
-    }
-  });
-}
 
 function drawLineChart(batter, bowler) {
   const canvas = document.getElementById('lineChart');
