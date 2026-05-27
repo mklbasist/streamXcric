@@ -1002,7 +1002,7 @@ datasets: [{
         pointBackgroundColor: '#fbbf24',
         pointBorderColor: '#fff',
         pointRadius: 5,
-        borderWidth: 2
+        borderWidth: 2,
         fill: true,
         tension: 0.35,
         pointHoverRadius: 7,
