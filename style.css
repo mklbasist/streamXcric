@@ -3633,3 +3633,51 @@ body {
   justify-content: center;
   margin-top: 60px;
 }
+
+.control-meter-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.control-meter {
+  position: relative;
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  background: conic-gradient(
+    #84cc16 0deg,
+    #84cc16 0deg,
+    rgba(255,255,255,0.08) 0deg
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  transition: all 0.5s ease;
+}
+
+.control-meter::before {
+  content: "";
+  position: absolute;
+  width: 125px;
+  height: 125px;
+  background: #0f172a;
+  border-radius: 50%;
+}
+
+.control-text {
+  position: relative;
+  z-index: 2;
+  color: white;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.control-label {
+  margin-top: 18px;
+  color: #94a3b8;
+  font-size: 0.95rem;
+  text-align: center;
+}
