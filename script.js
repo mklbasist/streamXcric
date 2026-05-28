@@ -929,7 +929,16 @@ async function fetchStats() {
     document.getElementById('stat-average').textContent = (typeof data.average === 'number' ? data.average.toFixed(2) : data.average);
     document.getElementById('stat-strikeRate').textContent = (data.strike_rate || 0).toFixed(2);
 
-    updateControlMeter(control);
+  // Calculate control
+  const sr = data.strike_rate || 0;
+  const avg = data.average || 0;
+  const dismissals = data.dismissals || 0;
+
+  let control = (sr * 0.45) + (avg * 1.1) - (dismissals * 12);
+  control = Math.max(5, Math.min(control, 100));
+
+  // NOW call meter function ↓
+  updateControlMeter(control);
     
 // Draw charts
 setTimeout(() => {
