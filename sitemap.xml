@@ -7,39 +7,39 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://streamxcric.vercel.app/matches</loc>
+    <loc>https://streamxcric.vercel.app/about.html</loc>
     <lastmod>2026-05-28</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://streamxcric.vercel.app/live</loc>
+    <loc>https://streamxcric.vercel.app/dmca.html</loc>
     <lastmod>2026-05-28</lastmod>
-    <changefreq>hourly</changefreq>
-    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://streamxcric.vercel.app/teams</loc>
+    <loc>https://streamxcric.vercel.app/privacy.html</loc>
+    <lastmod>2026-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://streamxcric.vercel.app/contact.html</loc>
+    <lastmod>2026-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://streamxcric.vercel.app/submit.html</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://streamxcric.vercel.app/scores</loc>
+    <loc>https://streamxcric.vercel.app/series.html?id=india-tour-of-england-2025</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://streamxcric.vercel.app/about</loc>
-    <lastmod>2026-05-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://streamxcric.vercel.app/contact</loc>
-    <lastmod>2026-05-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
   </url>
 </urlset>
