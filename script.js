@@ -945,48 +945,7 @@ setTimeout(() => {
   drawLineChart(data.batterName, data.bowlerName);
 }, 100);
 
-resultDiv.classList.remove("hidden");
-
-const controlFill = document.getElementById("controlFill");
-const controlText = document.getElementById("controlText");
-const controlLabel = document.getElementById("controlLabel");
-
-if (controlFill && controlText && controlLabel) {
-
-  const sr = data.strike_rate || 0;
-  const avg = data.average || 0;
-  const dismissals = data.dismissals || 0;
-
-  let control =
-    (sr * 0.45) +
-    (avg * 1.1) -
-    (dismissals * 12);
-
-  control = Math.max(5, Math.min(control, 100));
-
-  const degrees = (control / 100) * 360;
-
-  controlFill.style.background = `
-    conic-gradient(
-      #84cc16 ${degrees}deg,
-      rgba(255,255,255,0.08) ${degrees}deg
-    )
-  `;
-
-  controlText.innerText = `${Math.round(control)}%`;
-
-  if (control >= 70) {
-    controlLabel.innerText = "Batter in strong control";
-  }
-
-  else if (control >= 45) {
-    controlLabel.innerText = "Balanced matchup";
-  }
-
-  else {
-    controlLabel.innerText = "Bowler applying pressure";
-  }
-}    
+resultDiv.classList.remove("hidden");  
 
 const error = document.getElementById("statsError");
 if (error) error.innerText = "";
