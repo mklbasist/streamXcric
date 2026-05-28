@@ -3658,9 +3658,9 @@ body {
     width: 100%;
     border-radius: 50% 50% 0 0;
     background-image: linear-gradient(to right,
-                    rgb(234, 62, 62),
-                    yellow,
-                    rgb(13, 255, 0));
+                    rgb(100, 100, 100),
+                    rgb(150, 150, 150),
+                    rgb(200, 200, 200));
 }
 .inner-circle{
     height: 65%;
