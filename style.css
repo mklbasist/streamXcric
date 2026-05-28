@@ -3637,9 +3637,8 @@ body {
 /* ===== CONTROL METER ===== */
 .control-meter {
   position: relative;
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
+  width: 200px;
+  height: 200px;
   margin: 20px auto;
   display: flex;
   align-items: center;
@@ -3648,15 +3647,66 @@ body {
 
 .control-fill {
   position: absolute;
-  inset: 0;
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
-  transition: background 0.5s ease;
+  background: conic-gradient(#84cc16 0deg, #84cc16 180deg, rgba(71, 85, 105, 0.2) 180deg);
+  box-shadow: 
+    0 0 30px rgba(132, 204, 22, 0.4),
+    inset 0 0 30px rgba(132, 204, 22, 0.15);
+  animation: gaugeRotate 0.8s ease-out;
+}
+
+.control-fill::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border-radius: 50%;
+  background: rgba(30, 41, 59, 0.95);
+  border: 2px solid rgba(71, 85, 105, 0.3);
+}
+
+.control-fill::after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #84cc16;
+  border-radius: 50%;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 0 12px rgba(132, 204, 22, 0.6);
 }
 
 .control-text {
   position: relative;
   z-index: 2;
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: 2.5rem;
+  font-weight: 800;
   color: #84cc16;
+  text-shadow: 0 0 20px rgba(132, 204, 22, 0.3);
+  animation: textPulse 0.8s ease-out;
+}
+
+@keyframes gaugeRotate {
+  from {
+    transform: rotate(-180deg);
+    opacity: 0;
+  }
+  to {
+    transform: rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes textPulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
