@@ -3665,7 +3665,7 @@ body {
     height: 65%;
     width: 65%;
     border-radius: 50% 50% 0 0;
-    background: transparent;
+    background: rgba(30, 41, 59, 0.95);
 .needle{
     position: relative;
     top: calc(50% - 15px);
