@@ -929,6 +929,8 @@ async function fetchStats() {
     document.getElementById('stat-average').textContent = (typeof data.average === 'number' ? data.average.toFixed(2) : data.average);
     document.getElementById('stat-strikeRate').textContent = (data.strike_rate || 0).toFixed(2);
 
+    updateControlMeter(control);
+    
 // Draw charts
 setTimeout(() => {
   drawLineChart(data.batterName, data.bowlerName);
@@ -1179,6 +1181,23 @@ function showYearModal(year, runs, dismissals) {
     <button onclick="this.parentElement.remove()" style="background: #84cc16; color: #000; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-weight: 600;">Close</button>
   `;
   document.body.appendChild(modal);
+}
+
+function updateControlMeter(control) {
+  const outerCircle = document.querySelector(".outer-circle");
+  const needle = document.querySelector(".needle");
+  
+  const degrees = (control / 100) * 180 - 90;
+  
+  if (control >= 70) {
+    outerCircle.style.backgroundImage = "linear-gradient(to right, rgb(234, 62, 62), yellow, rgb(13, 255, 0))";
+  } else if (control >= 45) {
+    outerCircle.style.backgroundImage = "linear-gradient(to right, rgb(234, 62, 62) 10%, yellow 55%, rgb(200, 200, 200) 75%)";
+  } else {
+    outerCircle.style.backgroundImage = "linear-gradient(to right, rgb(234, 62, 62) 10%, rgb(150, 150, 150) 25%, rgb(200, 200, 200) 100%)";
+  }
+  
+  needle.style.transform = `translate(-50%, -50%) rotate(${degrees}deg)`;
 }
 
 // ====================
