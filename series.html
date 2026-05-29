@@ -16,7 +16,10 @@
 
   <div class="series-watch-page">
 
-    <button class="back-btn" id="seriesBackBtn">⬅ Back</button>
+    <button class="back-btn" onclick="history.back()">
+      <span>← Back</span>
+      <div class="back-btn-overlay"></div>
+    </button>
 
     <!-- VIDEO PLAYER -->
     <div class="watch-player">
