@@ -3655,21 +3655,10 @@ body {
                     rgb(200, 200, 200));
 }
 .inner-circle{
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-
-    width: 65%;
     height: 65%;
-
+    width: 65%;
     border-radius: 50% 50% 0 0;
-
-    background: #141414; /* solid, not rgba */
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background: #0b0f14;
 }
 .needle{
     position: relative;
