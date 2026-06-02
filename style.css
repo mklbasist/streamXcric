@@ -3658,7 +3658,7 @@ body {
     height: 65%;
     width: 65%;
     border-radius: 50% 50% 0 0;
-    background: rgb(24, 24, 24);
+    background: rgb(28, 28, 28);
     position: relative;
 }
 
@@ -3671,7 +3671,6 @@ body {
     background-color: #bbb;
     border-radius: 50%;
     transition: transform 0.3s ease;
-    transform: translate(-50%, -50%) rotate(-100deg);
     z-index: 10;
 }
 
