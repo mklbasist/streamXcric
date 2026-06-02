@@ -3647,8 +3647,8 @@ body {
 .outer-circle{
     position: relative;
     height: 300px;
-    width: 100%;
-    border-radius: 50% 50% 0 0;
+    width: 300%;
+    border-radius: 50%;
     background-image: linear-gradient(to right,
                     rgb(100, 100, 100),
                     rgb(150, 150, 150),
@@ -3656,7 +3656,7 @@ body {
 .inner-circle{
     height: 65%;
     width: 65%;
-    border-radius: 50% 50% 0 0;
+    border-radius: 50%;
     background: transparent;
 }
 .needle{
