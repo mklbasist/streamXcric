@@ -3665,7 +3665,7 @@ body {
 
     border-radius: 50% 50% 0 0;
 
-    background: transparent;
+    background: #141414; /* solid, not rgba */
 
     display: flex;
     align-items: center;
