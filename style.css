@@ -3647,18 +3647,17 @@ body {
 .outer-circle{
     position: relative;
     height: 300px;
-    width: 300%;
-    border-radius: 50%;
+    width: 100%;
+    border-radius: 50% 50% 0 0;
     background-image: linear-gradient(to right,
                     rgb(100, 100, 100),
                     rgb(150, 150, 150),
                     rgb(200, 200, 200));
-.inner-circle{
+}.inner-circle{
     height: 65%;
     width: 65%;
-    border-radius: 50%;
-    background: transparent;
-}
+    border-radius: 50% 50% 0 0;
+    background: rgba(20, 20, 20, 0.88);
 .needle{
     position: relative;
     top: calc(50% - 15px);
