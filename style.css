@@ -3654,7 +3654,10 @@ body {
                     rgb(150, 150, 150),
                     rgb(200, 200, 200));
 .inner-circle{
-    display: none;
+    height: 65%;
+    width: 65%;
+    border-radius: 50% 50% 0 0;
+    background: transparent;
 }
 .needle{
     position: relative;
