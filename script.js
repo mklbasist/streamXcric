@@ -105,7 +105,8 @@ function backToPlayers() {
       { title: "63. 87 vs WI, 2024", video: "https://www.dailymotion.com/embed/video/x9pkv20" },
       { title: "64. 62* v SL, 2024", video: "https://www.dailymotion.com/embed/video/x9pqzcg" },
       { title: "65. 54 vs NZ, 2024", video: "https://www.dailymotion.com/embed/video/x9pwa6m" },
-      { title: "66. 53* vs IND, 2025", video: "https://www.dailymotion.com/embed/video/x9pku1m" }
+      { title: "66. 53* vs IND, 2025", video: "https://www.dailymotion.com/embed/video/x9pku1m" },
+      { title: "67. 77 vs NZ, 2025", video: "https://www.dailymotion.com/embed/video/xak79ya" }
     ],
         centuries: [
           { title: "1. 104 vs NZ, 2013", video: "https://drive.google.com/file/d/1eqqYjtFZ5Aj8Y2f6irm2EvckLHJ5fSi3/preview" },
